@@ -1,20 +1,20 @@
 import { useState } from 'react';
-import { TabsNames } from '../../../../const';
+import { TabName } from '../../../const';
 import { TabsControl } from './tabs-control';
-import { TabsContent } from '../tabs-content';
+import { TabsContent } from './tabs-content';
 
 export function Tabs() {
-  const [isActive, setIsActive] = useState(TabsNames.Description);
+  const [isActive, setIsActive] = useState(TabName.Description);
 
   const handleTabsButton = () =>
-    isActive === TabsNames.Description
-      ? setIsActive(TabsNames.Characteristics)
-      : setIsActive(TabsNames.Description);
+    isActive === TabName.Description
+      ? setIsActive(TabName.Characteristics)
+      : setIsActive(TabName.Description);
 
   return (
     <div className="tabs product__tabs">
       <div className="tabs__controls product__tabs-controls">
-        {Object.values(TabsNames).map((item) => (
+        {Object.values(TabName).map((item) => (
           <TabsControl
             key={item}
             item={item}
@@ -23,7 +23,7 @@ export function Tabs() {
           />
         ))}
       </div>
-      <TabsContent isActive={isActive}/>
+      <TabsContent isActive={isActive} />
     </div>
   );
 }

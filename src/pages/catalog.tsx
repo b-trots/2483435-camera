@@ -4,8 +4,19 @@ import { Header } from '../components/header/header';
 import { Banner } from '../components/main/banner';
 import { ProductCard } from '../components/main/product-card';
 import mockProducts from '../mock/mock';
+import { CallItem } from '../components/main/modal/catalog-call-item/catalog-call-item';
+import { useState } from 'react';
 
 export function Catalog() {
+  const [isCallItem, setIsCallItem] = useState<number | null>();
+
+  const handleBuyButton = (id: number) =>
+    setIsCallItem((prevState) => (prevState === id ? null : id));
+
+  function handleModalClose() {
+    setIsCallItem(null);
+  }
+
   return (
     <div className="wrapper">
       <Header />
@@ -43,7 +54,11 @@ export function Catalog() {
                   {/* <Sorting/> */}
                   <div className="cards catalog__cards">
                     {mockProducts.map((product) => (
-                      <ProductCard key={product.id} product={product} />
+                      <ProductCard
+                        key={product.id}
+                        product={product}
+                        onClick={() => handleBuyButton(product.id)}
+                      />
                     ))}
                   </div>
                   {/* <PageSwitcher/> */}
@@ -53,6 +68,9 @@ export function Catalog() {
           </section>
         </div>
       </main>
+      {isCallItem && (
+        <CallItem productId={isCallItem} onClose={handleModalClose} />
+      )}
       <Footer />
     </div>
   );

@@ -1,6 +1,6 @@
-import { TabsNames } from '../../../../const';
+import { TabName } from '../../../const';
 
-export type TabsNamesValues = typeof TabsNames[keyof typeof TabsNames];
+export type TabsNamesValues = (typeof TabName)[keyof typeof TabName];
 
 type TabsControlProps = {
   item: TabsNamesValues;

@@ -4,9 +4,10 @@ import { ProductOfCatalog } from '../../types/product-type';
 
 type ProductProps = {
   product: ProductOfCatalog;
+  onClick: (id: number) => void;
 };
 
-export function ProductCard({ product }: ProductProps) {
+export function ProductCard({ product, onClick }: ProductProps) {
   const {
     id,
     name,
@@ -66,10 +67,17 @@ export function ProductCard({ product }: ProductProps) {
         </p>
       </div>
       <div className="product-card__buttons">
-        <button className="btn btn--purple product-card__btn" type="button">
+        <button
+          className="btn btn--purple product-card__btn"
+          type="button"
+          onClick={() => onClick(id)}
+        >
           Купить
         </button>
-        <Link className="btn btn--transparent" to={AppRoute.Cameras.replace(':id', String(id))}>
+        <Link
+          className="btn btn--transparent"
+          to={AppRoute.Cameras.replace(':id', String(id))}
+        >
           Подробнее
         </Link>
       </div>

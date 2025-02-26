@@ -5,7 +5,7 @@ import { Review } from './reviews/review';
 import mockProducts from '../../mock/mock';
 import { Error } from '../../components/main/error/error';
 import { AppRoute } from '../../const';
-import { Tabs } from './tabs-content/tabs/tabs';
+import { Tabs } from './tabs/tabs';
 
 export function Product() {
   const { id } = useParams();
