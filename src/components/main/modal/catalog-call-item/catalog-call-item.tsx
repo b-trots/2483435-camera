@@ -2,6 +2,10 @@ import { useEffect, useRef, useState } from 'react';
 import mockProducts from '../../../../mock/mock';
 import { Flip, toast, ToastContainer } from 'react-toastify';
 import { Error, Validation } from '../../../../const';
+import { toLoopFocus } from '../modal-utils/to-loop-focus';
+import { handleModalClose } from '../modal-utils/handle-modal-close';
+import { notify } from '../../../../utils/error-utils';
+import { toStandardizePhone } from '../../../../utils/utils';
 
 type CallItemProps = {
   productId: number;
@@ -11,65 +15,18 @@ export function CallItem({ productId, onClose }: CallItemProps) {
   const product = mockProducts.find((item) => item.id === productId)!;
   const { name, vendorCode, level, category, price } = product;
 
-  const firstInputRef = useRef<HTMLInputElement | null>(null);
-  const closeButtonRef = useRef<HTMLButtonElement | null>(null);
-
-  useEffect(() => {
-    if (firstInputRef.current) {
-      firstInputRef.current.focus();
-    }
-  }, []);
-
-  const handleTabKeyDown = (e: React.KeyboardEvent) => {
-    if (e.key === 'Tab') {
-      const focusableElements = [
-        firstInputRef.current,
-        closeButtonRef.current,
-      ].filter(Boolean) as HTMLElement[];
-
-      const lastIndex = focusableElements.length - 1;
-      const focusedIndex = focusableElements.indexOf(
-        document.activeElement as HTMLElement
-      );
-
-      if (e.shiftKey && focusedIndex === 0) {
-        focusableElements[lastIndex].focus();
-        e.preventDefault();
-      } else if (!e.shiftKey && focusedIndex === lastIndex) {
-        focusableElements[0].focus();
-        e.preventDefault();
-      }
-    }
-  };
-
-
-  useEffect(() => {
-    const handleEscapeKeyDown = (event: KeyboardEvent) => {
-      if (event.key === 'Escape') {
-        onClose();
-      }
-    };
-
-    document.addEventListener('keydown', handleEscapeKeyDown);
-
-    return () => {
-      document.removeEventListener('keydown', handleEscapeKeyDown);
-    };
-  });
-
-  const modalRef = useRef<HTMLDivElement | null>(null);
-
-  const handleClickOutside = (e: React.MouseEvent) => {
-    if (modalRef.current && !modalRef.current.contains(e.target as Node)) {
-      onClose();
-    }
-  };
-
   const [phone, setPhone] = useState('');
   const [isToastShown, setIsToastShown] = useState(false);
 
+  const modalRef = useRef<HTMLDivElement | null>(null);
+  const containerRef = useRef<HTMLDivElement | null>(null);
+  const firstTabRef = useRef<HTMLInputElement | null>(null);
+  const lastTabRef = useRef<HTMLButtonElement | null>(null);
 
-  const notify = (message: string) => toast.error(message);
+  useEffect(() => {
+    toLoopFocus(containerRef, firstTabRef, lastTabRef);
+    handleModalClose(containerRef, modalRef, lastTabRef, onClose);
+  });
 
   const handlePhoneChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const input = e.target.value;
@@ -93,20 +50,14 @@ export function CallItem({ productId, onClose }: CallItemProps) {
       return;
     }
 
-    const standardizedPhone = phone
-      .replace(/\D/g, '')
-      .replace(/^8/, '7')
-      .replace(/^7/, '+7');
-
-    console.log(standardizedPhone, productId);
+    toStandardizePhone(phone);
     onClose();
   };
 
-
   return (
-    <div className="modal is-active" tabIndex={-1} onKeyDown={handleTabKeyDown}>
+    <div className="modal is-active" ref={containerRef}>
       <div className="modal__wrapper">
-        <div className="modal__overlay" onClick={handleClickOutside} />
+        <div className="modal__overlay" />
         <div className="modal__content" ref={modalRef}>
           <p className="title title--h4">Свяжитесь со мной</p>
           <div className="basket-item basket-item--short">
@@ -150,7 +101,7 @@ export function CallItem({ productId, onClose }: CallItemProps) {
                 </svg>
               </span>
               <input
-                ref={firstInputRef}
+                ref={firstTabRef}
                 type="tel"
                 name="user-tel"
                 value={phone}
@@ -193,11 +144,10 @@ export function CallItem({ productId, onClose }: CallItemProps) {
             </button>
           </div>
           <button
-            ref={closeButtonRef}
+            ref={lastTabRef}
             className="cross-btn"
             type="button"
             aria-label="Закрыть попап"
-            onClick={onClose}
           >
             <svg width={10} height={10} aria-hidden="true">
               <use xlinkHref="#icon-close" />
