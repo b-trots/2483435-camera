@@ -42,19 +42,6 @@ export function CallItem({ productId, onClose }: CallItemProps) {
     }
   };
 
-  useEffect(() => {
-    const scrollBarWidth = window.innerWidth - document.documentElement.clientWidth;
-
-    if (productId) {
-      document.body.style.overflow = 'hidden';
-      document.body.style.paddingRight = `${scrollBarWidth}px`;
-    }
-
-    return () => {
-      document.body.style.overflow = 'auto';
-      document.body.style.paddingRight = '0px';
-    };
-  });
 
   useEffect(() => {
     const handleEscapeKeyDown = (event: KeyboardEvent) => {

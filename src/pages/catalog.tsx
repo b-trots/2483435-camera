@@ -5,10 +5,13 @@ import { Banner } from '../components/main/banner';
 import { ProductCard } from '../components/main/product-card';
 import mockProducts from '../mock/mock';
 import { CallItem } from '../components/main/modal/catalog-call-item/catalog-call-item';
-import { useState } from 'react';
+import { useRef, useState } from 'react';
+import { useNoScroll } from '../hooks/use-no-scroll';
 
 export function Catalog() {
-  const [isCallItem, setIsCallItem] = useState<number | null>();
+  const [isCallItem, setIsCallItem] = useState<number | null>(null);
+
+  const isActive = isCallItem !== null;
 
   const handleBuyButton = (id: number) =>
     setIsCallItem((prevState) => (prevState === id ? null : id));
@@ -16,9 +19,11 @@ export function Catalog() {
   function handleModalClose() {
     setIsCallItem(null);
   }
+  const containerRef = useRef<HTMLDivElement | null>(null);
+  useNoScroll(containerRef, isActive);
 
   return (
-    <div className="wrapper">
+    <div className="wrapper" ref={containerRef}>
       <Header />
       <main>
         <Banner />
