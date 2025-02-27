@@ -1,4 +1,3 @@
-import { Link } from 'react-router-dom';
 import { Footer } from '../components/footer/footer';
 import { Header } from '../components/header/header';
 import { Banner } from '../components/main/banner';
@@ -7,6 +6,7 @@ import mockProducts from '../mock/mock';
 import { CallItem } from '../components/main/modal/catalog-call-item/catalog-call-item';
 import { useRef, useState } from 'react';
 import { useNoScroll } from '../hooks/use-no-scroll';
+import { Breadcrumbs } from '../components/main/breadcrumbs/breadcrumbs';
 
 export function Catalog() {
   const [isCallItem, setIsCallItem] = useState<number | null>(null);
@@ -28,25 +28,7 @@ export function Catalog() {
       <main>
         <Banner />
         <div className="page-content">
-          <div className="breadcrumbs">
-            <div className="container">
-              <ul className="breadcrumbs__list">
-                <li className="breadcrumbs__item">
-                  <Link className="breadcrumbs__link" to={''}>
-                    Главная
-                    <svg width={5} height={8} aria-hidden="true">
-                      <use xlinkHref="#icon-arrow-mini" />
-                    </svg>
-                  </Link>
-                </li>
-                <li className="breadcrumbs__item">
-                  <span className="breadcrumbs__link breadcrumbs__link--active">
-                    Каталог
-                  </span>
-                </li>
-              </ul>
-            </div>
-          </div>
+          <Breadcrumbs />
           <section className="catalog">
             <div className="container">
               <h1 className="title title--h2">Каталог фото- и видеотехники</h1>
