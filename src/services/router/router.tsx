@@ -17,7 +17,7 @@ function Router() {
         },
         {
           path: AppRoute.Cameras,
-          element: <Product/>,
+          element: <Product />,
         },
       ],
     },

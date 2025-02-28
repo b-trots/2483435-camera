@@ -24,4 +24,17 @@ enum TitleName {
   Basket = 'Корзина',
 }
 
-export { AppRoute, TabName, Error, Validation, TitleName };
+enum LogoParam {
+  Name = 'Переход на главную',
+  Width = 100,
+  Height = 36,
+}
+
+const NAVIGATE = [
+  { name: 'Каталог', path: AppRoute.Main },
+  { name: 'Гарантии', path: AppRoute.Main },
+  { name: 'Доставка', path: AppRoute.Main },
+  { name: ' О компании', path: AppRoute.Main },
+];
+
+export { AppRoute, TabName, Error, Validation, TitleName, LogoParam, NAVIGATE};
