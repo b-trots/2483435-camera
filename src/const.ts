@@ -18,4 +18,10 @@ const Validation = {
   PhoneSubmit: /^(\+7|8)?\s*\(?\d{3}\)?[\s-]?\d{3}[\s-]?\d{2}[\s-]?\d{2}$/,
 } as const;
 
-export { AppRoute, TabName, Error, Validation };
+enum TitleName {
+  StoreName = 'Фотошоп',
+  Catalog = 'Каталог',
+  Basket = 'Корзина',
+}
+
+export { AppRoute, TabName, Error, Validation, TitleName };

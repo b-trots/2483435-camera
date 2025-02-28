@@ -3,17 +3,13 @@ import { Footer } from '../../components/footer/footer';
 import { Header } from '../../components/header/header';
 import { Review } from './reviews/review';
 import mockProducts from '../../mock/mock';
-import { Error } from '../../components/main/error/error';
 import { Tabs } from './tabs/tabs';
 import { Breadcrumbs } from '../../components/main/breadcrumbs/breadcrumbs';
+import { useChangeTitle } from '../../hooks/use-change-title';
 
 export function Product() {
   const { id } = useParams();
-  const product = mockProducts.find((item) => item.id === Number(id));
-
-  if (!product) {
-    return <Error />;
-  }
+  const product = mockProducts.find((item) => item.id === Number(id))!;
 
   const {
     name,
@@ -26,12 +22,14 @@ export function Product() {
     previewImgWebp2x,
   } = product;
 
+  useChangeTitle(name);
+
   return (
     <div className="wrapper">
       <Header />
       <main>
         <div className="page-content">
-          <Breadcrumbs productName={name}/>
+          <Breadcrumbs productName={name} />
           <div className="page-content__section">
             <section className="product">
               <div className="container">

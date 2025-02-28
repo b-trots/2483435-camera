@@ -7,6 +7,8 @@ import { CallItem } from '../components/main/modal/catalog-call-item/catalog-cal
 import { useRef, useState } from 'react';
 import { useNoScroll } from '../hooks/use-no-scroll';
 import { Breadcrumbs } from '../components/main/breadcrumbs/breadcrumbs';
+import { useChangeTitle } from '../hooks/use-change-title';
+import { TitleName } from '../const';
 
 export function Catalog() {
   const [isCallItem, setIsCallItem] = useState<number | null>(null);
@@ -21,6 +23,7 @@ export function Catalog() {
   }
   const containerRef = useRef<HTMLDivElement | null>(null);
   useNoScroll(containerRef, isActive);
+  useChangeTitle(TitleName.Catalog);
 
   return (
     <div className="wrapper" ref={containerRef}>
