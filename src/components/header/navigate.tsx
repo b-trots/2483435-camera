@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { NAVIGATE } from '../../const';
+import { NAVIGATE } from '../../const/const-navigate';
 
 export function Navigate() {
   return (

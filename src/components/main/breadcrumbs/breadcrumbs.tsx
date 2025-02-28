@@ -1,11 +1,6 @@
-import { AppRoute } from '../../../const';
+import { BREADCRUMBS } from '../../../const/const-navigate';
 import { BreadcrumbActive } from './breadcrumb-active';
 import { BreadcrumbInactive } from './breadcrumb-inactive';
-
-const BREADCRUMBS: { name: string; path?: string }[] = [
-  { name: 'Главная', path: AppRoute.Main },
-  { name: 'Каталог', path: AppRoute.Main },
-];
 
 type BreadcrumbsProps = {
   productName?: string;

@@ -1,4 +1,4 @@
-import { TabName } from '../../../const';
+import { TabName } from '../../../const/const';
 import { Characteristics } from '../characteristics';
 import { Description } from '../description';
 import { TabsNamesValues } from './tabs-control';

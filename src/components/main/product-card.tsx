@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
-import { AppRoute } from '../../const';
 import { ProductOfCatalog } from '../../types/product-type';
+import { AppRoute } from '../../const/const-navigate';
 
 type ProductProps = {
   product: ProductOfCatalog;

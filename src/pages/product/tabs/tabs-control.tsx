@@ -1,4 +1,4 @@
-import { TabName } from '../../../const';
+import { TabName } from '../../../const/const';
 
 export type TabsNamesValues = (typeof TabName)[keyof typeof TabName];
 

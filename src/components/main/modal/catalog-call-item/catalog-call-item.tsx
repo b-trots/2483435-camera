@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 import mockProducts from '../../../../mock/mock';
 import { Flip, toast, ToastContainer } from 'react-toastify';
-import { Error, Validation } from '../../../../const';
+import { Error, Validation } from '../../../../const/const';
 import { toLoopFocus } from '../modal-utils/to-loop-focus';
 import { handleModalClose } from '../modal-utils/handle-modal-close';
 import { notify } from '../../../../utils/error-utils';

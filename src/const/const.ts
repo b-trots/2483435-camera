@@ -1,8 +1,3 @@
-enum AppRoute {
-  Main = '/',
-  Cameras = '/cameras/:id',
-}
-
 const TabName = {
   Characteristics: 'Характеристики',
   Description: 'Описание',
@@ -30,11 +25,15 @@ enum LogoParam {
   Height = 36,
 }
 
-const NAVIGATE = [
-  { name: 'Каталог', path: AppRoute.Main },
-  { name: 'Гарантии', path: AppRoute.Main },
-  { name: 'Доставка', path: AppRoute.Main },
-  { name: ' О компании', path: AppRoute.Main },
-];
+enum BemClass {
+  Footer = 'footer',
+  Header = 'header',
+}
 
-export { AppRoute, TabName, Error, Validation, TitleName, LogoParam, NAVIGATE};
+enum BemValue {
+  Mono = '-mono'
+}
+
+const SHOP_DESCRIPTION = 'Интернет-магазин фото- и видеотехники';
+
+export { TabName, Error, Validation, TitleName, LogoParam, BemClass,BemValue, SHOP_DESCRIPTION };

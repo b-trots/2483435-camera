@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 import mockProducts from '../../mock/mock';
-import { AppRoute } from '../../const';
+import { AppRoute } from '../../const/const-navigate';
 
 export function Banner() {
   const {

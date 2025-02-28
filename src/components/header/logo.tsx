@@ -1,15 +1,22 @@
 import { Link } from 'react-router-dom';
-import { AppRoute, LogoParam } from '../../const';
+import { BemClass, BemValue, LogoParam } from '../../const/const';
+import { AppRoute } from '../../const/const-navigate';
 
-export function Logo() {
+type LogoProps = {
+  bemBlock: string;
+};
+
+export function Logo({ bemBlock }: LogoProps) {
+  const isFooter = bemBlock === BemClass.Footer ? BemValue.Mono : '';
+
   return (
     <Link
-      className="header__logo"
+      className={`${bemBlock}__logo`}
       to={AppRoute.Main}
       aria-label={LogoParam.Name as string}
     >
       <svg width={LogoParam.Width} height={LogoParam.Height} aria-hidden="true">
-        <use xlinkHref="#icon-logo" />
+        <use xlinkHref={`#icon-logo${isFooter}`} />
       </svg>
     </Link>
   );

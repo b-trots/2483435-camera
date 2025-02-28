@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { TabName } from '../../../const';
+import { TabName } from '../../../const/const';
 import { TabsControl } from './tabs-control';
 import { TabsContent } from './tabs-content';
 

@@ -1,3 +1,4 @@
+import { BemClass } from '../../const/const';
 import { Logo } from './logo';
 import { Navigate } from './navigate';
 
@@ -5,7 +6,7 @@ export function Header() {
   return (
     <header className="header" id="header">
       <div className="container">
-        <Logo />
+        <Logo bemBlock={BemClass.Header} />
         <Navigate />
         {/*<div class="form-search">
       <form>

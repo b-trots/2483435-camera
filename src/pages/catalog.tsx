@@ -8,7 +8,7 @@ import { useRef, useState } from 'react';
 import { useNoScroll } from '../hooks/use-no-scroll';
 import { Breadcrumbs } from '../components/main/breadcrumbs/breadcrumbs';
 import { useChangeTitle } from '../hooks/use-change-title';
-import { TitleName } from '../const';
+import { TitleName } from '../const/const';
 
 export function Catalog() {
   const [isCallItem, setIsCallItem] = useState<number | null>(null);

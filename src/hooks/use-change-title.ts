@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import { TitleName } from '../const';
+import { TitleName } from '../const/const';
 
 const restoreTitle = () => {
   const initialTitle = document.title;
