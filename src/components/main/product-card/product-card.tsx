@@ -1,0 +1,58 @@
+import { ProductOfCatalog } from '../../../types/product-type';
+import {
+  BemClass,
+} from '../../../const/const';
+import { ProductImg } from '../../../pages/product/product-img';
+import { ProductPrice } from '../../../pages/product/product-price';
+import { ProductRate } from '../../../pages/product/product-rate';
+import { ActiveButton } from '../buttons/active-button';
+import { PassiveButton } from '../buttons/passive-button';
+import { ButtonBemClass, ActiveButtonName } from '../../../const/const-button';
+type ProductProps = {
+  product: ProductOfCatalog;
+  onClick: (id: number) => void;
+};
+
+export function ProductCard({ product, onClick }: ProductProps) {
+  const {
+    id,
+    name,
+    previewImg,
+    previewImg2x,
+    previewImgWebp,
+    previewImgWebp2x,
+    price,
+    rating,
+    reviewCount,
+  } = product;
+
+  return (
+    <div className="product-card">
+      <ProductImg
+        bemClass={BemClass.ProductCard}
+        previewImgWebp={previewImgWebp}
+        previewImgWebp2x={previewImgWebp2x}
+        previewImg={previewImg}
+        previewImg2x={previewImg2x}
+        name={name}
+      />
+      <div className="product-card__info">
+        <ProductRate
+          bemClass={BemClass.ProductCard}
+          rating={rating}
+          reviewCount={reviewCount}
+        />
+        <p className="product-card__title">{name}</p>
+        <ProductPrice bemClass={BemClass.ProductCard} price={price} />
+      </div>
+      <div className="product-card__buttons">
+        <ActiveButton
+          onClick={() => onClick(id)}
+          className={ButtonBemClass.ProductCard}
+          text={ActiveButtonName.Buy}
+        />
+        <PassiveButton id={id} />
+      </div>
+    </div>
+  );
+}

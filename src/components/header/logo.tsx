@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { BemClass, BemValue, LogoParam } from '../../const/const';
+import { BemClass, BemMode, LogoParam } from '../../const/const';
 import { AppRoute } from '../../const/const-navigate';
 
 type LogoProps = {
@@ -7,7 +7,7 @@ type LogoProps = {
 };
 
 export function Logo({ bemBlock }: LogoProps) {
-  const isFooter = bemBlock === BemClass.Footer ? BemValue.Mono : '';
+  const isFooter = bemBlock === BemClass.Footer ? BemMode.Mono : BemMode.Void;
 
   return (
     <Link

@@ -1,10 +1,10 @@
 import { Link } from 'react-router-dom';
 
-type BreadcrumbInactiveProps = {
+type BreadcrumbProps = {
   name: string;
   path: string;
 };
-export function BreadcrumbInactive({ name, path }: BreadcrumbInactiveProps) {
+export function Breadcrumb({ name, path }: BreadcrumbProps) {
   return (
     <li className="breadcrumbs__item" key={name}>
       <Link className="breadcrumbs__link" to={path}>

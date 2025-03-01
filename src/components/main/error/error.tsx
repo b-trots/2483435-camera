@@ -1,16 +1,18 @@
 import { Link } from 'react-router-dom';
-// import { useChangeTitle } from '../../../hooks/title';
 import css from './style.module.css';
+import { useChangeTitle } from '../../../hooks/use-change-title';
+import { ExplanationWord, TitleName } from '../../../const/const';
+import { AppRoute } from '../../../const/const-navigate';
 
 export function Error(): JSX.Element {
-  // useChangeTitle('Page Not Found');
+  useChangeTitle(TitleName.PageNotFound);
 
   return (
     <div className={css.root}>
       <div className={css.smile}>☹</div>
       <div className={css.message}>404 Not Found</div>
-      <Link className={css.home} to="/">
-        Home Page
+      <Link className={css.home} to={AppRoute.Main}>
+        {ExplanationWord.HomePage}
       </Link>
     </div>
   );

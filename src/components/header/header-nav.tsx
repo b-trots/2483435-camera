@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 import { NAVIGATE } from '../../const/const-navigate';
 
-export function Navigate() {
+export function HeaderNav() {
   return (
     <nav className="main-nav header__main-nav">
       <ul className="main-nav__list">

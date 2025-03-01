@@ -1,6 +1,8 @@
 import { Link } from 'react-router-dom';
 import mockProducts from '../../mock/mock';
 import { AppRoute } from '../../const/const-navigate';
+import { BannerParam } from '../../const/const';
+import { PassiveButtonName } from '../../const/const-button';
 
 export function Banner() {
   const {
@@ -22,17 +24,17 @@ export function Banner() {
         <img
           src={previewImg}
           srcSet={previewImg2x}
-          width={1280}
-          height={280}
-          alt="баннер"
+          width={BannerParam.Width}
+          height={BannerParam.Height}
+          alt={BannerParam.Alt as string}
         />
       </picture>
       <p className="banner__info">
-        <span className="banner__message">Новинка!</span>
+        <span className="banner__message">{BannerParam.Message}</span>
         <span className="title title--h1">{name}</span>
         <span className="banner__text">{description}</span>
         <Link className="btn" to={AppRoute.Cameras.replace(':id', String(id))}>
-          Подробнее
+          {PassiveButtonName.Details}
         </Link>
       </p>
     </div>

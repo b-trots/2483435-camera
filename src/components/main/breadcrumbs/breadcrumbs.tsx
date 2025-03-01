@@ -1,23 +1,23 @@
 import { BREADCRUMBS } from '../../../const/const-navigate';
 import { BreadcrumbActive } from './breadcrumb-active';
-import { BreadcrumbInactive } from './breadcrumb-inactive';
+import { Breadcrumb } from './breadcrumb';
 
 type BreadcrumbsProps = {
   productName?: string;
 };
 
 export function Breadcrumbs({ productName }: BreadcrumbsProps) {
-  let directories = BREADCRUMBS;
-  if (productName) {
-    directories = [...directories, { name: productName }];
-  }
+  const correctDirectory = productName
+    ? [...BREADCRUMBS, { name: productName }]
+    : BREADCRUMBS;
+
   return (
     <div className="breadcrumbs">
       <div className="container">
         <ul className="breadcrumbs__list">
-          {directories.map(({ name, path }, index) =>
-            index !== directories.length - 1 && path ? (
-              <BreadcrumbInactive name={name} key={name} path={path} />
+          {correctDirectory.map(({ name, path }, index) =>
+            index !== correctDirectory.length - 1 && path ? (
+              <Breadcrumb name={name} key={name} path={path} />
             ) : (
               <BreadcrumbActive name={name} key={name} />
             )

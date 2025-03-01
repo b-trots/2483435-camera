@@ -1,0 +1,37 @@
+import { ExplanationWord, ServiceParam } from '../../../../const/const';
+
+type CallItemPhoneProps = {
+  firstTabRef: React.MutableRefObject<HTMLInputElement | null>;
+  phone: string;
+  handlePhoneChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+};
+
+export function CallItemPhone({
+  firstTabRef,
+  phone,
+  handlePhoneChange,
+}: CallItemPhoneProps) {
+  return (
+    <label>
+      <span className="custom-input__label">
+        {ExplanationWord.Phone}
+        <svg
+          width={ServiceParam.SnowflackSize}
+          height={ServiceParam.SnowflackSize}
+          aria-hidden="true"
+        >
+          <use xlinkHref="#icon-snowflake" />
+        </svg>
+      </span>
+      <input
+        ref={firstTabRef}
+        type="tel"
+        name="user-tel"
+        value={phone}
+        placeholder={ExplanationWord.EnterPhone}
+        required
+        onChange={handlePhoneChange}
+      />
+    </label>
+  );
+}

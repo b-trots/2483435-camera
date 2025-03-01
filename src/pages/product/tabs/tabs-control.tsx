@@ -1,4 +1,4 @@
-import { TabName } from '../../../const/const';
+import { BemMode, TabName } from '../../../const/const';
 
 export type TabsNamesValues = (typeof TabName)[keyof typeof TabName];
 
@@ -9,7 +9,7 @@ type TabsControlProps = {
 };
 
 export function TabsControl({ item, isActive, onClick }: TabsControlProps) {
-  const isActiveTab = isActive === item ? 'is-active' : '';
+  const isActiveTab = isActive === item ? BemMode.IsActive : BemMode.Void;
   return (
     <button
       className={`tabs__control ${isActiveTab}`}

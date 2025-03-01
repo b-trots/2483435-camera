@@ -1,14 +1,14 @@
-import { Footer } from '../components/footer/footer';
-import { Header } from '../components/header/header';
-import { Banner } from '../components/main/banner';
-import { ProductCard } from '../components/main/product-card';
-import mockProducts from '../mock/mock';
-import { CallItem } from '../components/main/modal/catalog-call-item/catalog-call-item';
-import { useRef, useState } from 'react';
-import { useNoScroll } from '../hooks/use-no-scroll';
-import { Breadcrumbs } from '../components/main/breadcrumbs/breadcrumbs';
-import { useChangeTitle } from '../hooks/use-change-title';
-import { TitleName } from '../const/const';
+import { useState, useRef } from 'react';
+import { Footer } from '../../components/footer/footer';
+import { Header } from '../../components/header/header';
+import { Banner } from '../../components/main/banner';
+import { Breadcrumbs } from '../../components/main/breadcrumbs/breadcrumbs';
+import { CallItem } from '../../components/main/modal/call-item/call-item';
+import { ProductCard } from '../../components/main/product-card/product-card';
+import { TitleName, SHOP_TITLE } from '../../const/const';
+import { useChangeTitle } from '../../hooks/use-change-title';
+import { useNoScroll } from '../../hooks/use-no-scroll';
+import mockProducts from '../../mock/mock';
 
 export function Catalog() {
   const [isCallItem, setIsCallItem] = useState<number | null>(null);
@@ -34,7 +34,7 @@ export function Catalog() {
           <Breadcrumbs />
           <section className="catalog">
             <div className="container">
-              <h1 className="title title--h2">Каталог фото- и видеотехники</h1>
+              <h1 className="title title--h2">{SHOP_TITLE}</h1>
               <div className="page-content__columns">
                 <div className="catalog__aside">
                   <img src="img/banner.png" />

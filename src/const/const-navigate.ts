@@ -31,12 +31,12 @@ const FOOTER_NAVIGATE = [
   { title: 'Навигация', navigate: NAVIGATE },
   { title: 'Ресурсы', navigate: RESOURCES },
   { title: 'Поддержка', navigate: SUPPORT },
-];
+] as const;
 
 const SOCIAL = [
   {
     name: 'vk',
-    label: 'Переход на страницу вконтатке',
+    label: 'Переход на страницу вконтакте',
     path: AppRoute.Plug,
   },
   {

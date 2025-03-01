@@ -2,9 +2,9 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 // import { AppRoute } from '../../const';
 
 import { Error } from '../../components//main/error/error';
-import { Catalog } from '../../pages/catalog';
 import { Product } from '../../pages/product/product';
 import { AppRoute } from '../../const/const-navigate';
+import { Catalog } from '../../pages/catalog/catalog';
 
 function Router() {
   const router = createBrowserRouter([
