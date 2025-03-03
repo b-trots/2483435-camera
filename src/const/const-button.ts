@@ -15,7 +15,7 @@ enum ActiveButtonName {
   Basket = 'Перейти в корзину',
   Return = 'Вернуться к покупкам',
   Review = 'Отправить отзыв',
-  MoreReview = 'Показать больше отзывов',
+  MoreReviews = 'Показать больше отзывов',
 }
 
 enum PassiveButtonName {
