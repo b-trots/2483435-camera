@@ -1,8 +1,8 @@
 import { Link } from 'react-router-dom';
-import mockProducts from '../../mock/mock';
 import { AppRoute } from '../../const/const-navigate';
 import { BannerParam } from '../../const/const';
 import { PassiveButtonName } from '../../const/const-button';
+import { mockProducts } from '../../mock/mock';
 
 export function Banner() {
   const {

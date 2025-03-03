@@ -8,7 +8,7 @@ import { ProductCard } from '../../components/main/product-card/product-card';
 import { TitleName, SHOP_TITLE } from '../../const/const';
 import { useChangeTitle } from '../../hooks/use-change-title';
 import { useNoScroll } from '../../hooks/use-no-scroll';
-import mockProducts from '../../mock/mock';
+import { mockProducts } from '../../mock/mock';
 
 export function Catalog() {
   const [isCallItem, setIsCallItem] = useState<number | null>(null);

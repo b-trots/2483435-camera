@@ -1,8 +1,6 @@
 import { useParams } from 'react-router-dom';
 import { Footer } from '../../components/footer/footer';
 import { Header } from '../../components/header/header';
-import { Review } from './reviews/review';
-import mockProducts from '../../mock/mock';
 import { Tabs } from './tabs/tabs';
 import { Breadcrumbs } from '../../components/main/breadcrumbs/breadcrumbs';
 import { useChangeTitle } from '../../hooks/use-change-title';
@@ -12,6 +10,10 @@ import { ProductRate } from './product-rate';
 import { ProductPrice } from './product-price';
 import { ActiveButton } from '../../components/main/buttons/active-button';
 import { ActiveButtonName } from '../../const/const-button';
+import { Reviews } from './reviews/reviews';
+import { mockProducts } from '../../mock/mock';
+import { UpButton } from '../../components/main/buttons/up-button';
+import { Error } from '../../components/main/error/error';
 
 export function Product() {
   const { id } = useParams();
@@ -30,7 +32,9 @@ export function Product() {
 
   useChangeTitle(name);
 
-  return (
+  return !id || !product ? (
+    <Error />
+  ) : (
     <div className="wrapper">
       <Header />
       <main>
@@ -308,30 +312,11 @@ export function Product() {
       </section>
     </div>*/}
           <div className="page-content__section">
-            <section className="review-block">
-              <div className="container">
-                <div className="page-content__headed">
-                  <h2 className="title title--h3">Отзывы</h2>
-                  {/*<button class="btn" type="button">Оставить свой отзыв</button>*/}
-                </div>
-                <ul className="review-block__list">
-                  <Review />
-                </ul>
-                <div className="review-block__buttons">
-                  <button className="btn btn--purple" type="button">
-                    Показать больше отзывов
-                  </button>
-                </div>
-              </div>
-            </section>
+            <Reviews productId={id} />
           </div>
         </div>
       </main>
-      <a className="up-btn" href="#header">
-        <svg width={12} height={18} aria-hidden="true">
-          <use xlinkHref="#icon-arrow2" />
-        </svg>
-      </a>
+      <UpButton />
       <Footer />
     </div>
   );

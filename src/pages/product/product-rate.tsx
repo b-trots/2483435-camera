@@ -1,6 +1,7 @@
 import {
   BemClass,
   BemMode,
+  ExplanationWord,
   ProductParam,
   RATING_STAR_COUNT,
   ServiceParam,
@@ -9,7 +10,7 @@ import {
 type ProductRateProps = {
   bemClass: BemClass;
   rating: number;
-  reviewCount: number;
+  reviewCount?: number;
 };
 
 export function ProductRate({
@@ -17,8 +18,9 @@ export function ProductRate({
   rating,
   reviewCount,
 }: ProductRateProps) {
-  const correctRating = Math.round(rating);
+  const isReview = bemClass === BemClass.ReviewCard;
 
+  const correctRating = Math.round(rating);
   const isFullStar = (starNumber: number, rartingCount: number) =>
     starNumber <= rartingCount ? BemMode.Full : BemMode.Void;
 
@@ -36,12 +38,14 @@ export function ProductRate({
       ))}
 
       <p className="visually-hidden">
-        {ProductParam.Rating} : {rating}
+        {isReview ? ExplanationWord.Grade : ProductParam.Rating} : {rating}
       </p>
-      <p className="rate__count">
-        <span className="visually-hidden">{ProductParam.ReviewCount} :</span>
-        {reviewCount}
-      </p>
+      {!isReview && (
+        <p className="rate__count">
+          <span className="visually-hidden">{ProductParam.ReviewCount} :</span>
+          {reviewCount}
+        </p>
+      )}
     </div>
   );
 }

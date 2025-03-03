@@ -13,6 +13,10 @@ enum ServiceParam {
   BascetIconWidth = 24,
   BascetIconHeight = 16,
   SocialIconSize = 20,
+  UpButtonWidth = 12,
+  UpButtonHeight = 18,
+  ShownComments = 3,
+  ShownCommentsStep = 3
 }
 
 const TabName = {
@@ -49,6 +53,8 @@ enum BemClass {
   Product = 'product',
   ProductCard = 'product-card',
   BasketItem = 'basket-item',
+  ReviewCard = 'review-card',
+  ProductTabs = 'product__tabs'
 }
 
 enum ProductParam {
@@ -65,6 +71,11 @@ enum ExplanationWord {
   Phone = 'Телефон',
   EnterPhone = 'Введите ваш номер',
   HomePage = 'Home Page',
+  Reviews = 'Отзывы',
+  Grade = 'Оценка',
+  Advantage = 'Достоинства',
+  Disadvantage = 'Недостатки',
+  Comment = 'Комментарий'
 }
 
 enum BemMode {

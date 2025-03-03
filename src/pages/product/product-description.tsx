@@ -1,4 +1,5 @@
-import mockProducts from '../../mock/mock';
+import { mockProducts } from '../../mock/mock';
+
 
 export function ProductDescription() {
   const product = mockProducts[0];

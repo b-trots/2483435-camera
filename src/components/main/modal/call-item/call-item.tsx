@@ -1,5 +1,4 @@
 import { useEffect, useRef, useState } from 'react';
-import mockProducts from '../../../../mock/mock';
 import { toast, ToastContainer } from 'react-toastify';
 import {
   BemClass,
@@ -17,6 +16,7 @@ import { CallItemPhone } from './call-item-phone';
 import { CloseButton } from '../../buttons/close-button';
 import { ActiveButton } from '../../buttons/active-button';
 import { ActiveButtonName, ButtonBemClass } from '../../../../const/const-button';
+import { mockProducts } from '../../../../mock/mock';
 type CallItemProps = {
   productId: number;
   onClose: () => void;
