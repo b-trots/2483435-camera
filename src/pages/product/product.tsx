@@ -1,23 +1,46 @@
 import { useParams } from 'react-router-dom';
 import { Footer } from '../../components/footer/footer';
 import { Header } from '../../components/header/header';
-import { Tabs } from './tabs/tabs';
+import { DetailTabs } from './detail-tabs/detail-tabs';
 import { Breadcrumbs } from '../../components/main/breadcrumbs/breadcrumbs';
 import { useChangeTitle } from '../../hooks/use-change-title';
 import { ProductImg } from './product-img';
-import { BemClass } from '../../const/const';
+import { BemClass, TitleName } from '../../const/const';
 import { ProductRate } from './product-rate';
 import { ProductPrice } from './product-price';
 import { ActiveButton } from '../../components/main/buttons/active-button';
 import { ActiveButtonName } from '../../const/const-button';
 import { Reviews } from './reviews/reviews';
-import { mockProducts } from '../../mock/mock';
 import { UpButton } from '../../components/main/buttons/up-button';
 import { Error } from '../../components/main/error/error';
-
+import { useAppDispatch, useAppSelector, useScrollToTop } from '../../hooks/hooks';
+import { Loading } from '../../components/main/loading';
+import { useEffect } from 'react';
+import { fetchOrSetProductAction } from '../../store/api-actions/api-actions';
+import { getCurrentProduct } from '../../store/slices/products/products-selectors';
 export function Product() {
-  const { id } = useParams();
-  const product = mockProducts.find((item) => item.id === Number(id))!;
+  const dispatch = useAppDispatch();
+  const currentProduct = useAppSelector(getCurrentProduct);
+
+  useChangeTitle(currentProduct?.name || TitleName.Void);
+
+  const { id = '' } = useParams();
+
+  useScrollToTop();
+
+  useEffect(() => {
+    if (id) {
+      dispatch(fetchOrSetProductAction(Number(id)));
+    }
+  }, [id, dispatch]);
+
+  if (!currentProduct && !id) {
+    return <Error />;
+  }
+
+  if (!currentProduct) {
+    return <Loading />;
+  }
 
   const {
     name,
@@ -28,13 +51,9 @@ export function Product() {
     previewImg2x,
     previewImgWebp,
     previewImgWebp2x,
-  } = product;
+  } = currentProduct;
 
-  useChangeTitle(name);
-
-  return !id || !product ? (
-    <Error />
-  ) : (
+  return (
     <div className="wrapper">
       <Header />
       <main>
@@ -45,10 +64,10 @@ export function Product() {
               <div className="container">
                 <ProductImg
                   bemClass={BemClass.Product}
-                  previewImgWebp={previewImgWebp}
-                  previewImgWebp2x={previewImgWebp2x}
-                  previewImg={previewImg}
-                  previewImg2x={previewImg2x}
+                  previewImgWebp={`../${previewImgWebp}`}
+                  previewImgWebp2x={`../${previewImgWebp2x}`}
+                  previewImg={`../${previewImg}`}
+                  previewImg2x={`../${previewImg2x}`}
                   name={name}
                 />
                 <div className="product__content">
@@ -63,7 +82,7 @@ export function Product() {
                     text={ActiveButtonName.AddToBasket}
                     basketIcon
                   />
-                  <Tabs />
+                  <DetailTabs />
                 </div>
               </div>
             </section>
@@ -312,7 +331,7 @@ export function Product() {
       </section>
     </div>*/}
           <div className="page-content__section">
-            <Reviews productId={id} />
+            <Reviews />
           </div>
         </div>
       </main>

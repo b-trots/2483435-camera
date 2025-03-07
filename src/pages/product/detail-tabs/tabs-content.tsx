@@ -1,6 +1,6 @@
 import { List } from '../../../components/main/list';
 import { BemClass, ProductParam, TabName } from '../../../const/const';
-import { mockProducts } from '../../../mock/mock';
+import { useAppSelector } from '../../../hooks/hooks';
 import { ProductDescription } from '../product-description';
 import { TabsNamesValues } from './tabs-control';
 
@@ -9,7 +9,12 @@ type TabsContentProps = {
 };
 
 export function TabsContent({ isActive }: TabsContentProps) {
-  const product = mockProducts[0];
+  const product = useAppSelector((state) => state.product);
+
+  if (!product) {
+    return;
+  }
+
   const { vendorCode, category, type, level } = product;
 
   const characteristicDetails = [

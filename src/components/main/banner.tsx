@@ -2,9 +2,17 @@ import { Link } from 'react-router-dom';
 import { AppRoute } from '../../const/const-navigate';
 import { BannerParam } from '../../const/const';
 import { PassiveButtonName } from '../../const/const-button';
-import { mockProducts } from '../../mock/mock';
+import { useAppSelector } from '../../hooks/hooks';
+import { getAllProducts } from '../../store/slices/products/products-selectors';
+
 
 export function Banner() {
+
+  const product = Object.values(useAppSelector(getAllProducts))[7];
+  if (!product) {
+    return;
+  }
+
   const {
     previewImg,
     previewImg2x,
@@ -13,7 +21,8 @@ export function Banner() {
     id,
     name,
     description,
-  } = mockProducts[0];
+  } = product;
+
   return (
     <div className="banner">
       <picture>

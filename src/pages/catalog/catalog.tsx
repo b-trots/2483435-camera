@@ -1,35 +1,46 @@
-import { useState, useRef } from 'react';
+import { useRef, useEffect } from 'react';
 import { Footer } from '../../components/footer/footer';
 import { Header } from '../../components/header/header';
 import { Banner } from '../../components/main/banner';
 import { Breadcrumbs } from '../../components/main/breadcrumbs/breadcrumbs';
-import { CallItem } from '../../components/main/modal/call-item/call-item';
-import { ProductCard } from '../../components/main/product-card/product-card';
-import { TitleName, SHOP_TITLE } from '../../const/const';
+import {
+  useAppDispatch,
+  useAppSelector,
+  useScrollToTop,
+} from '../../hooks/hooks';
+import { fetchProductsAction } from '../../store/api-actions/api-actions';
+import {
+  getAllProducts,
+  getIsAllProductsLoad,
+} from '../../store/slices/products/products-selectors';
+import { CatalogCards } from './catalog-cards';
 import { useChangeTitle } from '../../hooks/use-change-title';
-import { useNoScroll } from '../../hooks/use-no-scroll';
-import { mockProducts } from '../../mock/mock';
+import { BooleanStatus, SHOP_TITLE, TitleName } from '../../const/const';
+import { CallItem } from '../../components/main/modal/call-item/call-item';
+import { Modal } from './modal';
 
 export function Catalog() {
-  const [isCallItem, setIsCallItem] = useState<number | null>(null);
+  const dispatch = useAppDispatch();
+  const products = useAppSelector(getAllProducts);
+  const productsLoadStatus = useAppSelector(getIsAllProductsLoad);
+  const isProductsLoaded = productsLoadStatus === BooleanStatus.True;
 
-  const isActive = isCallItem !== null;
-
-  const handleBuyButton = (id: number) =>
-    setIsCallItem((prevState) => (prevState === id ? null : id));
-
-  function handleModalClose() {
-    setIsCallItem(null);
-  }
-  const containerRef = useRef<HTMLDivElement | null>(null);
-  useNoScroll(containerRef, isActive);
   useChangeTitle(TitleName.Catalog);
+  useScrollToTop();
+
+  useEffect(() => {
+    if (!isProductsLoaded) {
+      dispatch(fetchProductsAction());
+    }
+  }, [dispatch, products, isProductsLoaded]);
+
+  const containerRef = useRef<HTMLDivElement | null>(null);
 
   return (
     <div className="wrapper" ref={containerRef}>
       <Header />
       <main>
-        <Banner />
+        {isProductsLoaded && <Banner />}
         <div className="page-content">
           <Breadcrumbs />
           <section className="catalog">
@@ -42,15 +53,7 @@ export function Catalog() {
                 </div>
                 <div className="catalog__content">
                   {/* <Sorting/> */}
-                  <div className="cards catalog__cards">
-                    {mockProducts.map((product) => (
-                      <ProductCard
-                        key={product.id}
-                        product={product}
-                        onClick={() => handleBuyButton(product.id)}
-                      />
-                    ))}
-                  </div>
+                  <CatalogCards />
                   {/* <PageSwitcher/> */}
                 </div>
               </div>
@@ -58,9 +61,9 @@ export function Catalog() {
           </section>
         </div>
       </main>
-      {isCallItem && (
-        <CallItem productId={isCallItem} onClose={handleModalClose} />
-      )}
+      <Modal>
+        <CallItem />
+      </Modal>
       <Footer />
     </div>
   );

@@ -30,17 +30,19 @@ export function ActiveButton({
   );
 
   return (
-    <button className={buttonClass} type={type} onClick={onClick}>
-      {basketIcon && (
-        <svg
-          width={ServiceParam.BascetIconWidth}
-          height={ServiceParam.BascetIconHeight}
-          aria-hidden="true"
-        >
-          <use xlinkHref="#icon-add-basket" />
-        </svg>
-      )}
-      {text}
-    </button>
+    <div className="modal__buttons">
+      <button className={buttonClass} type={type} onClick={onClick}>
+        {basketIcon && (
+          <svg
+            width={ServiceParam.BascetIconWidth}
+            height={ServiceParam.BascetIconHeight}
+            aria-hidden="true"
+          >
+            <use xlinkHref="#icon-add-basket" />
+          </svg>
+        )}
+        {text}
+      </button>
+    </div>
   );
 }

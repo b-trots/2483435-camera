@@ -1,16 +1,15 @@
+import { forwardRef } from 'react';
 import { ExplanationWord, ServiceParam } from '../../../../const/const';
 
 type CallItemPhoneProps = {
-  firstTabRef: React.MutableRefObject<HTMLInputElement | null>;
   phone: string;
   handlePhoneChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
 };
 
-export function CallItemPhone({
-  firstTabRef,
-  phone,
-  handlePhoneChange,
-}: CallItemPhoneProps) {
+function CallItemPhoneComponent(
+  { phone, handlePhoneChange }: CallItemPhoneProps,
+  firstTabRef: React.Ref<HTMLInputElement>
+) {
   return (
     <label>
       <span className="custom-input__label">
@@ -35,3 +34,5 @@ export function CallItemPhone({
     </label>
   );
 }
+
+export const CallItemPhone = forwardRef(CallItemPhoneComponent);

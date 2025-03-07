@@ -3,7 +3,7 @@ import { TabName } from '../../../const/const';
 import { TabsControl } from './tabs-control';
 import { TabsContent } from './tabs-content';
 
-export function Tabs() {
+export function DetailTabs() {
   const [isActive, setIsActive] = useState(TabName.Description);
 
   const handleTabsButton = () =>

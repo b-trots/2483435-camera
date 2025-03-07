@@ -1,19 +1,26 @@
 import { ProductOfCatalog } from '../../../types/product-type';
-import {
-  BemClass,
-} from '../../../const/const';
+import { BemClass, ModalWindow } from '../../../const/const';
 import { ProductImg } from '../../../pages/product/product-img';
 import { ProductPrice } from '../../../pages/product/product-price';
 import { ProductRate } from '../../../pages/product/product-rate';
 import { ActiveButton } from '../buttons/active-button';
 import { PassiveButton } from '../buttons/passive-button';
 import { ButtonBemClass, ActiveButtonName } from '../../../const/const-button';
+import { memo } from 'react';
+import { useAppDispatch } from '../../../hooks/hooks';
+import { openModal } from '../../../store/slices/modal/modal-slice';
 type ProductProps = {
   product: ProductOfCatalog;
   onClick: (id: number) => void;
 };
 
-export function ProductCard({ product, onClick }: ProductProps) {
+function ProductCardComponent({ product, onClick }: ProductProps) {
+  const dispatch = useAppDispatch();
+
+  const handleBuyButton = () => {
+    dispatch(openModal(ModalWindow.CallItem));
+  };
+
   const {
     id,
     name,
@@ -25,7 +32,6 @@ export function ProductCard({ product, onClick }: ProductProps) {
     rating,
     reviewCount,
   } = product;
-
   return (
     <div className="product-card">
       <ProductImg
@@ -45,14 +51,19 @@ export function ProductCard({ product, onClick }: ProductProps) {
         <p className="product-card__title">{name}</p>
         <ProductPrice bemClass={BemClass.ProductCard} price={price} />
       </div>
-      <div className="product-card__buttons">
+      <div className="product-card__buttons" onClick={() => onClick(id)}>
         <ActiveButton
-          onClick={() => onClick(id)}
           className={ButtonBemClass.ProductCard}
           text={ActiveButtonName.Buy}
+          onClick={handleBuyButton}
         />
         <PassiveButton id={id} />
       </div>
     </div>
   );
 }
+
+export const ProductCard = memo(
+  ProductCardComponent,
+  (prevProps, nextProps) => prevProps.product === nextProps.product
+);

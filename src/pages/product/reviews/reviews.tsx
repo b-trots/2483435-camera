@@ -1,19 +1,36 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { ActiveButton } from '../../../components/main/buttons/active-button';
-import { ExplanationWord, ServiceParam } from '../../../const/const';
+import {
+  ExplanationWord,
+  RequestStatus,
+  ServiceParam,
+} from '../../../const/const';
 import { ActiveButtonName } from '../../../const/const-button';
-import { mockReviews } from '../../../mock/mock';
-import { daySort } from '../../../utils/utils';
 import { Review } from './review';
+import { useAppDispatch, useAppSelector } from '../../../hooks/hooks';
+import {
+  getCurrentReviews,
+  getReviewsRequestStatus,
+} from '../../../store/slices/reviews/reviews-selectors';
+import { fetchOrSetReviewsAction } from '../../../store/api-actions/api-actions';
+import { useParams } from 'react-router-dom';
+import { Loading } from '../../../components/main/loading';
 
-type ReviewsProps = {
-  productId: string;
-};
-export function Reviews({ productId }: ReviewsProps) {
-  const productReviews = mockReviews
-    .filter((review) => review.cameraId === +productId)
-    .sort(daySort);
-  const reviewsCount = productReviews.length;
+export function Reviews() {
+  const dispatch = useAppDispatch();
+  const currentReviews = useAppSelector(getCurrentReviews);
+  const reviewsLoadStatus = useAppSelector(getReviewsRequestStatus);
+  const isReviewsLoading = reviewsLoadStatus === RequestStatus.Loading;
+
+  const { id = '' } = useParams();
+
+  useEffect(() => {
+    if (id) {
+      dispatch(fetchOrSetReviewsAction(Number(id)));
+    }
+  }, [id, dispatch]);
+
+  const reviewsCount = currentReviews.length;
 
   const [shownComments, setShownComments] = useState(
     ServiceParam.ShownComments
@@ -24,7 +41,9 @@ export function Reviews({ productId }: ReviewsProps) {
       Math.min(prevState + ServiceParam.ShownCommentsStep, reviewsCount)
     );
 
-  return (
+  return isReviewsLoading ? (
+    <Loading />
+  ) : (
     <section className="review-block">
       <div className="container">
         <div className="page-content__headed">
@@ -32,7 +51,7 @@ export function Reviews({ productId }: ReviewsProps) {
           {/*<button class="btn" type="button">Оставить свой отзыв</button>*/}
         </div>
         <ul className="review-block__list">
-          {productReviews.slice(0, shownComments).map((comment) => (
+          {currentReviews.slice(0, shownComments).map((comment) => (
             <Review comment={comment} key={comment.id} />
           ))}
         </ul>

@@ -1,18 +1,16 @@
 import { useEffect } from 'react';
-import { TitleName } from '../const/const';
-
-const restoreTitle = () => {
-  const initialTitle = document.title;
-  return () => {
-    document.title = initialTitle;
-  };
-};
-
+import { SymbolParam, TitleName } from '../const/const';
 function useChangeTitle(title: string) {
-  useEffect(restoreTitle, []);
-
   useEffect(() => {
-    document.title = `${title} - ${TitleName.StoreName}`;
+    const initialTitle = document.title;
+
+    const isEmptyTitle = title ? SymbolParam.Dash : '';
+
+    document.title = title + isEmptyTitle + TitleName.StoreName;
+
+    return () => {
+      document.title = initialTitle;
+    };
   }, [title]);
 }
 
