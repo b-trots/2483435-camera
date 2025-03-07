@@ -17,7 +17,7 @@ import { CatalogCards } from './catalog-cards';
 import { useChangeTitle } from '../../hooks/use-change-title';
 import { BooleanStatus, SHOP_TITLE, TitleName } from '../../const/const';
 import { CallItem } from '../../components/main/modal/call-item/call-item';
-import { Modal } from './modal';
+import { Modal } from '../../components/main/modal/modal';
 
 export function Catalog() {
   const dispatch = useAppDispatch();

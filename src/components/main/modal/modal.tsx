@@ -1,13 +1,14 @@
-import { cloneElement, useEffect, useRef } from 'react';
-import { ModalWindow } from '../../const/const';
-import { useAppDispatch, useAppSelector } from '../../hooks/hooks';
-import { getActiveModal } from '../../store/slices/modal/modal-selectors';
-import { closeModal } from '../../store/slices/modal/modal-slice';
-import { useNoScroll } from '../../hooks/use-no-scroll';
-import { toLoopFocus } from '../../components/main/modal/modal-utils/to-loop-focus';
-import { toCloseModal } from '../../components/main/modal/modal-utils/to-close-modal';
-import { CloseButton } from '../../components/main/buttons/close-button';
+import { useRef, useEffect, cloneElement } from 'react';
 import ReactDOM from 'react-dom';
+import { ModalWindow } from '../../../const/const';
+import { useAppDispatch, useAppSelector } from '../../../hooks/hooks';
+import { useNoScroll } from '../../../hooks/use-no-scroll';
+import { getActiveModal } from '../../../store/slices/modal/modal-selectors';
+import { closeModal } from '../../../store/slices/modal/modal-slice';
+import { toCloseModal } from './modal-utils/to-close-modal';
+import { toLoopFocus } from './modal-utils/to-loop-focus';
+import { CloseButton } from '../buttons/close-button';
+
 
 const modalRoot = document.getElementById('modal-root');
 
@@ -47,7 +48,7 @@ export function Modal({ children }: ModalProps) {
         <div className="modal__wrapper">
           <div className="modal__overlay" />
           <div className="modal__content" ref={modalRef}>
-            {cloneElement(children as React.ReactElement, { firstTabRef })}
+            {cloneElement(children as React.ReactElement, { ref:firstTabRef })}
             <CloseButton lastTabRef={lastTabRef} />
           </div>
         </div>
