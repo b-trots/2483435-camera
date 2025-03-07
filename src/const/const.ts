@@ -16,7 +16,12 @@ enum ServiceParam {
   UpButtonWidth = 12,
   UpButtonHeight = 18,
   ShownComments = 3,
-  ShownCommentsStep = 3
+  ShownCommentsStep = 3,
+}
+
+enum ServerParam {
+  BaseURL = 'https://camera-shop.accelerator.htmlacademy.pro',
+  TimeResponse = 5000,
 }
 
 const TabName = {
@@ -24,7 +29,7 @@ const TabName = {
   Description: 'Описание',
 };
 
-enum Error {
+enum ErrorMessage {
   PhoneInput = 'Допустимы только цифры, пробелы, скобки, тире и "+"',
   PhoneSubmit = 'Введите корректный номер телефона в формате +7(9XX)XXX-XX-XX',
 }
@@ -35,6 +40,7 @@ const Validation = {
 } as const;
 
 enum TitleName {
+  Void = '',
   StoreName = 'Фотошоп',
   Catalog = 'Каталог',
   Basket = 'Корзина',
@@ -54,7 +60,7 @@ enum BemClass {
   ProductCard = 'product-card',
   BasketItem = 'basket-item',
   ReviewCard = 'review-card',
-  ProductTabs = 'product__tabs'
+  ProductTabs = 'product__tabs',
 }
 
 enum ProductParam {
@@ -75,7 +81,7 @@ enum ExplanationWord {
   Grade = 'Оценка',
   Advantage = 'Достоинства',
   Disadvantage = 'Недостатки',
-  Comment = 'Комментарий'
+  Comment = 'Комментарий',
 }
 
 enum BemMode {
@@ -95,6 +101,14 @@ enum BannerParam {
   Message = 'Новинка!',
 }
 
+enum SymbolParam {
+  Dash = '-',
+  DoubleUnderscore = '__',
+}
+
+enum NameSpace {
+  FirstElement = 0
+}
 
 const CallItemParam = {
   Title: 'Свяжитесь со мной',
@@ -128,9 +142,38 @@ const PICTURE_PARAMS = [
   },
 ] as const;
 
+enum SliceName {
+  Products = 'PRODUCTS',
+  Product = 'PRODUCT',
+  Active = 'ACTIVE',
+  Reviews = 'REVIEWS',
+  Modal = 'MODAL',
+}
+
+enum RequestStatus {
+  Idle = 'idle',
+  Loading = 'loading',
+  Success = 'success',
+  Failed = 'failed',
+}
+
+enum ModalWindow {
+  CallItem = 'callItem',
+}
+
+enum ModalStatus{
+  Open = 'true',
+  Close = 'false',
+}
+
+enum BooleanStatus {
+  True = 'true',
+  False = 'false',
+}
+
 export {
   TabName,
-  Error,
+  ErrorMessage,
   Validation,
   TitleName,
   LogoParam,
@@ -146,4 +189,12 @@ export {
   DefaultParam,
   ServiceParam,
   ExplanationWord,
+  ServerParam,
+  SymbolParam,
+  SliceName,
+  RequestStatus,
+  NameSpace,
+  ModalWindow,
+  ModalStatus,
+  BooleanStatus
 };

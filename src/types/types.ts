@@ -14,7 +14,7 @@ type ReviewType = {
   disadvantage: string;
   review: string;
   rating: number;
-}
+};
 
 type ReviewsType = ReviewType[];
 
