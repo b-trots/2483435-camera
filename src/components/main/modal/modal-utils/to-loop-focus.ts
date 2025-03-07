@@ -8,7 +8,6 @@ const toLoopFocus = (
   if (!modalContainer.current) {
     return;
   }
-
   const container = modalContainer.current;
   const firstElement = firstRef.current;
   const lastElement = lastRef.current;

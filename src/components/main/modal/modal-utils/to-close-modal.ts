@@ -1,4 +1,4 @@
-const handleModalClose = (
+const toCloseModal = (
   containerRef: React.RefObject<HTMLDivElement>,
   modalRef: React.RefObject<HTMLDivElement>,
   closeButtonRef: React.RefObject<HTMLButtonElement>,
@@ -41,4 +41,4 @@ const handleModalClose = (
   };
 };
 
-export { handleModalClose };
+export { toCloseModal };
