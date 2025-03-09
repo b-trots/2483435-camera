@@ -3,8 +3,9 @@ import { toast, ToastContainer } from 'react-toastify';
 import {
   Validation,
   ErrorMessage,
-  CallItemParam,
+  ToastParam,
   BemClass,
+  ModalTitle,
 } from '../../../../const/const';
 import {
   ButtonBemClass,
@@ -12,7 +13,7 @@ import {
 } from '../../../../const/const-button';
 import { useAppSelector } from '../../../../hooks/hooks';
 import { ProductImg } from '../../../../pages/product/product-img';
-import { notify } from '../../../../utils/error-utils';
+import { phoneValidationError } from '../../../../utils/error-utils';
 import { toStandardizePhone } from '../../../../utils/utils';
 import { ActiveButton } from '../../buttons/active-button';
 import { CallItemDescription } from './call-item-description';
@@ -50,15 +51,15 @@ function CallItemComponent(
       setPhone(input);
       setIsToastShown(false);
     } else if (!isToastShown) {
-      notify(ErrorMessage.PhoneInput);
+      phoneValidationError(ErrorMessage.PhoneInput);
       setIsToastShown(true);
-      setTimeout(() => setIsToastShown(false), CallItemParam.ToastCloseTime);
+      setTimeout(() => setIsToastShown(false), ToastParam.CloseTime);
     }
   };
 
   const handleSubmit = () => {
     if (!Validation.PhoneSubmit.test(phone)) {
-      notify(ErrorMessage.PhoneSubmit);
+      phoneValidationError(ErrorMessage.PhoneSubmit);
       return;
     }
 
@@ -68,7 +69,7 @@ function CallItemComponent(
 
   return (
     <>
-      <p className="title title--h4">{CallItemParam.Title}</p>
+      <p className="title title--h4">{ModalTitle.CallItem}</p>
       <div className="basket-item basket-item--short">
         <ProductImg
           bemClass={BemClass.BasketItem}
@@ -93,32 +94,24 @@ function CallItemComponent(
           ref={firstTabRef}
         />
         <ToastContainer
-          autoClose={CallItemParam.ToastCloseTime}
-          limit={CallItemParam.ToastLimitCount}
-          hideProgressBar
-          newestOnTop={false}
-          closeOnClick={false}
-          rtl={false}
-          pauseOnFocusLoss={false}
-          draggable
-          pauseOnHover={false}
-          theme={CallItemParam.ToastTheme}
-          transition={CallItemParam.ToastTransition}
+          limit={ToastParam.LimitCount}
           style={{
-            position: CallItemParam.ToastPosition,
-            top: CallItemParam.ToastTopDistance,
-            left: CallItemParam.ToastLeftDistance,
-            transform: CallItemParam.ToastTransform,
+            position: ToastParam.Position,
+            top: ToastParam.TopDistance,
+            left: ToastParam.LeftDistance,
+            transform: ToastParam.Transform,
           }}
         />
       </div>
-      <ActiveButton
-        onClick={handleSubmit}
-        className={ButtonBemClass.Modal}
-        isFitWidth
-        text={ActiveButtonName.ToOrder}
-        basketIcon
-      />
+      <div className="modal__buttons">
+        <ActiveButton
+          onClick={handleSubmit}
+          className={ButtonBemClass.Modal}
+          isFitWidth
+          text={ActiveButtonName.ToOrder}
+          basketIcon
+        />
+      </div>
     </>
   );
 }

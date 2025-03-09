@@ -14,6 +14,7 @@ const toCloseModal = (
 
   const handleEscapeKeyDown = (e: KeyboardEvent) => {
     if (e.key === 'Escape') {
+      e.stopPropagation();
       onClose();
     }
   };
@@ -31,13 +32,13 @@ const toCloseModal = (
   };
 
   container.addEventListener('click', handleOutsideClick);
-  modal.addEventListener('keydown', handleEscapeKeyDown);
   closeButton.addEventListener('click', handleCloseButtonClick);
+  document.addEventListener('keydown', handleEscapeKeyDown);
 
   return () => {
     container.removeEventListener('click', handleOutsideClick);
-    modal.removeEventListener('keydown', handleEscapeKeyDown);
     closeButton.removeEventListener('click', handleCloseButtonClick);
+    document.removeEventListener('keydown', handleEscapeKeyDown);
   };
 };
 

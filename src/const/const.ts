@@ -1,3 +1,4 @@
+import { StatusCodes } from 'http-status-codes';
 import { Flip } from 'react-toastify';
 
 enum DefaultParam {
@@ -32,6 +33,9 @@ const TabName = {
 enum ErrorMessage {
   PhoneInput = 'Допустимы только цифры, пробелы, скобки, тире и "+"',
   PhoneSubmit = 'Введите корректный номер телефона в формате +7(9XX)XXX-XX-XX',
+  Error = 'Произошла ошибка:',
+  TryLater = 'Попробуйте позже.',
+  CheckInternet = 'Не удалось подключиться к серверу. Проверьте интернет-соединение.',
 }
 
 const Validation = {
@@ -110,16 +114,15 @@ enum NameSpace {
   FirstElement = 0
 }
 
-const CallItemParam = {
-  Title: 'Свяжитесь со мной',
-  ToastCloseTime: 3000,
-  ToastLimitCount: 1,
-  ToastTheme: 'colored',
-  ToastTransition: Flip,
-  ToastPosition: 'absolute',
-  ToastTopDistance: '85px',
-  ToastLeftDistance: '50%',
-  ToastTransform: 'translateX(-50%)',
+const ToastParam = {
+  CloseTime: 3000,
+  LimitCount: 1,
+  Theme: 'colored',
+  Transition: Flip,
+  Position: 'absolute',
+  TopDistance: '85px',
+  LeftDistance: '50%',
+  Transform: 'translateX(-50%)',
 } as const;
 
 const RATING_STAR_COUNT = 5;
@@ -161,6 +164,10 @@ enum ModalWindow {
   CallItem = 'callItem',
 }
 
+enum ModalTitle {
+  CallItem = 'Свяжитесь со мной'
+}
+
 enum ModalStatus{
   Open = 'true',
   Close = 'false',
@@ -170,6 +177,15 @@ enum BooleanStatus {
   True = 'true',
   False = 'false',
 }
+
+const StatusCodeMapping: Record<number, string> = {
+  [StatusCodes.BAD_REQUEST]: 'Некорректный запрос',
+  [StatusCodes.UNAUTHORIZED]: 'Необходимо авторизоваться.',
+  [StatusCodes.FORBIDDEN]: 'У вас недостаточно прав.',
+  [StatusCodes.NOT_FOUND]: 'Вы обращаетесь к несуществующему ресурсу.',
+  [StatusCodes.INTERNAL_SERVER_ERROR]: 'Внутренняя ошибка сервера.',
+  [StatusCodes.SERVICE_UNAVAILABLE]: 'Сервис временно недоступен.',
+} as const;
 
 export {
   TabName,
@@ -183,7 +199,7 @@ export {
   SHOP_TITLE,
   BannerParam,
   ProductParam,
-  CallItemParam,
+  ToastParam,
   RATING_STAR_COUNT,
   PICTURE_PARAMS,
   DefaultParam,
@@ -196,5 +212,7 @@ export {
   NameSpace,
   ModalWindow,
   ModalStatus,
-  BooleanStatus
+  BooleanStatus,
+  StatusCodeMapping,
+  ModalTitle
 };

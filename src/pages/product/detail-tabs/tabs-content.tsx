@@ -1,6 +1,7 @@
 import { List } from '../../../components/main/list';
 import { BemClass, ProductParam, TabName } from '../../../const/const';
 import { useAppSelector } from '../../../hooks/hooks';
+import { getCurrentProduct } from '../../../store/slices/products/products-selectors';
 import { ProductDescription } from '../product-description';
 import { TabsNamesValues } from './tabs-control';
 
@@ -9,13 +10,13 @@ type TabsContentProps = {
 };
 
 export function TabsContent({ isActive }: TabsContentProps) {
-  const product = useAppSelector((state) => state.product);
+  const currentProduct = useAppSelector(getCurrentProduct);
 
-  if (!product) {
+  if (!currentProduct) {
     return;
   }
 
-  const { vendorCode, category, type, level } = product;
+  const { vendorCode, category, type, level } = currentProduct;
 
   const characteristicDetails = [
     { title: ProductParam.Article, value: vendorCode },
