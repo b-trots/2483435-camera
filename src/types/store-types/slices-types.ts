@@ -1,5 +1,6 @@
 import {
   BooleanStatus,
+  Coupon,
   ModalStatus,
   ModalWindow,
   RequestStatus,
@@ -31,4 +32,10 @@ type ModalSlice = {
   modalStatus: ModalStatus;
 };
 
-export type { ProductsSlice, ActiveSlice, ReviewsSlice, ModalSlice };
+type OrderSlice = {
+  coupon:Coupon | null;
+  requestStatus: RequestStatus;
+  orderError: boolean;
+}
+
+export type { ProductsSlice, ActiveSlice, ReviewsSlice, ModalSlice, OrderSlice };

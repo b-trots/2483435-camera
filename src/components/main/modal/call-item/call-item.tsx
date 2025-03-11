@@ -11,7 +11,7 @@ import {
   ButtonBemClass,
   ActiveButtonName,
 } from '../../../../const/const-button';
-import { useAppSelector } from '../../../../hooks/hooks';
+import { useAppDispatch, useAppSelector } from '../../../../hooks/hooks';
 import { ProductImg } from '../../../../pages/product/product-img';
 import { phoneValidationError } from '../../../../utils/error-utils';
 import { toStandardizePhone } from '../../../../utils/utils';
@@ -19,13 +19,18 @@ import { ActiveButton } from '../../buttons/active-button';
 import { CallItemDescription } from './call-item-description';
 import { CallItemPhone } from './call-item-phone';
 import { getCurrentProduct } from '../../../../store/slices/products/products-selectors';
+import { fetchOrderAction } from '../../../../store/api-actions/api-actions';
+import { getCoupon } from '../../../../store/slices/order/order-selectors';
+import { closeModal } from '../../../../store/slices/modal/modal-slice';
 
 function CallItemComponent(
   _: unknown,
   firstTabRef: React.Ref<HTMLInputElement>
 ) {
+  const dispatch = useAppDispatch();
+  const coupon = useAppSelector(getCoupon);
   const currnetProduct = useAppSelector(getCurrentProduct);
-  const [phone, setPhone] = useState('');
+  const [tel, setTel] = useState('');
   const [isToastShown, setIsToastShown] = useState(false);
 
   if (!currnetProduct) {
@@ -33,6 +38,7 @@ function CallItemComponent(
   }
 
   const {
+    id,
     name,
     vendorCode,
     level,
@@ -48,7 +54,7 @@ function CallItemComponent(
     const input = e.target.value;
     if (Validation.PhoneInput.test(input)) {
       toast.dismiss();
-      setPhone(input);
+      setTel(input);
       setIsToastShown(false);
     } else if (!isToastShown) {
       phoneValidationError(ErrorMessage.PhoneInput);
@@ -58,13 +64,14 @@ function CallItemComponent(
   };
 
   const handleSubmit = () => {
-    if (!Validation.PhoneSubmit.test(phone)) {
+    if (!Validation.PhoneSubmit.test(tel)) {
       phoneValidationError(ErrorMessage.PhoneSubmit);
       return;
     }
 
-    toStandardizePhone(phone);
-    // onClose();
+    const correctTel = toStandardizePhone(tel);
+    dispatch(fetchOrderAction({ camerasIds: [id], coupon, tel: correctTel }));
+    dispatch(closeModal());
   };
 
   return (
@@ -89,7 +96,7 @@ function CallItemComponent(
       </div>
       <div className="custom-input form-review__item">
         <CallItemPhone
-          phone={phone}
+          phone={tel}
           handlePhoneChange={handlePhoneChange}
           ref={firstTabRef}
         />

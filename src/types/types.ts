@@ -1,3 +1,5 @@
+import { Coupon } from '../const/const';
+
 type FocusableElements =
   | HTMLButtonElement
   | HTMLAnchorElement
@@ -16,6 +18,13 @@ type ReviewType = {
   rating: number;
 };
 
+
+type OrderType = {
+  camerasIds: [number];
+  coupon: Coupon | null;
+  tel?: string;
+  }
+
 type ReviewsType = ReviewType[];
 
-export type { FocusableElements, ReviewType, ReviewsType };
+export type { FocusableElements, ReviewType, ReviewsType, OrderType };

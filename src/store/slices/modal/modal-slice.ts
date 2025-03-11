@@ -2,14 +2,14 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { ModalStatus, ModalWindow, SliceName } from '../../../const/const';
 import { ModalSlice } from '../../../types/store-types/slices-types';
 
-const ModalState: ModalSlice = {
+const modalState: ModalSlice = {
   modalWindow: null,
   modalStatus: ModalStatus.Close,
 };
 
 const modalSlice = createSlice({
   name: SliceName.Modal,
-  initialState: ModalState,
+  initialState: modalState,
   reducers: {
     openModal: (state, action: PayloadAction<ModalWindow>) => {
       state.modalWindow = action.payload;

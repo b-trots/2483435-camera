@@ -4,11 +4,6 @@ enum AppRoute {
   Cameras = '/cameras/:id',
 }
 
-enum APIRoute {
-  Products = '/cameras',
-  Reviews = '/reviews',
-}
-
 const BREADCRUMBS: { name: string; path?: string }[] = [
   { name: 'Главная', path: AppRoute.Main },
   { name: 'Каталог', path: AppRoute.Main },
@@ -58,7 +53,6 @@ const SOCIAL = [
 
 export {
   AppRoute,
-  APIRoute,
   BREADCRUMBS,
   NAVIGATE,
   RESOURCES,

@@ -7,7 +7,7 @@ import {
 } from '../../api-actions/api-actions';
 import { FullProduct } from '../../../types/product-type';
 
-const ProductsState: ProductsSlice = {
+const productsState: ProductsSlice = {
   allProducts: {},
   currentProduct: null,
   isAllProductsLoaded: BooleanStatus.False,
@@ -17,7 +17,7 @@ const ProductsState: ProductsSlice = {
 
 const productsSlice = createSlice({
   name: SliceName.Products,
-  initialState: ProductsState,
+  initialState: productsState,
   reducers: {
     setCurrentProduct: (state, action: PayloadAction<FullProduct>) => {
       state.currentProduct = action.payload;

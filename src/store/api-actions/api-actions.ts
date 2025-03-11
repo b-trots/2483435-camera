@@ -1,10 +1,18 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import { APIRoute } from '../../const/const-navigate';
-import { FullProduct, Products, ProductsForStore } from '../../types/product-type';
+import {
+  FullProduct,
+  Products,
+  ProductsForStore,
+} from '../../types/product-type';
 import { AxiosInstance } from 'axios';
-import { ReviewsType } from '../../types/types';
+import { OrderType, ReviewsType } from '../../types/types';
 import { AppDispatch, State } from '../../types/store-types/store-types';
-import { NameSpace, SliceName } from '../../const/const';
+import {
+  ApiActionName,
+  APIRoute,
+  NameSpace,
+  SliceName,
+} from '../../const/const';
 import { setReviews } from '../slices/reviews/reviews-slice';
 import { setCurrentProduct } from '../slices/products/products-slice';
 
@@ -15,7 +23,7 @@ const appCreateAsyncThunk = createAsyncThunk.withTypes<{
 }>();
 
 const fetchProductsAction = appCreateAsyncThunk<ProductsForStore, undefined>(
-  'PRODUCTS/fetchProducts',
+  ApiActionName.FetchProducts,
   async (_arg, { extra: api }) => {
     const { data: products } = await api.get<Products>(APIRoute.Products);
 
@@ -34,7 +42,7 @@ const fetchOrSetProductAction = appCreateAsyncThunk<
   FullProduct | null,
   number | string
 >(
-  'PRODUCTS/fetchOrSetProduct',
+  ApiActionName.FetchProduct,
   async (productId, { dispatch, getState, extra: api }) => {
     const state = getState();
     const products = state[SliceName.Products].allProducts;
@@ -62,7 +70,7 @@ const fetchOrSetReviewsAction = appCreateAsyncThunk<
   ReviewsType | null,
   number | string
 >(
-  'REVIEWS/fetchOrSetReviews',
+  ApiActionName.FetchReviews,
   async (productId, { dispatch, getState, extra: api }) => {
     const state = getState();
     const allReviews = state[SliceName.Reviews].allReviews;
@@ -87,8 +95,16 @@ const fetchOrSetReviewsAction = appCreateAsyncThunk<
   }
 );
 
+const fetchOrderAction = appCreateAsyncThunk<void, OrderType>(
+  ApiActionName.FetchOrder,
+  async ({ camerasIds, coupon, tel }, { extra: api }) => {
+    await api.post<OrderType>(APIRoute.Orders, { camerasIds, coupon, tel });
+  }
+);
+
 export {
   fetchProductsAction,
   fetchOrSetProductAction,
   fetchOrSetReviewsAction,
+  fetchOrderAction
 };

@@ -13,6 +13,12 @@ enum DefaultParam {
   ScrollZero = 0
 }
 
+enum APIRoute {
+  Products = '/cameras',
+  Reviews = '/reviews',
+  Orders = '/orders',
+}
+
 enum ServiceParam {
   SnowflackSize = 9,
   RateStarWidth = 17,
@@ -46,7 +52,7 @@ enum ErrorMessage {
 
 const Validation = {
   PhoneInput: /^[\d\s()+-]*$/,
-  PhoneSubmit: /^(\+7|7|8)?\s*\(?\d{3}\)?[\s-]?\d{3}[\s-]?\d{2}[\s-]?\d{2}$/,
+  PhoneSubmit: /^(?:\+7|8)\s*\(?\d{3}\)?[\s-]?\d{3}[\s-]?\d{2}[\s-]?\d{2}$/
 } as const;
 
 enum TitleName {
@@ -153,6 +159,7 @@ enum SliceName {
   Product = 'PRODUCT',
   Reviews = 'REVIEWS',
   Modal = 'MODAL',
+  Order = 'ORDER',
 }
 
 enum RequestStatus {
@@ -189,6 +196,19 @@ const StatusCodeMapping: Record<number, string> = {
   [StatusCodes.SERVICE_UNAVAILABLE]: 'Сервис временно недоступен.',
 } as const;
 
+enum ApiActionName{
+  FetchProducts = 'PRODUCTS/fetchProducts',
+  FetchProduct = 'PRODUCTS/fetchOrSetProduct',
+  FetchReviews = 'REVIEWS/fetchOrSetReviews',
+  FetchOrder = 'ORDER/fetchOrder'
+}
+
+enum Coupon {
+  Three = 'camera-333',
+  Four = 'camera-444',
+  Default = 'camera'
+}
+
 export {
   TabName,
   ErrorMessage,
@@ -218,5 +238,8 @@ export {
   StatusCodeMapping,
   ModalTitle,
   SHUTTER_FLAPS,
-  FLAPS_COUNT
+  FLAPS_COUNT,
+  APIRoute,
+  ApiActionName,
+  Coupon
 };

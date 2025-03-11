@@ -4,7 +4,7 @@ import { ReviewsSlice } from '../../../types/store-types/slices-types';
 import { fetchOrSetReviewsAction } from '../../api-actions/api-actions';
 import { ReviewsType } from '../../../types/types';
 
-const ReviewsState: ReviewsSlice = {
+const reviewsState: ReviewsSlice = {
   allReviews: {},
   currentReviews: [],
   requestStatus: RequestStatus.Idle,
@@ -13,7 +13,7 @@ const ReviewsState: ReviewsSlice = {
 
 const reviewsSlice = createSlice({
   name: SliceName.Product,
-  initialState: ReviewsState,
+  initialState: reviewsState,
   reducers: {
     setReviews: (state, action: PayloadAction<ReviewsType>) => {
       state.currentReviews = action.payload;
