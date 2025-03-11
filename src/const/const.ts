@@ -54,7 +54,7 @@ enum TitleName {
   StoreName = 'Фотошоп',
   Catalog = 'Каталог',
   Basket = 'Корзина',
-  PageNotFound = 'Page Not Found',
+  Page404 = 'Страница не найдена',
 }
 
 enum LogoParam {

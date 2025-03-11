@@ -1,6 +1,6 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { APIRoute } from '../../const/const-navigate';
-import { FullProduct, Products } from '../../types/product-type';
+import { FullProduct, Products, ProductsForStore } from '../../types/product-type';
 import { AxiosInstance } from 'axios';
 import { ReviewsType } from '../../types/types';
 import { AppDispatch, State } from '../../types/store-types/store-types';
@@ -14,11 +14,19 @@ const appCreateAsyncThunk = createAsyncThunk.withTypes<{
   extra: AxiosInstance;
 }>();
 
-const fetchProductsAction = appCreateAsyncThunk<Products, undefined>(
+const fetchProductsAction = appCreateAsyncThunk<ProductsForStore, undefined>(
   'PRODUCTS/fetchProducts',
   async (_arg, { extra: api }) => {
     const { data: products } = await api.get<Products>(APIRoute.Products);
-    return products;
+
+    const formatAllProducts = products.reduce<Record<number, FullProduct>>(
+      (acc, product) => {
+        acc[product.id] = product;
+        return acc;
+      },
+      {}
+    );
+    return formatAllProducts;
   }
 );
 

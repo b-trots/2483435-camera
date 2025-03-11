@@ -8,6 +8,7 @@ const ReviewsState: ReviewsSlice = {
   allReviews: {},
   currentReviews: [],
   requestStatus: RequestStatus.Idle,
+  reviewsError: false,
 };
 
 const reviewsSlice = createSlice({
@@ -17,12 +18,14 @@ const reviewsSlice = createSlice({
     setReviews: (state, action: PayloadAction<ReviewsType>) => {
       state.currentReviews = action.payload;
       state.requestStatus = RequestStatus.Success;
+      state.reviewsError = false;
     },
   },
   extraReducers: (builder) => {
     builder
       .addCase(fetchOrSetReviewsAction.pending, (state) => {
         state.requestStatus = RequestStatus.Loading;
+        state.reviewsError = false;
       })
       .addCase(fetchOrSetReviewsAction.fulfilled, (state, action) => {
         const reviews = action.payload;
@@ -35,6 +38,7 @@ const reviewsSlice = createSlice({
       })
       .addCase(fetchOrSetReviewsAction.rejected, (state) => {
         state.requestStatus = RequestStatus.Failed;
+        state.reviewsError = true;
       });
   },
 });

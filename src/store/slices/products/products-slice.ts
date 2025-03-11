@@ -32,9 +32,7 @@ const productsSlice = createSlice({
       .addCase(fetchProductsAction.fulfilled, (state, action) => {
         const products = action.payload;
         if (products) {
-          products.forEach((product) => {
-            state.allProducts[product.id] = product;
-          });
+          state.allProducts = products;
         }
         state.isAllProductsLoaded = BooleanStatus.True;
         state.requestStatus = RequestStatus.Success;

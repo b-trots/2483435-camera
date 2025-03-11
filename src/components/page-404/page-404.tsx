@@ -1,6 +1,7 @@
 import { Footer } from '../../components/footer/footer';
 import { Header } from '../../components/header/header';
-import { FLAPS_COUNT, SHUTTER_FLAPS } from '../../const/const';
+import { FLAPS_COUNT, SHUTTER_FLAPS, TitleName } from '../../const/const';
+import { useChangeTitle } from '../../hooks/use-change-title';
 import css from './page-404.module.css';
 
 interface ShutterStyle extends React.CSSProperties {
@@ -9,6 +10,8 @@ interface ShutterStyle extends React.CSSProperties {
 }
 
 export function Page404() {
+  useChangeTitle(TitleName.Page404);
+
   return (
     <div className="wrapper">
       <Header />
@@ -30,7 +33,9 @@ export function Page404() {
                         <div
                           key={i}
                           className={css.flap}
-                          style={{ '--i': i, '--flaps': FLAPS_COUNT } as ShutterStyle}
+                          style={
+                            { '--i': i, '--flaps': FLAPS_COUNT } as ShutterStyle
+                          }
                         />
                       ))}
                     </div>

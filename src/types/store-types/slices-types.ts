@@ -4,11 +4,11 @@ import {
   ModalWindow,
   RequestStatus,
 } from '../../const/const';
-import { FullProduct } from '../product-type';
+import { FullProduct, ProductsForStore } from '../product-type';
 import { ReviewsType } from '../types';
 
 type ProductsSlice = {
-  allProducts: Record<number, FullProduct>;
+  allProducts: ProductsForStore;
   currentProduct: FullProduct | null;
   isAllProductsLoaded: BooleanStatus;
   requestStatus: RequestStatus;

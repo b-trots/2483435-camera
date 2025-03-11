@@ -33,9 +33,14 @@ interface FullProduct {
   previewImgWebp2x: string;
 }
 
-type ProductOfCatalog = Omit<FullProduct, 'category' | 'description' | 'level' | 'type'>;
+type ProductOfCatalog = Omit<
+  FullProduct,
+  'category' | 'description' | 'level' | 'type'
+>;
 
 type Products = FullProduct[];
 
-export type {FullProduct, ProductOfCatalog, Products };
+type ProductsForStore = Record<number, FullProduct>;
+
+export type { FullProduct, ProductOfCatalog, Products, ProductsForStore };
 export { ProductType, ProductCategory, Level };
