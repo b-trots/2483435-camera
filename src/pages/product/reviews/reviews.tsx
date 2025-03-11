@@ -10,17 +10,22 @@ import { Review } from './review';
 import { useAppDispatch, useAppSelector } from '../../../hooks/hooks';
 import {
   getCurrentReviews,
+  getReviewsError,
   getReviewsRequestStatus,
 } from '../../../store/slices/reviews/reviews-selectors';
 import { fetchOrSetReviewsAction } from '../../../store/api-actions/api-actions';
 import { useParams } from 'react-router-dom';
-import { Loading } from '../../../components/main/loading';
+import {
+  LoadData,
+  RequestCategory,
+} from '../../../components/main/load-data/load-data';
 
 export function Reviews() {
   const dispatch = useAppDispatch();
   const currentReviews = useAppSelector(getCurrentReviews);
   const reviewsLoadStatus = useAppSelector(getReviewsRequestStatus);
-  const isReviewsLoading = reviewsLoadStatus === RequestStatus.Loading;
+  const isReviewsLoad = reviewsLoadStatus === RequestStatus.Loading;
+  const reviewsError = useAppSelector(getReviewsError);
 
   const { id = '' } = useParams();
 
@@ -41,9 +46,7 @@ export function Reviews() {
       Math.min(prevState + ServiceParam.ShownCommentsStep, reviewsCount)
     );
 
-  return isReviewsLoading ? (
-    <Loading />
-  ) : (
+  return (
     <section className="review-block">
       <div className="container">
         <div className="page-content__headed">
@@ -51,9 +54,17 @@ export function Reviews() {
           {/*<button class="btn" type="button">Оставить свой отзыв</button>*/}
         </div>
         <ul className="review-block__list">
-          {currentReviews.slice(0, shownComments).map((comment) => (
-            <Review comment={comment} key={comment.id} />
-          ))}
+          {reviewsError || isReviewsLoad ? (
+            <LoadData
+              requestCategory={RequestCategory.Reviews}
+              loading={isReviewsLoad}
+              error={reviewsError}
+            />
+          ) : (
+            currentReviews
+              .slice(0, shownComments)
+              .map((comment) => <Review comment={comment} key={comment.id} />)
+          )}
         </ul>
         <div className="review-block__buttons">
           {isMoreReviewButton && (

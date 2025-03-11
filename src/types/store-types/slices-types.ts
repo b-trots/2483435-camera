@@ -12,6 +12,7 @@ type ProductsSlice = {
   currentProduct: FullProduct | null;
   isAllProductsLoaded: BooleanStatus;
   requestStatus: RequestStatus;
+  productsError: boolean;
 };
 
 type ActiveSlice = {
@@ -22,6 +23,7 @@ type ReviewsSlice = {
   allReviews: Record<number, ReviewsType>;
   currentReviews: ReviewsType;
   requestStatus: RequestStatus;
+  reviewsError: boolean;
 };
 
 type ModalSlice = {

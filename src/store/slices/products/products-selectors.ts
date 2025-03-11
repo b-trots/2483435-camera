@@ -12,9 +12,12 @@ const getIsAllProductsLoad = (state: State): BooleanStatus =>
 const getProductsRequestStatus = (state: State): RequestStatus =>
   state[SliceName.Products].requestStatus;
 
+const getProductsError = (state: State) => state[SliceName.Products].productsError;
+
 export {
   getAllProducts,
   getCurrentProduct,
   getIsAllProductsLoad,
   getProductsRequestStatus,
+  getProductsError
 };

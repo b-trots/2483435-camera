@@ -25,9 +25,12 @@ const getReviewsByProductId = (productId: number) =>
 const getReviewsRequestStatus = (state: State): RequestStatus =>
   state[SliceName.Products].requestStatus;
 
+const getReviewsError = (state: State) => state[SliceName.Reviews].reviewsError;
+
 export {
   getReviews,
   getCurrentReviews,
   getReviewsByProductId,
   getReviewsRequestStatus,
+  getReviewsError
 };

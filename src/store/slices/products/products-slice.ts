@@ -12,6 +12,7 @@ const ProductsState: ProductsSlice = {
   currentProduct: null,
   isAllProductsLoaded: BooleanStatus.False,
   requestStatus: RequestStatus.Idle,
+  productsError: false,
 };
 
 const productsSlice = createSlice({
@@ -26,6 +27,7 @@ const productsSlice = createSlice({
     builder
       .addCase(fetchProductsAction.pending, (state) => {
         state.requestStatus = RequestStatus.Loading;
+        state.productsError = false;
       })
       .addCase(fetchProductsAction.fulfilled, (state, action) => {
         const products = action.payload;
@@ -39,9 +41,11 @@ const productsSlice = createSlice({
       })
       .addCase(fetchProductsAction.rejected, (state) => {
         state.requestStatus = RequestStatus.Failed;
+        state.productsError = true;
       })
       .addCase(fetchOrSetProductAction.pending, (state) => {
         state.requestStatus = RequestStatus.Loading;
+        state.productsError = false;
       })
       .addCase(fetchOrSetProductAction.fulfilled, (state, action) => {
         const product = action.payload;
@@ -53,6 +57,7 @@ const productsSlice = createSlice({
       })
       .addCase(fetchOrSetProductAction.rejected, (state) => {
         state.requestStatus = RequestStatus.Failed;
+        state.productsError = true;
       });
   },
 });

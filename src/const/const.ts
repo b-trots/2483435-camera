@@ -1,10 +1,16 @@
 import { StatusCodes } from 'http-status-codes';
 import { Flip } from 'react-toastify';
 
+const SHOP_DESCRIPTION = 'Интернет-магазин фото- и видеотехники';
+const SHOP_TITLE = 'Каталог фото- и видеотехники';
+const SHUTTER_FLAPS = [0,1,2,3,4,5];
+const FLAPS_COUNT = 6;
+
 enum DefaultParam {
   ProductImgWidth = 280,
   ProductImgHeight = 240,
   Button = 'button',
+  ScrollZero = 0
 }
 
 enum ServiceParam {
@@ -95,9 +101,6 @@ enum BemMode {
   IsActive = 'is-active',
 }
 
-const SHOP_DESCRIPTION = 'Интернет-магазин фото- и видеотехники';
-const SHOP_TITLE = 'Каталог фото- и видеотехники';
-
 enum BannerParam {
   Width = 1280,
   Height = 280,
@@ -148,7 +151,6 @@ const PICTURE_PARAMS = [
 enum SliceName {
   Products = 'PRODUCTS',
   Product = 'PRODUCT',
-  Active = 'ACTIVE',
   Reviews = 'REVIEWS',
   Modal = 'MODAL',
 }
@@ -214,5 +216,7 @@ export {
   ModalStatus,
   BooleanStatus,
   StatusCodeMapping,
-  ModalTitle
+  ModalTitle,
+  SHUTTER_FLAPS,
+  FLAPS_COUNT
 };
