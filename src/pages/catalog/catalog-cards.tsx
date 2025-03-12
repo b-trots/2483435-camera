@@ -1,7 +1,7 @@
 import {
   LoadData,
   RequestCategory,
-} from '../../components/main/load-data/load-data';
+} from '../../components/load-data/load-data';
 import { ProductCard } from '../../components/main/product-card/product-card';
 import { RequestStatus } from '../../const/const';
 import { useAppDispatch, useAppSelector } from '../../hooks/hooks';

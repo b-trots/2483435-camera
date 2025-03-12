@@ -3,14 +3,14 @@ import { Flip } from 'react-toastify';
 
 const SHOP_DESCRIPTION = 'Интернет-магазин фото- и видеотехники';
 const SHOP_TITLE = 'Каталог фото- и видеотехники';
-const SHUTTER_FLAPS = [0,1,2,3,4,5];
+const SHUTTER_FLAPS = [0, 1, 2, 3, 4, 5];
 const FLAPS_COUNT = 6;
 
 enum DefaultParam {
   ProductImgWidth = 280,
   ProductImgHeight = 240,
   Button = 'button',
-  ScrollZero = 0
+  ScrollZero = 0,
 }
 
 enum APIRoute {
@@ -23,8 +23,8 @@ enum ServiceParam {
   SnowflackSize = 9,
   RateStarWidth = 17,
   RateStarHeight = 16,
-  BascetIconWidth = 24,
-  BascetIconHeight = 16,
+  BasketIconWidth = 24,
+  BasketIconHeight = 16,
   SocialIconSize = 20,
   UpButtonWidth = 12,
   UpButtonHeight = 18,
@@ -42,7 +42,7 @@ const TabName = {
   Description: 'Описание',
 };
 
-enum ErrorMessage {
+enum ErrorInfoMessage {
   PhoneInput = 'Допустимы только цифры, пробелы, скобки, тире и "+"',
   PhoneSubmit = 'Введите корректный номер телефона в формате +7(9XX)XXX-XX-XX',
   Error = 'Произошла ошибка:',
@@ -52,7 +52,7 @@ enum ErrorMessage {
 
 const Validation = {
   PhoneInput: /^[\d\s()+-]*$/,
-  PhoneSubmit: /^(?:\+7|8)\s*\(?\d{3}\)?[\s-]?\d{3}[\s-]?\d{2}[\s-]?\d{2}$/
+  PhoneSubmit: /^(?:\+7|8)\s*\(?\d{3}\)?[\s-]?\d{3}[\s-]?\d{2}[\s-]?\d{2}$/,
 } as const;
 
 enum TitleName {
@@ -98,6 +98,7 @@ enum ExplanationWord {
   Advantage = 'Достоинства',
   Disadvantage = 'Недостатки',
   Comment = 'Комментарий',
+  OrderSuccess = 'Заказ оформлен'
 }
 
 enum BemMode {
@@ -120,7 +121,7 @@ enum SymbolParam {
 }
 
 enum NameSpace {
-  FirstElement = 0
+  FirstElement = 0,
 }
 
 const ToastParam = {
@@ -132,6 +133,8 @@ const ToastParam = {
   TopDistance: '85px',
   LeftDistance: '50%',
   Transform: 'translateX(-50%)',
+  Main: 'main',
+  Modal: 'modal',
 } as const;
 
 const RATING_STAR_COUNT = 5;
@@ -174,10 +177,10 @@ enum ModalWindow {
 }
 
 enum ModalTitle {
-  CallItem = 'Свяжитесь со мной'
+  CallItem = 'Свяжитесь со мной',
 }
 
-enum ModalStatus{
+enum ModalStatus {
   Open = 'true',
   Close = 'false',
 }
@@ -196,22 +199,27 @@ const StatusCodeMapping: Record<number, string> = {
   [StatusCodes.SERVICE_UNAVAILABLE]: 'Сервис временно недоступен.',
 } as const;
 
-enum ApiActionName{
+enum ApiActionName {
   FetchProducts = 'PRODUCTS/fetchProducts',
   FetchProduct = 'PRODUCTS/fetchOrSetProduct',
   FetchReviews = 'REVIEWS/fetchOrSetReviews',
-  FetchOrder = 'ORDER/fetchOrder'
+  FetchOrder = 'ORDER/fetchOrder',
 }
 
 enum Coupon {
   Three = 'camera-333',
   Four = 'camera-444',
-  Default = 'camera'
+  Default = 'camera',
+}
+
+enum CSSClass {
+  LoadMessage = 'loading-message',
+  ErrorMessage = 'error-message',
 }
 
 export {
   TabName,
-  ErrorMessage,
+  ErrorInfoMessage,
   Validation,
   TitleName,
   LogoParam,
@@ -241,5 +249,6 @@ export {
   FLAPS_COUNT,
   APIRoute,
   ApiActionName,
-  Coupon
+  Coupon,
+  CSSClass,
 };

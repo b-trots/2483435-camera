@@ -2,10 +2,11 @@ import { useState, forwardRef } from 'react';
 import { toast, ToastContainer } from 'react-toastify';
 import {
   Validation,
-  ErrorMessage,
+  ErrorInfoMessage,
   ToastParam,
   BemClass,
   ModalTitle,
+  ExplanationWord,
 } from '../../../../const/const';
 import {
   ButtonBemClass,
@@ -57,7 +58,7 @@ function CallItemComponent(
       setTel(input);
       setIsToastShown(false);
     } else if (!isToastShown) {
-      phoneValidationError(ErrorMessage.PhoneInput);
+      phoneValidationError(ErrorInfoMessage.PhoneInput);
       setIsToastShown(true);
       setTimeout(() => setIsToastShown(false), ToastParam.CloseTime);
     }
@@ -65,13 +66,20 @@ function CallItemComponent(
 
   const handleSubmit = () => {
     if (!Validation.PhoneSubmit.test(tel)) {
-      phoneValidationError(ErrorMessage.PhoneSubmit);
+      phoneValidationError(ErrorInfoMessage.PhoneSubmit);
       return;
     }
 
     const correctTel = toStandardizePhone(tel);
-    dispatch(fetchOrderAction({ camerasIds: [id], coupon, tel: correctTel }));
-    dispatch(closeModal());
+
+    dispatch(fetchOrderAction({ camerasIds: [id], coupon, tel: correctTel }))
+      .unwrap()
+      .then(() => {
+        dispatch(closeModal());
+        toast.success(ExplanationWord.OrderSuccess, {
+          containerId: ToastParam.Main,
+        });
+      });
   };
 
   return (
@@ -101,6 +109,7 @@ function CallItemComponent(
           ref={firstTabRef}
         />
         <ToastContainer
+          containerId={ToastParam.Modal}
           limit={ToastParam.LimitCount}
           style={{
             position: ToastParam.Position,

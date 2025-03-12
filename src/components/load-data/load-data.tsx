@@ -1,4 +1,5 @@
-import css from './style.module.css';
+import { CSSClass } from '../../const/const';
+import css from './load-data.module.css';
 export enum RequestCategory {
   Products = 'products',
   Product = 'product',
@@ -33,11 +34,11 @@ export function LoadData({ requestCategory, loading, error }: LoadMessageType) {
   const request = LoadDataParam[requestCategory];
 
   if (error) {
-    return <p className={css['error-message']}>{request.error}</p>;
+    return <p className={css[CSSClass.ErrorMessage]}>{request.error}</p>;
   }
 
   if (loading) {
-    return <p className={css['loading-message']}>{request.loading}</p>;
+    return <p className={css[CSSClass.LoadMessage]}>{request.loading}</p>;
   }
 
   return null;

@@ -34,8 +34,8 @@ export function ActiveButton({
     <button className={buttonClass} type={type} onClick={onClick}>
       {basketIcon && (
         <svg
-          width={ServiceParam.BascetIconWidth}
-          height={ServiceParam.BascetIconHeight}
+          width={ServiceParam.BasketIconWidth}
+          height={ServiceParam.BasketIconHeight}
           aria-hidden="true"
         >
           <use xlinkHref="#icon-add-basket" />

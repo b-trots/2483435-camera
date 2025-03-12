@@ -16,12 +16,13 @@ export function Page404() {
     <div className="wrapper">
       <Header />
       <main>
-        <div className="page-content">
+        <div className={`page-content ${css['page-content']}`}>
           <div className="container">
             <div className="page-content__columns">
               <div className="catalog__content">
                 <div className={css['error-container']}>
                   <div className={css.lens}>
+                    <div className={css['hoop-frame']}></div>
                     <div className={css['message-container']}>
                       <div className={css.message}>
                         <span className={css.errorCode}>404 ERROR</span>
@@ -34,7 +35,10 @@ export function Page404() {
                           key={i}
                           className={css.flap}
                           style={
-                            { '--i': i, '--flaps': FLAPS_COUNT } as ShutterStyle
+                            {
+                              '--i': i,
+                              '--flaps': FLAPS_COUNT,
+                            } as ShutterStyle
                           }
                         />
                       ))}

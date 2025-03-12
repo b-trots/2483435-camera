@@ -1,6 +1,6 @@
 import { AxiosError, AxiosRequestConfig } from 'axios';
 import { toast } from 'react-toastify';
-import { ErrorMessage, StatusCodeMapping, ToastParam } from '../const/const';
+import { ErrorInfoMessage, StatusCodeMapping, ToastParam } from '../const/const';
 
 export type DetailMessageType = {
   type: string;
@@ -9,6 +9,7 @@ export type DetailMessageType = {
 
 const errorNotify = (message: string) =>
   toast.error(message, {
+    containerId:ToastParam.Main,
     autoClose: ToastParam.CloseTime,
     hideProgressBar: true,
     pauseOnFocusLoss: false,
@@ -18,6 +19,7 @@ const errorNotify = (message: string) =>
 
 const phoneValidationError = (message: string) =>
   toast.error(message, {
+    containerId:ToastParam.Modal,
     autoClose: ToastParam.CloseTime,
     hideProgressBar: true,
     pauseOnFocusLoss: false,
@@ -34,13 +36,13 @@ const handleError = (error: AxiosError<DetailMessageType>) => {
     const { status, data } = response;
     const errorMessage = StatusCodeMapping[status]
       ? `${StatusCodeMapping[status]} ${data?.message || ''}`.trim()
-      : `${ErrorMessage.Error} ${status}. ${ErrorMessage.TryLater}`;
+      : `${ErrorInfoMessage.Error} ${status}. ${ErrorInfoMessage.TryLater}`;
 
     errorNotify(errorMessage);
   } else if (request) {
-    errorNotify(ErrorMessage.CheckInternet);
+    errorNotify(ErrorInfoMessage.CheckInternet);
   } else {
-    errorNotify(`${ErrorMessage.Error} ${message}`);
+    errorNotify(`${ErrorInfoMessage.Error} ${message}`);
   }
 };
 

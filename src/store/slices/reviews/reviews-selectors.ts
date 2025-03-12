@@ -10,17 +10,8 @@ const getReviews = createSelector(
 
 const getCurrentReviews = createSelector(
   [(state: State) => state[SliceName.Reviews].currentReviews],
-  (currentReviews) => currentReviews
+  (currentReviews) => (currentReviews ? [...currentReviews].sort(daySort) : [])
 );
-
-const getReviewsByProductId = (productId: number) =>
-  createSelector(
-    [(state: State) => state[SliceName.Reviews].allReviews],
-    (allReviews) => {
-      const productReviews = allReviews[productId];
-      return productReviews ? [...productReviews].sort(daySort) : [];
-    }
-  );
 
 const getReviewsRequestStatus = (state: State): RequestStatus =>
   state[SliceName.Products].requestStatus;
@@ -30,7 +21,6 @@ const getReviewsError = (state: State) => state[SliceName.Reviews].reviewsError;
 export {
   getReviews,
   getCurrentReviews,
-  getReviewsByProductId,
   getReviewsRequestStatus,
-  getReviewsError
+  getReviewsError,
 };

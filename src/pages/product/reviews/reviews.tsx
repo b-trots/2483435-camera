@@ -18,7 +18,7 @@ import { useParams } from 'react-router-dom';
 import {
   LoadData,
   RequestCategory,
-} from '../../../components/main/load-data/load-data';
+} from '../../../components/load-data/load-data';
 
 export function Reviews() {
   const dispatch = useAppDispatch();

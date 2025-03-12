@@ -19,7 +19,7 @@ import {
 import {
   LoadData,
   RequestCategory,
-} from '../../components/main/load-data/load-data';
+} from '../../components/load-data/load-data';
 import { ProductContent } from './product-content';
 import { Page404 } from '../../components/page-404/page-404';
 export function Product() {
