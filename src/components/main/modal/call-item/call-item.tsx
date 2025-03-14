@@ -30,11 +30,11 @@ function CallItemComponent(
 ) {
   const dispatch = useAppDispatch();
   const coupon = useAppSelector(getCoupon);
-  const currnetProduct = useAppSelector(getCurrentProduct);
+  const currentProduct = useAppSelector(getCurrentProduct);
   const [tel, setTel] = useState('');
   const [isToastShown, setIsToastShown] = useState(false);
 
-  if (!currnetProduct) {
+  if (!currentProduct) {
     return null;
   }
 
@@ -49,7 +49,7 @@ function CallItemComponent(
     previewImg2x,
     previewImgWebp,
     previewImgWebp2x,
-  } = currnetProduct;
+  } = currentProduct;
 
   const handlePhoneChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const input = e.target.value;

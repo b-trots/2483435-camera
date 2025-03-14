@@ -30,7 +30,6 @@ export function ActiveButton({
   );
 
   return (
-
     <button className={buttonClass} type={type} onClick={onClick}>
       {basketIcon && (
         <svg

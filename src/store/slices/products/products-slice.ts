@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { BooleanStatus, RequestStatus, SliceName } from '../../../const/const';
+import { RequestStatus, SliceName } from '../../../const/const';
 import { ProductsSlice } from '../../../types/store-types/slices-types';
 import {
   fetchOrSetProductAction,
@@ -10,7 +10,7 @@ import { FullProduct } from '../../../types/product-type';
 const productsState: ProductsSlice = {
   allProducts: {},
   currentProduct: null,
-  isAllProductsLoaded: BooleanStatus.False,
+  isAllProductsLoaded: false,
   requestStatus: RequestStatus.Idle,
   productsError: false,
 };
@@ -34,7 +34,7 @@ const productsSlice = createSlice({
         if (products) {
           state.allProducts = products;
         }
-        state.isAllProductsLoaded = BooleanStatus.True;
+        state.isAllProductsLoaded = true;
         state.requestStatus = RequestStatus.Success;
       })
       .addCase(fetchProductsAction.rejected, (state) => {

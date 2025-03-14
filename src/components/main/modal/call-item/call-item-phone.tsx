@@ -15,8 +15,8 @@ function CallItemPhoneComponent(
       <span className="custom-input__label">
         {ExplanationWord.Phone}
         <svg
-          width={ServiceParam.SnowflackSize}
-          height={ServiceParam.SnowflackSize}
+          width={ServiceParam.SnowflakeSize}
+          height={ServiceParam.SnowflakeSize}
           aria-hidden="true"
         >
           <use xlinkHref="#icon-snowflake" />

@@ -27,4 +27,10 @@ type OrderType = {
 
 type ReviewsType = ReviewType[];
 
-export type { FocusableElements, ReviewType, ReviewsType, OrderType };
+type PaginationData = {
+  pagesCount: number;
+  pages: string[];
+  currentPage: number;
+};
+
+export type { FocusableElements, ReviewType, ReviewsType, OrderType, PaginationData };

@@ -6,12 +6,15 @@ const SHOP_TITLE = 'Каталог фото- и видеотехники';
 const SHUTTER_FLAPS = [0, 1, 2, 3, 4, 5];
 const FLAPS_COUNT = 6;
 
-enum DefaultParam {
-  ProductImgWidth = 280,
-  ProductImgHeight = 240,
-  Button = 'button',
-  ScrollZero = 0,
-}
+const DefaultParam = {
+  ProductImgWidth: 280,
+  ProductImgHeight: 240,
+  Button: 'button',
+  ScrollZero: 0,
+  VoidArray: [],
+  PageNumberZero: 0,
+  PageNumberFirst:1
+};
 
 enum APIRoute {
   Products = '/cameras',
@@ -20,7 +23,7 @@ enum APIRoute {
 }
 
 enum ServiceParam {
-  SnowflackSize = 9,
+  SnowflakeSize = 9,
   RateStarWidth = 17,
   RateStarHeight = 16,
   BasketIconWidth = 24,
@@ -30,6 +33,8 @@ enum ServiceParam {
   UpButtonHeight = 18,
   ShownComments = 3,
   ShownCommentsStep = 3,
+  ItemsPerPage = 9,
+  PaginationStep = 1,
 }
 
 enum ServerParam {
@@ -77,6 +82,7 @@ enum BemClass {
   BasketItem = 'basket-item',
   ReviewCard = 'review-card',
   ProductTabs = 'product__tabs',
+  PaginationLink = 'pagination__link',
 }
 
 enum ProductParam {
@@ -98,7 +104,7 @@ enum ExplanationWord {
   Advantage = 'Достоинства',
   Disadvantage = 'Недостатки',
   Comment = 'Комментарий',
-  OrderSuccess = 'Заказ оформлен'
+  OrderSuccess = 'Заказ оформлен',
 }
 
 enum BemMode {
@@ -106,6 +112,7 @@ enum BemMode {
   Mono = '-mono',
   Full = '-full',
   IsActive = 'is-active',
+  Active = '--active',
 }
 
 enum BannerParam {
@@ -185,11 +192,6 @@ enum ModalStatus {
   Close = 'false',
 }
 
-enum BooleanStatus {
-  True = 'true',
-  False = 'false',
-}
-
 const StatusCodeMapping: Record<number, string> = {
   [StatusCodes.BAD_REQUEST]: 'Некорректный запрос',
   [StatusCodes.UNAUTHORIZED]: 'Необходимо авторизоваться.',
@@ -242,7 +244,6 @@ export {
   NameSpace,
   ModalWindow,
   ModalStatus,
-  BooleanStatus,
   StatusCodeMapping,
   ModalTitle,
   SHUTTER_FLAPS,

@@ -3,10 +3,13 @@ import { AppRoute } from '../../const/const-navigate';
 import { BannerParam } from '../../const/const';
 import { PassiveButtonName } from '../../const/const-button';
 import { useAppSelector } from '../../hooks/hooks';
-import { getAllProducts } from '../../store/slices/products/products-selectors';
-
+import {
+  getAllProducts,
+  getIsAllProductsLoad,
+} from '../../store/slices/products/products-selectors';
 
 export function Banner() {
+  const isProductsLoaded = useAppSelector(getIsAllProductsLoad);
 
   const product = Object.values(useAppSelector(getAllProducts))[7];
   if (!product) {
@@ -23,7 +26,7 @@ export function Banner() {
     description,
   } = product;
 
-  return (
+  return !isProductsLoaded ? null : (
     <div className="banner">
       <picture>
         <source

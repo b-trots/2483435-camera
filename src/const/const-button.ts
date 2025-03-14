@@ -4,6 +4,7 @@ enum ButtonBemClass {
   Review = 'form-review__btn',
   FitWidth = 'modal__btn--fit-width',
   HalfWidth = 'modal__btn--half-width',
+  PaginationText = 'pagination__link--text'
 }
 
 enum ActiveButtonName {
@@ -28,9 +29,14 @@ enum CloseButtonParam {
   DeleteProduct = 'Удалить товар',
 }
 
+enum PaginationButton {
+  Text = 'Далее'
+}
+
 export {
   ButtonBemClass,
   ActiveButtonName,
   PassiveButtonName,
   CloseButtonParam,
+  PaginationButton
 };

@@ -1,5 +1,4 @@
 import {
-  BooleanStatus,
   Coupon,
   ModalStatus,
   ModalWindow,
@@ -11,7 +10,7 @@ import { ReviewsType } from '../types';
 type ProductsSlice = {
   allProducts: ProductsForStore;
   currentProduct: FullProduct | null;
-  isAllProductsLoaded: BooleanStatus;
+  isAllProductsLoaded: boolean;
   requestStatus: RequestStatus;
   productsError: boolean;
 };

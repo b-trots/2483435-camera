@@ -1,46 +1,23 @@
-import { useRef, useEffect } from 'react';
 import { Footer } from '../../components/footer/footer';
 import { Header } from '../../components/header/header';
 import { Banner } from '../../components/main/banner';
 import { Breadcrumbs } from '../../components/main/breadcrumbs/breadcrumbs';
-import {
-  useAppDispatch,
-  useAppSelector,
-  useScrollToTop,
-} from '../../hooks/hooks';
-import { fetchProductsAction } from '../../store/api-actions/api-actions';
-import {
-  getAllProducts,
-  getIsAllProductsLoad,
-} from '../../store/slices/products/products-selectors';
+import { useScrollToTop } from '../../hooks/hooks';
 import { CatalogCards } from './catalog-cards';
 import { useChangeTitle } from '../../hooks/use-change-title';
-import { BooleanStatus, SHOP_TITLE, TitleName } from '../../const/const';
+import { SHOP_TITLE, TitleName } from '../../const/const';
 import { CallItem } from '../../components/main/modal/call-item/call-item';
 import { Modal } from '../../components/main/modal/modal';
-
+import { Pagination } from './pagination/pagination';
 export function Catalog() {
-  const dispatch = useAppDispatch();
-  const products = useAppSelector(getAllProducts);
-  const productsLoadStatus = useAppSelector(getIsAllProductsLoad);
-  const isProductsLoaded = productsLoadStatus === BooleanStatus.True;
-
   useChangeTitle(TitleName.Catalog);
   useScrollToTop();
 
-  useEffect(() => {
-    if (!isProductsLoaded) {
-      dispatch(fetchProductsAction());
-    }
-  }, [dispatch, products, isProductsLoaded]);
-
-  const containerRef = useRef<HTMLDivElement | null>(null);
-
   return (
-    <div className="wrapper" ref={containerRef}>
+    <div className="wrapper">
       <Header />
       <main>
-        {isProductsLoaded && <Banner />}
+        <Banner />
         <div className="page-content">
           <Breadcrumbs />
           <section className="catalog">
@@ -54,7 +31,7 @@ export function Catalog() {
                 <div className="catalog__content">
                   {/* <Sorting/> */}
                   <CatalogCards />
-                  {/* <PageSwitcher/> */}
+                  {<Pagination />}
                 </div>
               </div>
             </div>
