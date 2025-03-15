@@ -13,13 +13,15 @@ const DefaultParam = {
   ScrollZero: 0,
   VoidArray: [],
   PageNumberZero: 0,
-  PageNumberFirst:1
+  PageNumberFirst: 1,
+  ZeroValue: 0,
 };
 
 enum APIRoute {
   Products = '/cameras',
   Reviews = '/reviews',
   Orders = '/orders',
+  Promo = '/promo',
 }
 
 enum ServiceParam {
@@ -36,7 +38,7 @@ enum ServiceParam {
   ItemsPerPage = 9,
   PaginationStep = 1,
   SwiperSlideTime = 3000,
-  BannerItems = 3
+  BannerItems = 3,
 }
 
 enum ServerParam {
@@ -122,6 +124,7 @@ enum BannerParam {
   Height = 280,
   Alt = 'баннер',
   Message = 'Новинка!',
+  Text = 'Профессиональная камера от известного производителя'
 }
 
 enum SymbolParam {
@@ -208,6 +211,7 @@ enum ApiActionName {
   FetchProduct = 'PRODUCTS/fetchOrSetProduct',
   FetchReviews = 'REVIEWS/fetchOrSetReviews',
   FetchOrder = 'ORDER/fetchOrder',
+  FetchPromo = 'PRODUCTS/fetchPromo',
 }
 
 enum Coupon {

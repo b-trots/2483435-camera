@@ -30,7 +30,12 @@ const phoneValidationError = (message: string) =>
   });
 
 const handleError = (error: AxiosError<DetailMessageType>) => {
-  const { response, message } = error;
+  const { response, message, config } = error;
+
+  if (config?.suppressErrorNotify) {
+    return;
+  }
+
   const request = error.request as AxiosRequestConfig;
   if (response) {
     const { status, data } = response;

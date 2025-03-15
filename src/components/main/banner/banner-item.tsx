@@ -2,10 +2,10 @@ import { Link } from 'react-router-dom';
 import { BannerParam } from '../../../const/const';
 import { PassiveButtonName } from '../../../const/const-button';
 import { AppRoute } from '../../../const/const-navigate';
-import { FullProduct } from '../../../types/product-type';
+import { PromoProduct } from '../../../types/product-type';
 
 type BannerItemProps = {
-  product: FullProduct;
+  product: PromoProduct;
 };
 export function BannerItem({ product }: BannerItemProps) {
   const {
@@ -15,7 +15,6 @@ export function BannerItem({ product }: BannerItemProps) {
     previewImgWebp2x,
     id,
     name,
-    description,
   } = product;
   return (
     <>
@@ -35,7 +34,7 @@ export function BannerItem({ product }: BannerItemProps) {
       <p className="banner__info">
         <span className="banner__message">{BannerParam.Message}</span>
         <span className="title title--h1">{name}</span>
-        <span className="banner__text">{description}</span>
+        <span className="banner__text">{BannerParam.Text}</span>
         <Link className="btn" to={AppRoute.Cameras.replace(':id', String(id))}>
           {PassiveButtonName.Details}
         </Link>

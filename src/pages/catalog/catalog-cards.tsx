@@ -13,7 +13,7 @@ import {
 import {
   getAllProducts,
   getCurrentProduct,
-  getIsAllProductsLoad,
+  getIsAllProductsLoaded,
   getProductsError,
   getProductsRequestStatus,
 } from '../../store/slices/products/products-selectors';
@@ -27,7 +27,7 @@ export function CatalogCards() {
   const currentProduct = useAppSelector(getCurrentProduct);
   const productsLoadStatus = useAppSelector(getProductsRequestStatus);
   const isProductsLoad = productsLoadStatus === RequestStatus.Loading;
-  const isProductsLoaded = useAppSelector(getIsAllProductsLoad);
+  const isProductsLoaded = useAppSelector(getIsAllProductsLoaded);
   const productsError = useAppSelector(getProductsError);
 
   const [searchParams] = useSearchParams();

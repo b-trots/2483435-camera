@@ -7,22 +7,29 @@ import './banner.css';
 import { Autoplay, Pagination } from 'swiper/modules';
 import { BannerItem } from './banner-item';
 import {
-  getAllProducts,
-  getIsAllProductsLoad,
+  getIsPromoProductsLoaded,
+  getPromoProducts,
 } from '../../../store/slices/products/products-selectors';
-import { useAppSelector } from '../../../hooks/hooks';
-import { ServiceParam } from '../../../const/const';
-import { getRandomElements } from '../../../utils/utils';
+import { useAppDispatch, useAppSelector } from '../../../hooks/hooks';
+import { DefaultParam, ServiceParam } from '../../../const/const';
+import { useEffect } from 'react';
+import { fetchPromoAction } from '../../../store/api-actions/api-actions';
 
 export function Banner() {
-  const allPproducts = Object.values(useAppSelector(getAllProducts));
-  const bannerProducts = getRandomElements(
-    allPproducts,
-    ServiceParam.BannerItems
-  );
+  const dispatch = useAppDispatch();
+  const promoProducts = useAppSelector(getPromoProducts);
+  const isPromoProductLoaded = useAppSelector(getIsPromoProductsLoaded);
 
-  const isProductsLoaded = useAppSelector(getIsAllProductsLoad);
-  return !isProductsLoaded ? null : (
+  useEffect(() => {
+    if (!isPromoProductLoaded) {
+      dispatch(fetchPromoAction());
+    }
+  }, [dispatch, promoProducts, isPromoProductLoaded]);
+
+  const isVoid =
+    promoProducts.length === DefaultParam.ZeroValue || !isPromoProductLoaded;
+
+  return isVoid ? null : (
     <div className="banner">
       <Swiper
         autoplay={{
@@ -35,7 +42,7 @@ export function Banner() {
         }}
         modules={[Pagination, Autoplay]}
       >
-        {bannerProducts.map((product) => (
+        {promoProducts.map((product) => (
           <SwiperSlide key={product.id}>
             <BannerItem product={product} />
           </SwiperSlide>

@@ -3,6 +3,7 @@ import {
   FullProduct,
   Products,
   ProductsForStore,
+  PromoProduct,
 } from '../../types/product-type';
 import { AxiosInstance } from 'axios';
 import { OrderType, ReviewsType } from '../../types/types';
@@ -35,6 +36,16 @@ const fetchProductsAction = appCreateAsyncThunk<ProductsForStore, undefined>(
       {}
     );
     return formatAllProducts;
+  }
+);
+
+const fetchPromoAction = appCreateAsyncThunk<PromoProduct[], undefined>(
+  ApiActionName.FetchPromo,
+  async (_arg, { extra: api }) => {
+    const { data:promo } = await api.get<PromoProduct[]>(APIRoute.Promo, {
+      suppressErrorNotify: true,
+    });
+    return promo;
   }
 );
 
@@ -104,7 +115,8 @@ const fetchOrderAction = appCreateAsyncThunk<void, OrderType>(
 
 export {
   fetchProductsAction,
+  fetchPromoAction,
   fetchOrSetProductAction,
   fetchOrSetReviewsAction,
-  fetchOrderAction
+  fetchOrderAction,
 };

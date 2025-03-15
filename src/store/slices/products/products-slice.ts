@@ -4,13 +4,16 @@ import { ProductsSlice } from '../../../types/store-types/slices-types';
 import {
   fetchOrSetProductAction,
   fetchProductsAction,
+  fetchPromoAction,
 } from '../../api-actions/api-actions';
 import { FullProduct } from '../../../types/product-type';
 
 const productsState: ProductsSlice = {
   allProducts: {},
+  promoProducts: [],
   currentProduct: null,
   isAllProductsLoaded: false,
+  isPromoProductLoaded: false,
   requestStatus: RequestStatus.Idle,
   productsError: false,
 };
@@ -41,6 +44,11 @@ const productsSlice = createSlice({
         state.requestStatus = RequestStatus.Failed;
         state.productsError = true;
       })
+      .addCase(fetchPromoAction.fulfilled, (state, action) => {
+        state.isPromoProductLoaded = true;
+        state.promoProducts = action.payload;
+      })
+
       .addCase(fetchOrSetProductAction.pending, (state) => {
         state.requestStatus = RequestStatus.Loading;
         state.productsError = false;
