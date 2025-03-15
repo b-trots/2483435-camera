@@ -1,6 +1,9 @@
 import { useSearchParams } from 'react-router-dom';
 import { PaginationItem } from './pagination-item';
-import { getAllProducts } from '../../../store/slices/products/products-selectors';
+import {
+  getAllProducts,
+  getIsAllProductsLoad,
+} from '../../../store/slices/products/products-selectors';
 import { countPages, createPagesNames } from '../../../utils/utils';
 import { useEffect } from 'react';
 import { useAppSelector } from '../../../hooks/hooks';
@@ -8,6 +11,7 @@ import { DefaultParam } from '../../../const/const';
 
 export function Pagination() {
   const allProducts = useAppSelector(getAllProducts);
+  const isProductsLoaded = useAppSelector(getIsAllProductsLoad);
   const [searchParams, setSearchParams] = useSearchParams();
   const currentPage =
     Number(searchParams.get('page')) || DefaultParam.PageNumberZero;
@@ -20,7 +24,7 @@ export function Pagination() {
     }
   }, [setSearchParams, currentPage, pagesCount]);
 
-  return (
+  return !isProductsLoaded ? null : (
     <div className="pagination">
       <ul className="pagination__list">
         {pagesNames.map((pageName) => (

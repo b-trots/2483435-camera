@@ -1,5 +1,5 @@
 import classNames from 'classnames';
-import { DefaultParam, ServiceParam } from '../../../const/const';
+import { ServiceParam } from '../../../const/const';
 import { ButtonBemClass, ActiveButtonName } from '../../../const/const-button';
 
 type ActiveButtonProps = {
@@ -7,7 +7,7 @@ type ActiveButtonProps = {
   className?: ButtonBemClass;
   isFitWidth?: boolean;
   isHalfWidth?: boolean;
-  type?: 'button' | 'submit';
+  type?: 'button' | 'submit' | 'reset' | undefined;
   text: ActiveButtonName;
   basketIcon?: boolean;
 };
@@ -17,7 +17,7 @@ export function ActiveButton({
   className,
   isFitWidth = false,
   isHalfWidth = false,
-  type = DefaultParam.Button,
+  type,
   text,
   basketIcon,
 }: ActiveButtonProps) {

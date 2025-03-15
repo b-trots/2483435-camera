@@ -1,0 +1,32 @@
+.swiper-pagination {
+  position: absolute;
+  transform: translate(45%);
+}
+
+.swiper-pagination-bullet {
+  width: 13px;
+  height: 13px;
+  background-color: #909092;
+  border-radius: 50%;
+  transition: transform 0.3s ease, background-color 0.3s ease;
+}
+
+.swiper-pagination-bullet-active {
+  transform: scale(1.5);
+  background-color: #7575e2;
+}
+
+.swiper {
+  height: 280px;
+  overflow: hidden;
+}
+
+.swiper-slide .banner__text {
+  margin: 0 0 30px;
+  font-size: 20px;
+  line-height: 24px;
+  color: #ffffff;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}

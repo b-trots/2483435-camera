@@ -35,6 +35,18 @@ const createPagesNames = (pagesCount: number) => [
   PaginationButton.Text,
 ];
 
+const getRandomElements = <T>(array: T[], count: number): T[] => {
+  const result: T[] = [];
+  const arrayCopy = [...array];
+
+  for (let i = 0; i < count; i++) {
+    const randomIndex = Math.floor(Math.random() * arrayCopy.length);
+    result.push(arrayCopy.splice(randomIndex, 1)[0]);
+  }
+
+  return result;
+};
+
 export {
   toStandardizePhone,
   reviewDate,
@@ -42,4 +54,5 @@ export {
   selectProducts,
   countPages,
   createPagesNames,
+  getRandomElements,
 };

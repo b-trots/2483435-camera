@@ -35,6 +35,8 @@ enum ServiceParam {
   ShownCommentsStep = 3,
   ItemsPerPage = 9,
   PaginationStep = 1,
+  SwiperSlideTime = 3000,
+  BannerItems = 3
 }
 
 enum ServerParam {

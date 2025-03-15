@@ -1,21 +1,13 @@
 import { Link } from 'react-router-dom';
-import { AppRoute } from '../../const/const-navigate';
-import { BannerParam } from '../../const/const';
-import { PassiveButtonName } from '../../const/const-button';
-import { useAppSelector } from '../../hooks/hooks';
-import {
-  getAllProducts,
-  getIsAllProductsLoad,
-} from '../../store/slices/products/products-selectors';
+import { BannerParam } from '../../../const/const';
+import { PassiveButtonName } from '../../../const/const-button';
+import { AppRoute } from '../../../const/const-navigate';
+import { FullProduct } from '../../../types/product-type';
 
-export function Banner() {
-  const isProductsLoaded = useAppSelector(getIsAllProductsLoad);
-
-  const product = Object.values(useAppSelector(getAllProducts))[7];
-  if (!product) {
-    return;
-  }
-
+type BannerItemProps = {
+  product: FullProduct;
+};
+export function BannerItem({ product }: BannerItemProps) {
   const {
     previewImg,
     previewImg2x,
@@ -25,9 +17,8 @@ export function Banner() {
     name,
     description,
   } = product;
-
-  return !isProductsLoaded ? null : (
-    <div className="banner">
+  return (
+    <>
       <picture>
         <source
           type="image/webp"
@@ -49,6 +40,6 @@ export function Banner() {
           {PassiveButtonName.Details}
         </Link>
       </p>
-    </div>
+    </>
   );
 }

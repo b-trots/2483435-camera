@@ -23,7 +23,8 @@
     "react-redux": "8.1.1",
     "react-remove-scroll": "^2.6.3",
     "react-router-dom": "6.14.0",
-    "react-toastify": "^11.0.5"
+    "react-toastify": "^11.0.5",
+    "swiper": "11.2.5"
   },
   "devDependencies": {
     "@jedmao/redux-mock-store": "3.0.5",

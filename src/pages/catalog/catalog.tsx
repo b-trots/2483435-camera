@@ -1,6 +1,6 @@
 import { Footer } from '../../components/footer/footer';
 import { Header } from '../../components/header/header';
-import { Banner } from '../../components/main/banner';
+import { Banner } from '../../components/main/banner/banner';
 import { Breadcrumbs } from '../../components/main/breadcrumbs/breadcrumbs';
 import { useScrollToTop } from '../../hooks/hooks';
 import { CatalogCards } from './catalog-cards';

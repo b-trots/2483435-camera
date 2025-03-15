@@ -14,7 +14,7 @@ export function PaginationItem({ pageName, currentPage }: PaginationItemProps) {
 
   const buttonClass = classNames(
     BemClass.PaginationLink,
-    isActive && BemClass.PaginationLink + BemMode.Active,
+    isActive && `${BemClass.PaginationLink}${BemMode.Active}`,
     isText && ButtonBemClass.PaginationText
   );
 
