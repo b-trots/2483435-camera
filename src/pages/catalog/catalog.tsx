@@ -31,7 +31,7 @@ export function Catalog() {
                 <div className="catalog__content">
                   {/* <Sorting/> */}
                   <CatalogCards />
-                  {<Pagination />}
+                  <Pagination />
                 </div>
               </div>
             </div>

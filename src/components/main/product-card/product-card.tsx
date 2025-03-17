@@ -1,5 +1,5 @@
 import { ProductOfCatalog } from '../../../types/product-type';
-import { BemClass, ModalWindow } from '../../../const/const';
+import { BemClass, BemMode, ModalWindow } from '../../../const/const';
 import { ProductImg } from '../../../pages/product/product-img';
 import { ProductPrice } from '../../../pages/product/product-price';
 import { ProductRate } from '../../../pages/product/product-rate';
@@ -7,20 +7,23 @@ import { ActiveButton } from '../buttons/active-button';
 import { PassiveButton } from '../buttons/passive-button';
 import { ButtonBemClass, ActiveButtonName } from '../../../const/const-button';
 import { memo } from 'react';
-import { useAppDispatch } from '../../../hooks/hooks';
+import { useAppDispatch, useAppSelector } from '../../../hooks/hooks';
 import { openModal } from '../../../store/slices/modal/modal-slice';
+import {
+  fetchOrSetProductAction,
+  fetchOrSetReviewsAction,
+  fetchSimilarAction,
+} from '../../../store/api-actions/api-actions';
+import { getCurrentProduct } from '../../../store/slices/products/products-selectors';
+
 type ProductProps = {
   product: ProductOfCatalog;
-  onClick: (id: number) => void;
+  isActive?: boolean;
 };
 
-function ProductCardComponent({ product, onClick }: ProductProps) {
+function ProductCardComponent({ product, isActive }: ProductProps) {
   const dispatch = useAppDispatch();
-
-  const handleBuyButton = () => {
-    dispatch(openModal(ModalWindow.CallItem));
-  };
-
+  const currentProduct = useAppSelector(getCurrentProduct);
   const {
     id,
     name,
@@ -32,14 +35,32 @@ function ProductCardComponent({ product, onClick }: ProductProps) {
     rating,
     reviewCount,
   } = product;
+
+  const handleProductCardButtonsClick = () => {
+    if (currentProduct?.id !== id) {
+      dispatch(fetchOrSetProductAction(id));
+    }
+  };
+
+  const handleBuyButtonClick = () => {
+    dispatch(openModal(ModalWindow.CallItem));
+  };
+
+  const handleDetailButtonClick = () => {
+    dispatch(fetchOrSetReviewsAction(id));
+    dispatch(fetchSimilarAction(id));
+  };
+
+  const isActiveMode = isActive ? BemMode.IsActive : BemMode.Void;
+
   return (
-    <div className="product-card">
+    <div className={`product-card ${isActiveMode}`}>
       <ProductImg
         bemClass={BemClass.ProductCard}
-        previewImgWebp={previewImgWebp}
-        previewImgWebp2x={previewImgWebp2x}
-        previewImg={previewImg}
-        previewImg2x={previewImg2x}
+        previewImgWebp={`/${previewImgWebp}`}
+        previewImgWebp2x={`/${previewImgWebp2x}`}
+        previewImg={`/${previewImg}`}
+        previewImg2x={`/${previewImg2x}`}
         name={name}
       />
       <div className="product-card__info">
@@ -51,13 +72,16 @@ function ProductCardComponent({ product, onClick }: ProductProps) {
         <p className="product-card__title">{name}</p>
         <ProductPrice bemClass={BemClass.ProductCard} price={price} />
       </div>
-      <div className="product-card__buttons" onClick={() => onClick(id)}>
+      <div
+        className="product-card__buttons"
+        onClick={handleProductCardButtonsClick}
+      >
         <ActiveButton
           className={ButtonBemClass.ProductCard}
           text={ActiveButtonName.Buy}
-          onClick={handleBuyButton}
+          onClick={handleBuyButtonClick}
         />
-        <PassiveButton id={id} />
+        <PassiveButton id={id} onClick={handleDetailButtonClick} />
       </div>
     </div>
   );

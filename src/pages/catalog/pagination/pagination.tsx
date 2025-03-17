@@ -1,30 +1,28 @@
-import { useSearchParams } from 'react-router-dom';
 import { PaginationItem } from './pagination-item';
 import {
   getAllProducts,
   getIsAllProductsLoaded,
 } from '../../../store/slices/products/products-selectors';
-import { countPages, createPagesNames } from '../../../utils/utils';
-import { useEffect } from 'react';
+import { createPagesNames } from '../../../utils/utils';
 import { useAppSelector } from '../../../hooks/hooks';
-import { DefaultParam } from '../../../const/const';
+import { DefaultParam, NameSpace, ServiceParam } from '../../../const/const';
+import { usePagination } from '../../../hooks/use-pagination';
 
 export function Pagination() {
   const allProducts = useAppSelector(getAllProducts);
   const isProductsLoaded = useAppSelector(getIsAllProductsLoaded);
-  const [searchParams, setSearchParams] = useSearchParams();
-  const currentPage =
-    Number(searchParams.get('page')) || DefaultParam.PageNumberZero;
-  const pagesCount = countPages(allProducts);
+  const { currentPage, pagesCount, goToPage } = usePagination(
+    NameSpace.CatalogPageSearchId,
+    Object.values(allProducts),
+    ServiceParam.ItemsPerPage
+  );
   const pagesNames = createPagesNames(pagesCount);
 
-  useEffect(() => {
-    if (currentPage <= 0 || currentPage > pagesCount) {
-      setSearchParams({ page: String(DefaultParam.PageNumberFirst) });
-    }
-  }, [setSearchParams, currentPage, pagesCount]);
+  const isVoid =
+    !isProductsLoaded ||
+    Object.keys(allProducts).length === DefaultParam.ZeroValue;
 
-  return !isProductsLoaded ? null : (
+  return isVoid ? null : (
     <div className="pagination">
       <ul className="pagination__list">
         {pagesNames.map((pageName) => (
@@ -32,6 +30,7 @@ export function Pagination() {
             pageName={pageName}
             key={pageName}
             currentPage={currentPage}
+            onClick={goToPage}
           />
         ))}
       </ul>

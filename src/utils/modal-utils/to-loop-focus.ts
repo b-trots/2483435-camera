@@ -1,4 +1,4 @@
-import { FocusableElements } from '../../../../types/types';
+import { FocusableElements } from '../../types/types';
 
 const toLoopFocus = (
   modalContainer: React.RefObject<HTMLDivElement>,

@@ -8,6 +8,7 @@ import { ProductImg } from './product-img';
 import { ProductPrice } from './product-price';
 import { ProductRate } from './product-rate';
 import { Reviews } from './reviews/reviews';
+import { Similar } from './similar/similar';
 
 type ProductContentProps = {
   currentProduct: FullProduct | null;
@@ -37,10 +38,10 @@ export function ProductContent({ currentProduct }: ProductContentProps) {
           <div className="container">
             <ProductImg
               bemClass={BemClass.Product}
-              previewImgWebp={`../${previewImgWebp}`}
-              previewImgWebp2x={`../${previewImgWebp2x}`}
-              previewImg={`../${previewImg}`}
-              previewImg2x={`../${previewImg2x}`}
+              previewImgWebp={`/${previewImgWebp}`}
+              previewImgWebp2x={`/${previewImgWebp2x}`}
+              previewImg={`/${previewImg}`}
+              previewImg2x={`/${previewImg2x}`}
               name={name}
             />
             <div className="product__content">
@@ -59,6 +60,7 @@ export function ProductContent({ currentProduct }: ProductContentProps) {
       </div>
 
       <div className="page-content__section">
+        <Similar/>
         <Reviews />
       </div>
     </>

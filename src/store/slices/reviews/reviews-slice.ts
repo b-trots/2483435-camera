@@ -30,7 +30,7 @@ const reviewsSlice = createSlice({
       .addCase(fetchOrSetReviewsAction.fulfilled, (state, action) => {
         const reviews = action.payload;
         if (reviews) {
-          const productId = reviews[NameSpace.FirstElement].cameraId;
+          const productId = reviews[NameSpace.FirstElement]?.cameraId;
           state.allReviews[productId] = reviews;
           state.currentReviews = reviews;
         }

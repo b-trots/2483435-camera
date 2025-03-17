@@ -4,15 +4,17 @@ import {
   ModalWindow,
   RequestStatus,
 } from '../../const/const';
-import { FullProduct, ProductsForStore, PromoProduct } from '../product-type';
+import { FullProduct, Products, ProductsForStore, PromoProduct } from '../product-type';
 import { ReviewsType } from '../types';
 
 type ProductsSlice = {
   allProducts: ProductsForStore;
   promoProducts: PromoProduct[];
   currentProduct: FullProduct | null;
+  similarProducts:Products;
   isAllProductsLoaded: boolean;
-  isPromoProductLoaded: boolean;
+  isPromoProductsLoaded: boolean;
+  isSimilarProductsLoaded: boolean;
   requestStatus: RequestStatus;
   productsError: boolean;
 };

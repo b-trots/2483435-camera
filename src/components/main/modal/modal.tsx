@@ -4,8 +4,8 @@ import { ModalWindow } from '../../../const/const';
 import { useAppDispatch, useAppSelector } from '../../../hooks/hooks';
 import { getActiveModal } from '../../../store/slices/modal/modal-selectors';
 import { closeModal } from '../../../store/slices/modal/modal-slice';
-import { toCloseModal } from './modal-utils/to-close-modal';
-import { toLoopFocus } from './modal-utils/to-loop-focus';
+import { toCloseModal } from '../../../utils/modal-utils/to-close-modal';
+import { toLoopFocus } from '../../../utils/modal-utils/to-loop-focus';
 import { CloseButton } from '../buttons/close-button';
 import { RemoveScroll } from 'react-remove-scroll';
 

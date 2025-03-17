@@ -1,16 +1,21 @@
 import { ButtonBemClass, PaginationButton } from '../../../const/const-button';
-import { BemClass, BemMode } from '../../../const/const';
+import { BemClass, BemMode, ServiceParam } from '../../../const/const';
 import { Link } from 'react-router-dom';
 import classNames from 'classnames';
 
 type PaginationItemProps = {
   pageName: string;
   currentPage: number;
+  onClick: (page: number) => void;
 };
 
-export function PaginationItem({ pageName, currentPage }: PaginationItemProps) {
+export function PaginationItem({
+  pageName,
+  currentPage,
+  onClick,
+}: PaginationItemProps) {
   const isText = pageName === PaginationButton.Text;
-  const isActive = +pageName === currentPage;
+  const isActive = Number(pageName) === currentPage;
 
   const buttonClass = classNames(
     BemClass.PaginationLink,
@@ -18,11 +23,18 @@ export function PaginationItem({ pageName, currentPage }: PaginationItemProps) {
     isText && ButtonBemClass.PaginationText
   );
 
-  const navigate = `?page=${isText ? currentPage + 1 : pageName}`;
+  const newPage = Number(
+    isText ? currentPage + ServiceParam.PaginationStep : pageName
+  );
+
+  const handleClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    e.preventDefault();
+    onClick(newPage);
+  };
 
   return (
     <li className="pagination__item">
-      <Link className={buttonClass} to={navigate}>
+      <Link className={buttonClass} to={''} onClick={handleClick}>
         {pageName}
       </Link>
     </li>

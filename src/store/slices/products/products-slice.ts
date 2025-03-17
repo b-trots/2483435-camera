@@ -5,15 +5,18 @@ import {
   fetchOrSetProductAction,
   fetchProductsAction,
   fetchPromoAction,
+  fetchSimilarAction,
 } from '../../api-actions/api-actions';
 import { FullProduct } from '../../../types/product-type';
 
 const productsState: ProductsSlice = {
   allProducts: {},
-  promoProducts: [],
   currentProduct: null,
+  promoProducts: [],
+  similarProducts: [],
   isAllProductsLoaded: false,
-  isPromoProductLoaded: false,
+  isPromoProductsLoaded: false,
+  isSimilarProductsLoaded: false,
   requestStatus: RequestStatus.Idle,
   productsError: false,
 };
@@ -45,8 +48,12 @@ const productsSlice = createSlice({
         state.productsError = true;
       })
       .addCase(fetchPromoAction.fulfilled, (state, action) => {
-        state.isPromoProductLoaded = true;
+        state.isPromoProductsLoaded = true;
         state.promoProducts = action.payload;
+      })
+      .addCase(fetchSimilarAction.fulfilled, (state, action) => {
+        state.isSimilarProductsLoaded = true;
+        state.similarProducts = action.payload;
       })
 
       .addCase(fetchOrSetProductAction.pending, (state) => {

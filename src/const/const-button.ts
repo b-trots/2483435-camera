@@ -4,7 +4,7 @@ enum ButtonBemClass {
   Review = 'form-review__btn',
   FitWidth = 'modal__btn--fit-width',
   HalfWidth = 'modal__btn--half-width',
-  PaginationText = 'pagination__link--text'
+  PaginationText = 'pagination__link--text',
 }
 
 enum ActiveButtonName {
@@ -23,6 +23,11 @@ enum PassiveButtonName {
   Details = 'Подробнее',
 }
 
+enum SliderButtonName {
+  Prev = 'Предыдущий слайд',
+  Next = 'Следующий слайд',
+}
+
 enum CloseButtonParam {
   CloseButtonSize = 10,
   ClosePopap = 'Закрыть попап',
@@ -30,13 +35,14 @@ enum CloseButtonParam {
 }
 
 enum PaginationButton {
-  Text = 'Далее'
+  Text = 'Далее',
 }
 
 export {
   ButtonBemClass,
   ActiveButtonName,
   PassiveButtonName,
+  SliderButtonName,
   CloseButtonParam,
-  PaginationButton
+  PaginationButton,
 };

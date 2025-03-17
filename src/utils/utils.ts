@@ -15,11 +15,11 @@ const reviewDate = (date: string) => {
 const daySort = (reviewA: ReviewType, reviewB: ReviewType) =>
   dayjs(reviewB.createAt).diff(dayjs(reviewA.createAt));
 
-const selectProducts = (allProducts: ProductsForStore, currentPage: number) => {
-  const startIndex = (currentPage - 1) * ServiceParam.ItemsPerPage;
-  const endIndex = startIndex + ServiceParam.ItemsPerPage;
+const selectProducts = (products: ProductsForStore, currentPage: number, quantity:number) => {
+  const startIndex = (currentPage - ServiceParam.PaginationStep) * quantity;
+  const endIndex = startIndex + quantity;
 
-  const currentProducts = Object.values(allProducts).slice(
+  const currentProducts = Object.values(products).slice(
     startIndex,
     endIndex
   );
@@ -27,8 +27,8 @@ const selectProducts = (allProducts: ProductsForStore, currentPage: number) => {
   return currentProducts;
 };
 
-const countPages = (products: ProductsForStore) =>
-  Math.ceil(Object.keys(products).length / ServiceParam.ItemsPerPage);
+const countPages = (products: unknown[], quantity:number) =>
+  Math.ceil(products.length / quantity);
 
 const createPagesNames = (pagesCount: number) => [
   ...Array.from({ length: pagesCount }, (_, i) => String(i + 1)),

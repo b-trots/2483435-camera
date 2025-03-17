@@ -11,10 +11,11 @@ const DefaultParam = {
   ProductImgHeight: 240,
   Button: 'button',
   ScrollZero: 0,
-  VoidArray: [],
+  EmptyArray: [],
   PageNumberZero: 0,
-  PageNumberFirst: 1,
+  PageNumberOne: 1,
   ZeroValue: 0,
+  UrlId: 'page',
 };
 
 enum APIRoute {
@@ -22,6 +23,7 @@ enum APIRoute {
   Reviews = '/reviews',
   Orders = '/orders',
   Promo = '/promo',
+  Similar = '/similar',
 }
 
 enum ServiceParam {
@@ -36,9 +38,12 @@ enum ServiceParam {
   ShownComments = 3,
   ShownCommentsStep = 3,
   ItemsPerPage = 9,
+  ItemsPerSlide = 3,
   PaginationStep = 1,
   SwiperSlideTime = 3000,
   BannerItems = 3,
+  SliderArrowHeight = 12,
+  SliderArrowWidth = 7,
 }
 
 enum ServerParam {
@@ -109,6 +114,7 @@ enum ExplanationWord {
   Disadvantage = 'Недостатки',
   Comment = 'Комментарий',
   OrderSuccess = 'Заказ оформлен',
+  SimilarProducts = 'Похожие товары'
 }
 
 enum BemMode {
@@ -117,6 +123,8 @@ enum BemMode {
   Full = '-full',
   IsActive = 'is-active',
   Active = '--active',
+  Prev = '--prev',
+  Next = '--next',
 }
 
 enum BannerParam {
@@ -124,7 +132,7 @@ enum BannerParam {
   Height = 280,
   Alt = 'баннер',
   Message = 'Новинка!',
-  Text = 'Профессиональная камера от известного производителя'
+  Text = 'Профессиональная камера от известного производителя',
 }
 
 enum SymbolParam {
@@ -134,6 +142,8 @@ enum SymbolParam {
 
 enum NameSpace {
   FirstElement = 0,
+  SimilarPageSearchId = 'similarPage',
+  CatalogPageSearchId = 'page',
 }
 
 const ToastParam = {
@@ -212,6 +222,7 @@ enum ApiActionName {
   FetchReviews = 'REVIEWS/fetchOrSetReviews',
   FetchOrder = 'ORDER/fetchOrder',
   FetchPromo = 'PRODUCTS/fetchPromo',
+  FetchSimilar = 'PRODUCTS/fetchSimilar',
 }
 
 enum Coupon {

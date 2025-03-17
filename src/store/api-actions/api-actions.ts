@@ -42,7 +42,7 @@ const fetchProductsAction = appCreateAsyncThunk<ProductsForStore, undefined>(
 const fetchPromoAction = appCreateAsyncThunk<PromoProduct[], undefined>(
   ApiActionName.FetchPromo,
   async (_arg, { extra: api }) => {
-    const { data:promo } = await api.get<PromoProduct[]>(APIRoute.Promo, {
+    const { data: promo } = await api.get<PromoProduct[]>(APIRoute.Promo, {
       suppressErrorNotify: true,
     });
     return promo;
@@ -106,6 +106,20 @@ const fetchOrSetReviewsAction = appCreateAsyncThunk<
   }
 );
 
+const fetchSimilarAction = appCreateAsyncThunk<Products, number | string>(
+  ApiActionName.FetchSimilar,
+  async (productId, { extra: api }) => {
+    const { data: similarProducts } = await api.get<Products>(
+      `${APIRoute.Products}/${productId}${APIRoute.Similar}`,
+      {
+        suppressErrorNotify: true,
+      }
+    );
+
+    return similarProducts;
+  }
+);
+
 const fetchOrderAction = appCreateAsyncThunk<void, OrderType>(
   ApiActionName.FetchOrder,
   async ({ camerasIds, coupon, tel }, { extra: api }) => {
@@ -118,5 +132,6 @@ export {
   fetchPromoAction,
   fetchOrSetProductAction,
   fetchOrSetReviewsAction,
+  fetchSimilarAction,
   fetchOrderAction,
 };

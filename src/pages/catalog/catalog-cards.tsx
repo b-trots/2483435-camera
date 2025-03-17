@@ -4,15 +4,13 @@ import {
   RequestCategory,
 } from '../../components/load-data/load-data';
 import { ProductCard } from '../../components/main/product-card/product-card';
-import { DefaultParam, RequestStatus } from '../../const/const';
+import { DefaultParam, RequestStatus, ServiceParam } from '../../const/const';
 import { useAppDispatch, useAppSelector } from '../../hooks/hooks';
 import {
-  fetchOrSetProductAction,
-  fetchProductsAction,
+  fetchProductsAction
 } from '../../store/api-actions/api-actions';
 import {
   getAllProducts,
-  getCurrentProduct,
   getIsAllProductsLoaded,
   getProductsError,
   getProductsRequestStatus,
@@ -24,7 +22,6 @@ import { selectProducts } from '../../utils/utils';
 export function CatalogCards() {
   const dispatch = useAppDispatch();
   const allProducts = useAppSelector(getAllProducts);
-  const currentProduct = useAppSelector(getCurrentProduct);
   const productsLoadStatus = useAppSelector(getProductsRequestStatus);
   const isProductsLoad = productsLoadStatus === RequestStatus.Loading;
   const isProductsLoaded = useAppSelector(getIsAllProductsLoaded);
@@ -32,7 +29,7 @@ export function CatalogCards() {
 
   const [searchParams] = useSearchParams();
   const currentPage =
-    Number(searchParams.get('page')) || DefaultParam.PageNumberFirst;
+    Number(searchParams.get('page')) || DefaultParam.PageNumberOne;
   const [currentProducts, setCurrentProducts] = useState<Products>([]);
 
   useEffect(() => {
@@ -42,15 +39,13 @@ export function CatalogCards() {
   }, [dispatch, isProductsLoaded]);
 
   useEffect(() => {
-    const products = selectProducts(allProducts, currentPage);
+    const products = selectProducts(
+      allProducts,
+      currentPage,
+      ServiceParam.ItemsPerPage
+    );
     setCurrentProducts(products);
   }, [allProducts, currentPage]);
-
-  const handleProductCardButtonsClick = (id: number) => {
-    if (currentProduct?.id !== id) {
-      dispatch(fetchOrSetProductAction(Number(id)));
-    }
-  };
 
   return productsError || isProductsLoad ? (
     <div>
@@ -64,9 +59,8 @@ export function CatalogCards() {
     <div className="cards catalog__cards">
       {currentProducts.map((product) => (
         <ProductCard
-          key={product.id}
           product={product}
-          onClick={handleProductCardButtonsClick}
+          key={product.id}
         />
       ))}
     </div>

@@ -10,7 +10,7 @@ import {
   useScrollToTop,
 } from '../../hooks/hooks';
 import { useEffect } from 'react';
-import { fetchOrSetProductAction } from '../../store/api-actions/api-actions';
+import { fetchOrSetProductAction, fetchSimilarAction } from '../../store/api-actions/api-actions';
 import {
   getCurrentProduct,
   getProductsError,
@@ -21,7 +21,7 @@ import {
   RequestCategory,
 } from '../../components/load-data/load-data';
 import { ProductContent } from './product-content';
-import { Page404 } from '../../components/page-404/page-404';
+
 export function Product() {
   const dispatch = useAppDispatch();
   const currentProduct = useAppSelector(getCurrentProduct);
@@ -35,14 +35,11 @@ export function Product() {
   const { id = '' } = useParams();
 
   useEffect(() => {
-    if (id) {
+    if (currentProduct?.id !== Number(id)) {
       dispatch(fetchOrSetProductAction(Number(id)));
+      dispatch(fetchSimilarAction(Number(id)));
     }
-  }, [id, dispatch]);
-
-  if (!currentProduct && !id) {
-    return <Page404 />;
-  }
+  }, [id, dispatch, currentProduct]);
 
   return (
     <div className="wrapper">
