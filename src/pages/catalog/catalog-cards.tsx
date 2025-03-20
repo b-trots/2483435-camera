@@ -1,67 +1,47 @@
-import { useEffect, useState } from 'react';
-import {
-  LoadData,
-  RequestCategory,
-} from '../../components/load-data/load-data';
-import { ProductCard } from '../../components/main/product-card/product-card';
-import { DefaultParam, RequestStatus, ServiceParam } from '../../const/const';
+import { NameSpace, RequestCategory, RequestStatus } from '../../const/const';
 import { useAppDispatch, useAppSelector } from '../../hooks/hooks';
 import {
-  fetchProductsAction
-} from '../../store/api-actions/api-actions';
-import {
-  getAllProducts,
-  getIsAllProductsLoaded,
-  getProductsError,
-  getProductsRequestStatus,
-} from '../../store/slices/products/products-selectors';
-import { Products } from '../../types/product-type';
-import { useSearchParams } from 'react-router-dom';
-import { selectProducts } from '../../utils/utils';
+  getCamerasError,
+  getCamerasRequestStatus,
+  getCurrentCameras,
+  getIsAllCamerasLoaded,
+} from '../../store/slices/cameras/cameras-selectors';
+import { useEffect } from 'react';
+import { fetchCamerasAction } from '../../store/slices/cameras/cameras-actions';
+import { ProductCard } from '../../components/main/product-card/product-card';
+import { LoadData } from '../../components/load-data/load-data';
+import { usePagination } from '../../hooks/use-pagination';
 
 export function CatalogCards() {
   const dispatch = useAppDispatch();
-  const allProducts = useAppSelector(getAllProducts);
-  const productsLoadStatus = useAppSelector(getProductsRequestStatus);
-  const isProductsLoad = productsLoadStatus === RequestStatus.Loading;
-  const isProductsLoaded = useAppSelector(getIsAllProductsLoaded);
-  const productsError = useAppSelector(getProductsError);
+  const { currentPage } = usePagination(NameSpace.CatalogPageSearchId);
+  const currentCameras = useAppSelector((state) =>
+    getCurrentCameras(state, currentPage)
+  );
 
-  const [searchParams] = useSearchParams();
-  const currentPage =
-    Number(searchParams.get('page')) || DefaultParam.PageNumberOne;
-  const [currentProducts, setCurrentProducts] = useState<Products>([]);
+  const camerasLoadStatus = useAppSelector(getCamerasRequestStatus);
+  const isCamerasLoad = camerasLoadStatus === RequestStatus.Loading;
+  const isCamerasLoaded = useAppSelector(getIsAllCamerasLoaded);
+  const productsError = useAppSelector(getCamerasError);
 
   useEffect(() => {
-    if (!isProductsLoaded) {
-      dispatch(fetchProductsAction());
+    if (!isCamerasLoaded) {
+      dispatch(fetchCamerasAction());
     }
-  }, [dispatch, isProductsLoaded]);
+  }, [dispatch, isCamerasLoaded]);
 
-  useEffect(() => {
-    const products = selectProducts(
-      allProducts,
-      currentPage,
-      ServiceParam.ItemsPerPage
-    );
-    setCurrentProducts(products);
-  }, [allProducts, currentPage]);
-
-  return productsError || isProductsLoad ? (
+  return productsError || isCamerasLoad ? (
     <div>
       <LoadData
-        requestCategory={RequestCategory.Products}
-        loading={isProductsLoad}
+        requestCategory={RequestCategory.Cameras}
+        loading={isCamerasLoad}
         error={productsError}
       />
     </div>
   ) : (
     <div className="cards catalog__cards">
-      {currentProducts.map((product) => (
-        <ProductCard
-          product={product}
-          key={product.id}
-        />
+      {currentCameras.map((camera) => (
+        <ProductCard camera={camera} key={camera.id} />
       ))}
     </div>
   );

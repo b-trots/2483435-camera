@@ -1,5 +1,5 @@
 import { ProductOfCatalog } from '../../../types/product-type';
-import { BemClass, BemMode, ModalWindow } from '../../../const/const';
+import { BemClass, BemMode, ModalType } from '../../../const/const';
 import { ProductImg } from '../../../pages/product/product-img';
 import { ProductPrice } from '../../../pages/product/product-price';
 import { ProductRate } from '../../../pages/product/product-rate';
@@ -8,25 +8,27 @@ import { PassiveButton } from '../buttons/passive-button';
 import { ButtonBemClass, ActiveButtonName } from '../../../const/const-button';
 import { memo } from 'react';
 import { useAppDispatch, useAppSelector } from '../../../hooks/hooks';
-import { openModal } from '../../../store/slices/modal/modal-slice';
 import {
-  fetchOrSetProductAction,
-  fetchOrSetReviewsAction,
-  fetchSimilarAction,
-} from '../../../store/api-actions/api-actions';
-import { getCurrentProduct } from '../../../store/slices/products/products-selectors';
+  openModal,
+  setModalCameraId,
+} from '../../../store/slices/modal/modal-slice';
 
-type ProductProps = {
-  product: ProductOfCatalog;
+import { fetchOrSetReviewsAction } from '../../../store/slices/reviews/reviews-actions';
+import { fetchSimilarAction } from '../../../store/slices/cameras/cameras-actions';
+import { getModalCameraId } from '../../../store/slices/modal/modal-selectors';
+
+type CameraProps = {
+  camera: ProductOfCatalog;
   isActive?: boolean;
 };
 
-function ProductCardComponent({ product, isActive }: ProductProps) {
+function CameraCardComponent({ camera, isActive }: CameraProps) {
   const dispatch = useAppDispatch();
-  const currentProduct = useAppSelector(getCurrentProduct);
+  const modalCameraId = useAppSelector(getModalCameraId);
   const {
     id,
     name,
+    category,
     previewImg,
     previewImg2x,
     previewImgWebp,
@@ -34,16 +36,13 @@ function ProductCardComponent({ product, isActive }: ProductProps) {
     price,
     rating,
     reviewCount,
-  } = product;
-
-  const handleProductCardButtonsClick = () => {
-    if (currentProduct?.id !== id) {
-      dispatch(fetchOrSetProductAction(id));
-    }
-  };
+  } = camera;
 
   const handleBuyButtonClick = () => {
-    dispatch(openModal(ModalWindow.CallItem));
+    if (modalCameraId !== id) {
+      dispatch(setModalCameraId(id));
+    }
+    dispatch(openModal(ModalType.CallItem));
   };
 
   const handleDetailButtonClick = () => {
@@ -57,10 +56,10 @@ function ProductCardComponent({ product, isActive }: ProductProps) {
     <div className={`product-card ${isActiveMode}`}>
       <ProductImg
         bemClass={BemClass.ProductCard}
-        previewImgWebp={`/${previewImgWebp}`}
-        previewImgWebp2x={`/${previewImgWebp2x}`}
-        previewImg={`/${previewImg}`}
-        previewImg2x={`/${previewImg2x}`}
+        previewImgWebp={previewImgWebp}
+        previewImgWebp2x={previewImgWebp2x}
+        previewImg={previewImg}
+        previewImg2x={previewImg2x}
         name={name}
       />
       <div className="product-card__info">
@@ -69,13 +68,10 @@ function ProductCardComponent({ product, isActive }: ProductProps) {
           rating={rating}
           reviewCount={reviewCount}
         />
-        <p className="product-card__title">{name}</p>
+        <p className="product-card__title">{category} {name}</p>
         <ProductPrice bemClass={BemClass.ProductCard} price={price} />
       </div>
-      <div
-        className="product-card__buttons"
-        onClick={handleProductCardButtonsClick}
-      >
+      <div className="product-card__buttons">
         <ActiveButton
           className={ButtonBemClass.ProductCard}
           text={ActiveButtonName.Buy}
@@ -88,6 +84,6 @@ function ProductCardComponent({ product, isActive }: ProductProps) {
 }
 
 export const ProductCard = memo(
-  ProductCardComponent,
-  (prevProps, nextProps) => prevProps.product === nextProps.product
+  CameraCardComponent,
+  (prevProps, nextProps) => prevProps.camera === nextProps.camera
 );

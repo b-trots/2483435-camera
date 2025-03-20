@@ -6,14 +6,14 @@ type QuantityType = ServiceParam.ItemsPerPage | ServiceParam.ItemsPerSlide;
 
 export function usePagination(
   urlId: string = DefaultParam.UrlId,
-  products: unknown[] = DefaultParam.EmptyArray,
+  cameras: unknown[] = DefaultParam.EmptyArray,
   quantity: QuantityType = ServiceParam.ItemsPerPage,
 ) {
   const [searchParams, setSearchParams] = useSearchParams();
   const currentPage =
     Number(searchParams.get(urlId)) || DefaultParam.PageNumberOne;
 
-  const pagesCount = countPages(products, quantity);
+  const pagesCount = countPages(cameras, quantity);
 
   const goToPage = (page: number) => {
     if (page > 0 && page <= pagesCount) {

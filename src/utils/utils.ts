@@ -1,7 +1,7 @@
 import dayjs from 'dayjs';
 import 'dayjs/locale/ru';
 import { ReviewType } from '../types/types';
-import { ProductsForStore } from '../types/product-type';
+import { CamerasForStore } from '../types/product-type';
 import { PaginationButton } from '../const/const-button';
 import { ServiceParam } from '../const/const';
 
@@ -15,19 +15,20 @@ const reviewDate = (date: string) => {
 const daySort = (reviewA: ReviewType, reviewB: ReviewType) =>
   dayjs(reviewB.createAt).diff(dayjs(reviewA.createAt));
 
-const selectProducts = (products: ProductsForStore, currentPage: number, quantity:number) => {
+const selectCameras = (
+  cameras: CamerasForStore,
+  currentPage: number,
+  quantity: number
+) => {
   const startIndex = (currentPage - ServiceParam.PaginationStep) * quantity;
   const endIndex = startIndex + quantity;
 
-  const currentProducts = Object.values(products).slice(
-    startIndex,
-    endIndex
-  );
+  const currentCameras = Object.values(cameras).slice(startIndex, endIndex);
 
-  return currentProducts;
+  return currentCameras;
 };
 
-const countPages = (products: unknown[], quantity:number) =>
+const countPages = (products: unknown[], quantity: number) =>
   Math.ceil(products.length / quantity);
 
 const createPagesNames = (pagesCount: number) => [
@@ -35,11 +36,17 @@ const createPagesNames = (pagesCount: number) => [
   PaginationButton.Text,
 ];
 
+function formatPrice(price: number): string {
+  const correctPrice = new Intl.NumberFormat('ru-RU').format(price);
+  return `${correctPrice} ₽`;
+}
+
 export {
   toStandardizePhone,
   reviewDate,
   daySort,
-  selectProducts,
+  selectCameras,
   countPages,
   createPagesNames,
+  formatPrice,
 };
