@@ -1,24 +1,26 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { NameSpace, RequestStatus, SliceName } from '../../../const/const';
+import { RequestStatus, SliceName } from '../../../const/const';
 import { ReviewsSlice } from '../../../types/store-types/slices-types';
-import { fetchOrSetReviewsAction } from '../../api-actions/api-actions';
 import { ReviewsType } from '../../../types/types';
+import { fetchOrSetReviewsAction } from './reviews-actions';
 
 const reviewsState: ReviewsSlice = {
-  allReviews: {},
-  currentReviews: [],
+  allCamerasReviews: {},
   requestStatus: RequestStatus.Idle,
   reviewsError: false,
 };
 
 const reviewsSlice = createSlice({
-  name: SliceName.Product,
+  name: SliceName.Reviews,
   initialState: reviewsState,
   reducers: {
-    setReviews: (state, action: PayloadAction<ReviewsType>) => {
-      state.currentReviews = action.payload;
-      state.requestStatus = RequestStatus.Success;
-      state.reviewsError = false;
+    addReviewToAllCamerasReviews: (
+      state,
+      action: PayloadAction<{ cameraId: number; reviews: ReviewsType }>
+    ) => {
+      const { cameraId, reviews } = action.payload;
+      state.allCamerasReviews[cameraId] = reviews;
+      state.allCamerasReviews[cameraId] = reviews;
     },
   },
   extraReducers: (builder) => {
@@ -27,13 +29,7 @@ const reviewsSlice = createSlice({
         state.requestStatus = RequestStatus.Loading;
         state.reviewsError = false;
       })
-      .addCase(fetchOrSetReviewsAction.fulfilled, (state, action) => {
-        const reviews = action.payload;
-        if (reviews) {
-          const productId = reviews[NameSpace.FirstElement]?.cameraId;
-          state.allReviews[productId] = reviews;
-          state.currentReviews = reviews;
-        }
+      .addCase(fetchOrSetReviewsAction.fulfilled, (state) => {
         state.requestStatus = RequestStatus.Success;
       })
       .addCase(fetchOrSetReviewsAction.rejected, (state) => {
@@ -43,6 +39,6 @@ const reviewsSlice = createSlice({
   },
 });
 
-const { setReviews } = reviewsSlice.actions;
+const { addReviewToAllCamerasReviews } = reviewsSlice.actions;
 
-export { reviewsSlice, setReviews };
+export { reviewsSlice, addReviewToAllCamerasReviews };

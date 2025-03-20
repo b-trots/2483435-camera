@@ -1,44 +1,48 @@
 import {
   Coupon,
   ModalStatus,
-  ModalWindow,
+  ModalType,
   RequestStatus,
 } from '../../const/const';
-import { FullProduct, Products, ProductsForStore, PromoProduct } from '../product-type';
+import {
+  CamerasForStore,
+  PromoCamera,
+} from '../product-type';
 import { ReviewsType } from '../types';
 
-type ProductsSlice = {
-  allProducts: ProductsForStore;
-  promoProducts: PromoProduct[];
-  currentProduct: FullProduct | null;
-  similarProducts:Products;
-  isAllProductsLoaded: boolean;
-  isPromoProductsLoaded: boolean;
-  isSimilarProductsLoaded: boolean;
+type CamerasSlice = {
+  allCameras: CamerasForStore;
+  currentCameraId: number | null;
+  promoCameras: PromoCamera[];
+  similarCamerasIds: number[];
+  isAllCamerasLoaded: boolean;
+  isPromoCamerasLoaded: boolean;
+  isSimilarCamerasLoaded: boolean;
   requestStatus: RequestStatus;
-  productsError: boolean;
-};
-
-type ActiveSlice = {
-  productId: Pick<FullProduct, 'id'> | null;
+  camerasError: boolean;
 };
 
 type ReviewsSlice = {
-  allReviews: Record<number, ReviewsType>;
-  currentReviews: ReviewsType;
+  allCamerasReviews: Record<number, ReviewsType>;
   requestStatus: RequestStatus;
   reviewsError: boolean;
 };
 
 type ModalSlice = {
-  modalWindow: ModalWindow | null;
+  modalType: ModalType | null;
   modalStatus: ModalStatus;
+  modalCameraId: number | null;
 };
 
 type OrderSlice = {
-  coupon:Coupon | null;
+  coupon: Coupon | null;
   requestStatus: RequestStatus;
   orderError: boolean;
-}
+};
 
-export type { ProductsSlice, ActiveSlice, ReviewsSlice, ModalSlice, OrderSlice };
+export type {
+  CamerasSlice,
+  ReviewsSlice,
+  ModalSlice,
+  OrderSlice,
+};

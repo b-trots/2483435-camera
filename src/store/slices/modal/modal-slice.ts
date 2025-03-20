@@ -1,27 +1,32 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { ModalStatus, ModalWindow, SliceName } from '../../../const/const';
+import { ModalStatus, ModalType, SliceName } from '../../../const/const';
 import { ModalSlice } from '../../../types/store-types/slices-types';
 
 const modalState: ModalSlice = {
-  modalWindow: null,
+  modalType: null,
   modalStatus: ModalStatus.Close,
+  modalCameraId: null,
 };
 
 const modalSlice = createSlice({
   name: SliceName.Modal,
   initialState: modalState,
   reducers: {
-    openModal: (state, action: PayloadAction<ModalWindow>) => {
-      state.modalWindow = action.payload;
+    openModal: (state, action: PayloadAction<ModalType>) => {
+      state.modalType = action.payload;
       state.modalStatus = ModalStatus.Open;
     },
     closeModal: (state) => {
-      state.modalWindow = null;
+      state.modalType = null;
       state.modalStatus = ModalStatus.Close;
+      state.modalCameraId = null;
+    },
+    setModalCameraId: (state, action: PayloadAction<number>) => {
+      state.modalCameraId = action.payload;
     },
   },
 });
 
-const { openModal, closeModal } = modalSlice.actions;
+const { openModal, closeModal, setModalCameraId } = modalSlice.actions;
 
-export { modalSlice, openModal, closeModal };
+export { modalSlice, openModal, closeModal, setModalCameraId };

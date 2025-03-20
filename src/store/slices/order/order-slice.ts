@@ -1,7 +1,7 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { RequestStatus, SliceName } from '../../../const/const';
 import { OrderSlice } from '../../../types/store-types/slices-types';
-import { fetchOrderAction } from '../../api-actions/api-actions';
+import { fetchOrderAction } from './order-actions';
 
 const orderState: OrderSlice = {
   coupon: null,
@@ -12,7 +12,11 @@ const orderState: OrderSlice = {
 const orderSlice = createSlice({
   name: SliceName.Order,
   initialState: orderState,
-  reducers: {},
+  reducers: {
+    setRequestStatus: (state, action: PayloadAction<RequestStatus>) => {
+      state.requestStatus = action.payload;
+    },
+  },
   extraReducers: (builder) => {
     builder
       .addCase(fetchOrderAction.pending, (state) => {
@@ -28,5 +32,6 @@ const orderSlice = createSlice({
       });
   },
 });
+const { setRequestStatus } = orderSlice.actions;
 
-export { orderSlice };
+export { orderSlice, setRequestStatus };
