@@ -1,3 +1,5 @@
+import { ReviewType } from './types';
+
 enum ProductType {
   Коллекционная = 'Коллекционная',
   Моментальная = 'Моментальная',
@@ -16,7 +18,7 @@ enum Level {
   Профессиональный = 'Профессиональный',
 }
 
-interface FullProduct {
+interface FullCamera {
   id: number;
   name: string;
   vendorCode: string;
@@ -33,8 +35,8 @@ interface FullProduct {
   previewImgWebp2x: string;
 }
 
-type PromoProduct = Pick<
-  FullProduct,
+type PromoCamera = Pick<
+  FullCamera,
   | 'id'
   | 'name'
   | 'previewImg'
@@ -43,14 +45,19 @@ type PromoProduct = Pick<
   | 'previewImgWebp2x'
 >;
 
-type ProductOfCatalog = Omit<
-  FullProduct,
-  'category' | 'description' | 'level' | 'type'
->;
+type ProductOfCatalog = Omit<FullCamera, 'description' | 'level' | 'type'>;
 
-type Products = FullProduct[];
+type Cameras = FullCamera[];
 
-type ProductsForStore = Record<number, FullProduct>;
+type CamerasForStore = Record<number, FullCamera>;
+type ReviewsForStore = Record<number, ReviewType>;
 
-export type { FullProduct, ProductOfCatalog, Products, ProductsForStore, PromoProduct };
+export type {
+  FullCamera,
+  ProductOfCatalog,
+  Cameras,
+  CamerasForStore,
+  ReviewsForStore,
+  PromoCamera,
+};
 export { ProductType, ProductCategory, Level };

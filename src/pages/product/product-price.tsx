@@ -1,4 +1,5 @@
-import { BemClass, ProductParam } from '../../const/const';
+import { BemClass, CameraParam } from '../../const/const';
+import { formatPrice } from '../../utils/utils';
 
 type ProductPriceProps = {
   bemClass: BemClass;
@@ -6,10 +7,12 @@ type ProductPriceProps = {
 };
 
 export function ProductPrice({ bemClass, price }: ProductPriceProps) {
+  const correctPrice = formatPrice(price);
+
   return (
     <p className={`${bemClass}__price`}>
-      <span className="visually-hidden">{ProductParam.Price}:</span>
-      {`${price} ₽`}
+      <span className="visually-hidden">{CameraParam.Price}:</span>
+      {correctPrice}
     </p>
   );
 }

@@ -15,11 +15,12 @@ const DefaultParam = {
   PageNumberZero: 0,
   PageNumberOne: 1,
   ZeroValue: 0,
+  ZeroIndex: 0,
   UrlId: 'page',
 };
 
 enum APIRoute {
-  Products = '/cameras',
+  Cameras = '/cameras',
   Reviews = '/reviews',
   Orders = '/orders',
   Promo = '/promo',
@@ -27,23 +28,27 @@ enum APIRoute {
 }
 
 enum ServiceParam {
-  SnowflakeSize = 9,
-  RateStarWidth = 17,
-  RateStarHeight = 16,
-  BasketIconWidth = 24,
+  BannerItems = 3,
   BasketIconHeight = 16,
-  SocialIconSize = 20,
-  UpButtonWidth = 12,
-  UpButtonHeight = 18,
-  ShownComments = 3,
-  ShownCommentsStep = 3,
+  BasketIconWidth = 24,
+  ChangeSlideSpeed = 1000,
   ItemsPerPage = 9,
   ItemsPerSlide = 3,
   PaginationStep = 1,
-  SwiperSlideTime = 3000,
-  BannerItems = 3,
+  RateStarHeight = 16,
+  RateStarWidth = 17,
+  ReviewsScrollThreshold = '-160px',
+  ShownComments = 3,
+  ShownCommentsStep = 3,
   SliderArrowHeight = 12,
   SliderArrowWidth = 7,
+  SnowflakeSize = 9,
+  SocialIconSize = 20,
+  SimilarSlideBetween = 100,
+  SwiperSlideTime = 3000,
+  UpButtonHeight = 18,
+  UpButtonWidth = 12,
+  RequestReturnTimer = 5000,
 }
 
 enum ServerParam {
@@ -94,7 +99,7 @@ enum BemClass {
   PaginationLink = 'pagination__link',
 }
 
-enum ProductParam {
+enum CameraParam {
   Article = 'Артикул',
   Category = 'Категория',
   Level = 'Уровень',
@@ -114,7 +119,7 @@ enum ExplanationWord {
   Disadvantage = 'Недостатки',
   Comment = 'Комментарий',
   OrderSuccess = 'Заказ оформлен',
-  SimilarProducts = 'Похожие товары'
+  SimilarProducts = 'Похожие товары',
 }
 
 enum BemMode {
@@ -142,6 +147,7 @@ enum SymbolParam {
 
 enum NameSpace {
   FirstElement = 0,
+  FirstPage = 1,
   SimilarPageSearchId = 'similarPage',
   CatalogPageSearchId = 'page',
 }
@@ -180,8 +186,8 @@ const PICTURE_PARAMS = [
 ] as const;
 
 enum SliceName {
-  Products = 'PRODUCTS',
-  Product = 'PRODUCT',
+  Cameras = 'CAMERAS',
+  Camera = 'CAMERA',
   Reviews = 'REVIEWS',
   Modal = 'MODAL',
   Order = 'ORDER',
@@ -194,7 +200,7 @@ enum RequestStatus {
   Failed = 'failed',
 }
 
-enum ModalWindow {
+enum ModalType {
   CallItem = 'callItem',
 }
 
@@ -217,12 +223,13 @@ const StatusCodeMapping: Record<number, string> = {
 } as const;
 
 enum ApiActionName {
-  FetchProducts = 'PRODUCTS/fetchProducts',
-  FetchProduct = 'PRODUCTS/fetchOrSetProduct',
+  FetchCameras = 'CAMERAS/fetchCameras',
+  FetchCamera = 'CAMERAS/fetchOrSetCamera',
+  FetchPromo = 'CAMERAS/fetchPromo',
+  FetchSimilar = 'CAMERAS/fetchSimilar',
   FetchReviews = 'REVIEWS/fetchOrSetReviews',
   FetchOrder = 'ORDER/fetchOrder',
-  FetchPromo = 'PRODUCTS/fetchPromo',
-  FetchSimilar = 'PRODUCTS/fetchSimilar',
+  UpdateAllSetCurrentId = 'UpdateAllCamerasAndSetCurrentCameraId',
 }
 
 enum Coupon {
@@ -236,37 +243,44 @@ enum CSSClass {
   ErrorMessage = 'error-message',
 }
 
+enum RequestCategory {
+  Cameras = 'cameras',
+  Camera = 'camera',
+  Reviews = 'reviews',
+}
+
 export {
-  TabName,
-  ErrorInfoMessage,
-  Validation,
-  TitleName,
-  LogoParam,
+  ApiActionName,
+  APIRoute,
+  BannerParam,
   BemClass,
   BemMode,
-  SHOP_DESCRIPTION,
-  SHOP_TITLE,
-  BannerParam,
-  ProductParam,
-  ToastParam,
-  RATING_STAR_COUNT,
-  PICTURE_PARAMS,
-  DefaultParam,
-  ServiceParam,
-  ExplanationWord,
-  ServerParam,
-  SymbolParam,
-  SliceName,
-  RequestStatus,
-  NameSpace,
-  ModalWindow,
-  ModalStatus,
-  StatusCodeMapping,
-  ModalTitle,
-  SHUTTER_FLAPS,
-  FLAPS_COUNT,
-  APIRoute,
-  ApiActionName,
+  CameraParam,
   Coupon,
   CSSClass,
+  DefaultParam,
+  ErrorInfoMessage,
+  ExplanationWord,
+  FLAPS_COUNT,
+  LogoParam,
+  ModalStatus,
+  ModalTitle,
+  ModalType,
+  NameSpace,
+  PICTURE_PARAMS,
+  RATING_STAR_COUNT,
+  RequestCategory,
+  RequestStatus,
+  ServerParam,
+  ServiceParam,
+  SHOP_DESCRIPTION,
+  SHOP_TITLE,
+  SHUTTER_FLAPS,
+  SliceName,
+  StatusCodeMapping,
+  SymbolParam,
+  TabName,
+  TitleName,
+  ToastParam,
+  Validation,
 };

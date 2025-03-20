@@ -24,7 +24,7 @@ export function PaginationItem({
   );
 
   const newPage = Number(
-    isText ? currentPage + ServiceParam.PaginationStep : pageName
+    isText ? currentPage + Number(ServiceParam.PaginationStep) : pageName
   );
 
   const handleClick = (e: React.MouseEvent<HTMLAnchorElement>) => {

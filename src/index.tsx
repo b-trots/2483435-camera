@@ -13,7 +13,7 @@ const root = ReactDOM.createRoot(
 root.render(
   <React.StrictMode>
     <Provider store={store}>
-      <ToastContainer containerId={ToastParam.Main}/>
+      <ToastContainer containerId={ToastParam.Main} />
       <App />
     </Provider>
   </React.StrictMode>

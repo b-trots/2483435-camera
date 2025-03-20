@@ -1,18 +1,14 @@
-import { CSSClass } from '../../const/const';
+import { CSSClass, RequestCategory } from '../../const/const';
 import css from './load-data.module.css';
-export enum RequestCategory {
-  Products = 'products',
-  Product = 'product',
-  Reviews = 'reviews',
-}
+
 
 export const LoadDataParam = {
-  [RequestCategory.Products]: {
+  [RequestCategory.Cameras]: {
     loading: 'Загрузка товаров каталога',
     error:
       'Не удалось загрузить товары каталога. Попробуйте обновить страницу.',
   },
-  [RequestCategory.Product]: {
+  [RequestCategory.Camera]: {
     loading: 'Загрузка выбранного товара',
     error:
       'Не удалось загрузить выбранный товар. Попробуйте обновить страницу.',

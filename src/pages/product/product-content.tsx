@@ -2,7 +2,7 @@ import { Breadcrumbs } from '../../components/main/breadcrumbs/breadcrumbs';
 import { ActiveButton } from '../../components/main/buttons/active-button';
 import { BemClass } from '../../const/const';
 import { ActiveButtonName } from '../../const/const-button';
-import { FullProduct } from '../../types/product-type';
+import { FullCamera } from '../../types/product-type';
 import { DetailTabs } from './detail-tabs/detail-tabs';
 import { ProductImg } from './product-img';
 import { ProductPrice } from './product-price';
@@ -11,11 +11,11 @@ import { Reviews } from './reviews/reviews';
 import { Similar } from './similar/similar';
 
 type ProductContentProps = {
-  currentProduct: FullProduct | null;
+  currentCamera: FullCamera | null;
 };
 
-export function ProductContent({ currentProduct }: ProductContentProps) {
-  if (!currentProduct) {
+export function ProductContent({ currentCamera }: ProductContentProps) {
+  if (!currentCamera) {
     return;
   }
 
@@ -28,7 +28,7 @@ export function ProductContent({ currentProduct }: ProductContentProps) {
     previewImg2x,
     previewImgWebp,
     previewImgWebp2x,
-  } = currentProduct;
+  } = currentCamera;
 
   return (
     <>

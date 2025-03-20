@@ -5,8 +5,8 @@ enum AppRoute {
 }
 
 const BREADCRUMBS: { name: string; path?: string }[] = [
-  { name: 'Главная', path: AppRoute.Main },
-  { name: 'Каталог', path: AppRoute.Main },
+  { name: 'Главная ', path: AppRoute.Main },
+  { name: 'Каталог ', path: AppRoute.Main },
 ];
 
 const NAVIGATE = [

@@ -1,7 +1,7 @@
 import { List } from '../../../components/main/list';
-import { BemClass, ProductParam, TabName } from '../../../const/const';
+import { BemClass, CameraParam, TabName } from '../../../const/const';
 import { useAppSelector } from '../../../hooks/hooks';
-import { getCurrentProduct } from '../../../store/slices/products/products-selectors';
+import { getCurrentCamera } from '../../../store/slices/cameras/cameras-selectors';
 import { ProductDescription } from '../product-description';
 import { TabsNamesValues } from './tabs-control';
 
@@ -10,19 +10,19 @@ type TabsContentProps = {
 };
 
 export function TabsContent({ isActive }: TabsContentProps) {
-  const currentProduct = useAppSelector(getCurrentProduct);
+  const currentCamera = useAppSelector(getCurrentCamera);
 
-  if (!currentProduct) {
+  if (!currentCamera) {
     return;
   }
 
-  const { vendorCode, category, type, level } = currentProduct;
+  const { vendorCode, category, type, level } = currentCamera;
 
   const characteristicDetails = [
-    { title: ProductParam.Article, value: vendorCode },
-    { title: ProductParam.Category, value: category },
-    { title: ProductParam.Type, value: type },
-    { title: ProductParam.Level, value: level },
+    { title: CameraParam.Article, value: vendorCode },
+    { title: CameraParam.Category, value: category },
+    { title: CameraParam.Type, value: type },
+    { title: CameraParam.Level, value: level },
   ];
   const isActiveDescription = isActive === TabName.Description;
   return (

@@ -37,13 +37,13 @@ export function ProductImg({
       <picture>
         <source
           type="image/webp"
-          srcSet={`${previewImgWebp}, ${previewImgWebp2x}`}
+          srcSet={`../${previewImgWebp}, ../${previewImgWebp2x}`}
         />
         <img
-          src={previewImg}
-          srcSet={previewImg2x}
-          width={correctImgSize.imgWidth}
-          height={correctImgSize.imgHeight}
+          src={`../${previewImg}`}
+          srcSet={`../${previewImg2x}`}
+          width={`../${correctImgSize.imgWidth}`}
+          height={`../${correctImgSize.imgHeight}`}
           alt={name}
         />
       </picture>

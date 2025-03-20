@@ -1,10 +1,10 @@
 import { useAppSelector } from '../../hooks/hooks';
-import { getCurrentProduct } from '../../store/slices/products/products-selectors';
+import { getCurrentCamera } from '../../store/slices/cameras/cameras-selectors';
 
 export function ProductDescription() {
-  const product = useAppSelector(getCurrentProduct);
-  if (!product) {
+  const camera = useAppSelector(getCurrentCamera);
+  if (!camera) {
     return;
   }
-  return <div className="product__tabs-text">{product.description}</div>;
+  return <div className="product__tabs-text">{camera.description}</div>;
 }

@@ -1,8 +1,8 @@
 import {
   BemClass,
   BemMode,
+  CameraParam,
   ExplanationWord,
-  ProductParam,
   RATING_STAR_COUNT,
   ServiceParam,
 } from '../../const/const';
@@ -38,11 +38,11 @@ export function ProductRate({
       ))}
 
       <p className="visually-hidden">
-        {isReview ? ExplanationWord.Grade : ProductParam.Rating} : {rating}
+        {isReview ? ExplanationWord.Grade : CameraParam.Rating} : {rating}
       </p>
       {!isReview && (
         <p className="rate__count">
-          <span className="visually-hidden">{ProductParam.ReviewCount} :</span>
+          <span className="visually-hidden">{CameraParam.ReviewCount} :</span>
           {reviewCount}
         </p>
       )}
