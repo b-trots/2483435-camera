@@ -6,34 +6,35 @@ import './banner.css';
 
 import { Autoplay, Pagination } from 'swiper/modules';
 import { BannerItem } from './banner-item';
-import {
-  getIsPromoProductsLoaded,
-  getPromoProducts,
-} from '../../../store/slices/products/products-selectors';
 import { useAppDispatch, useAppSelector } from '../../../hooks/hooks';
 import { DefaultParam, ServiceParam } from '../../../const/const';
 import { useEffect } from 'react';
-import { fetchPromoAction } from '../../../store/api-actions/api-actions';
+import {
+  getIsPromoCamerasLoaded,
+  getPromoCameras,
+} from '../../../store/slices/cameras/cameras-selectors';
+import { fetchPromoAction } from '../../../store/slices/cameras/cameras-actions';
 
 export function Banner() {
   const dispatch = useAppDispatch();
-  const promoProducts = useAppSelector(getPromoProducts);
-  const isPromoProductLoaded = useAppSelector(getIsPromoProductsLoaded);
+  const promoCameras = useAppSelector(getPromoCameras);
+  const isPromoCamerasLoaded = useAppSelector(getIsPromoCamerasLoaded);
 
   useEffect(() => {
-    if (!isPromoProductLoaded) {
+    if (!isPromoCamerasLoaded) {
       dispatch(fetchPromoAction());
     }
-  }, [dispatch, promoProducts, isPromoProductLoaded]);
+  }, [dispatch, promoCameras, isPromoCamerasLoaded]);
 
   const isVoid =
-    promoProducts.length === DefaultParam.ZeroValue || !isPromoProductLoaded;
+    promoCameras.length === DefaultParam.ZeroValue || !isPromoCamerasLoaded;
 
   return isVoid ? null : (
     <div className="banner">
       <Swiper
+        speed={ServiceParam.ChangeSlideSpeed as number}
         autoplay={{
-          delay: ServiceParam.SwiperSlideTime,
+          delay: ServiceParam.SwiperSlideTime as number,
           pauseOnMouseEnter: true,
         }}
         loop
@@ -42,9 +43,9 @@ export function Banner() {
         }}
         modules={[Pagination, Autoplay]}
       >
-        {promoProducts.map((product) => (
-          <SwiperSlide key={product.id}>
-            <BannerItem product={product} />
+        {promoCameras.map((camera) => (
+          <SwiperSlide key={camera.id}>
+            <BannerItem camera={camera} />
           </SwiperSlide>
         ))}
       </Swiper>

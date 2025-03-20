@@ -2,12 +2,12 @@ import { Link } from 'react-router-dom';
 import { BannerParam } from '../../../const/const';
 import { PassiveButtonName } from '../../../const/const-button';
 import { AppRoute } from '../../../const/const-navigate';
-import { PromoProduct } from '../../../types/product-type';
+import { PromoCamera } from '../../../types/product-type';
 
 type BannerItemProps = {
-  product: PromoProduct;
+  camera: PromoCamera;
 };
-export function BannerItem({ product }: BannerItemProps) {
+export function BannerItem({ camera }: BannerItemProps) {
   const {
     previewImg,
     previewImg2x,
@@ -15,7 +15,7 @@ export function BannerItem({ product }: BannerItemProps) {
     previewImgWebp2x,
     id,
     name,
-  } = product;
+  } = camera;
   return (
     <>
       <picture>
