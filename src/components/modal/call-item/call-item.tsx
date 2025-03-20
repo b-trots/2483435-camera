@@ -4,37 +4,37 @@ import {
   Validation,
   ErrorInfoMessage,
   ToastParam,
-  BemClass,
-  ModalTitle,
   ExplanationWord,
-} from '../../../../const/const';
-import {
-  ButtonBemClass,
-  ActiveButtonName,
-} from '../../../../const/const-button';
-import { useAppDispatch, useAppSelector } from '../../../../hooks/hooks';
-import { ProductImg } from '../../../../pages/product/product-img';
-import { phoneValidationError } from '../../../../utils/error-utils';
-import { toStandardizePhone } from '../../../../utils/utils';
-import { ActiveButton } from '../../buttons/active-button';
+  ModalTitle,
+  BemClass,
+} from '../../../const/const';
+import { ButtonBemClass, ActiveButtonName } from '../../../const/const-button';
+import { useAppDispatch, useAppSelector } from '../../../hooks/hooks';
+import { ProductImg } from '../../../pages/product/product-img';
+import { closeModal } from '../../../store/slices/modal/modal-slice';
+import { getCoupon } from '../../../store/slices/order/order-selectors';
+import { phoneValidationError } from '../../../utils/error-utils';
+import { toStandardizePhone } from '../../../utils/utils';
+import { ActiveButton } from '../../main/buttons/active-button';
 import { CallItemDescription } from './call-item-description';
 import { CallItemPhone } from './call-item-phone';
-import { getCurrentProduct } from '../../../../store/slices/products/products-selectors';
-import { fetchOrderAction } from '../../../../store/api-actions/api-actions';
-import { getCoupon } from '../../../../store/slices/order/order-selectors';
-import { closeModal } from '../../../../store/slices/modal/modal-slice';
+import { FullCamera } from '../../../types/product-type';
+import { fetchOrderAction } from '../../../store/slices/order/order-actions';
+
+type CallItemProps = {
+  modalCamera: FullCamera;
+};
 
 function CallItemComponent(
-  _: unknown,
+  { modalCamera }: CallItemProps,
   firstTabRef: React.Ref<HTMLInputElement>
 ) {
   const dispatch = useAppDispatch();
   const coupon = useAppSelector(getCoupon);
-  const currentProduct = useAppSelector(getCurrentProduct);
   const [tel, setTel] = useState('');
   const [isToastShown, setIsToastShown] = useState(false);
 
-  if (!currentProduct) {
+  if (!modalCamera) {
     return null;
   }
 
@@ -49,7 +49,7 @@ function CallItemComponent(
     previewImg2x,
     previewImgWebp,
     previewImgWebp2x,
-  } = currentProduct;
+  } = modalCamera;
 
   const handlePhoneChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const input = e.target.value;

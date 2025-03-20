@@ -1,5 +1,5 @@
 import { forwardRef } from 'react';
-import { ExplanationWord, ServiceParam } from '../../../../const/const';
+import { ExplanationWord, ServiceParam } from '../../../const/const';
 
 type CallItemPhoneProps = {
   phone: string;

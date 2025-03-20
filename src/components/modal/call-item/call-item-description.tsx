@@ -1,5 +1,6 @@
-import { ProductParam } from '../../../../const/const';
-import { Level, ProductCategory } from '../../../../types/product-type';
+import { CameraParam } from '../../../const/const';
+import { ProductCategory, Level } from '../../../types/product-type';
+import { formatPrice } from '../../../utils/utils';
 
 type CallItemDescriptionProps = {
   name: string;
@@ -16,20 +17,22 @@ export function CallItemDescription({
   level,
   price,
 }: CallItemDescriptionProps) {
+  const correctPrice = formatPrice(price);
+
   return (
     <div className="basket-item__description">
       <p className="basket-item__title">{name}</p>
       <ul className="basket-item__list">
         <li className="basket-item__list-item">
-          <span className="basket-item__article">{ProductParam.Article}:</span>{' '}
+          <span className="basket-item__article">{CameraParam.Article}:</span>
           <span className="basket-item__number">{vendorCode}</span>
         </li>
         <li className="basket-item__list-item">{category}</li>
         <li className="basket-item__list-item">{level}</li>
       </ul>
       <p className="basket-item__price">
-        <span className="visually-hidden">{ProductParam.Price}:</span>
-        {`${price} ₽`}
+        <span className="visually-hidden">{CameraParam.Price}:</span>
+        {correctPrice}
       </p>
     </div>
   );

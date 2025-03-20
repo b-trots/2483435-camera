@@ -6,8 +6,6 @@ import { useScrollToTop } from '../../hooks/hooks';
 import { CatalogCards } from './catalog-cards';
 import { useChangeTitle } from '../../hooks/use-change-title';
 import { SHOP_TITLE, TitleName } from '../../const/const';
-import { CallItem } from '../../components/main/modal/call-item/call-item';
-import { Modal } from '../../components/main/modal/modal';
 import { Pagination } from './pagination/pagination';
 export function Catalog() {
   useChangeTitle(TitleName.Catalog);
@@ -38,9 +36,6 @@ export function Catalog() {
           </section>
         </div>
       </main>
-      <Modal>
-        <CallItem />
-      </Modal>
       <Footer />
     </div>
   );
