@@ -1,7 +1,9 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { ActiveButton } from '../../../components/main/buttons/active-button';
 import {
+  DefaultParam,
   ExplanationWord,
+  RequestCategory,
   RequestStatus,
   ServiceParam,
 } from '../../../const/const';
@@ -13,12 +15,9 @@ import {
   getReviewsError,
   getReviewsRequestStatus,
 } from '../../../store/slices/reviews/reviews-selectors';
-import { fetchOrSetReviewsAction } from '../../../store/api-actions/api-actions';
 import { useParams } from 'react-router-dom';
-import {
-  LoadData,
-  RequestCategory,
-} from '../../../components/load-data/load-data';
+import { LoadData } from '../../../components/load-data/load-data';
+import { fetchOrSetReviewsAction } from '../../../store/slices/reviews/reviews-actions';
 
 export function Reviews() {
   const dispatch = useAppDispatch();
@@ -26,8 +25,16 @@ export function Reviews() {
   const reviewsLoadStatus = useAppSelector(getReviewsRequestStatus);
   const isReviewsLoad = reviewsLoadStatus === RequestStatus.Loading;
   const reviewsError = useAppSelector(getReviewsError);
-
   const { id = '' } = useParams();
+  const [shownComments, setShownComments] = useState<number>(
+    ServiceParam.ShownComments
+  );
+  const reviewsCount = currentReviews.length;
+  const isMoreComments = shownComments < reviewsCount;
+  const observerRef = useRef<HTMLDivElement | null>(null);
+
+  const handleMoreReviews = () =>
+    setShownComments((prev) => prev + Number(ServiceParam.ShownCommentsStep));
 
   useEffect(() => {
     if (id) {
@@ -35,46 +42,54 @@ export function Reviews() {
     }
   }, [id, dispatch]);
 
-  const reviewsCount = currentReviews.length;
-
-  const [shownComments, setShownComments] = useState(
-    ServiceParam.ShownComments
-  );
-  const isMoreReviewButton = shownComments < reviewsCount;
-  const handleMoreReviews = () =>
-    setShownComments((prevState) =>
-      Math.min(prevState + ServiceParam.ShownCommentsStep, reviewsCount)
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        if (entries[DefaultParam.ZeroIndex].isIntersecting && isMoreComments) {
+          handleMoreReviews();
+        }
+      },
+      { rootMargin: ServiceParam.ReviewsScrollThreshold as string }
     );
 
+    if (observerRef.current) {
+      observer.observe(observerRef.current);
+    }
+
+    return () => observer.disconnect();
+  }, [isMoreComments]);
+
   return (
-    <section className="review-block">
-      <div className="container">
-        <div className="page-content__headed">
-          <h2 className="title title--h3">{ExplanationWord.Reviews}</h2>
-          {/*<button class="btn" type="button">Оставить свой отзыв</button>*/}
+    <div className="page-content__section">
+      <section className="review-block">
+        <div className="container">
+          <div className="page-content__headed">
+            <h2 className="title title--h3">{ExplanationWord.Reviews}</h2>
+            {/*<button class="btn" type="button">Оставить свой отзыв</button>*/}
+          </div>
+          <ul className="review-block__list">
+            {reviewsError || isReviewsLoad ? (
+              <LoadData
+                requestCategory={RequestCategory.Reviews}
+                loading={isReviewsLoad}
+                error={reviewsError}
+              />
+            ) : (
+              currentReviews
+                .slice(0, shownComments)
+                .map((comment) => <Review comment={comment} key={comment.id} />)
+            )}
+          </ul>
+          <div className="review-block__buttons" ref={observerRef}>
+            {isMoreComments && (
+              <ActiveButton
+                onClick={handleMoreReviews}
+                text={ActiveButtonName.MoreReviews}
+              />
+            )}
+          </div>
         </div>
-        <ul className="review-block__list">
-          {reviewsError || isReviewsLoad ? (
-            <LoadData
-              requestCategory={RequestCategory.Reviews}
-              loading={isReviewsLoad}
-              error={reviewsError}
-            />
-          ) : (
-            currentReviews
-              .slice(0, shownComments)
-              .map((comment) => <Review comment={comment} key={comment.id} />)
-          )}
-        </ul>
-        <div className="review-block__buttons">
-          {isMoreReviewButton && (
-            <ActiveButton
-              onClick={handleMoreReviews}
-              text={ActiveButtonName.MoreReviews}
-            />
-          )}
-        </div>
-      </div>
-    </section>
+      </section>
+    </div>
   );
 }
