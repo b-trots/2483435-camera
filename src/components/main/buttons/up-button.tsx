@@ -1,5 +1,6 @@
 import React from 'react';
 import { ServiceParam } from '../../../const/const';
+import { Link } from 'react-router-dom';
 
 export function UpButton() {
   const handleUpButtonClick = (e: React.MouseEvent) => {
@@ -8,7 +9,7 @@ export function UpButton() {
   };
 
   return (
-    <a className="up-btn" href="#header" onClick={handleUpButtonClick}>
+    <Link className="up-btn" to="#header" onClick={handleUpButtonClick}>
       <svg
         width={ServiceParam.UpButtonWidth}
         height={ServiceParam.UpButtonHeight}
@@ -16,6 +17,6 @@ export function UpButton() {
       >
         <use xlinkHref="#icon-arrow2" />
       </svg>
-    </a>
+    </Link>
   );
 }

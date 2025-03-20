@@ -6,17 +6,22 @@ export type SliderButtonBem = BemMode.Prev | BemMode.Next;
 type SliderButtonProps = {
   bemMode: SliderButtonBem;
   text: SliderButtonName;
-  onClick: () => void;
+  onClick: (bemMode: SliderButtonBem) => void;
   disabled: boolean;
 };
 
-export function SliderButton({ bemMode, text, onClick, disabled }: SliderButtonProps) {
+export function SliderButton({
+  bemMode,
+  text,
+  onClick,
+  disabled,
+}: SliderButtonProps) {
   return (
     <button
       className={`slider-controls slider-controls${bemMode}`}
       type="button"
       aria-label={text}
-      onClick={onClick}
+      onClick={() => onClick(bemMode)}
       disabled={disabled}
     >
       <svg

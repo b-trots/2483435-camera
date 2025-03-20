@@ -1,36 +1,47 @@
-import {
-  BemMode,
-  DefaultParam,
-  NameSpace,
-  ServiceParam,
-} from '../../../../const/const';
+import { BemMode, NameSpace, ServiceParam } from '../../../../const/const';
 import { SliderButtonName } from '../../../../const/const-button';
 import { SliderButton, SliderButtonBem } from './slider-button';
-import { useAppSelector } from '../../../../hooks/hooks';
-import { getSimilarProducts } from '../../../../store/slices/products/products-selectors';
-import { usePagination } from '../../../../hooks/use-pagination';
+import { Swiper as SwiperCore } from 'swiper/types';
+import { useState } from 'react';
 
-export function SliderButtons() {
-  const similarProducts = useAppSelector(getSimilarProducts);
-  const { currentPage, pagesCount, goToPage } = usePagination(
-    NameSpace.SimilarPageSearchId,
-    similarProducts,
-    ServiceParam.ItemsPerSlide
+interface SliderButtonsProps {
+  swiperRef: React.MutableRefObject<SwiperCore | null>;
+  slidesCount: number;
+}
+
+export function SliderButtons({ swiperRef, slidesCount }: SliderButtonsProps) {
+  const [currentSlideIndex, setCurrentSlideIndex] = useState(
+    Number(NameSpace.FirstPage)
   );
 
+  const handlePrevClick = () => {
+    if (swiperRef.current && currentSlideIndex > NameSpace.FirstPage) {
+      swiperRef.current.slidePrev();
+      setCurrentSlideIndex((prev) => prev - ServiceParam.PaginationStep);
+    }
+  };
+
+  const handleNextClick = () => {
+    if (swiperRef.current && currentSlideIndex < slidesCount) {
+      swiperRef.current.slideNext();
+      setCurrentSlideIndex(
+        (prev) => prev + Number(ServiceParam.PaginationStep)
+      );
+    }
+  };
 
   const buttonsConfig = [
     {
       bemMode: BemMode.Prev,
       text: SliderButtonName.Prev,
-      disabled: currentPage === DefaultParam.PageNumberOne,
-      onClick: () => goToPage(currentPage - ServiceParam.PaginationStep),
+      disabled: currentSlideIndex === NameSpace.FirstPage,
+      onClick: handlePrevClick,
     },
     {
       bemMode: BemMode.Next,
       text: SliderButtonName.Next,
-      disabled: currentPage === pagesCount,
-      onClick: () => goToPage(currentPage + ServiceParam.PaginationStep),
+      disabled: currentSlideIndex === slidesCount,
+      onClick: handleNextClick,
     },
   ];
 
