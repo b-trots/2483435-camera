@@ -1,3 +1,4 @@
+import { memo } from 'react';
 import {
   BemClass,
   BemMode,
@@ -13,7 +14,7 @@ type ProductRateProps = {
   reviewCount?: number;
 };
 
-export function ProductRate({
+function ProductRateComponent({
   bemClass,
   rating,
   reviewCount,
@@ -49,3 +50,5 @@ export function ProductRate({
     </div>
   );
 }
+
+export const ProductRate = memo(ProductRateComponent);

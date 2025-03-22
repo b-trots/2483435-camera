@@ -2,8 +2,13 @@ import { createSelector } from '@reduxjs/toolkit';
 import { RequestStatus, ServiceParam, SliceName } from '../../../const/const';
 import { State } from '../../../types/store-types/store-types';
 import { selectCameras } from '../../../utils/utils';
+import { FullCamera } from '../../../types/product-type';
 
-const getAllCameras = (state: State) => state[SliceName.Cameras].allCameras;
+const getAllCameras = createSelector(
+  (state: State) => state[SliceName.Cameras].allCameras,
+  (cameras) => cameras
+);
+
 const getIsAllCamerasLoaded = (state: State): boolean =>
   state[SliceName.Cameras].isAllCamerasLoaded;
 
@@ -22,7 +27,10 @@ const getCurrentCamera = createSelector(
     currentCameraId ? allCameras[currentCameraId] : null
 );
 
-const getPromoCameras = (state: State) => state[SliceName.Cameras].promoCameras;
+const getPromoCameras = createSelector(
+  (state: State) => state[SliceName.Cameras].promoCameras,
+  (promoCameras) => promoCameras
+);
 
 const getIsPromoCamerasLoaded = (state: State): boolean =>
   state[SliceName.Cameras].isPromoCamerasLoaded;
@@ -32,10 +40,17 @@ const getSimilarCamerasIds = (state: State) =>
 
 const getSimilarCameras = createSelector(
   [getAllCameras, getSimilarCamerasIds],
-  (allCameras, similarCamerasIds) =>
-    similarCamerasIds
-      .map((id) => allCameras[id])
-      .filter((camera) => camera !== undefined)
+  (allCameras, similarCamerasIds) => {
+    if (!similarCamerasIds.length) {
+      return [];
+    }
+    return similarCamerasIds.reduce<FullCamera[]>((acc, id) => {
+      if (allCameras[id]) {
+        acc.push(allCameras[id]);
+      }
+      return acc;
+    }, []);
+  }
 );
 
 const getIsSimilarCamerasLoaded = (state: State): boolean =>

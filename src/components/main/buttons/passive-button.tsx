@@ -1,13 +1,14 @@
 import { Link } from 'react-router-dom';
 import { PassiveButtonName } from '../../../const/const-button';
 import { AppRoute } from '../../../const/const-navigate';
+import { memo } from 'react';
 
 type PassiveButtonProps = {
   id: number;
   onClick?: () => void;
 };
 
-export function PassiveButton({ id, onClick }: PassiveButtonProps) {
+function PassiveButtonComponent({ id, onClick }: PassiveButtonProps) {
   return (
     <Link
       className="btn btn--transparent"
@@ -18,3 +19,5 @@ export function PassiveButton({ id, onClick }: PassiveButtonProps) {
     </Link>
   );
 }
+
+export const PassiveButton = memo(PassiveButtonComponent);

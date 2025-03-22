@@ -12,6 +12,7 @@ const DefaultParam = {
   Button: 'button',
   ScrollZero: 0,
   EmptyArray: [],
+  EmptyString: '',
   PageNumberZero: 0,
   PageNumberOne: 1,
   ZeroValue: 0,
@@ -44,11 +45,15 @@ enum ServiceParam {
   SliderArrowWidth = 7,
   SnowflakeSize = 9,
   SocialIconSize = 20,
-  SimilarSlideBetween = 100,
+  SimilarSlideBetween = 0,
   SwiperSlideTime = 3000,
   UpButtonHeight = 18,
   UpButtonWidth = 12,
   RequestReturnTimer = 5000,
+  CardsPerSlide = 3,
+  ArrowIconHeight = 8,
+  ArrowIconWidth = 5,
+  WindowScrollYZero = 0
 }
 
 enum ServerParam {

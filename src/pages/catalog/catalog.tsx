@@ -3,10 +3,9 @@ import { Header } from '../../components/header/header';
 import { Banner } from '../../components/main/banner/banner';
 import { Breadcrumbs } from '../../components/main/breadcrumbs/breadcrumbs';
 import { useScrollToTop } from '../../hooks/hooks';
-import { CatalogCards } from './catalog-cards';
 import { useChangeTitle } from '../../hooks/use-change-title';
-import { SHOP_TITLE, TitleName } from '../../const/const';
-import { Pagination } from './pagination/pagination';
+import { TitleName } from '../../const/const';
+import { CatalogContainer } from './catalog-container';
 export function Catalog() {
   useChangeTitle(TitleName.Catalog);
   useScrollToTop();
@@ -18,22 +17,7 @@ export function Catalog() {
         <Banner />
         <div className="page-content">
           <Breadcrumbs />
-          <section className="catalog">
-            <div className="container">
-              <h1 className="title title--h2">{SHOP_TITLE}</h1>
-              <div className="page-content__columns">
-                <div className="catalog__aside">
-                  <img src="img/banner.png" />
-                  {/* <Filter /> */}
-                </div>
-                <div className="catalog__content">
-                  {/* <Sorting/> */}
-                  <CatalogCards />
-                  <Pagination />
-                </div>
-              </div>
-            </div>
-          </section>
+          <CatalogContainer />
         </div>
       </main>
       <Footer />

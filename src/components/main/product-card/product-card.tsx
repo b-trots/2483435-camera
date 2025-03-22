@@ -6,16 +6,13 @@ import { ProductRate } from '../../../pages/product/product-rate';
 import { ActiveButton } from '../buttons/active-button';
 import { PassiveButton } from '../buttons/passive-button';
 import { ButtonBemClass, ActiveButtonName } from '../../../const/const-button';
-import { memo } from 'react';
-import { useAppDispatch, useAppSelector } from '../../../hooks/hooks';
-import {
-  openModal,
-  setModalCameraId,
-} from '../../../store/slices/modal/modal-slice';
+import { memo, useCallback } from 'react';
+import { useAppDispatch } from '../../../hooks/hooks';
 
 import { fetchOrSetReviewsAction } from '../../../store/slices/reviews/reviews-actions';
 import { fetchSimilarAction } from '../../../store/slices/cameras/cameras-actions';
-import { getModalCameraId } from '../../../store/slices/modal/modal-selectors';
+import { handleModalOpen } from '../../../store/slices/modal/modal-actions';
+import { ProductTitle } from '../../../pages/product/product-title';
 
 type CameraProps = {
   camera: ProductOfCatalog;
@@ -24,7 +21,6 @@ type CameraProps = {
 
 function CameraCardComponent({ camera, isActive }: CameraProps) {
   const dispatch = useAppDispatch();
-  const modalCameraId = useAppSelector(getModalCameraId);
   const {
     id,
     name,
@@ -38,17 +34,14 @@ function CameraCardComponent({ camera, isActive }: CameraProps) {
     reviewCount,
   } = camera;
 
-  const handleBuyButtonClick = () => {
-    if (modalCameraId !== id) {
-      dispatch(setModalCameraId(id));
-    }
-    dispatch(openModal(ModalType.CallItem));
-  };
+  const handleBuyButtonClick = useCallback(() => {
+    dispatch(handleModalOpen(ModalType.CallItem, camera.id));
+  }, [dispatch, camera.id]);
 
-  const handleDetailButtonClick = () => {
-    dispatch(fetchOrSetReviewsAction(id));
-    dispatch(fetchSimilarAction(id));
-  };
+  const handleDetailButtonClick = useCallback(() => {
+    dispatch(fetchOrSetReviewsAction(camera.id));
+    dispatch(fetchSimilarAction(camera.id));
+  }, [dispatch, camera.id]);
 
   const isActiveMode = isActive ? BemMode.IsActive : BemMode.Void;
 
@@ -68,7 +61,7 @@ function CameraCardComponent({ camera, isActive }: CameraProps) {
           rating={rating}
           reviewCount={reviewCount}
         />
-        <p className="product-card__title">{category} {name}</p>
+        <ProductTitle category={category} name={name} />
         <ProductPrice bemClass={BemClass.ProductCard} price={price} />
       </div>
       <div className="product-card__buttons">
@@ -85,5 +78,7 @@ function CameraCardComponent({ camera, isActive }: CameraProps) {
 
 export const ProductCard = memo(
   CameraCardComponent,
-  (prevProps, nextProps) => prevProps.camera === nextProps.camera
+  (prevProps, nextProps) =>
+    prevProps.camera.id === nextProps.camera.id &&
+    prevProps.isActive === nextProps.isActive
 );

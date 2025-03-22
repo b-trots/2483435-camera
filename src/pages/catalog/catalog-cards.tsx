@@ -20,7 +20,7 @@ export function CatalogCards() {
   );
 
   const camerasLoadStatus = useAppSelector(getCamerasRequestStatus);
-  const isCamerasLoad = camerasLoadStatus === RequestStatus.Loading;
+  const isCamerasLoading = camerasLoadStatus === RequestStatus.Loading;
   const isCamerasLoaded = useAppSelector(getIsAllCamerasLoaded);
   const productsError = useAppSelector(getCamerasError);
 
@@ -30,11 +30,11 @@ export function CatalogCards() {
     }
   }, [dispatch, isCamerasLoaded]);
 
-  return productsError || isCamerasLoad ? (
+  return productsError || isCamerasLoading ? (
     <div>
       <LoadData
         requestCategory={RequestCategory.Cameras}
-        loading={isCamerasLoad}
+        loading={isCamerasLoading}
         error={productsError}
       />
     </div>

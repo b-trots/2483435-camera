@@ -5,9 +5,10 @@ import { getSimilarCameras } from '../../../store/slices/cameras/cameras-selecto
 import { SliderButtons } from './slider-buttons/slider-buttons';
 import { Navigation } from 'swiper/modules';
 import css from './similar.module.css';
-import { useRef } from 'react';
+import { useRef, useState } from 'react';
 import { Swiper as SwiperCore } from 'swiper/types';
 import {
+  DefaultParam,
   ExplanationWord,
   NameSpace,
   ServiceParam,
@@ -16,15 +17,24 @@ import {
 export function Similar() {
   const similarCameras = useAppSelector(getSimilarCameras);
   const swiperRef = useRef<SwiperCore | null>(null);
+  const [activeSlide, setActiveSlide] = useState<number>(
+    DefaultParam.ZeroIndex
+  );
 
   if (!similarCameras.length) {
     return null;
   }
 
   const slides = [];
-  for (let i = 0; i < similarCameras.length; i += 3) {
-    slides.push(similarCameras.slice(i, i + 3));
+  for (let i = 0; i < similarCameras.length; i += ServiceParam.CardsPerSlide) {
+    slides.push(
+      similarCameras.slice(i, i + Number(ServiceParam.CardsPerSlide))
+    );
   }
+
+  const handleSlideChange = (swiper: SwiperCore) => {
+    setActiveSlide(swiper.activeIndex);
+  };
 
   return (
     <div className="page-content__section">
@@ -38,18 +48,24 @@ export function Similar() {
                 onBeforeInit={(swiper) => {
                   swiperRef.current = swiper;
                 }}
-                speed={ServiceParam.ChangeSlideSpeed}
+                onSlideChange={handleSlideChange}
+                speed={ServiceParam.ChangeSlideSpeed as number}
                 spaceBetween={ServiceParam.SimilarSlideBetween}
                 modules={[Navigation]}
+                simulateTouch={false}
                 loop={false}
               >
-                {slides.map((group) => (
+                {slides.map((group, slideIndex) => (
                   <SwiperSlide
                     className={css['swiper-slide']}
                     key={group[NameSpace.FirstElement].id}
                   >
                     {group.map((camera) => (
-                      <ProductCard key={camera.id} camera={camera} isActive />
+                      <ProductCard
+                        key={camera.id}
+                        camera={camera}
+                        isActive={slideIndex === activeSlide}
+                      />
                     ))}
                   </SwiperSlide>
                 ))}

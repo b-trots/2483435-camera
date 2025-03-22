@@ -15,20 +15,21 @@ const toCloseModal = (
   const handleEscapeKeyDown = (e: KeyboardEvent) => {
     if (e.key === 'Escape') {
       e.stopPropagation();
+      e.preventDefault();
+
       onClose();
     }
   };
 
   const handleOutsideClick = (e: MouseEvent) => {
-    if (modal && !modal.contains(e.target as Node)) {
+    if (container && !container.contains(e.target as Node)) {
       onClose();
     }
   };
 
   const handleCloseButtonClick = (e: MouseEvent) => {
-    if (e.currentTarget === closeButton) {
-      onClose();
-    }
+    e.stopPropagation();
+    onClose();
   };
 
   container.addEventListener('click', handleOutsideClick);

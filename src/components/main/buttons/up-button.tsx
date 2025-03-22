@@ -5,7 +5,10 @@ import { Link } from 'react-router-dom';
 export function UpButton() {
   const handleUpButtonClick = (e: React.MouseEvent) => {
     e.preventDefault();
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    window.scrollTo({
+      top: ServiceParam.WindowScrollYZero as number,
+      behavior: 'smooth',
+    });
   };
 
   return (

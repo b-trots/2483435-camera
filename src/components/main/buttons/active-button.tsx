@@ -1,6 +1,7 @@
 import classNames from 'classnames';
 import { ServiceParam } from '../../../const/const';
 import { ButtonBemClass, ActiveButtonName } from '../../../const/const-button';
+import { memo } from 'react';
 
 type ActiveButtonProps = {
   onClick?: () => void;
@@ -12,7 +13,7 @@ type ActiveButtonProps = {
   basketIcon?: boolean;
 };
 
-export function ActiveButton({
+function ActiveButtonComponent({
   onClick,
   className,
   isFitWidth = false,
@@ -44,3 +45,11 @@ export function ActiveButton({
     </button>
   );
 }
+
+export const ActiveButton = memo(
+  ActiveButtonComponent,
+  (prevProps, nextProps) =>
+    prevProps.onClick === nextProps.onClick &&
+    prevProps.className === nextProps.className &&
+    prevProps.text === nextProps.text
+);

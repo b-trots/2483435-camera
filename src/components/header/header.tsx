@@ -1,8 +1,9 @@
 import { BemClass } from '../../const/const';
 import { Logo } from './logo';
 import { HeaderNav } from './header-nav';
+import { memo } from 'react';
 
-export function Header() {
+function HeaderComponent() {
   return (
     <header className="header" id="header">
       <div className="container">
@@ -38,3 +39,5 @@ export function Header() {
     </header>
   );
 }
+
+export const Header = memo(HeaderComponent);

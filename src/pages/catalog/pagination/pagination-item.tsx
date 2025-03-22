@@ -1,5 +1,10 @@
 import { ButtonBemClass, PaginationButton } from '../../../const/const-button';
-import { BemClass, BemMode, ServiceParam } from '../../../const/const';
+import {
+  BemClass,
+  BemMode,
+  DefaultParam,
+  ServiceParam,
+} from '../../../const/const';
 import { Link } from 'react-router-dom';
 import classNames from 'classnames';
 
@@ -34,7 +39,11 @@ export function PaginationItem({
 
   return (
     <li className="pagination__item">
-      <Link className={buttonClass} to={''} onClick={handleClick}>
+      <Link
+        className={buttonClass}
+        to={DefaultParam.EmptyString}
+        onClick={handleClick}
+      >
         {pageName}
       </Link>
     </li>

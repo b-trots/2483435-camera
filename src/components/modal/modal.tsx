@@ -12,9 +12,7 @@ export function Modal() {
   const isOpen = activeModal !== null;
   const modalCamera = useAppSelector(getModalCamera);
   const modals: Record<string, React.ReactNode> = {
-    [ModalType.CallItem]: modalCamera ? (
-      <CallItem modalCamera={modalCamera} />
-    ) : null,
+    [ModalType.CallItem]: modalCamera ? <CallItem /> : null,
   };
 
   const modalContent = modals[activeModal as ModalType] || null;

@@ -6,10 +6,13 @@ import { TabsContent } from './tabs-content';
 export function DetailTabs() {
   const [isActive, setIsActive] = useState(TabName.Description);
 
-  const handleTabsButton = () =>
-    isActive === TabName.Description
-      ? setIsActive(TabName.Characteristics)
-      : setIsActive(TabName.Description);
+  const handleTabsButton = () => {
+    setIsActive((prev) =>
+      prev === TabName.Description
+        ? TabName.Characteristics
+        : TabName.Description
+    );
+  };
 
   return (
     <div className="tabs product__tabs">

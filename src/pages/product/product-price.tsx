@@ -1,3 +1,4 @@
+import { memo } from 'react';
 import { BemClass, CameraParam } from '../../const/const';
 import { formatPrice } from '../../utils/utils';
 
@@ -6,7 +7,7 @@ type ProductPriceProps = {
   price: number;
 };
 
-export function ProductPrice({ bemClass, price }: ProductPriceProps) {
+function ProductPriceComponent({ bemClass, price }: ProductPriceProps) {
   const correctPrice = formatPrice(price);
 
   return (
@@ -16,3 +17,10 @@ export function ProductPrice({ bemClass, price }: ProductPriceProps) {
     </p>
   );
 }
+
+export const ProductPrice = memo(
+  ProductPriceComponent,
+  (prevProps, nextProps) =>
+    prevProps.bemClass === nextProps.bemClass &&
+    prevProps.price === nextProps.price
+);

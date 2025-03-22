@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom';
+import { ServiceParam } from '../../../const/const';
 
 type BreadcrumbProps = {
   name: string;
@@ -9,7 +10,11 @@ export function Breadcrumb({ name, path }: BreadcrumbProps) {
     <li className="breadcrumbs__item" key={name}>
       <Link className="breadcrumbs__link" to={path}>
         {name}
-        <svg width={5} height={8} aria-hidden="true">
+        <svg
+          width={ServiceParam.ArrowIconWidth}
+          height={ServiceParam.ArrowIconHeight}
+          aria-hidden="true"
+        >
           <use xlinkHref="#icon-arrow-mini" />
         </svg>
       </Link>

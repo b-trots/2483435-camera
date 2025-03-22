@@ -1,3 +1,4 @@
+import { memo } from 'react';
 import { BemClass, DefaultParam, PICTURE_PARAMS } from '../../const/const';
 
 type ProductImgProps = {
@@ -9,7 +10,7 @@ type ProductImgProps = {
   name: string;
 };
 
-export function ProductImg({
+function ProductImgComponent({
   bemClass,
   previewImgWebp,
   previewImgWebp2x,
@@ -50,3 +51,4 @@ export function ProductImg({
     </div>
   );
 }
+export const ProductImg = memo(ProductImgComponent);

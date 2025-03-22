@@ -23,9 +23,9 @@ export function Reviews() {
   const dispatch = useAppDispatch();
   const currentReviews = useAppSelector(getCurrentReviews);
   const reviewsLoadStatus = useAppSelector(getReviewsRequestStatus);
-  const isReviewsLoad = reviewsLoadStatus === RequestStatus.Loading;
+  const isReviewsLoading = reviewsLoadStatus === RequestStatus.Loading;
   const reviewsError = useAppSelector(getReviewsError);
-  const { id = '' } = useParams();
+  const { id = DefaultParam.EmptyString } = useParams();
   const [shownComments, setShownComments] = useState<number>(
     ServiceParam.ShownComments
   );
@@ -68,10 +68,10 @@ export function Reviews() {
             {/*<button class="btn" type="button">Оставить свой отзыв</button>*/}
           </div>
           <ul className="review-block__list">
-            {reviewsError || isReviewsLoad ? (
+            {reviewsError || isReviewsLoading ? (
               <LoadData
                 requestCategory={RequestCategory.Reviews}
-                loading={isReviewsLoad}
+                loading={isReviewsLoading}
                 error={reviewsError}
               />
             ) : (
