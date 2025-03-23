@@ -10,10 +10,8 @@ export function CatalogContainer() {
         <div className="page-content__columns">
           <div className="catalog__aside">
             <img src="img/banner.png" />
-            {/* <Filter /> */}
           </div>
           <div className="catalog__content">
-            {/* <Sorting/> */}
             <CatalogCards />
             <Pagination />
           </div>

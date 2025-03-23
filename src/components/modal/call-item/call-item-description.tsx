@@ -1,11 +1,11 @@
 import { CameraParam } from '../../../const/const';
-import { ProductCategory, Level } from '../../../types/product-type';
+import { CameraCategory, Level } from '../../../types/product-type';
 import { formatPrice } from '../../../utils/utils';
 
 type CallItemDescriptionProps = {
   name: string;
   vendorCode: string;
-  category: ProductCategory;
+  category: CameraCategory;
   level: Level;
   price: number;
 };

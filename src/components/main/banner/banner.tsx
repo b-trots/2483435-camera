@@ -32,6 +32,7 @@ export function Banner() {
   return isVoid ? null : (
     <div className="banner">
       <Swiper
+        simulateTouch={false}
         speed={ServiceParam.ChangeSlideSpeed as number}
         autoplay={{
           delay: ServiceParam.SwiperSlideTime as number,

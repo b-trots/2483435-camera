@@ -1,7 +1,7 @@
 import dayjs from 'dayjs';
 import 'dayjs/locale/ru';
 import { ReviewType } from '../types/types';
-import { CamerasForStore } from '../types/product-type';
+import { CamerasForState } from '../types/product-type';
 import { PaginationButton } from '../const/const-button';
 import { ServiceParam } from '../const/const';
 
@@ -16,7 +16,7 @@ const daySort = (reviewA: ReviewType, reviewB: ReviewType) =>
   dayjs(reviewB.createAt).diff(dayjs(reviewA.createAt));
 
 const selectCameras = (
-  cameras: CamerasForStore,
+  cameras: CamerasForState,
   currentPage: number,
   quantity: number
 ) => {

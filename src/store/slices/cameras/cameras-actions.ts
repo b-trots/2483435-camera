@@ -2,7 +2,12 @@ import { AxiosInstance } from 'axios';
 import { AppDispatch, State } from '../../../types/store-types/store-types';
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { Cameras, FullCamera, PromoCamera } from '../../../types/product-type';
-import { ApiActionName, APIRoute, SliceName } from '../../../const/const';
+import {
+  ApiActionName,
+  APIRoute,
+  DefaultParam,
+  SliceName,
+} from '../../../const/const';
 import {
   addCameraToAllCameras,
   setAllCameras,
@@ -65,8 +70,7 @@ const fetchPromoAction = appCreateAsyncThunk<PromoCamera[], undefined>(
     const { data: promo } = await api.get<PromoCamera[]>(APIRoute.Promo, {
       suppressErrorNotify: true,
     });
-
-    return promo;
+    return promo ?? DefaultParam.EmptyArray;
   }
 );
 

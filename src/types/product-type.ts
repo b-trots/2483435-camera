@@ -1,29 +1,28 @@
-import { ReviewType } from './types';
 
-enum ProductType {
-  Коллекционная = 'Коллекционная',
-  Моментальная = 'Моментальная',
-  Цифровая = 'Цифровая',
-  Плёночная = 'Плёночная',
+enum CameraType {
+  Collectible = 'Коллекционная',
+  Instant = 'Моментальная',
+  Digital = 'Цифровая',
+  Film = 'Плёночная',
 }
 
-enum ProductCategory {
-  Видеокамера = 'Видеокамера',
-  Фотоаппарат = 'Фотоаппарат',
+enum CameraCategory {
+  VideoCamera = 'Видеокамера',
+  PhotoCamera = 'Фотоаппарат',
 }
 
 enum Level {
-  Нулевой = 'Нулевой',
-  Любительский = 'Любительский',
-  Профессиональный = 'Профессиональный',
+  Null = 'Нулевой',
+  Amateur = 'Любительский',
+  Professional = 'Профессиональный',
 }
 
 interface FullCamera {
   id: number;
   name: string;
   vendorCode: string;
-  type: ProductType;
-  category: ProductCategory;
+  type: CameraType;
+  category: CameraCategory;
   description: string;
   level: Level;
   price: number;
@@ -45,19 +44,18 @@ type PromoCamera = Pick<
   | 'previewImgWebp2x'
 >;
 
-type ProductOfCatalog = Omit<FullCamera, 'description' | 'level' | 'type'>;
+type CameraForCatalog = Omit<FullCamera, 'description' | 'level' | 'type'>;
 
 type Cameras = FullCamera[];
 
-type CamerasForStore = Record<number, FullCamera>;
-type ReviewsForStore = Record<number, ReviewType>;
+type CamerasForState = Record<number, FullCamera>;
+
 
 export type {
   FullCamera,
-  ProductOfCatalog,
+  CameraForCatalog,
   Cameras,
-  CamerasForStore,
-  ReviewsForStore,
+  CamerasForState,
   PromoCamera,
 };
-export { ProductType, ProductCategory, Level };
+export { CameraType, CameraCategory, Level };

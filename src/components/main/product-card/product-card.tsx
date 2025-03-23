@@ -1,4 +1,4 @@
-import { ProductOfCatalog } from '../../../types/product-type';
+import { CameraForCatalog } from '../../../types/product-type';
 import { BemClass, BemMode, ModalType } from '../../../const/const';
 import { ProductImg } from '../../../pages/product/product-img';
 import { ProductPrice } from '../../../pages/product/product-price';
@@ -15,7 +15,7 @@ import { handleModalOpen } from '../../../store/slices/modal/modal-actions';
 import { ProductTitle } from '../../../pages/product/product-title';
 
 type CameraProps = {
-  camera: ProductOfCatalog;
+  camera: CameraForCatalog;
   isActive?: boolean;
 };
 

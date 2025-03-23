@@ -3,10 +3,12 @@ import { SliceName } from '../../../const/const';
 import { State } from '../../../types/store-types/store-types';
 import { getAllCameras } from '../cameras/cameras-selectors';
 
-const getActiveModal = (state: State) => state[SliceName.Modal].modalType;
-const getModalStatus = (state: State) => state[SliceName.Modal].modalStatus;
+type ModalState = Pick<State, SliceName.Modal>;
 
-const getModalCameraId = (state: State) =>
+const getActiveModal = (state: ModalState) => state[SliceName.Modal].modalType;
+const getModalStatus = (state: ModalState) =>
+  state[SliceName.Modal].modalStatus;
+const getModalCameraId = (state: ModalState) =>
   state[SliceName.Modal].modalCameraId;
 
 const getModalCamera = createSelector(

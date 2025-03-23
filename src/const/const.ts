@@ -53,7 +53,7 @@ enum ServiceParam {
   CardsPerSlide = 3,
   ArrowIconHeight = 8,
   ArrowIconWidth = 5,
-  WindowScrollYZero = 0
+  WindowScrollYZero = 0,
 }
 
 enum ServerParam {
@@ -192,7 +192,6 @@ const PICTURE_PARAMS = [
 
 enum SliceName {
   Cameras = 'CAMERAS',
-  Camera = 'CAMERA',
   Reviews = 'REVIEWS',
   Modal = 'MODAL',
   Order = 'ORDER',

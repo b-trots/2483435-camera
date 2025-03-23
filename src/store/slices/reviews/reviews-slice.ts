@@ -20,7 +20,6 @@ const reviewsSlice = createSlice({
     ) => {
       const { cameraId, reviews } = action.payload;
       state.allCamerasReviews[cameraId] = reviews;
-      state.allCamerasReviews[cameraId] = reviews;
     },
   },
   extraReducers: (builder) => {

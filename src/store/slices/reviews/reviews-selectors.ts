@@ -1,10 +1,12 @@
 import { createSelector } from '@reduxjs/toolkit';
-import { RequestStatus, SliceName } from '../../../const/const';
+import { DefaultParam, RequestStatus, SliceName } from '../../../const/const';
 import { State } from '../../../types/store-types/store-types';
 import { daySort } from '../../../utils/utils';
 import { getCurrentCameraId } from '../cameras/cameras-selectors';
 
-const getAllCamerasReviews = (state: State) =>
+export type ReviewsState = Pick<State, SliceName.Reviews>;
+
+const getAllCamerasReviews = (state: ReviewsState) =>
   state[SliceName.Reviews].allCamerasReviews;
 
 const getCurrentReviews = createSelector(
@@ -13,20 +15,20 @@ const getCurrentReviews = createSelector(
     const reviews =
       currentCameraId && allCamerasReviews[currentCameraId]
         ? allCamerasReviews[currentCameraId]
-        : [];
-
-    if (reviews.length !== 0) {
+        : DefaultParam.EmptyArray;
+    if (Array.isArray(reviews) && reviews.length !== 0) {
       return [...reviews].sort(daySort);
     }
 
-    return [];
+    return DefaultParam.EmptyArray;
   }
 );
 
-const getReviewsRequestStatus = (state: State): RequestStatus =>
+const getReviewsRequestStatus = (state: ReviewsState): RequestStatus =>
   state[SliceName.Reviews].requestStatus;
 
-const getReviewsError = (state: State) => state[SliceName.Reviews].reviewsError;
+const getReviewsError = (state: ReviewsState) =>
+  state[SliceName.Reviews].reviewsError;
 
 export {
   getAllCamerasReviews,

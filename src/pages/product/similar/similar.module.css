@@ -7,10 +7,12 @@
 
 .swiper-slide {
   display: flex !important;
-  width: 98% !important;
+  justify-content: center;
+  align-items: stretch;
+  height: 300px;
 }
 
-.swiper-wrapper{
+.swiper-wrapper {
   justify-content: center;
   align-items: center;
 }

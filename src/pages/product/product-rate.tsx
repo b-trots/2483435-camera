@@ -22,8 +22,8 @@ function ProductRateComponent({
   const isReview = bemClass === BemClass.ReviewCard;
 
   const correctRating = Math.round(rating);
-  const isFullStar = (starNumber: number, rartingCount: number) =>
-    starNumber <= rartingCount ? BemMode.Full : BemMode.Void;
+  const isFullStar = (starNumber: number, ratingCount: number) =>
+    starNumber <= ratingCount ? BemMode.Full : BemMode.Void;
 
   return (
     <div className={`rate ${bemClass}__rate`}>

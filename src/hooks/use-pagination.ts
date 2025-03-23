@@ -1,13 +1,13 @@
 import { useSearchParams } from 'react-router-dom';
 import { countPages } from '../utils/utils';
-import { DefaultParam, ServiceParam } from '../const/const';
+import { DefaultParam, NameSpace, ServiceParam } from '../const/const';
 
 type QuantityType = ServiceParam.ItemsPerPage | ServiceParam.ItemsPerSlide;
 
 export function usePagination(
   urlId: string = DefaultParam.UrlId,
   cameras: unknown[] = DefaultParam.EmptyArray,
-  quantity: QuantityType = ServiceParam.ItemsPerPage,
+  quantity: QuantityType = ServiceParam.ItemsPerPage
 ) {
   const [searchParams, setSearchParams] = useSearchParams();
   const currentPage =
@@ -16,7 +16,7 @@ export function usePagination(
   const pagesCount = countPages(cameras, quantity);
 
   const goToPage = (page: number) => {
-    if (page > 0 && page <= pagesCount) {
+    if (page > NameSpace.FirstPage && page <= pagesCount) {
       setSearchParams({ [urlId]: String(page) });
     } else {
       setSearchParams({ [urlId]: String(DefaultParam.PageNumberOne) });

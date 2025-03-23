@@ -6,10 +6,10 @@ import {
   fetchPromoAction,
   fetchSimilarAction,
 } from './cameras-actions';
-import { CamerasForStore, FullCamera } from '../../../types/product-type';
+import { CamerasForState, FullCamera } from '../../../types/product-type';
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
-const camerasState: CamerasSlice = {
+export const camerasState: CamerasSlice = {
   allCameras: {},
   isAllCamerasLoaded: false,
   currentCameraId: null,
@@ -25,7 +25,7 @@ const camerasSlice = createSlice({
   name: SliceName.Cameras,
   initialState: camerasState,
   reducers: {
-    setAllCameras: (state, action: PayloadAction<CamerasForStore>) => {
+    setAllCameras: (state, action: PayloadAction<CamerasForState>) => {
       state.allCameras = action.payload;
     },
     addCameraToAllCameras: (state, action: PayloadAction<FullCamera>) => {

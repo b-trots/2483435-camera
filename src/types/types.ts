@@ -18,12 +18,13 @@ type ReviewType = {
   rating: number;
 };
 
+type ReviewsForState = Record<number, ReviewsType>;
 
 type OrderType = {
   camerasIds: [number];
   coupon: Coupon | null;
   tel?: string;
-  }
+};
 
 type ReviewsType = ReviewType[];
 
@@ -33,4 +34,11 @@ type PaginationData = {
   currentPage: number;
 };
 
-export type { FocusableElements, ReviewType, ReviewsType, OrderType, PaginationData };
+export type {
+  FocusableElements,
+  ReviewType,
+  ReviewsType,
+  OrderType,
+  PaginationData,
+  ReviewsForState,
+};

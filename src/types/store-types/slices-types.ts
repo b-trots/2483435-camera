@@ -5,13 +5,13 @@ import {
   RequestStatus,
 } from '../../const/const';
 import {
-  CamerasForStore,
+  CamerasForState,
   PromoCamera,
 } from '../product-type';
-import { ReviewsType } from '../types';
+import { ReviewsForState } from '../types';
 
 type CamerasSlice = {
-  allCameras: CamerasForStore;
+  allCameras: CamerasForState;
   currentCameraId: number | null;
   promoCameras: PromoCamera[];
   similarCamerasIds: number[];
@@ -23,7 +23,7 @@ type CamerasSlice = {
 };
 
 type ReviewsSlice = {
-  allCamerasReviews: Record<number, ReviewsType>;
+  allCamerasReviews: ReviewsForState;
   requestStatus: RequestStatus;
   reviewsError: boolean;
 };

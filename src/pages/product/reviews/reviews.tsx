@@ -65,7 +65,6 @@ export function Reviews() {
         <div className="container">
           <div className="page-content__headed">
             <h2 className="title title--h3">{ExplanationWord.Reviews}</h2>
-            {/*<button class="btn" type="button">Оставить свой отзыв</button>*/}
           </div>
           <ul className="review-block__list">
             {reviewsError || isReviewsLoading ? (
