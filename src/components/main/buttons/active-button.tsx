@@ -11,6 +11,7 @@ type ActiveButtonProps = {
   type?: 'button' | 'submit' | 'reset' | undefined;
   text: ActiveButtonName;
   basketIcon?: boolean;
+  disabled: boolean;
 };
 
 function ActiveButtonComponent({
@@ -21,6 +22,7 @@ function ActiveButtonComponent({
   type,
   text,
   basketIcon,
+  disabled,
 }: ActiveButtonProps) {
   const buttonClass = classNames(
     'btn',
@@ -31,7 +33,12 @@ function ActiveButtonComponent({
   );
 
   return (
-    <button className={buttonClass} type={type} onClick={onClick}>
+    <button
+      className={buttonClass}
+      type={type}
+      onClick={onClick}
+      disabled={disabled}
+    >
       {basketIcon && (
         <svg
           width={ServiceParam.BasketIconWidth}

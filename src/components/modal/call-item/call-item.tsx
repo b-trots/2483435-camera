@@ -1,4 +1,4 @@
-import { forwardRef, useRef } from 'react';
+import { forwardRef, useRef, useState } from 'react';
 import { toast } from 'react-toastify';
 import {
   ToastParam,
@@ -19,6 +19,7 @@ import { fetchOrderAction } from '../../../store/slices/order/order-actions';
 import { ProductDetails } from './product-detail';
 import { getModalCamera } from '../../../store/slices/modal/modal-selectors';
 import { phoneValidationError } from '../../../utils/error-utils';
+import { ToBlockActions } from '../../main/buttons/to-block-actions';
 
 function CallItemComponent(
   _: unknown,
@@ -27,8 +28,8 @@ function CallItemComponent(
   const modalCamera = useAppSelector(getModalCamera);
   const dispatch = useAppDispatch();
   const coupon = useAppSelector(getCoupon);
-
   const telRef = useRef(DefaultParam.EmptyString);
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   const handlePhoneChange = (newTel: string) => {
     telRef.current = newTel;
@@ -43,6 +44,7 @@ function CallItemComponent(
     }
 
     const correctTel = toStandardizePhone(currentTel);
+    setIsSubmitting(true);
 
     dispatch(
       fetchOrderAction({
@@ -53,6 +55,7 @@ function CallItemComponent(
     )
       .unwrap()
       .then(() => {
+        setIsSubmitting(false);
         dispatch(closeModal());
         toast.success(ExplanationWord.OrderSuccess, {
           containerId: ToastParam.Main,
@@ -66,6 +69,7 @@ function CallItemComponent(
 
   return (
     <>
+      {isSubmitting && ToBlockActions}
       <p className="title title--h4">{ModalTitle.CallItem}</p>
       <ProductDetails modalCamera={modalCamera} />
       <div className="custom-input form-review__item">
@@ -81,6 +85,7 @@ function CallItemComponent(
           isFitWidth
           text={ActiveButtonName.ToOrder}
           basketIcon
+          disabled={isSubmitting}
         />
       </div>
     </>
