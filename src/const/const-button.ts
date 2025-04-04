@@ -5,6 +5,8 @@ enum ButtonBemClass {
   FitWidth = 'modal__btn--fit-width',
   HalfWidth = 'modal__btn--half-width',
   PaginationText = 'pagination__link--text',
+  FormSearchReset = 'form-search__reset',
+  Cross = 'cross-btn'
 }
 
 enum ActiveButtonName {
@@ -32,10 +34,18 @@ enum CloseButtonParam {
   CloseButtonSize = 10,
   ClosePopap = 'Закрыть попап',
   DeleteProduct = 'Удалить товар',
+  ResetSearch = 'Сбросить поиск',
+  AriaLabel = 'aria-label'
 }
 
 enum PaginationButton {
   Text = 'Далее',
+}
+
+enum ButtonType {
+  Button = 'button',
+  Submit = 'submit',
+  Reset = 'reset',
 }
 
 export {
@@ -45,4 +55,5 @@ export {
   SliderButtonName,
   CloseButtonParam,
   PaginationButton,
+  ButtonType
 };

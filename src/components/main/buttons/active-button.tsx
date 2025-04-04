@@ -1,6 +1,6 @@
 import classNames from 'classnames';
 import { ServiceParam } from '../../../const/const';
-import { ButtonBemClass, ActiveButtonName } from '../../../const/const-button';
+import { ButtonBemClass, ActiveButtonName, ButtonType } from '../../../const/const-button';
 import { memo } from 'react';
 
 type ActiveButtonProps = {
@@ -8,10 +8,10 @@ type ActiveButtonProps = {
   className?: ButtonBemClass;
   isFitWidth?: boolean;
   isHalfWidth?: boolean;
-  type?: 'button' | 'submit' | 'reset' | undefined;
+  type?: ButtonType;
   text: ActiveButtonName;
   basketIcon?: boolean;
-  disabled: boolean;
+  disabled?: boolean;
 };
 
 function ActiveButtonComponent({

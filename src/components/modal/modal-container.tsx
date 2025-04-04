@@ -5,6 +5,7 @@ import { closeModal } from '../../store/slices/modal/modal-slice';
 import { toCloseModal } from '../../utils/modal-utils/to-close-modal';
 import { CloseButton } from '../main/buttons/close-button';
 import { toLoopFocus } from '../../utils/modal-utils/to-loop-focus';
+import { ButtonBemClass, ButtonType } from '../../const/const-button';
 
 type ModalProps = {
   children: React.ReactNode;
@@ -45,7 +46,11 @@ export function ModalContainer({ children }: ModalProps) {
             {cloneElement(children as React.ReactElement, {
               ref: firstTabRef,
             })}
-            <CloseButton lastTabRef={lastTabRef} />
+            <CloseButton
+              bemClass={ButtonBemClass.Cross}
+              type={ButtonType.Button}
+              lastTabRef={lastTabRef}
+            />
           </div>
         </div>
       </div>

@@ -1,21 +1,35 @@
-import { CloseButtonParam } from '../../../const/const-button';
-
+import { DefaultParam } from '../../../const/const';
+import {
+  ButtonBemClass,
+  ButtonType,
+  CloseButtonParam,
+} from '../../../const/const-button';
 
 type CloseButtonProps = {
-  text?: string;
+  bemClass: ButtonBemClass.Cross | ButtonBemClass.FormSearchReset;
+  type: ButtonType.Button | ButtonType.Reset;
   lastTabRef?: React.MutableRefObject<HTMLButtonElement | null>;
+  onClick?: () => void;
 };
 
 export function CloseButton({
-  text = CloseButtonParam.ClosePopap,
+  bemClass,
+  type,
   lastTabRef,
+  onClick,
 }: CloseButtonProps) {
+  const isSearch = bemClass === ButtonBemClass.FormSearchReset;
+  const isAriaLabel = !isSearch
+    ? { [CloseButtonParam.AriaLabel]: CloseButtonParam.ClosePopap }
+    : DefaultParam.EmptyObject;
+
   return (
     <button
-      ref={lastTabRef}
-      className="cross-btn"
-      type="button"
-      aria-label={text}
+      ref={lastTabRef || undefined}
+      className={bemClass}
+      type={type}
+      {...isAriaLabel}
+      onClick={onClick}
     >
       <svg
         width={CloseButtonParam.CloseButtonSize}
@@ -24,6 +38,10 @@ export function CloseButton({
       >
         <use xlinkHref="#icon-close" />
       </svg>
+
+      {isSearch && (
+        <span className="visually-hidden">{CloseButtonParam.ResetSearch}</span>
+      )}
     </button>
   );
 }

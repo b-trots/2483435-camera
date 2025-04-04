@@ -13,6 +13,7 @@ const DefaultParam = {
   ScrollZero: 0,
   EmptyArray: [],
   EmptyString: '',
+  EmptyObject: {},
   PageNumberZero: 0,
   PageNumberOne: 1,
   ZeroValue: 0,
@@ -30,6 +31,7 @@ enum APIRoute {
 
 enum ServiceParam {
   BannerItems = 3,
+  SearchIconSize = 16,
   BasketIconHeight = 16,
   BasketIconWidth = 24,
   ChangeSlideSpeed = 1000,
@@ -54,6 +56,7 @@ enum ServiceParam {
   ArrowIconHeight = 8,
   ArrowIconWidth = 5,
   WindowScrollYZero = 0,
+  MinSearchCharacters = 3
 }
 
 enum ServerParam {
@@ -102,6 +105,10 @@ enum BemClass {
   ReviewCard = 'review-card',
   ProductTabs = 'product__tabs',
   PaginationLink = 'pagination__link',
+  FormSearch = 'form-search',
+  ListOpened = 'list-opened',
+  FormSearchSelectItem = 'form-search__select-item',
+  FormSearchSelectItemActive = 'form-search__select-item--active',
 }
 
 enum CameraParam {
@@ -125,6 +132,7 @@ enum ExplanationWord {
   Comment = 'Комментарий',
   OrderSuccess = 'Заказ оформлен',
   SimilarProducts = 'Похожие товары',
+  SearchTheSite = 'Поиск по сайту'
 }
 
 enum BemMode {
@@ -146,7 +154,7 @@ enum BannerParam {
 }
 
 enum SymbolParam {
-  Dash = '-',
+  Dash = ' - ',
   DoubleUnderscore = '__',
 }
 
