@@ -9,7 +9,7 @@ type ProductContentProps = {
 
 export function ProductContent({ currentCamera }: ProductContentProps) {
   if (!currentCamera) {
-    return;
+    return null;
   }
 
   return (

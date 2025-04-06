@@ -25,9 +25,11 @@ export function SearchList({
     setActiveIndex(null);
   };
 
+  const validCameras = filteredCameras.filter((camera) => camera !== null);
+
   return (
     <ul className="form-search__select-list" tabIndex={-1}>
-      {filteredCameras.map((camera, index) => (
+      {validCameras.map((camera, index) => (
         <SearchListItem
           key={camera.id}
           camera={camera}

@@ -69,14 +69,11 @@ function CallItemComponent(
 
   return (
     <>
-      {isSubmitting && ToBlockActions}
+      {isSubmitting && <ToBlockActions/>}
       <p className="title title--h4">{ModalTitle.CallItem}</p>
       <ProductDetails modalCamera={modalCamera} />
       <div className="custom-input form-review__item">
-        <CallItemPhone
-          onPhoneChange={handlePhoneChange}
-          firstTabRef={firstTabRef}
-        />
+        <CallItemPhone onPhoneChange={handlePhoneChange} ref={firstTabRef} />
       </div>
       <div className="modal__buttons">
         <ActiveButton

@@ -3,14 +3,8 @@ import {
   DefaultParam,
   RequestCategory,
   RequestStatus,
-  TitleName,
 } from '../../const/const';
-import {
-  useAppSelector,
-  useProductData,
-  useScrollToTop,
-} from '../../hooks/hooks';
-import { useChangeTitle } from '../../hooks/use-change-title';
+import { useAppDispatch, useAppSelector } from '../../hooks/hooks';
 import {
   getCamerasError,
   getCamerasRequestStatus,
@@ -21,18 +15,27 @@ import { LoadData } from '../../components/load-data/load-data';
 import { ProductContent } from './product-content';
 import { UpButton } from '../../components/main/buttons/up-button';
 import { Footer } from '../../components/footer/footer';
+import { useCallback, useEffect } from 'react';
+import { setCurrentCameraId } from '../../store/slices/cameras/cameras-slice';
 
 export function Product() {
+  const dispatch = useAppDispatch();
   const currentCamera = useAppSelector(getCurrentCamera);
   const productLoadStatus = useAppSelector(getCamerasRequestStatus);
   const isProductLoading = productLoadStatus === RequestStatus.Loading;
   const productError = useAppSelector(getCamerasError);
 
-  useChangeTitle(currentCamera?.name || TitleName.Void);
-  useScrollToTop();
-
   const { id = DefaultParam.EmptyString } = useParams();
-  useProductData(id, currentCamera);
+
+  const loadData = useCallback(() => {
+    if (id) {
+      dispatch(setCurrentCameraId(Number(id)));
+    }
+  }, [id, dispatch]);
+
+  useEffect(() => {
+    loadData();
+  }, [loadData]);
 
   const isLoadData = productError || isProductLoading;
 

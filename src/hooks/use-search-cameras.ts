@@ -20,9 +20,14 @@ export function useSearchCameras(
 
     const newFiltered = filterCameras(query, allCameras);
 
-    if (JSON.stringify(newFiltered) !== JSON.stringify(filteredCameras)) {
+    if (
+      newFiltered.length !== filteredCameras.length ||
+      !newFiltered.every(
+        (camera, index) => camera.id === filteredCameras[index]?.id
+      )
+    ) {
       setFilteredCameras(newFiltered);
       setActiveIndex(DefaultParam.ZeroValue);
     }
-  });
+  }, [query, allCameras, filteredCameras, setFilteredCameras, setActiveIndex]);
 }

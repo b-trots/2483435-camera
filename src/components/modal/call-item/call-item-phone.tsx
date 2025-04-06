@@ -11,13 +11,12 @@ import { phoneValidationError } from '../../../utils/error-utils';
 
 type CallItemPhoneProps = {
   onPhoneChange: (tel: string) => void;
-  firstTabRef: React.Ref<HTMLInputElement>;
 };
 
-export function CallItemPhoneComponent({
-  onPhoneChange,
-  firstTabRef,
-}: CallItemPhoneProps) {
+export function CallItemPhoneComponent(
+  { onPhoneChange }: CallItemPhoneProps,
+  ref: React.Ref<HTMLInputElement>
+) {
   const [tel, setTel] = useState('');
   const [isToastShown, setIsToastShown] = useState(false);
 
@@ -55,7 +54,7 @@ export function CallItemPhoneComponent({
         </svg>
       </span>
       <input
-        ref={firstTabRef}
+        ref={ref}
         type="tel"
         name="user-tel"
         value={tel}

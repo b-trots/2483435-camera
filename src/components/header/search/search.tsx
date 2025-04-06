@@ -1,5 +1,5 @@
 import classNames from 'classnames';
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import {
   DefaultParam,
   ServiceParam,
@@ -14,13 +14,15 @@ import { CloseButton } from '../../main/buttons/close-button';
 import { useSearchCameras } from '../../../hooks/use-search-cameras';
 import { SearchList } from './search-list';
 import { AppRoute } from '../../../const/const-navigate';
-import { useNavigate } from 'react-router';
+import { useLocation, useNavigate } from 'react-router';
 import { handleSearchKeyDown } from '../../../utils/search-utils/handle-search-key-down';
 import { setCurrentCameraId } from '../../../store/slices/cameras/cameras-slice';
 
 export function Search() {
+  const location = useLocation();
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
+  const inputRef = useRef<HTMLInputElement | null>(null);
   const allCameras = Object.values(useAppSelector(getAllCameras));
   const [search, setSearch] = useState('');
   const [activeIndex, setActiveIndex] = useState<number | null>(null);
@@ -47,8 +49,30 @@ export function Search() {
     setSearch(e.target.value);
   };
 
-  const handleClick = (id: number) => {
+  const handleInputFocus = () => {
+    if (isSearchValid) {
+      if (activeIndex === null || activeIndex === filteredCameras.length) {
+        setActiveIndex(filteredCameras.length - 1);
+      } else {
+        setActiveIndex(DefaultParam.ZeroValue);
+      }
+    }
+  };
+
+  const handleClearButtonClick = () => {
     setSearch(DefaultParam.EmptyString);
+    setFilteredCameras(DefaultParam.EmptyArray);
+    setActiveIndex(DefaultParam.ZeroValue);
+  };
+
+  useEffect(() => {
+    inputRef.current?.blur();
+    handleClearButtonClick();
+  }, [location.pathname]);
+
+  const handleClick = (id: number) => {
+    inputRef.current?.blur();
+    handleClearButtonClick();
     dispatch(setCurrentCameraId(id));
     navigate(AppRoute.Cameras.replace(':id', String(id)));
   };
@@ -63,64 +87,47 @@ export function Search() {
     });
   };
 
-  const handleInputFocus = () => {
-    if (activeIndex === null && isSearchValid) {
-      setActiveIndex(DefaultParam.ZeroValue);
-    }
-    if (activeIndex === filteredCameras.length && isSearchValid) {
-      setActiveIndex(filteredCameras.length - 1);
-    }
-  };
-
-  const handleClearButtonClick = () => {
-    setSearch(DefaultParam.EmptyString);
-    setFilteredCameras(DefaultParam.EmptyArray);
-    setActiveIndex(DefaultParam.ZeroValue);
-  };
-
   return (
-    <>
-      <div>{activeIndex}</div>
-      <div className={searchClassName}>
-        <form>
-          <label>
-            <svg
-              className="form-search__icon"
-              width={ServiceParam.SearchIconSize}
-              height={ServiceParam.SearchIconSize}
-              aria-hidden="true"
-            >
-              <use xlinkHref="#icon-lens" />
-            </svg>
-            <input
-              className="form-search__input"
-              type="text"
-              autoComplete="off"
-              placeholder={ExplanationWord.SearchTheSite}
-              value={search}
-              onChange={handleSearchChange}
-              onKeyDown={handleKeyDown}
-              onFocus={handleInputFocus}
-            />
-          </label>
-          {isSearchValid && (
-            <SearchList
-              filteredCameras={filteredCameras}
-              activeIndex={activeIndex}
-              setActiveIndex={setActiveIndex}
-              onClick={handleClick}
-            />
-          )}
-        </form>
-
-        {isSearchValid && (
-          <CloseButton
-            bemClass={ButtonBemClass.FormSearchReset}
-            type={ButtonType.Reset}
-            onClick={handleClearButtonClick}
+    <div className={searchClassName}>
+      <form>
+        <label>
+          <svg
+            className="form-search__icon"
+            width={ServiceParam.SearchIconSize}
+            height={ServiceParam.SearchIconSize}
+            aria-hidden="true"
+          >
+            <use xlinkHref="#icon-lens" />
+          </svg>
+          <input
+            ref={inputRef}
+            className="form-search__input"
+            type="text"
+            autoComplete="off"
+            placeholder={ExplanationWord.SearchTheSite}
+            value={search}
+            onChange={handleSearchChange}
+            onKeyDown={handleKeyDown}
+            onFocus={handleInputFocus}
+          />
+        </label>
+        {isSearchValid && filteredCameras.length && (
+          <SearchList
+            filteredCameras={filteredCameras}
+            activeIndex={activeIndex}
+            setActiveIndex={setActiveIndex}
+            onClick={handleClick}
           />
         )}
-      </div>
-    </>
+      </form>
+
+      {isSearchValid && (
+        <CloseButton
+          bemClass={ButtonBemClass.FormSearchReset}
+          type={ButtonType.Reset}
+          onClick={handleClearButtonClick}
+        />
+      )}
+    </div>
   );
 }

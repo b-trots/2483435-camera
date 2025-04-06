@@ -56,6 +56,7 @@ export const handleSearchKeyDown = ({
       break;
 
     case 'Enter':
+      e.preventDefault();
       handleClick(filteredCameras[activeIndex].id);
       break;
 

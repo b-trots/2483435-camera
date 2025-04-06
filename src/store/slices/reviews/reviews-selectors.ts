@@ -12,10 +12,11 @@ const getAllCamerasReviews = (state: ReviewsState) =>
 const getCurrentReviews = createSelector(
   [getAllCamerasReviews, getCurrentCameraId],
   (allCamerasReviews, currentCameraId) => {
-    const reviews =
-      currentCameraId && allCamerasReviews[currentCameraId]
-        ? allCamerasReviews[currentCameraId]
-        : DefaultParam.EmptyArray;
+    if (!currentCameraId || !allCamerasReviews[currentCameraId]) {
+      return DefaultParam.EmptyArray;
+    }
+    const reviews = allCamerasReviews[currentCameraId];
+
     if (Array.isArray(reviews) && reviews.length !== 0) {
       return [...reviews].sort(daySort);
     }

@@ -76,7 +76,9 @@ export function Reviews() {
             ) : (
               currentReviews
                 .slice(0, shownComments)
-                .map((comment) => <Review comment={comment} key={comment.id} />)
+                .map((comment) => (
+                  <Review comment={comment} key={comment.id} />
+                ))
             )}
           </ul>
           <div className="review-block__buttons" ref={observerRef}>

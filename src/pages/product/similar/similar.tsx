@@ -1,11 +1,15 @@
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { ProductCard } from '../../../components/main/product-card/product-card';
-import { useAppSelector } from '../../../hooks/hooks';
-import { getSimilarCameras } from '../../../store/slices/cameras/cameras-selectors';
+import { useAppDispatch, useAppSelector } from '../../../hooks/hooks';
+import {
+  getCurrentCameraId,
+  getIsSimilarCamerasLoaded,
+  getSimilarCameras,
+} from '../../../store/slices/cameras/cameras-selectors';
 import { SliderButtons } from './slider-buttons/slider-buttons';
 import { Navigation } from 'swiper/modules';
 import css from './similar.module.css';
-import { useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { Swiper as SwiperCore } from 'swiper/types';
 import {
   DefaultParam,
@@ -13,13 +17,23 @@ import {
   NameSpace,
   ServiceParam,
 } from '../../../const/const';
+import { fetchSimilarAction } from '../../../store/slices/cameras/cameras-actions';
 
 export function Similar() {
+  const dispatch = useAppDispatch();
+  const currentCameraId = useAppSelector(getCurrentCameraId);
   const similarCameras = useAppSelector(getSimilarCameras);
+  const isSimilarCamerasLoaded = useAppSelector(getIsSimilarCamerasLoaded);
   const swiperRef = useRef<SwiperCore | null>(null);
   const [activeSlide, setActiveSlide] = useState<number>(
     DefaultParam.ZeroIndex
   );
+
+  useEffect(() => {
+    if (!isSimilarCamerasLoaded && currentCameraId) {
+      dispatch(fetchSimilarAction(currentCameraId));
+    }
+  });
 
   if (!similarCameras.length) {
     return null;
