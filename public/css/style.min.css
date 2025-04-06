@@ -1263,7 +1263,6 @@ button {
   position: absolute;
   top: 0;
   right: 0;
-  display: none;
   -webkit-box-pack: center;
   -ms-flex-pack: center;
   justify-content: center;

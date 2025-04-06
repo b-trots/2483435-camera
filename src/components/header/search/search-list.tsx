@@ -21,26 +21,33 @@ export function SearchList({
 
   useScrollToActiveItem(itemRefs, activeIndex);
 
+  if (!filteredCameras || filteredCameras.length === DefaultParam.ZeroValue) {
+    return null;
+  }
+
   const handleListMouseLeave = () => {
     setActiveIndex(null);
   };
 
-  const validCameras = filteredCameras.filter((camera) => camera !== null);
-
   return (
     <ul className="form-search__select-list" tabIndex={-1}>
-      {validCameras.map((camera, index) => (
-        <SearchListItem
-          key={camera.id}
-          camera={camera}
-          index={index}
-          activeIndex={activeIndex}
-          onClick={onClick}
-          onHover={setActiveIndex}
-          onLeave={handleListMouseLeave}
-          itemRef={(el) => (itemRefs.current[index] = el)}
-        />
-      ))}
+      {filteredCameras
+        .filter(
+          (camera): camera is FullCamera =>
+            camera !== null && camera !== undefined
+        )
+        .map((camera, index) => (
+          <SearchListItem
+            key={camera.id}
+            camera={camera}
+            index={index}
+            activeIndex={activeIndex}
+            onClick={onClick}
+            onHover={setActiveIndex}
+            onLeave={handleListMouseLeave}
+            itemRef={(el) => (itemRefs.current[index] = el)}
+          />
+        ))}
     </ul>
   );
 }

@@ -24,13 +24,16 @@ export function Search() {
   const dispatch = useAppDispatch();
   const inputRef = useRef<HTMLInputElement | null>(null);
   const allCameras = Object.values(useAppSelector(getAllCameras));
-  const [search, setSearch] = useState('');
+  const [search, setSearch] = useState(DefaultParam.EmptyString);
   const [activeIndex, setActiveIndex] = useState<number | null>(null);
   const [filteredCameras, setFilteredCameras] = useState<FullCamera[]>(
     DefaultParam.EmptyArray
   );
 
   const isSearchValid = search.length >= ServiceParam.MinSearchCharacters;
+  const isSearchVoid = inputRef.current
+    ? inputRef.current.value.length > DefaultParam.ZeroValue
+    : null;
 
   const searchClassName = classNames(
     BemClass.FormSearch,
@@ -111,7 +114,7 @@ export function Search() {
             onFocus={handleInputFocus}
           />
         </label>
-        {isSearchValid && filteredCameras.length && (
+        {isSearchValid && filteredCameras.length > DefaultParam.ZeroValue && (
           <SearchList
             filteredCameras={filteredCameras}
             activeIndex={activeIndex}
@@ -121,7 +124,7 @@ export function Search() {
         )}
       </form>
 
-      {isSearchValid && (
+      {isSearchVoid && (
         <CloseButton
           bemClass={ButtonBemClass.FormSearchReset}
           type={ButtonType.Reset}
