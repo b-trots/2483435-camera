@@ -8,7 +8,7 @@ import {
   CamerasForState,
   PromoCamera,
 } from '../product-type';
-import { ReviewsForState } from '../types';
+import { ReviewsForState, SortingDirection, SortingType } from '../types';
 
 type CamerasSlice = {
   allCameras: CamerasForState;
@@ -40,9 +40,15 @@ type OrderSlice = {
   orderError: boolean;
 };
 
+type ActiveSlice = {
+  sortType:SortingType;
+  sortDirection:SortingDirection;
+}
+
 export type {
   CamerasSlice,
   ReviewsSlice,
   ModalSlice,
   OrderSlice,
+  ActiveSlice
 };

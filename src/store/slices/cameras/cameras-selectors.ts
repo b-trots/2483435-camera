@@ -3,6 +3,8 @@ import { RequestStatus, ServiceParam, SliceName } from '../../../const/const';
 import { State } from '../../../types/store-types/store-types';
 import { selectCameras } from '../../../utils/utils';
 import { Cameras } from '../../../types/product-type';
+import { getSortDirection, getSortType } from '../active/active-selectors';
+import { toSortCameras } from '../../../utils/sorting-utils';
 
 export type CamerasState = Pick<State, SliceName.Cameras>;
 
@@ -15,9 +17,16 @@ const getIsAllCamerasLoaded = (state: CamerasState): boolean =>
   state[SliceName.Cameras].isAllCamerasLoaded;
 
 const getCurrentCameras = createSelector(
-  [getAllCameras, (_state: CamerasState, currentPage: number) => currentPage],
-  (allCameras, currentPage) =>
-    selectCameras(allCameras, currentPage, ServiceParam.ItemsPerPage)
+  [
+    getAllCameras,
+    getSortType,
+    getSortDirection,
+    (_state: CamerasState, currentPage: number) => currentPage,
+  ],
+  (allCameras, sortType, sortDirection, currentPage) => {
+    const sortedCameras = toSortCameras(allCameras, sortType, sortDirection);
+    return selectCameras(sortedCameras, currentPage, ServiceParam.ItemsPerPage);
+  }
 );
 
 const getCurrentCameraId = (state: CamerasState) =>

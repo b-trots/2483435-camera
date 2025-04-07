@@ -56,7 +56,9 @@ enum ServiceParam {
   ArrowIconHeight = 8,
   ArrowIconWidth = 5,
   WindowScrollYZero = 0,
-  MinSearchCharacters = 3
+  MinSearchCharacters = 3,
+  SortIconWidth = 16,
+  SortIconHeight = 14,
 }
 
 enum ServerParam {
@@ -132,7 +134,8 @@ enum ExplanationWord {
   Comment = 'Комментарий',
   OrderSuccess = 'Заказ оформлен',
   SimilarProducts = 'Похожие товары',
-  SearchTheSite = 'Поиск по сайту'
+  SearchTheSite = 'Поиск по сайту',
+  ToSort = 'Сортировать: '
 }
 
 enum BemMode {
@@ -163,6 +166,7 @@ enum NameSpace {
   FirstPage = 1,
   SimilarPageSearchId = 'similarPage',
   CatalogPageSearchId = 'page',
+  AriaLabel = 'aria-label',
 }
 
 const ToastParam = {
@@ -203,6 +207,7 @@ enum SliceName {
   Reviews = 'REVIEWS',
   Modal = 'MODAL',
   Order = 'ORDER',
+  Active = 'ACTIVE',
 }
 
 enum RequestStatus {
@@ -261,6 +266,40 @@ enum RequestCategory {
   Reviews = 'reviews',
 }
 
+enum Sorting {
+  SortPrice = 'sortPrice',
+  SortPopular = 'sortPopular',
+  Up = 'up',
+  Down = 'down',
+  Sort = 'sort',
+  SortIcon = 'sort-icon',
+  SortType = 'catalog-sort__type',
+  SortOrder = 'catalog-sort__order',
+}
+
+const SORTING = {
+  type: [
+    { name: Sorting.Sort, id: Sorting.SortPrice, text: 'по цене' },
+    {
+      name: Sorting.Sort,
+      id: Sorting.SortPopular,
+      text: 'по популярности',
+    },
+  ],
+  direction: [
+    {
+      name: Sorting.SortIcon,
+      id: Sorting.Up,
+      text: 'По возрастанию',
+    },
+    {
+      name: Sorting.SortIcon,
+      id: Sorting.Down,
+      text: 'По убыванию',
+    },
+  ],
+} as const;
+
 export {
   ApiActionName,
   APIRoute,
@@ -295,4 +334,6 @@ export {
   TitleName,
   ToastParam,
   Validation,
+  Sorting,
+  SORTING,
 };

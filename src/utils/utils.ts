@@ -1,7 +1,6 @@
 import dayjs from 'dayjs';
 import 'dayjs/locale/ru';
-import { ReviewType } from '../types/types';
-import { CamerasForState } from '../types/product-type';
+import { Cameras } from '../types/product-type';
 import { PaginationButton } from '../const/const-button';
 import { ServiceParam } from '../const/const';
 
@@ -12,11 +11,9 @@ const reviewDate = (date: string) => {
   dayjs.locale('ru');
   return dayjs(date).format('DD MMMM');
 };
-const daySort = (reviewA: ReviewType, reviewB: ReviewType) =>
-  dayjs(reviewB.createAt).diff(dayjs(reviewA.createAt));
 
 const selectCameras = (
-  cameras: CamerasForState,
+  cameras: Cameras,
   currentPage: number,
   quantity: number
 ) => {
@@ -44,7 +41,6 @@ function formatPrice(price: number): string {
 export {
   toStandardizePhone,
   reviewDate,
-  daySort,
   selectCameras,
   countPages,
   createPagesNames,

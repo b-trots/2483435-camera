@@ -1,4 +1,4 @@
-import { DefaultParam } from '../../../const/const';
+import { DefaultParam, NameSpace } from '../../../const/const';
 import {
   ButtonBemClass,
   ButtonType,
@@ -20,7 +20,7 @@ export function CloseButton({
 }: CloseButtonProps) {
   const isSearch = bemClass === ButtonBemClass.FormSearchReset;
   const isAriaLabel = !isSearch
-    ? { [CloseButtonParam.AriaLabel]: CloseButtonParam.ClosePopap }
+    ? { [NameSpace.AriaLabel]: CloseButtonParam.ClosePopap }
     : DefaultParam.EmptyObject;
 
   return (

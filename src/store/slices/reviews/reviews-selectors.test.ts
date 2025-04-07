@@ -5,7 +5,7 @@ import {
   generateReviewsForCameras,
   generateReviewsForState,
 } from '../../../utils/mock';
-import { daySort } from '../../../utils/utils';
+import { daySort } from '../../../utils/sorting-utils';
 import {
   getAllCamerasReviews,
   getCurrentReviews,
