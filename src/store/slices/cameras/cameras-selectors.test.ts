@@ -1,4 +1,4 @@
-import { RequestStatus, ServiceParam, SliceName } from '../../../const/const';
+import { RequestStatus, SliceName } from '../../../const/const';
 import { Cameras } from '../../../types/camera-type';
 import {
   generateAllCameras,
@@ -6,14 +6,12 @@ import {
   generatePromoCameras,
   generateSimilarCamerasIds,
 } from '../../../utils/mock';
-import { selectCameras } from '../../../utils/utils';
 import {
   getAllCameras,
   getCamerasError,
   getCamerasRequestStatus,
   getCurrentCamera,
   getCurrentCameraId,
-  getCurrentCameras,
   getIsAllCamerasLoaded,
   getIsPromoCamerasLoaded,
   getIsSimilarCamerasLoaded,
@@ -67,16 +65,16 @@ describe('Cameras Selectors', () => {
     expect(result).toBe(isAllCamerasLoaded);
   });
 
-  it('getCurrentCameras should return cameras for the current page', () => {
-    const currentPage = 2;
-    const result = getCurrentCameras(state, currentPage);
-    const expectedResult = selectCameras(
-      state[SliceName.Cameras].allCameras,
-      currentPage,
-      ServiceParam.ItemsPerPage
-    );
-    expect(result).toEqual(expectedResult);
-  });
+  // it('getCurrentCameras should return cameras for the current page', () => {
+  //   const currentPage = 2;
+  //   const result = getCurrentCamera(state, currentPage);
+  //   const expectedResult = selectCameras(
+  //     state[SliceName.Cameras].allCameras,
+  //     currentPage,
+  //     ServiceParam.ItemsPerPage
+  //   );
+  //   expect(result).toEqual(expectedResult);
+  // });
 
   it('getCurrentCameraId should return currentCameraId', () => {
     const { currentCameraId } = state[SliceName.Cameras];

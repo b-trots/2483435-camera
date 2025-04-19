@@ -1,4 +1,5 @@
 enum ButtonBemClass {
+  Btn = 'btn',
   Modal = 'modal__btn',
   ProductCard = 'product-card__btn',
   Review = 'form-review__btn',
@@ -11,6 +12,7 @@ enum ButtonBemClass {
   SortText = 'catalog-sort__btn-text',
   SortUp = 'catalog-sort__btn--up',
   SortDown = 'catalog-sort__btn--down',
+  SortReset = 'catalog-filter__reset-btn',
 }
 
 enum ActiveButtonName {
@@ -51,6 +53,10 @@ enum ButtonType {
   Reset = 'reset',
 }
 
+enum ButtonName {
+  SortReset = '  Сбросить фильтры',
+}
+
 export {
   ButtonBemClass,
   ActiveButtonName,
@@ -59,4 +65,5 @@ export {
   CloseButtonParam,
   PaginationButton,
   ButtonType,
+  ButtonName,
 };

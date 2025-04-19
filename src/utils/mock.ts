@@ -1,17 +1,11 @@
-import {
-  CameraCategory,
-  Cameras,
-  CameraType,
-  FullCamera,
-  Level,
-  PromoCamera,
-} from '../types/camera-type';
 import { faker } from '@faker-js/faker';
 import { ReviewsType, ReviewType } from '../types/types';
 import { Action } from 'redux';
 import { ThunkDispatch } from 'redux-thunk';
 import { createAPI } from '../services/api';
 import { State } from '../types/store-types/store-types';
+import { Cameras, FullCamera, PromoCamera } from '../types/camera-type';
+import { CameraCategory, CameraLevel, CameraType } from '../const/camera-const';
 
 const generateCamera = (): FullCamera => ({
   id: faker.number.int({ min: 1, max: 10 }),
@@ -22,7 +16,7 @@ const generateCamera = (): FullCamera => ({
     Object.values(CameraCategory)
   ) as CameraCategory,
   description: faker.lorem.sentence(),
-  level: faker.helpers.arrayElement(Object.values(Level)) as Level,
+  level: faker.helpers.arrayElement(Object.values(CameraLevel)) as CameraLevel,
   price: parseFloat(faker.commerce.price({ min: 100, max: 10000 })),
   rating: parseFloat(faker.finance.amount({ min: 1, max: 5 })),
   reviewCount: faker.number.int({ min: 0, max: 1000 }),

@@ -14,7 +14,7 @@ export function TabsContent({ isActive }: TabsContentProps) {
   const currentCamera = useAppSelector(getCurrentCamera);
 
   if (!currentCamera) {
-    return;
+    return null;
   }
 
   const { vendorCode, category, type, level } = currentCamera;

@@ -1,5 +1,4 @@
-import { CameraLevel, CameraParam } from '../../../const/camera-const';
-import { CameraCategory } from '../../../types/camera-type';
+import { CameraCategory, CameraLevel, CameraParam } from '../../../const/camera-const';
 import { formatPrice } from '../../../utils/utils';
 
 type CallItemDescriptionProps = {

@@ -1,8 +1,8 @@
 import dayjs from 'dayjs';
 import 'dayjs/locale/ru';
-import { Cameras } from '../types/product-type';
+import { Cameras } from '../types/camera-type';
 import { PaginationButton } from '../const/const-button';
-import { ServiceParam } from '../const/const';
+import { DefaultParam, ServiceParam, Validation } from '../const/const';
 
 const toStandardizePhone = (phone: string) =>
   phone.replace(/\D/g, '').replace(/^8/, '7').replace(/^7/, '+7');
@@ -38,6 +38,14 @@ function formatPrice(price: number): string {
   return `${correctPrice} ₽`;
 }
 
+const correctPrice = (value: string | number) =>
+  String(value).replace(Validation.CameraPrice, DefaultParam.EmptyString);
+
+const capitalize = <T extends string>(letter: T): Capitalize<T> | string =>
+  letter
+    ? ((letter.charAt(0).toUpperCase() + letter.slice(1)) as Capitalize<T>)
+    : letter;
+
 export {
   toStandardizePhone,
   reviewDate,
@@ -45,4 +53,6 @@ export {
   countPages,
   createPagesNames,
   formatPrice,
+  correctPrice,
+  capitalize,
 };

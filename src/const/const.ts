@@ -18,6 +18,7 @@ const DefaultParam = {
   PageNumberOne: 1,
   ZeroValue: 0,
   ZeroIndex: 0,
+  Null:null,
   UrlId: 'page',
 };
 
@@ -29,37 +30,39 @@ enum APIRoute {
   Similar = '/similar',
 }
 
-enum ServiceParam {
-  BannerItems = 3,
-  SearchIconSize = 16,
-  BasketIconHeight = 16,
-  BasketIconWidth = 24,
-  ChangeSlideSpeed = 1000,
-  ItemsPerPage = 9,
-  ItemsPerSlide = 3,
-  PaginationStep = 1,
-  RateStarHeight = 16,
-  RateStarWidth = 17,
-  ReviewsScrollThreshold = '-160px',
-  ShownComments = 3,
-  ShownCommentsStep = 3,
-  SliderArrowHeight = 12,
-  SliderArrowWidth = 7,
-  SnowflakeSize = 9,
-  SocialIconSize = 20,
-  SimilarSlideBetween = 0,
-  SwiperSlideTime = 3000,
-  UpButtonHeight = 18,
-  UpButtonWidth = 12,
-  RequestReturnTimer = 5000,
-  CardsPerSlide = 3,
-  ArrowIconHeight = 8,
-  ArrowIconWidth = 5,
-  WindowScrollYZero = 0,
-  MinSearchCharacters = 3,
-  SortIconWidth = 16,
-  SortIconHeight = 14,
-}
+const ServiceParam = {
+  BannerItems: 3,
+  SearchIconSize: 16,
+  BasketIconHeight: 16,
+  BasketIconWidth: 24,
+  ChangeSlideSpeed: 1000,
+  ItemsPerPage: 9,
+  ItemsPerSlide: 3,
+  PaginationStep: 1,
+  RateStarHeight: 16,
+  RateStarWidth: 17,
+  ReviewsScrollThreshold: '-160px',
+  ShownComments: 3,
+  ShownCommentsStep: 3,
+  SliderArrowHeight: 12,
+  SliderArrowWidth: 7,
+  SnowflakeSize: 9,
+  SocialIconSize: 20,
+  SimilarSlideBetween: 0,
+  SwiperSlideTime: 3000,
+  UpButtonHeight: 18,
+  UpButtonWidth: 12,
+  RequestReturnTimer: 5000,
+  CardsPerSlide: 3,
+  ArrowIconHeight: 8,
+  ArrowIconWidth: 5,
+  WindowScrollYZero: 0,
+  MinSearchCharacters: 3,
+  SortIconWidth: 16,
+  SortIconHeight: 14,
+  FirstElement: 0,
+  SecondElement: 1,
+} as const;
 
 enum ServerParam {
   BaseURL = 'https://camera-shop.accelerator.htmlacademy.pro',
@@ -82,6 +85,7 @@ enum ErrorInfoMessage {
 const Validation = {
   PhoneInput: /^[\d\s()+-]*$/,
   PhoneSubmit: /^(?:\+7|8)\s*\(?\d{3}\)?[\s-]?\d{3}[\s-]?\d{2}[\s-]?\d{2}$/,
+  CameraPrice: /[^0-9]/g,
 } as const;
 
 enum TitleName {
@@ -111,16 +115,10 @@ enum BemClass {
   ListOpened = 'list-opened',
   FormSearchSelectItem = 'form-search__select-item',
   FormSearchSelectItemActive = 'form-search__select-item--active',
-}
-
-enum CameraParam {
-  Article = 'Артикул',
-  Category = 'Категория',
-  Level = 'Уровень',
-  Price = 'Цена',
-  Rating = 'Рейтинг',
-  ReviewCount = 'Всего оценок',
-  Type = 'Тип камеры',
+  Sort = 'sort',
+  SortIcon = 'sort-icon',
+  SortType = 'catalog-sort__type',
+  SortOrder = 'catalog-sort__order',
 }
 
 enum ExplanationWord {
@@ -135,7 +133,9 @@ enum ExplanationWord {
   OrderSuccess = 'Заказ оформлен',
   SimilarProducts = 'Похожие товары',
   SearchTheSite = 'Поиск по сайту',
-  ToSort = 'Сортировать: '
+  ToSort = 'Сортировать: ',
+  Filter = 'Фильтр',
+  Price = ', ₽',
 }
 
 enum BemMode {
@@ -167,6 +167,10 @@ enum NameSpace {
   SimilarPageSearchId = 'similarPage',
   CatalogPageSearchId = 'page',
   AriaLabel = 'aria-label',
+  Radio = 'radio',
+  Checkbox = 'checkbox',
+  Number = 'number',
+  String = 'string'
 }
 
 const ToastParam = {
@@ -266,39 +270,6 @@ enum RequestCategory {
   Reviews = 'reviews',
 }
 
-enum Sorting {
-  SortPrice = 'sortPrice',
-  SortPopular = 'sortPopular',
-  Up = 'up',
-  Down = 'down',
-  Sort = 'sort',
-  SortIcon = 'sort-icon',
-  SortType = 'catalog-sort__type',
-  SortOrder = 'catalog-sort__order',
-}
-
-const SORTING = {
-  type: [
-    { name: Sorting.Sort, id: Sorting.SortPrice, text: 'по цене' },
-    {
-      name: Sorting.Sort,
-      id: Sorting.SortPopular,
-      text: 'по популярности',
-    },
-  ],
-  direction: [
-    {
-      name: Sorting.SortIcon,
-      id: Sorting.Up,
-      text: 'По возрастанию',
-    },
-    {
-      name: Sorting.SortIcon,
-      id: Sorting.Down,
-      text: 'По убыванию',
-    },
-  ],
-} as const;
 
 export {
   ApiActionName,
@@ -306,7 +277,6 @@ export {
   BannerParam,
   BemClass,
   BemMode,
-  CameraParam,
   Coupon,
   CSSClass,
   DefaultParam,
@@ -334,6 +304,4 @@ export {
   TitleName,
   ToastParam,
   Validation,
-  Sorting,
-  SORTING,
 };

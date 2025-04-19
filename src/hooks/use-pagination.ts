@@ -1,8 +1,10 @@
 import { useSearchParams } from 'react-router-dom';
 import { countPages } from '../utils/utils';
-import { DefaultParam, NameSpace, ServiceParam } from '../const/const';
+import { DefaultParam, ServiceParam, NameSpace } from '../const/const';
 
-type QuantityType = ServiceParam.ItemsPerPage | ServiceParam.ItemsPerSlide;
+type QuantityType =
+  | typeof ServiceParam.ItemsPerPage
+  | typeof ServiceParam.ItemsPerSlide;
 
 export function usePagination(
   urlId: string = DefaultParam.UrlId,
