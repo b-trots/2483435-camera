@@ -1,5 +1,6 @@
 import { List } from '../../../components/main/list';
-import { BemClass, CameraParam, TabName } from '../../../const/const';
+import { CameraParam } from '../../../const/camera-const';
+import { BemClass, TabName } from '../../../const/const';
 import { useAppSelector } from '../../../hooks/hooks';
 import { getCurrentCamera } from '../../../store/slices/cameras/cameras-selectors';
 import { ProductDescription } from '../product-description';

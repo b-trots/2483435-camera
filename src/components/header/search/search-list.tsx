@@ -1,8 +1,7 @@
-import { FullCamera } from '../../../types/product-type';
+import { FullCamera } from '../../../types/camera-type';
 import { SearchListItem } from './search-list-item';
-import { useRef } from 'react';
-import { useScrollToActiveItem } from '../../../hooks/use-scroll-to-active-item';
 import { DefaultParam } from '../../../const/const';
+import { useScrollToActiveItem } from '../../../hooks/use-search/use-scroll-to-active-item';
 
 type SearchListProps = {
   filteredCameras: FullCamera[];
@@ -17,9 +16,7 @@ export function SearchList({
   setActiveIndex,
   onClick,
 }: SearchListProps) {
-  const itemRefs = useRef<(HTMLLIElement | null)[]>(DefaultParam.EmptyArray);
-
-  useScrollToActiveItem(itemRefs, activeIndex);
+  useScrollToActiveItem(activeIndex);
 
   if (!filteredCameras || filteredCameras.length === DefaultParam.ZeroValue) {
     return null;
@@ -45,7 +42,6 @@ export function SearchList({
             onClick={onClick}
             onHover={setActiveIndex}
             onLeave={handleListMouseLeave}
-            itemRef={(el) => (itemRefs.current[index] = el)}
           />
         ))}
     </ul>

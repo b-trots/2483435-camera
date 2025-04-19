@@ -1,4 +1,4 @@
-import { FullCamera } from '../../types/product-type';
+import { FullCamera } from '../../types/camera-type';
 
 const filterCameras = (query: string, cameras: FullCamera[]) =>
   cameras.filter(

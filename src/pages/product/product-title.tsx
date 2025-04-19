@@ -1,5 +1,5 @@
 import { memo } from 'react';
-import { FullCamera } from '../../types/product-type';
+import { FullCamera } from '../../types/camera-type';
 
 type ProductTitleProps = Pick<FullCamera, 'category' | 'name'>;
 

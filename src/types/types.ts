@@ -1,4 +1,4 @@
-import { Coupon, Sorting } from '../const/const';
+import { Coupon } from '../const/const';
 
 type FocusableElements =
   | HTMLButtonElement
@@ -34,9 +34,6 @@ type PaginationData = {
   currentPage: number;
 };
 
-type SortingType = Sorting.SortPrice | Sorting.SortPopular;
-type SortingDirection = Sorting.Up | Sorting.Down;
-
 export type {
   FocusableElements,
   ReviewType,
@@ -44,6 +41,4 @@ export type {
   OrderType,
   PaginationData,
   ReviewsForState,
-  SortingType,
-  SortingDirection,
 };

@@ -1,7 +1,7 @@
 import { BemClass } from '../../../const/const';
 import { ProductImg } from '../../../pages/product/product-img';
 import { CallItemDescription } from './call-item-description';
-import { FullCamera } from '../../../types/product-type';
+import { FullCamera } from '../../../types/camera-type';
 
 type ProductDetailProps = {
   modalCamera: FullCamera;

@@ -6,7 +6,7 @@ import {
   fetchPromoAction,
   fetchSimilarAction,
 } from './cameras-actions';
-import { CamerasForState, FullCamera } from '../../../types/product-type';
+import { CamerasForState, FullCamera } from '../../../types/camera-type';
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 export const camerasState: CamerasSlice = {

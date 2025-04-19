@@ -1,4 +1,4 @@
-import { CameraForCatalog } from '../../../types/product-type';
+import { CameraForCatalog } from '../../../types/camera-type';
 import { BemClass, BemMode, ModalType } from '../../../const/const';
 import { ProductImg } from '../../../pages/product/product-img';
 import { ProductPrice } from '../../../pages/product/product-price';

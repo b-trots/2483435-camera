@@ -1,7 +1,7 @@
 import { AxiosInstance } from 'axios';
 import { AppDispatch, State } from '../../../types/store-types/store-types';
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import { Cameras, FullCamera, PromoCamera } from '../../../types/product-type';
+import { Cameras, FullCamera, PromoCamera } from '../../../types/camera-type';
 import {
   ApiActionName,
   APIRoute,

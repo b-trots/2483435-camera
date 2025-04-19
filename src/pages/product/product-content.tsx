@@ -1,5 +1,5 @@
 import { Breadcrumbs } from '../../components/main/breadcrumbs/breadcrumbs';
-import { FullCamera } from '../../types/product-type';
+import { FullCamera } from '../../types/camera-type';
 import { ProductDetail } from './product-detail';
 import { AdditionalInfo } from './additional-info';
 

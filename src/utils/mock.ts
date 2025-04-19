@@ -5,7 +5,7 @@ import {
   FullCamera,
   Level,
   PromoCamera,
-} from '../types/product-type';
+} from '../types/camera-type';
 import { faker } from '@faker-js/faker';
 import { ReviewsType, ReviewType } from '../types/types';
 import { Action } from 'redux';
@@ -107,9 +107,14 @@ const generateReviewsForState = (
   return storeReviews;
 };
 
-export type AppThunkDispatch = ThunkDispatch<State, ReturnType<typeof createAPI>, Action>;
+export type AppThunkDispatch = ThunkDispatch<
+  State,
+  ReturnType<typeof createAPI>,
+  Action
+>;
 
-const extractActionsTypes = (actions: Action<string>[]) => actions.map(({ type }) => type);
+const extractActionsTypes = (actions: Action<string>[]) =>
+  actions.map(({ type }) => type);
 
 export {
   generateCamera,
@@ -121,5 +126,5 @@ export {
   generateReview,
   generateReviewsForCameras,
   generateReviewsForState,
-  extractActionsTypes
+  extractActionsTypes,
 };

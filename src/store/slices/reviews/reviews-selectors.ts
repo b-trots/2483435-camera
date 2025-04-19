@@ -2,7 +2,7 @@ import { createSelector } from '@reduxjs/toolkit';
 import { DefaultParam, RequestStatus, SliceName } from '../../../const/const';
 import { State } from '../../../types/store-types/store-types';
 import { getCurrentCameraId } from '../cameras/cameras-selectors';
-import { daySort } from '../../../utils/sorting-utils';
+import { daySort } from '../../../utils/filter-and-sorting-utils/sorting-utils';
 
 export type ReviewsState = Pick<State, SliceName.Reviews>;
 

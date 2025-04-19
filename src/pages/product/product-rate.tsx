@@ -2,11 +2,11 @@ import { memo } from 'react';
 import {
   BemClass,
   BemMode,
-  CameraParam,
   ExplanationWord,
   RATING_STAR_COUNT,
   ServiceParam,
 } from '../../const/const';
+import { CameraParam } from '../../const/camera-const';
 
 type ProductRateProps = {
   bemClass: BemClass;

@@ -1,5 +1,5 @@
 import classNames from 'classnames';
-import { FullCamera } from '../../../types/product-type';
+import { FullCamera } from '../../../types/camera-type';
 import { BemClass } from '../../../const/const';
 
 type SearchListItemProps = {
@@ -9,7 +9,6 @@ type SearchListItemProps = {
   onClick: (id: number) => void;
   onHover: (index: number) => void;
   onLeave: () => void;
-  itemRef: (el: HTMLLIElement | null) => void;
 };
 
 export function SearchListItem({
@@ -19,7 +18,6 @@ export function SearchListItem({
   onClick,
   onHover,
   onLeave,
-  itemRef,
 }: SearchListItemProps) {
   const itemClassName = classNames(
     BemClass.FormSearchSelectItem,
@@ -28,7 +26,7 @@ export function SearchListItem({
 
   return (
     <li
-      ref={itemRef}
+      id={`camera-${index}`}
       className={itemClassName}
       tabIndex={-1}
       onClick={() => onClick(camera.id)}

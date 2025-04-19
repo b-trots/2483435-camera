@@ -1,34 +1,32 @@
-import { NameSpace, RequestCategory, RequestStatus } from '../../const/const';
-import { useAppDispatch, useAppSelector } from '../../hooks/hooks';
+import {
+  NameSpace,
+  RequestCategory,
+  RequestStatus,
+  ServiceParam,
+} from '../../const/const';
+import { useAppSelector } from '../../hooks/hooks';
 import {
   getCamerasError,
   getCamerasRequestStatus,
-  getCurrentCameras,
-  getIsAllCamerasLoaded,
 } from '../../store/slices/cameras/cameras-selectors';
-import { useEffect } from 'react';
-import { fetchCamerasAction } from '../../store/slices/cameras/cameras-actions';
 import { ProductCard } from '../../components/main/product-card/product-card';
 import { LoadData } from '../../components/load-data/load-data';
 import { usePagination } from '../../hooks/use-pagination';
+import { selectCameras } from '../../utils/utils';
+import { useFilterAndSortingContext } from '../../hooks/use-filters-and-sort/use-filter-and-sort-context';
 
 export function CatalogCards() {
-  const dispatch = useAppDispatch();
   const { currentPage } = usePagination(NameSpace.CatalogPageSearchId);
-  const currentCameras = useAppSelector((state) =>
-    getCurrentCameras(state, currentPage)
-  );
-
+  const { cameras } = useFilterAndSortingContext();
   const camerasLoadStatus = useAppSelector(getCamerasRequestStatus);
   const isCamerasLoading = camerasLoadStatus === RequestStatus.Loading;
-  const isCamerasLoaded = useAppSelector(getIsAllCamerasLoaded);
   const productsError = useAppSelector(getCamerasError);
 
-  useEffect(() => {
-    if (!isCamerasLoaded) {
-      dispatch(fetchCamerasAction());
-    }
-  }, [dispatch, isCamerasLoaded]);
+  const currentCameras = selectCameras(
+    cameras,
+    currentPage,
+    ServiceParam.ItemsPerPage
+  );
 
   return productsError || isCamerasLoading ? (
     <div>

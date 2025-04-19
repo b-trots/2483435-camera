@@ -1,5 +1,5 @@
 import { RequestStatus, ServiceParam, SliceName } from '../../../const/const';
-import { Cameras } from '../../../types/product-type';
+import { Cameras } from '../../../types/camera-type';
 import {
   generateAllCameras,
   generateCamerasForState,

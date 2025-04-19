@@ -6,7 +6,7 @@ import {
   fetchOrSetCameraAction,
   fetchSimilarAction,
 } from '../store/slices/cameras/cameras-actions';
-import { FullCamera } from '../types/product-type';
+import { FullCamera } from '../types/camera-type';
 
 const useAppDispatch = () => useDispatch<AppDispatch>();
 const useAppSelector: TypedUseSelectorHook<State> = useSelector;
@@ -17,7 +17,7 @@ const useScrollToTop = () => {
   }, []);
 };
 
-function useProductData(id: string, currentCamera: FullCamera | null) {
+function useFetchCameraData(id: string, currentCamera: FullCamera | null) {
   const dispatch = useAppDispatch();
 
   useEffect(() => {
@@ -28,4 +28,4 @@ function useProductData(id: string, currentCamera: FullCamera | null) {
   }, [id, currentCamera, dispatch]);
 }
 
-export { useAppDispatch, useAppSelector, useScrollToTop, useProductData };
+export { useAppDispatch, useAppSelector, useScrollToTop, useFetchCameraData };

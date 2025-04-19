@@ -1,11 +1,11 @@
 import { RequestStatus, SliceName } from '../../../const/const';
-import { CamerasForState, PromoCamera } from '../../../types/product-type';
+import { CamerasForState, PromoCamera } from '../../../types/camera-type';
 import { ReviewsForState } from '../../../types/types';
 import {
   generateReviewsForCameras,
   generateReviewsForState,
 } from '../../../utils/mock';
-import { daySort } from '../../../utils/sorting-utils';
+import { daySort } from '../../../utils/filter-and-sorting-utils/sorting-utils';
 import {
   getAllCamerasReviews,
   getCurrentReviews,

@@ -4,11 +4,8 @@ import {
   ModalType,
   RequestStatus,
 } from '../../const/const';
-import {
-  CamerasForState,
-  PromoCamera,
-} from '../product-type';
-import { ReviewsForState, SortingDirection, SortingType } from '../types';
+import { CamerasForState, PromoCamera } from '../camera-type';
+import { ReviewsForState } from '../types';
 
 type CamerasSlice = {
   allCameras: CamerasForState;
@@ -40,15 +37,4 @@ type OrderSlice = {
   orderError: boolean;
 };
 
-type ActiveSlice = {
-  sortType:SortingType;
-  sortDirection:SortingDirection;
-}
-
-export type {
-  CamerasSlice,
-  ReviewsSlice,
-  ModalSlice,
-  OrderSlice,
-  ActiveSlice
-};
+export type { CamerasSlice, ModalSlice, OrderSlice, ReviewsSlice };

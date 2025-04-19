@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
-import { DefaultParam, ServiceParam } from '../const/const';
-import { filterCameras } from '../utils/search-utils/search-utils';
-import { FullCamera } from '../types/product-type';
+import { ServiceParam, DefaultParam } from '../../const/const';
+import { FullCamera } from '../../types/camera-type';
+import { filterCameras } from '../../utils/search-utils/search-utils';
 
 export function useSearchCameras(
   allCameras: FullCamera[],

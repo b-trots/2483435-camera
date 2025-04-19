@@ -1,4 +1,4 @@
-import { FullCamera } from '../../types/product-type';
+import { FullCamera } from '../../types/camera-type';
 
 type HandleSearchKeyDownProps = {
   e: React.KeyboardEvent<HTMLInputElement>;

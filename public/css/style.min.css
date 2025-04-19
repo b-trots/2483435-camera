@@ -1563,6 +1563,10 @@ button {
   color: #7575e2;
   background-color: #e8e8fa;
 }
+.catalog-sort__btn-text input[type='radio']:checked:focus-visible + label {
+  color: #fff;
+  background-color: #7575e2;
+}
 .catalog-sort__btn--up svg {
   -webkit-transform: scale(-1, 1);
   -ms-transform: scale(-1, 1);

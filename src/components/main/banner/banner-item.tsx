@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom';
 import { BannerParam } from '../../../const/const';
 import { PassiveButtonName } from '../../../const/const-button';
 import { AppRoute } from '../../../const/const-navigate';
-import { PromoCamera } from '../../../types/product-type';
+import { PromoCamera } from '../../../types/camera-type';
 
 type BannerItemProps = {
   camera: PromoCamera;

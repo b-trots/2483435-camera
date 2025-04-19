@@ -1,10 +1,7 @@
 import { createSelector } from '@reduxjs/toolkit';
-import { RequestStatus, ServiceParam, SliceName } from '../../../const/const';
+import { RequestStatus, SliceName } from '../../../const/const';
 import { State } from '../../../types/store-types/store-types';
-import { selectCameras } from '../../../utils/utils';
-import { Cameras } from '../../../types/product-type';
-import { getSortDirection, getSortType } from '../active/active-selectors';
-import { toSortCameras } from '../../../utils/sorting-utils';
+import { Cameras } from '../../../types/camera-type';
 
 export type CamerasState = Pick<State, SliceName.Cameras>;
 
@@ -15,19 +12,6 @@ const getAllCameras = createSelector(
 
 const getIsAllCamerasLoaded = (state: CamerasState): boolean =>
   state[SliceName.Cameras].isAllCamerasLoaded;
-
-const getCurrentCameras = createSelector(
-  [
-    getAllCameras,
-    getSortType,
-    getSortDirection,
-    (_state: CamerasState, currentPage: number) => currentPage,
-  ],
-  (allCameras, sortType, sortDirection, currentPage) => {
-    const sortedCameras = toSortCameras(allCameras, sortType, sortDirection);
-    return selectCameras(sortedCameras, currentPage, ServiceParam.ItemsPerPage);
-  }
-);
 
 const getCurrentCameraId = (state: CamerasState) =>
   state[SliceName.Cameras].currentCameraId;
@@ -78,7 +62,6 @@ const getCamerasError = (state: CamerasState) =>
 export {
   getAllCameras,
   getIsAllCamerasLoaded,
-  getCurrentCameras,
   getCurrentCameraId,
   getCurrentCamera,
   getPromoCameras,

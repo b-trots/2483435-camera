@@ -4,8 +4,12 @@ import {
   RequestStatus,
   SliceName,
 } from '../../../const/const';
-import { CamerasForState, PromoCamera } from '../../../types/product-type';
-import { generateAllCameras, generateCamerasForState, generateSimilarCamerasIds } from '../../../utils/mock';
+import { CamerasForState, PromoCamera } from '../../../types/camera-type';
+import {
+  generateAllCameras,
+  generateCamerasForState,
+  generateSimilarCamerasIds,
+} from '../../../utils/mock';
 import {
   getActiveModal,
   getModalCamera,
