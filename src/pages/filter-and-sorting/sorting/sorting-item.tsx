@@ -1,27 +1,36 @@
 import classNames from 'classnames';
 import {
+  BemClass,
   DefaultParam,
   NameSpace,
   ServiceParam,
-  Sorting,
-  SORTING,
 } from '../../../const/const';
 import { ButtonBemClass } from '../../../const/const-button';
+import { SortOrder, Sorting } from '../../../const/sorting-const';
+import {
+  SortingType,
+  SortingValue,
+} from '../../../types/filter-and-sort-types';
 
-type SortingItem = (typeof SORTING)[keyof typeof SORTING][number];
-export type SortItemId = SortingItem['id'];
+type SortingItem = (typeof Sorting)[keyof typeof Sorting][number];
 
 type SortingItemProps = {
   sortInfo: SortingItem;
-  active: SortItemId;
-  onChange: (id: SortItemId) => void;
+  activeSorting: SortingType;
+  onChange: (id: SortingValue) => void;
+  disabled: boolean;
 };
 
-export function SortingItem({ sortInfo, active, onChange }: SortingItemProps) {
+export function SortingItem({
+  sortInfo,
+  activeSorting,
+  onChange,
+  disabled,
+}: SortingItemProps) {
   const { name, id, text } = sortInfo;
-  const isType = name === Sorting.Sort;
-  const isUp = id === Sorting.Up;
-  const isActive = active === id;
+  const isType = name === BemClass.Sort;
+  const isUp = id === SortOrder.Up;
+  const isActive = Object.values(activeSorting).includes(id);
   const itemClassName = classNames(
     isType ? ButtonBemClass.SortText : ButtonBemClass.Sort,
     !isType && isUp && ButtonBemClass.SortUp,
@@ -34,12 +43,14 @@ export function SortingItem({ sortInfo, active, onChange }: SortingItemProps) {
   return (
     <div className={itemClassName}>
       <input
+        tabIndex={0}
         type="radio"
         id={id}
         name={name}
         {...isAriaLabel}
         checked={isActive}
         onChange={() => onChange(id)}
+        disabled={disabled}
       />
 
       <label htmlFor={id}>
