@@ -6,9 +6,9 @@ import {
   getIsAllCamerasLoaded,
 } from '../../store/slices/cameras/cameras-selectors';
 import { CatalogCards } from './catalog-cards';
-import { FilterComponent } from '../filter-and-sorting/filters/filter-component';
+import { FilterComponent } from './filter-and-sorting/filters/filter-component';
 import { Pagination } from './pagination/pagination';
-import { SortingComponent } from '../filter-and-sorting/sorting/sorting-component';
+import { SortingComponent } from './filter-and-sorting/sorting/sorting-component';
 import { fetchCamerasAction } from '../../store/slices/cameras/cameras-actions';
 import { useLocation } from 'react-router-dom';
 import { useFilterAndSortingContext } from '../../hooks/use-filters-and-sort/use-filter-and-sort-context';

@@ -1,4 +1,5 @@
 import { CameraCategory } from '../../../const/camera-const';
+import { DefaultParam } from '../../../const/const';
 import { FilterCameraCategory } from '../../../const/filter-const';
 import { FilterCameraCategoryType } from '../../../types/filter-and-sort-types';
 import { capitalize } from '../../utils';
@@ -25,7 +26,11 @@ const matchesArrayFilter = (
   filterValue: string[],
   filterParameters: Record<string, { name: string }>
 ) => {
-  if (!filterValue || !Array.isArray(filterValue) || filterValue.length === 0) {
+  if (
+    !filterValue ||
+    !Array.isArray(filterValue) ||
+    filterValue.length === DefaultParam.ZeroValue
+  ) {
     return true;
   }
 

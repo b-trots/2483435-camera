@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useMemo, useState } from 'react';
-import { DefaultParam } from '../../const/const';
+import { DefaultParam, ServiceParam } from '../../const/const';
 import { SortOrder, SortType } from '../../const/sorting-const';
 import { Cameras } from '../../types/camera-type';
 import {
@@ -17,8 +17,8 @@ import { toUpdateFilters } from '../../utils/filter-and-sorting-utils/filter-uti
 
 type UseFilteredAndSortedCamerasParams = {
   cameras: Cameras;
-  initialFilters?: FiltersType;
-  initialSorting?: SortingType;
+  initialFilters: FiltersType;
+  initialSorting: SortingType;
 };
 
 const initialFilters: FiltersType = {
@@ -55,8 +55,8 @@ const useFilteredAndSortedCameras = ({
   useEffect(() => {
     const isFiltersDisabled =
       !filters.category &&
-      (!filters.type || filters.type.length === 0) &&
-      (!filters.level || filters.level.length === 0);
+      (!filters.type || filters.type.length === ServiceParam.ZeroValue) &&
+      (!filters.level || filters.level.length === ServiceParam.ZeroValue);
 
     const newPriceRange = isFiltersDisabled
       ? toFindPriceRange(cameras)

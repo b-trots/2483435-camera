@@ -1,3 +1,4 @@
+import { ServiceParam } from '../../../const/const';
 import { FilterCameraPrice } from '../../../const/filter-const';
 import { Cameras } from '../../../types/camera-type';
 import { FiltersType } from '../../../types/filter-and-sort-types';
@@ -19,7 +20,7 @@ function toUpdatePriceFilter({
   updatedFilters,
 }: toUpdatePriceFilterProps) {
   const typedName = name;
-  const priceValue = value ? parseInt(value, 10) : null;
+  const priceValue = value ? parseInt(value, ServiceParam.RadixTen) : null;
 
   const { newMinValidPrice, newMaxValidPrice } = toUpdateValidPriceRange(
     updatedFilters,

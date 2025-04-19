@@ -1,6 +1,6 @@
 import { FullCamera } from '../../../types/camera-type';
 import { SearchListItem } from './search-list-item';
-import { DefaultParam } from '../../../const/const';
+import { DefaultParam, ServiceParam } from '../../../const/const';
 import { useScrollToActiveItem } from '../../../hooks/use-search/use-scroll-to-active-item';
 
 type SearchListProps = {
@@ -27,7 +27,7 @@ export function SearchList({
   };
 
   return (
-    <ul className="form-search__select-list" tabIndex={-1}>
+    <ul className="form-search__select-list" tabIndex={ServiceParam.TabValueInActive}>
       {filteredCameras
         .filter(
           (camera): camera is FullCamera =>

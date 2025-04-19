@@ -1,3 +1,4 @@
+import { KeyboardButtonName } from '../../const/const';
 import { FocusableElements } from '../../types/types';
 
 const toLoopFocus = (
@@ -13,7 +14,7 @@ const toLoopFocus = (
   const lastElement = lastRef.current;
 
   const handleTabKeyDown = (e: KeyboardEvent) => {
-    if (e.key !== 'Tab') {
+    if (e.key !== KeyboardButtonName.Tab) {
       return;
     }
 

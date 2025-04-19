@@ -1,3 +1,10 @@
+import {
+  BemMode,
+  DefaultParam,
+  KeyboardButtonName,
+  ServiceParam,
+} from '../../const/const';
+
 export const handleFormKeyDown = (
   e: React.KeyboardEvent,
   formRef: React.MutableRefObject<HTMLFormElement | null>
@@ -11,15 +18,15 @@ export const handleFormKeyDown = (
   ).filter(
     (element): element is HTMLElement =>
       element instanceof HTMLElement &&
-      element.tabIndex === 0 &&
-      !element.hasAttribute('disabled')
+      element.tabIndex === ServiceParam.TabValueZero &&
+      !element.hasAttribute(BemMode.Disabled)
   );
 
   const currentIndex = focusableElements.indexOf(
     document.activeElement as HTMLElement
   );
 
-  if (currentIndex === -1) {
+  if (currentIndex === ServiceParam.NegativeIndex) {
     return;
   }
 
@@ -29,31 +36,34 @@ export const handleFormKeyDown = (
   };
 
   switch (e.key) {
-    case 'Tab':
+    case KeyboardButtonName.Tab:
       if (e.shiftKey) {
-        if (currentIndex > 0) {
-          moveFocus(currentIndex - 1);
+        if (currentIndex > DefaultParam.ZeroIndex) {
+          moveFocus(currentIndex - ServiceParam.IndexStep);
         }
       } else {
-        if (currentIndex < focusableElements.length - 1) {
-          moveFocus(currentIndex + 1);
+        if (currentIndex < focusableElements.length - ServiceParam.IndexStep) {
+          moveFocus(currentIndex + ServiceParam.IndexStep);
         }
       }
       break;
 
-    case 'ArrowDown':
-    case 'ArrowRight':
-      moveFocus((currentIndex + 1) % focusableElements.length);
-      break;
-
-    case 'ArrowUp':
-    case 'ArrowLeft':
+    case KeyboardButtonName.ArrowDown:
+    case KeyboardButtonName.ArrowRight:
       moveFocus(
-        (currentIndex - 1 + focusableElements.length) % focusableElements.length
+        (currentIndex + ServiceParam.IndexStep) % focusableElements.length
       );
       break;
 
-    case 'Enter': {
+    case KeyboardButtonName.ArrowUp:
+    case KeyboardButtonName.ArrowLeft:
+      moveFocus(
+        (currentIndex - ServiceParam.IndexStep + focusableElements.length) %
+          focusableElements.length
+      );
+      break;
+
+    case KeyboardButtonName.Enter: {
       const target = document.activeElement as HTMLInputElement;
       target.click();
       e.preventDefault();

@@ -1,3 +1,5 @@
+import { KeyboardButtonName } from '../../const/const';
+
 const toCloseModal = (
   containerRef: React.RefObject<HTMLDivElement>,
   modalRef: React.RefObject<HTMLDivElement>,
@@ -13,7 +15,7 @@ const toCloseModal = (
   }
 
   const handleEscapeKeyDown = (e: KeyboardEvent) => {
-    if (e.key === 'Escape') {
+    if (e.key === KeyboardButtonName.Escape) {
       e.stopPropagation();
       e.preventDefault();
 

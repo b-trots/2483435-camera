@@ -3,6 +3,7 @@ import { CamerasForState, FullCamera } from '../../types/camera-type';
 import dayjs from 'dayjs';
 import { ReviewType } from '../../types/types';
 import { SortingType, SortingValue } from '../../types/filter-and-sort-types';
+import { DefaultParam } from '../../const/const';
 
 const daySort = (reviewA: ReviewType, reviewB: ReviewType) =>
   dayjs(reviewB.createAt).diff(dayjs(reviewA.createAt));
@@ -24,10 +25,12 @@ const toUpdateSorting = (
 
 const toSort = {
   [SortType.SortPrice]: (cameraA: FullCamera, cameraB: FullCamera) =>
-    (cameraA.price ?? 0) - (cameraB.price ?? 0),
+    (cameraA.price ?? DefaultParam.ZeroValue) -
+    (cameraB.price ?? DefaultParam.ZeroValue),
 
   [SortType.SortPopular]: (cameraA: FullCamera, cameraB: FullCamera) =>
-    (cameraA.rating ?? 0) - (cameraB.rating ?? 0),
+    (cameraA.rating ?? DefaultParam.ZeroValue) -
+    (cameraB.rating ?? DefaultParam.ZeroValue),
 };
 
 const toSortCameras = (cameras: CamerasForState, sorting: SortingType) => {

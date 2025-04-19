@@ -1,6 +1,6 @@
 import classNames from 'classnames';
 import { FullCamera } from '../../../types/camera-type';
-import { BemClass } from '../../../const/const';
+import { BemClass, ServiceParam } from '../../../const/const';
 
 type SearchListItemProps = {
   camera: FullCamera;
@@ -28,7 +28,7 @@ export function SearchListItem({
     <li
       id={`camera-${index}`}
       className={itemClassName}
-      tabIndex={-1}
+      tabIndex={ServiceParam.TabValueInActive}
       onClick={() => onClick(camera.id)}
       onMouseEnter={() => onHover(index)}
       onMouseLeave={onLeave}

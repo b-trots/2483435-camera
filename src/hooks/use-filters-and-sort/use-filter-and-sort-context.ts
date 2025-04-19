@@ -1,12 +1,11 @@
 import { useContext } from 'react';
-import { FilterAndSortingContext } from '../../pages/filter-and-sorting/filter-and-sorting-context';
+import { FilterAndSortingContext } from '../../pages/catalog/filter-and-sorting/filter-and-sorting-context';
+import { ErrorInfoMessage } from '../../const/const';
 
 const useFilterAndSortingContext = () => {
   const context = useContext(FilterAndSortingContext);
   if (context === null) {
-    throw new Error(
-      'useFilterAndSortingContext must be used within a FilterAndSortingProvider'
-    );
+    throw new Error(ErrorInfoMessage.ErrorFilterAndSortingContext);
   }
   return context;
 };

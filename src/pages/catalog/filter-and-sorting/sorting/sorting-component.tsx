@@ -1,15 +1,16 @@
 import { SortingItem } from './sorting-item';
-import { ExplanationWord } from '../../../const/const';
-import { Sorting } from '../../../const/sorting-const';
-import { SortingValue } from '../../../types/filter-and-sort-types';
+import { ExplanationWord, ServiceParam } from '../../../../const/const';
+import { Sorting } from '../../../../const/sorting-const';
+import { SortingValue } from '../../../../types/filter-and-sort-types';
 import { useRef } from 'react';
-import { handleFormKeyDown } from '../../../utils/filter-and-sorting-utils/handle-form-key-down';
-import { useFilterAndSortingContext } from '../../../hooks/use-filters-and-sort/use-filter-and-sort-context';
+import { handleFormKeyDown } from '../../../../utils/filter-and-sorting-utils/handle-form-key-down';
+import { useFilterAndSortingContext } from '../../../../hooks/use-filters-and-sort/use-filter-and-sort-context';
 
 export function SortingComponent() {
   const { filteredCameras, sorting, updateSorting } =
     useFilterAndSortingContext();
-  const isMinCountCameras = filteredCameras.length < 2;
+  const isMinCountCameras =
+    filteredCameras.length < ServiceParam.MinCountCameras;
   const handleSortChange = (id: SortingValue) => {
     updateSorting(id);
   };

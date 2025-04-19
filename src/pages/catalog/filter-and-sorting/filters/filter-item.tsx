@@ -1,13 +1,13 @@
-import { CameraCategoryId, CameraParam } from '../../../const/camera-const';
-import { DefaultParam, NameSpace } from '../../../const/const';
-import { FilterCameraType, FilterName } from '../../../const/filter-const';
-import { useFilterAndSortingContext } from '../../../hooks/use-filters-and-sort/use-filter-and-sort-context';
-import { usePriceFilter } from '../../../hooks/use-price-filter';
+import { CameraCategoryId, CameraParam } from '../../../../const/camera-const';
+import { DefaultParam, NameSpace, ServiceParam } from '../../../../const/const';
+import { FilterCameraType, FilterName } from '../../../../const/filter-const';
+import { useFilterAndSortingContext } from '../../../../hooks/use-filters-and-sort/use-filter-and-sort-context';
+import { usePriceFilter } from '../../../../hooks/use-price-filter';
 import {
   FilterItemType,
   FilterNameRus,
-} from '../../../types/filter-and-sort-types';
-import { isFilterChecked } from '../../../utils/filter-and-sorting-utils/filter-utils/is-filter-checked';
+} from '../../../../types/filter-and-sort-types';
+import { isFilterChecked } from '../../../../utils/filter-and-sorting-utils/filter-utils/is-filter-checked';
 
 type FilterItemProps = {
   title: FilterNameRus;
@@ -43,7 +43,7 @@ export function FilterItem({ title, param }: FilterItemProps) {
     <div className={`custom-${itemType} catalog-filter__item`}>
       <label>
         <input
-          tabIndex={0}
+          tabIndex={ServiceParam.TabValueZero}
           type={itemType}
           name={itemName}
           {...defaultValue}

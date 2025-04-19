@@ -18,7 +18,7 @@ const DefaultParam = {
   PageNumberOne: 1,
   ZeroValue: 0,
   ZeroIndex: 0,
-  Null:null,
+  Null: null,
   UrlId: 'page',
 };
 
@@ -62,6 +62,19 @@ const ServiceParam = {
   SortIconHeight: 14,
   FirstElement: 0,
   SecondElement: 1,
+  TabValueInActive: -1,
+  TabValueZero: 0,
+  RadixTen: 10,
+  ScrollBehaviorSmooth: 'smooth',
+  ScrollBlockNearest: 'nearest',
+  ZeroValue: 0,
+  MinCountCameras: 2,
+  NegativeIndex: -1,
+  IndexStep: 1,
+  FirstChar: 1,
+  SecondChar: 2,
+  DateFormat: 'DD MMMM',
+  PageStep: 1
 } as const;
 
 enum ServerParam {
@@ -80,6 +93,7 @@ enum ErrorInfoMessage {
   Error = 'Произошла ошибка:',
   TryLater = 'Попробуйте позже.',
   CheckInternet = 'Не удалось подключиться к серверу. Проверьте интернет-соединение.',
+  ErrorFilterAndSortingContext = 'useFilterAndSortingContext must be used within a FilterAndSortingProvider',
 }
 
 const Validation = {
@@ -146,6 +160,7 @@ enum BemMode {
   Active = '--active',
   Prev = '--prev',
   Next = '--next',
+  Disabled = 'disabled',
 }
 
 enum BannerParam {
@@ -170,7 +185,7 @@ enum NameSpace {
   Radio = 'radio',
   Checkbox = 'checkbox',
   Number = 'number',
-  String = 'string'
+  String = 'string',
 }
 
 const ToastParam = {
@@ -234,6 +249,10 @@ enum ModalStatus {
   Close = 'false',
 }
 
+enum InputType {
+  String = 'string',
+}
+
 const StatusCodeMapping: Record<number, string> = {
   [StatusCodes.BAD_REQUEST]: 'Некорректный запрос',
   [StatusCodes.UNAUTHORIZED]: 'Необходимо авторизоваться.',
@@ -270,6 +289,15 @@ enum RequestCategory {
   Reviews = 'reviews',
 }
 
+enum KeyboardButtonName {
+  Tab = 'Tab',
+  ArrowDown = 'ArrowDown',
+  ArrowRight = 'ArrowRight',
+  ArrowUp = 'ArrowUp',
+  ArrowLeft = 'ArrowLeft',
+  Enter = 'Enter',
+  Escape = 'Escape',
+}
 
 export {
   ApiActionName,
@@ -304,4 +332,6 @@ export {
   TitleName,
   ToastParam,
   Validation,
+  InputType,
+  KeyboardButtonName,
 };

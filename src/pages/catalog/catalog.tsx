@@ -6,7 +6,7 @@ import { useScrollToTop } from '../../hooks/hooks';
 import { useChangeTitle } from '../../hooks/use-change-title';
 import { TitleName } from '../../const/const';
 import { CatalogContainer } from './catalog-container';
-import { FilterAndSortingProvider } from '../filter-and-sorting/filter-and-sorting-context';
+import { FilterAndSortingProvider } from './filter-and-sorting/filter-and-sorting-context';
 export function Catalog() {
   useChangeTitle(TitleName.Catalog);
   useScrollToTop();

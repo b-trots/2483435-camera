@@ -7,6 +7,7 @@ import { FullCamera } from '../../types/camera-type';
 import { handleSearchKeyDown } from '../../utils/search-utils/handle-search-key-down';
 import { useAppDispatch, useAppSelector } from '../hooks';
 import { useSearchCameras } from './use-search-cameras';
+import { DefaultParam, ServiceParam } from '../../const/const';
 
 export function useSearch() {
   const location = useLocation();
@@ -15,12 +16,14 @@ export function useSearch() {
   const inputRef = useRef<HTMLInputElement | null>(null);
 
   const allCameras = Object.values(useAppSelector(getAllCameras));
-  const [search, setSearch] = useState('');
-  const [filteredCameras, setFilteredCameras] = useState<FullCamera[]>([]);
+  const [search, setSearch] = useState(DefaultParam.EmptyString);
+  const [filteredCameras, setFilteredCameras] = useState<FullCamera[]>(
+    DefaultParam.EmptyArray
+  );
   const [activeIndex, setActiveIndex] = useState<number | null>(null);
   const [isInputFocused, setIsInputFocused] = useState(false);
 
-  const isSearchValid = search.length >= 3;
+  const isSearchValid = search.length >= ServiceParam.MinSearchCharacters;
 
   useSearchCameras(
     allCameras,
@@ -31,8 +34,8 @@ export function useSearch() {
   );
 
   useEffect(() => {
-    setSearch('');
-    setFilteredCameras([]);
+    setSearch(DefaultParam.EmptyString);
+    setFilteredCameras(DefaultParam.EmptyArray);
     setActiveIndex(null);
     setIsInputFocused(false);
   }, [location.pathname]);
@@ -42,7 +45,7 @@ export function useSearch() {
   const handleInputFocus = () => {
     setIsInputFocused(true);
     if (isSearchValid) {
-      setActiveIndex(0);
+      setActiveIndex(DefaultParam.ZeroIndex);
     }
   };
 
@@ -67,8 +70,8 @@ export function useSearch() {
   };
 
   const clearSearch = () => {
-    setSearch('');
-    setFilteredCameras([]);
+    setSearch(DefaultParam.EmptyString);
+    setFilteredCameras(DefaultParam.EmptyArray);
     setActiveIndex(null);
   };
 

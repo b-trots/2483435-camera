@@ -1,10 +1,10 @@
-import { ServiceParam } from '../../../const/const';
+import { DefaultParam, ServiceParam } from '../../../const/const';
 import { Cameras } from '../../../types/camera-type';
 import { FilterCameraPriceType } from '../../../types/filter-and-sort-types';
 
 const toFindPriceRange = (cameras: Cameras): FilterCameraPriceType => {
   if (!cameras.length) {
-    return { price: 0, priceUp: 0 };
+    return { price: DefaultParam.ZeroValue, priceUp: DefaultParam.ZeroValue };
   }
 
   return cameras.reduce(

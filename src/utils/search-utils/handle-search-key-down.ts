@@ -1,3 +1,8 @@
+import {
+  DefaultParam,
+  KeyboardButtonName,
+  ServiceParam,
+} from '../../const/const';
 import { FullCamera } from '../../types/camera-type';
 
 type HandleSearchKeyDownProps = {
@@ -15,13 +20,12 @@ export const handleSearchKeyDown = ({
   setActiveIndex,
   handleClick,
 }: HandleSearchKeyDownProps) => {
-  const maxIndex = filteredCameras.length - 1;
+  const maxIndex = filteredCameras.length - ServiceParam.IndexStep;
 
   const IndexStep = {
-    Increase: 1,
-    Decrease: -1,
+    Increase: ServiceParam.IndexStep,
+    Decrease: -ServiceParam.IndexStep,
   } as const;
-
   if (!filteredCameras.length || activeIndex === null) {
     return;
   }
@@ -30,18 +34,18 @@ export const handleSearchKeyDown = ({
     (activeIndex + delta + filteredCameras.length) % filteredCameras.length;
 
   switch (e.key) {
-    case 'ArrowDown':
+    case KeyboardButtonName.ArrowDown:
       e.preventDefault();
       setActiveIndex(getNextIndex(IndexStep.Increase));
       break;
 
-    case 'ArrowUp':
+    case KeyboardButtonName.ArrowUp:
       e.preventDefault();
       setActiveIndex(getNextIndex(IndexStep.Decrease));
       break;
 
-    case 'Tab':
-      if (e.shiftKey && activeIndex === 0) {
+    case KeyboardButtonName.Tab:
+      if (e.shiftKey && activeIndex === DefaultParam.ZeroIndex) {
         setActiveIndex(null);
         return;
       }
@@ -55,7 +59,7 @@ export const handleSearchKeyDown = ({
       );
       break;
 
-    case 'Enter':
+    case KeyboardButtonName.Enter:
       e.preventDefault();
       handleClick(filteredCameras[activeIndex].id);
       break;

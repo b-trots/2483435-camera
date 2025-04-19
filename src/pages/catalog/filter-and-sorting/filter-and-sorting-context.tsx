@@ -4,14 +4,15 @@ import {
   FiltersType,
   SortingType,
   SortingValue,
-} from '../../types/filter-and-sort-types';
+} from '../../../types/filter-and-sort-types';
 import React from 'react';
 import {
   initialFilters,
   initialSorting,
   useFilteredAndSortedCameras,
-} from '../../hooks/use-filters-and-sort/use-filter-and-sort-cameras';
-import { Cameras } from '../../types/camera-type';
+} from '../../../hooks/use-filters-and-sort/use-filter-and-sort-cameras';
+import { Cameras } from '../../../types/camera-type';
+import { DefaultParam } from '../../../const/const';
 
 type FilterAndSortingContextType = {
   filters: FiltersType;
@@ -37,7 +38,7 @@ const FilterAndSortingContext =
 const FilterAndSortingProvider: React.FC<FilterAndSortingProviderProps> = ({
   children,
 }) => {
-  const [cameras, setCameras] = useState<Cameras>([]);
+  const [cameras, setCameras] = useState<Cameras>(DefaultParam.EmptyArray);
   const {
     filters,
     sorting,

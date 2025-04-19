@@ -9,7 +9,7 @@ const toStandardizePhone = (phone: string) =>
 
 const reviewDate = (date: string) => {
   dayjs.locale('ru');
-  return dayjs(date).format('DD MMMM');
+  return dayjs(date).format(ServiceParam.DateFormat);
 };
 
 const selectCameras = (
@@ -29,7 +29,9 @@ const countPages = (products: unknown[], quantity: number) =>
   Math.ceil(products.length / quantity);
 
 const createPagesNames = (pagesCount: number) => [
-  ...Array.from({ length: pagesCount }, (_, i) => String(i + 1)),
+  ...Array.from({ length: pagesCount }, (_, i) =>
+    String(i + ServiceParam.PageStep)
+  ),
   PaginationButton.Text,
 ];
 
@@ -43,7 +45,8 @@ const correctPrice = (value: string | number) =>
 
 const capitalize = <T extends string>(letter: T): Capitalize<T> | string =>
   letter
-    ? ((letter.charAt(0).toUpperCase() + letter.slice(1)) as Capitalize<T>)
+    ? ((letter.charAt(ServiceParam.FirstChar).toUpperCase() +
+        letter.slice(ServiceParam.SecondChar)) as Capitalize<T>)
     : letter;
 
 export {
