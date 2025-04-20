@@ -36,7 +36,7 @@ const createPagesNames = (pagesCount: number) => [
 ];
 
 function formatPrice(price: number): string {
-  const correctPrice = new Intl.NumberFormat('ru-RU').format(price);
+  const correctPrice = new Intl.NumberFormat(ServiceParam.LocaleRu).format(price);
   return `${correctPrice} ₽`;
 }
 

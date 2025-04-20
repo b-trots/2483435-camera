@@ -70,10 +70,11 @@ const ServiceParam = {
   MinCountCameras: 2,
   NegativeIndex: -1,
   IndexStep: 1,
-  FirstChar: 1,
-  SecondChar: 2,
+  FirstChar: 0,
+  SecondChar: 1,
   DateFormat: 'DD MMMM',
-  PageStep: 1
+  PageStep: 1,
+  LocaleRu: 'ru-RU',
 } as const;
 
 enum ServerParam {
