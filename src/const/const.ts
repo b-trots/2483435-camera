@@ -18,7 +18,6 @@ const DefaultParam = {
   PageNumberOne: 1,
   ZeroValue: 0,
   ZeroIndex: 0,
-  Null: null,
   UrlId: 'page',
 };
 
