@@ -11,7 +11,7 @@ export function useSearchCameras(
   setActiveIndex: React.Dispatch<React.SetStateAction<number | null>>
 ) {
   useEffect(() => {
-    if (query.length < ServiceParam.MinSearchCharacters) {
+    if (query.length < ServiceParam.MinimalSearchCharacters) {
       if (filteredCameras.length > DefaultParam.ZeroValue) {
         setFilteredCameras(DefaultParam.EmptyArray);
       }

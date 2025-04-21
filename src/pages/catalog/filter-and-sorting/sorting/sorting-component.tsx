@@ -10,7 +10,7 @@ export function SortingComponent() {
   const { filteredCameras, sorting, updateSorting } =
     useFilterAndSortingContext();
   const isMinCountCameras =
-    filteredCameras.length < ServiceParam.MinCountCameras;
+    filteredCameras.length < ServiceParam.MinimalCountCameras;
   const handleSortChange = (id: SortingValue) => {
     updateSorting(id);
   };

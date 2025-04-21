@@ -1,8 +1,7 @@
-import { RequestStatus, SliceName } from '../../../const/const';
+import { DefaultParam, RequestStatus, SliceName } from '../../../const/const';
 import { Cameras } from '../../../types/camera-type';
 import {
   generateAllCameras,
-  generateCamerasForState,
   generatePromoCameras,
   generateSimilarCamerasIds,
 } from '../../../utils/mock';
@@ -21,11 +20,10 @@ import {
 } from './cameras-selectors';
 
 describe('Cameras Selectors', () => {
-  const mockCameras = generateAllCameras(5);
-  const mockAllCameras = generateCamerasForState(mockCameras);
-  const mockCamera = mockCameras[0];
+  const mockAllCameras = generateAllCameras(5);
+  const mockCamera = mockAllCameras[0];
   const mockPromoCameras = generatePromoCameras(5);
-  const mockSimilarCameras = generateSimilarCamerasIds(mockCameras);
+  const mockSimilarCameras = generateSimilarCamerasIds(mockAllCameras);
 
   const state = {
     [SliceName.Cameras]: {
@@ -52,7 +50,7 @@ describe('Cameras Selectors', () => {
       ...state,
       [SliceName.Cameras]: {
         ...state[SliceName.Cameras],
-        allCameras: {},
+        allCameras: DefaultParam.EmptyArray,
       },
     };
     const result = getAllCameras(newState);
@@ -71,7 +69,7 @@ describe('Cameras Selectors', () => {
   //   const expectedResult = selectCameras(
   //     state[SliceName.Cameras].allCameras,
   //     currentPage,
-  //     ServiceParam.ItemsPerPage
+  //     ServiceParam.CamerasPerPage
   //   );
   //   expect(result).toEqual(expectedResult);
   // });

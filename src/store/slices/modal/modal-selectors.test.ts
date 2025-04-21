@@ -4,10 +4,9 @@ import {
   RequestStatus,
   SliceName,
 } from '../../../const/const';
-import { CamerasForState, PromoCamera } from '../../../types/camera-type';
+import { Cameras, PromoCamera } from '../../../types/camera-type';
 import {
   generateAllCameras,
-  generateCamerasForState,
   generateSimilarCamerasIds,
 } from '../../../utils/mock';
 import {
@@ -19,7 +18,7 @@ import {
 
 interface State {
   [SliceName.Cameras]: {
-    allCameras: CamerasForState;
+    allCameras: Cameras;
     currentCameraId: number | null;
     promoCameras: PromoCamera[];
     similarCamerasIds: number[];
@@ -37,9 +36,8 @@ interface State {
 }
 
 describe('Modal Selectors', () => {
-  const mockCameras = generateAllCameras(5);
-  const mockAllCameras = generateCamerasForState(mockCameras);
-  const currentCameraId = generateSimilarCamerasIds(mockCameras)[0];
+  const mockAllCameras = generateAllCameras(5);
+  const currentCameraId = generateSimilarCamerasIds(mockAllCameras)[0];
 
   const state: State = {
     [SliceName.Cameras]: {

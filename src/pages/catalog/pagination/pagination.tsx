@@ -1,24 +1,23 @@
 import { DefaultParam, NameSpace, ServiceParam } from '../../../const/const';
 import { useAppSelector } from '../../../hooks/hooks';
+import { useFilterAndSortingContext } from '../../../hooks/use-filters-and-sort/use-filter-and-sort-context';
 import { usePagination } from '../../../hooks/use-pagination';
-import { getAllCameras, getIsAllCamerasLoaded } from '../../../store/slices/cameras/cameras-selectors';
-import { createPagesNames } from '../../../utils/utils';
+import { getIsAllCamerasLoaded } from '../../../store/slices/cameras/cameras-selectors';
 import { PaginationItem } from './pagination-item';
 
-
 export function Pagination() {
-  const allCameras = useAppSelector(getAllCameras);
+  const { filteredCameras } = useFilterAndSortingContext();
   const isCamerasLoaded = useAppSelector(getIsAllCamerasLoaded);
-  const { currentPage, pagesCount, goToPage } = usePagination(
+  const { currentPage, pagesNames, goToPage } = usePagination(
     NameSpace.CatalogPageSearchId,
-    Object.values(allCameras),
-    ServiceParam.ItemsPerPage
+    filteredCameras,
+    ServiceParam.CamerasPerPage
   );
-  const pagesNames = createPagesNames(pagesCount);
 
   const isVoid =
     !isCamerasLoaded ||
-    Object.keys(allCameras).length === DefaultParam.ZeroValue;
+    filteredCameras.length === DefaultParam.ZeroValue ||
+    !pagesNames;
 
   return isVoid ? null : (
     <div className="pagination">

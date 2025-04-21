@@ -1,5 +1,5 @@
 import { SortOrder, SortType } from '../../const/sorting-const';
-import { CamerasForState, FullCamera } from '../../types/camera-type';
+import { Cameras, FullCamera } from '../../types/camera-type';
 import dayjs from 'dayjs';
 import { ReviewType } from '../../types/types';
 import { SortingType, SortingValue } from '../../types/filter-and-sort-types';
@@ -33,12 +33,10 @@ const toSort = {
     (cameraB.rating ?? DefaultParam.ZeroValue),
 };
 
-const toSortCameras = (cameras: CamerasForState, sorting: SortingType) => {
+const toSortCameras = (cameras: Cameras, sorting: SortingType) => {
   const isDescending = sorting.order === SortOrder.Down;
 
-  const sortedCameras = Object.values(cameras)
-    .slice()
-    .sort(toSort[sorting.type]);
+  const sortedCameras = cameras.slice().sort(toSort[sorting.type]);
 
   return isDescending ? sortedCameras.reverse() : sortedCameras;
 };

@@ -25,7 +25,7 @@ export function CatalogCards() {
   const currentCameras = selectCameras(
     cameras,
     currentPage,
-    ServiceParam.ItemsPerPage
+    ServiceParam.CamerasPerPage
   );
 
   return productsError || isCamerasLoading ? (

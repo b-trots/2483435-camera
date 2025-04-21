@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import { SHOP_TITLE } from '../../const/const';
+import { ServiceParam, SHOP_TITLE } from '../../const/const';
 import { useAppDispatch, useAppSelector } from '../../hooks/hooks';
 import {
   getAllCameras,
@@ -18,15 +18,17 @@ export function CatalogContainer() {
   const dispatch = useAppDispatch();
   const allCameras = useAppSelector(getAllCameras);
   const isCamerasLoaded = useAppSelector(getIsAllCamerasLoaded);
-  const { setCameras, resetFilters, resetSorting } =
+  const { filteredCameras, setCameras, resetFilters, resetSorting } =
     useFilterAndSortingContext();
+
+  const isSinglePage = filteredCameras.length <= ServiceParam.CamerasPerPage;
 
   useEffect(() => {
     if (!isCamerasLoaded) {
       dispatch(fetchCamerasAction());
       return;
     }
-    setCameras(Object.values(allCameras));
+    setCameras(allCameras);
   }, [dispatch, isCamerasLoaded, setCameras, allCameras]);
 
   useEffect(() => {
@@ -46,7 +48,7 @@ export function CatalogContainer() {
           <div className="catalog__content">
             <SortingComponent />
             <CatalogCards />
-            <Pagination />
+            {!isSinglePage && <Pagination />}
           </div>
         </div>
       </div>

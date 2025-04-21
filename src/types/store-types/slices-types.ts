@@ -4,11 +4,11 @@ import {
   ModalType,
   RequestStatus,
 } from '../../const/const';
-import { CamerasForState, PromoCamera } from '../camera-type';
+import { Cameras, PromoCamera } from '../camera-type';
 import { ReviewsForState } from '../types';
 
 type CamerasSlice = {
-  allCameras: CamerasForState;
+  allCameras: Cameras;
   currentCameraId: number | null;
   promoCameras: PromoCamera[];
   similarCamerasIds: number[];

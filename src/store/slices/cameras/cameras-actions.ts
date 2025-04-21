@@ -25,15 +25,8 @@ const fetchCamerasAction = appCreateAsyncThunk<void, undefined>(
   async (_arg, { dispatch, extra: api }) => {
     const { data: cameras } = await api.get<Cameras>(APIRoute.Cameras);
 
-    const camerasForStore = cameras.reduce<Record<number, FullCamera>>(
-      (acc, camera) => {
-        acc[camera.id] = camera;
-        return acc;
-      },
-      {}
-    );
-    if (camerasForStore) {
-      dispatch(setAllCameras(camerasForStore));
+    if (cameras) {
+      dispatch(setAllCameras(cameras));
     }
   }
 );

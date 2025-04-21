@@ -31,12 +31,10 @@ type CameraForCatalog = Omit<FullCamera, 'description' | 'level' | 'type'>;
 
 type Cameras = FullCamera[];
 
-type CamerasForState = Record<number, FullCamera>;
 
 export type {
   FullCamera,
   CameraForCatalog,
   Cameras,
-  CamerasForState,
   PromoCamera,
 };

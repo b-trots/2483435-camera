@@ -8,10 +8,9 @@ import {
   AppThunkDispatch,
   generateAllCameras,
   generateCamera,
-  generateCamerasForState,
   generatePromoCameras,
 } from '../../../utils/mock';
-import { APIRoute } from '../../../const/const';
+import { APIRoute, DefaultParam } from '../../../const/const';
 import {
   fetchCamerasAction,
   fetchOrSetCameraAction,
@@ -37,7 +36,7 @@ let store: ReturnType<typeof mockStoreCreator>;
 beforeEach(() => {
   store = mockStoreCreator({
     CAMERAS: {
-      allCameras: {},
+      allCameras: DefaultParam.EmptyArray,
       currentCameraId: null,
     },
   });
@@ -62,9 +61,7 @@ describe('fetchCamerasAction', () => {
     const fetchCamerasActionFulfilled = emittedActions[1] as ReturnType<
       typeof fetchCamerasAction.fulfilled
     >;
-    expect(fetchCamerasActionFulfilled.payload).toEqual(
-      generateCamerasForState(mockCameras)
-    );
+    expect(fetchCamerasActionFulfilled.payload).toEqual(generateAllCameras(5));
   });
 
   it('should dispatch "fetchCamerasAction.pending", "fetchCamerasAction.rejected" when server response 400', async () => {
@@ -103,7 +100,7 @@ describe('fetchOrSetCameraAction', () => {
     const mockCamera = generateCamera();
     store = mockStoreCreator({
       CAMERAS: {
-        allCameras: { [mockCamera.id]: mockCamera },
+        allCameras: [mockCamera],
         currentCameraId: null,
       },
     });

@@ -1,4 +1,4 @@
-import { RequestStatus, SliceName } from '../../../const/const';
+import { DefaultParam, RequestStatus, SliceName } from '../../../const/const';
 import { CamerasSlice } from '../../../types/store-types/slices-types';
 import {
   fetchCamerasAction,
@@ -6,16 +6,16 @@ import {
   fetchPromoAction,
   fetchSimilarAction,
 } from './cameras-actions';
-import { CamerasForState, FullCamera } from '../../../types/camera-type';
+import { Cameras, FullCamera } from '../../../types/camera-type';
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 export const camerasState: CamerasSlice = {
-  allCameras: {},
+  allCameras: DefaultParam.EmptyArray,
   isAllCamerasLoaded: false,
   currentCameraId: null,
-  promoCameras: [],
+  promoCameras: DefaultParam.EmptyArray,
   isPromoCamerasLoaded: false,
-  similarCamerasIds: [],
+  similarCamerasIds: DefaultParam.EmptyArray,
   isSimilarCamerasLoaded: false,
   requestStatus: RequestStatus.Idle,
   camerasError: false,
@@ -25,12 +25,12 @@ const camerasSlice = createSlice({
   name: SliceName.Cameras,
   initialState: camerasState,
   reducers: {
-    setAllCameras: (state, action: PayloadAction<CamerasForState>) => {
+    setAllCameras: (state, action: PayloadAction<Cameras>) => {
       state.allCameras = action.payload;
     },
     addCameraToAllCameras: (state, action: PayloadAction<FullCamera>) => {
       const camera = action.payload;
-      state.allCameras[camera.id] = camera;
+      state.allCameras = [...state.allCameras, camera];
     },
     setCurrentCameraId: (state, action: PayloadAction<number>) => {
       state.currentCameraId = action.payload;

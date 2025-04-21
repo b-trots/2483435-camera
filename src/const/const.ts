@@ -35,8 +35,7 @@ const ServiceParam = {
   BasketIconHeight: 16,
   BasketIconWidth: 24,
   ChangeSlideSpeed: 1000,
-  ItemsPerPage: 9,
-  ItemsPerSlide: 3,
+  CamerasPerPage: 9,
   PaginationStep: 1,
   RateStarHeight: 16,
   RateStarWidth: 17,
@@ -56,7 +55,7 @@ const ServiceParam = {
   ArrowIconHeight: 8,
   ArrowIconWidth: 5,
   WindowScrollYZero: 0,
-  MinSearchCharacters: 3,
+  MinimalSearchCharacters: 3,
   SortIconWidth: 16,
   SortIconHeight: 14,
   FirstElement: 0,
@@ -67,14 +66,20 @@ const ServiceParam = {
   ScrollBehaviorSmooth: 'smooth',
   ScrollBlockNearest: 'nearest',
   ZeroValue: 0,
-  MinCountCameras: 2,
+  MinimalCountCameras: 2,
   NegativeIndex: -1,
   IndexStep: 1,
   FirstChar: 0,
   SecondChar: 1,
   DateFormat: 'DD MMMM',
   PageStep: 1,
-  LocaleRu: 'ru-RU',
+  LocaleRuFull: 'ru-RU',
+  LocaleRuAbbreviated:'ru',
+  PaginationButtonsPack: 3,
+  ZeroIndex: 0,
+  LastNumberPageInPack: 3,
+  DoublePaginationStep: 2,
+  MinimalPagesCount:1
 } as const;
 
 enum ServerParam {
@@ -186,6 +191,7 @@ enum NameSpace {
   Checkbox = 'checkbox',
   Number = 'number',
   String = 'string',
+  RuRubleSymbol = '₽'
 }
 
 const ToastParam = {

@@ -15,7 +15,7 @@ export function useSearch() {
   const dispatch = useAppDispatch();
   const inputRef = useRef<HTMLInputElement | null>(null);
 
-  const allCameras = Object.values(useAppSelector(getAllCameras));
+  const allCameras = useAppSelector(getAllCameras);
   const [search, setSearch] = useState(DefaultParam.EmptyString);
   const [filteredCameras, setFilteredCameras] = useState<FullCamera[]>(
     DefaultParam.EmptyArray
@@ -23,7 +23,7 @@ export function useSearch() {
   const [activeIndex, setActiveIndex] = useState<number | null>(null);
   const [isInputFocused, setIsInputFocused] = useState(false);
 
-  const isSearchValid = search.length >= ServiceParam.MinSearchCharacters;
+  const isSearchValid = search.length >= ServiceParam.MinimalSearchCharacters;
 
   useSearchCameras(
     allCameras,

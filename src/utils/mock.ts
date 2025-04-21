@@ -41,18 +41,6 @@ const generatePromoCamera = (): PromoCamera => ({
 const generatePromoCameras = (length: number): PromoCamera[] =>
   Array.from({ length: length }, generatePromoCamera);
 
-const generateCamerasForState = (cameras: Cameras) => {
-  const storeCameras = cameras.reduce(
-    (acc, camera): Record<number, FullCamera> => {
-      acc[camera.id] = camera;
-      return acc;
-    },
-    {} as Record<number, FullCamera>
-  );
-
-  return storeCameras;
-};
-
 const generateSimilarCamerasIds = (cameras: Cameras) =>
   cameras.map((camera) => camera.id);
 
@@ -115,7 +103,6 @@ export {
   generateAllCameras,
   generatePromoCamera,
   generatePromoCameras,
-  generateCamerasForState,
   generateSimilarCamerasIds,
   generateReview,
   generateReviewsForCameras,

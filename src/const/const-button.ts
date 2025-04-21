@@ -44,7 +44,8 @@ enum CloseButtonParam {
 }
 
 enum PaginationButton {
-  Text = 'Далее',
+  Next = 'Далее',
+  Back = 'Назад'
 }
 
 enum ButtonType {

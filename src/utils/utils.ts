@@ -1,43 +1,42 @@
 import dayjs from 'dayjs';
 import 'dayjs/locale/ru';
 import { Cameras } from '../types/camera-type';
-import { PaginationButton } from '../const/const-button';
-import { DefaultParam, ServiceParam, Validation } from '../const/const';
+import {
+  DefaultParam,
+  NameSpace,
+  ServiceParam,
+  Validation,
+} from '../const/const';
 
 const toStandardizePhone = (phone: string) =>
   phone.replace(/\D/g, '').replace(/^8/, '7').replace(/^7/, '+7');
 
 const reviewDate = (date: string) => {
-  dayjs.locale('ru');
+  dayjs.locale(ServiceParam.LocaleRuAbbreviated);
   return dayjs(date).format(ServiceParam.DateFormat);
 };
 
 const selectCameras = (
   cameras: Cameras,
-  currentPage: number,
+  currentPage: string,
   quantity: number
 ) => {
-  const startIndex = (currentPage - ServiceParam.PaginationStep) * quantity;
+  const startIndex =
+    (Number(currentPage) - ServiceParam.PaginationStep) * quantity;
   const endIndex = startIndex + quantity;
 
-  const currentCameras = Object.values(cameras).slice(startIndex, endIndex);
-
+  const currentCameras = cameras.slice(startIndex, endIndex);
   return currentCameras;
 };
 
-const countPages = (products: unknown[], quantity: number) =>
-  Math.ceil(products.length / quantity);
-
-const createPagesNames = (pagesCount: number) => [
-  ...Array.from({ length: pagesCount }, (_, i) =>
-    String(i + ServiceParam.PageStep)
-  ),
-  PaginationButton.Text,
-];
+const countPages = (cameras: unknown[], quantity: number) =>
+  Math.ceil(cameras.length / quantity);
 
 function formatPrice(price: number): string {
-  const correctPrice = new Intl.NumberFormat(ServiceParam.LocaleRu).format(price);
-  return `${correctPrice} ₽`;
+  const correctPrice = new Intl.NumberFormat(ServiceParam.LocaleRuFull).format(
+    price
+  );
+  return `${correctPrice} ${NameSpace.RuRubleSymbol}`;
 }
 
 const correctPrice = (value: string | number) =>
@@ -54,7 +53,6 @@ export {
   reviewDate,
   selectCameras,
   countPages,
-  createPagesNames,
   formatPrice,
   correctPrice,
   capitalize,

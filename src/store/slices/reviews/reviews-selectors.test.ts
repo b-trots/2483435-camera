@@ -1,5 +1,5 @@
-import { RequestStatus, SliceName } from '../../../const/const';
-import { CamerasForState, PromoCamera } from '../../../types/camera-type';
+import { DefaultParam, RequestStatus, SliceName } from '../../../const/const';
+import { Cameras, PromoCamera } from '../../../types/camera-type';
 import { ReviewsForState } from '../../../types/types';
 import {
   generateReviewsForCameras,
@@ -15,7 +15,7 @@ import {
 
 interface State {
   [SliceName.Cameras]: {
-    allCameras: CamerasForState;
+    allCameras: Cameras;
     currentCameraId: number | null;
     promoCameras: PromoCamera[];
     similarCamerasIds: number[];
@@ -38,12 +38,12 @@ describe('Reviews Selectors', () => {
 
   const state: State = {
     [SliceName.Cameras]: {
-      allCameras: {},
+      allCameras: DefaultParam.EmptyArray,
       isAllCamerasLoaded: true,
       currentCameraId: 1,
-      promoCameras: [],
+      promoCameras: DefaultParam.EmptyArray,
       isPromoCamerasLoaded: true,
-      similarCamerasIds: [],
+      similarCamerasIds: DefaultParam.EmptyArray,
       isSimilarCamerasLoaded: true,
       requestStatus: RequestStatus.Success,
       camerasError: false,
