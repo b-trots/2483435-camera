@@ -8,22 +8,18 @@ import { Cameras } from '../../../types/camera-type';
 import {
   FilterCameraCategoryType,
   FilterCameraLevelType,
-  FilterCameraPriceType,
   FilterCameraTypeType,
   FiltersType,
 } from '../../../types/filter-and-sort-types';
 import { capitalize } from '../../utils';
 import { updateFilterArray } from './filter-utils';
-import { toAdjustPriceFilter } from './to-adjust-price-filter';
 import { toUpdatePriceFilter } from './to-update-price-filter';
-import { toUpdateValidPriceRange } from './to-update-valid-price-range';
 
 const toUpdateFilters = (
   prevFilters: FiltersType,
   e: React.FormEvent<HTMLFormElement>,
   validPriceRange: { price: number | null; priceUp: number | null },
   cameras: Cameras,
-  setValidPriceRange: (price: FilterCameraPriceType) => void
 ): FiltersType => {
   const target = e.target as HTMLInputElement;
   const { name, value, ariaLabel, checked } = target;
@@ -84,18 +80,6 @@ const toUpdateFilters = (
       ),
     };
   }
-
-  const { newMinValidPrice, newMaxValidPrice } = toUpdateValidPriceRange(
-    updatedFilters,
-    cameras,
-    setValidPriceRange
-  );
-
-  updatedFilters = toAdjustPriceFilter(
-    updatedFilters,
-    newMinValidPrice,
-    newMaxValidPrice
-  );
 
   return updatedFilters;
 };
