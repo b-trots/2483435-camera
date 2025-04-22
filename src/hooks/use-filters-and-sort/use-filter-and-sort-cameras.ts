@@ -62,13 +62,16 @@ const useFilteredAndSortedCameras = ({
       ? toFindPriceRange(cameras)
       : toFindPriceRange(filteredCameras);
 
-    if (
-      newPriceRange.price !== validPriceRange.price ||
-      newPriceRange.priceUp !== validPriceRange.priceUp
-    ) {
-      setValidPriceRange(newPriceRange);
-    }
-  }, [cameras, filters, filteredCameras, validPriceRange]);
+    setValidPriceRange((prev) => {
+      if (
+        newPriceRange.price !== prev.price ||
+        newPriceRange.priceUp !== prev.priceUp
+      ) {
+        return newPriceRange;
+      }
+      return prev;
+    });
+  }, [cameras, filters, filteredCameras]);
 
   const updateFilters = useCallback(
     (e: React.FormEvent<HTMLFormElement>) => {
@@ -91,17 +94,30 @@ const useFilteredAndSortedCameras = ({
     setSorting(initialSorting);
   }, []);
 
-  return {
-    filters,
-    sorting,
-    updateFilters,
-    updateSorting,
-    resetFilters,
-    resetSorting,
-    sortedCameras,
-    filteredCameras,
-    validPriceRange,
-  };
+  return useMemo(
+    () => ({
+      filters,
+      sorting,
+      updateFilters,
+      updateSorting,
+      resetFilters,
+      resetSorting,
+      sortedCameras,
+      filteredCameras,
+      validPriceRange,
+    }),
+    [
+      filters,
+      sorting,
+      updateFilters,
+      updateSorting,
+      resetFilters,
+      resetSorting,
+      sortedCameras,
+      filteredCameras,
+      validPriceRange,
+    ]
+  );
 };
 
 export { initialFilters, initialSorting, useFilteredAndSortedCameras };
