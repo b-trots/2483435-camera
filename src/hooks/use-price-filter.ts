@@ -18,8 +18,8 @@ export function usePriceFilter({ param }: usePriceFilterProps) {
   const isPriceMin = value.id === FilterCameraPrice.Price.id;
 
   const placeholder = isPriceMin
-    ? `${value.name} ${validPriceRange.price ?? DefaultParam.EmptyString}`
-    : `${value.name} ${validPriceRange.priceUp ?? DefaultParam.EmptyString}`;
+    ? `${validPriceRange.price ?? DefaultParam.EmptyString}`
+    : `${validPriceRange.priceUp ?? DefaultParam.EmptyString}`;
 
   useEffect(() => {
     const filterValue = isPriceMin
