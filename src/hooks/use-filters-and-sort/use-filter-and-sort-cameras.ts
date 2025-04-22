@@ -73,13 +73,7 @@ const useFilteredAndSortedCameras = ({
   const updateFilters = useCallback(
     (e: React.FormEvent<HTMLFormElement>) => {
       setFilters((prevFilters) =>
-        toUpdateFilters(
-          prevFilters,
-          e,
-          validPriceRange,
-          cameras,
-          setValidPriceRange
-        )
+        toUpdateFilters(prevFilters, e, validPriceRange, cameras)
       );
     },
     [validPriceRange, cameras]

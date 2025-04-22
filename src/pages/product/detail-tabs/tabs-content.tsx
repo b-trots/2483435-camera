@@ -3,11 +3,11 @@ import { CameraParam } from '../../../const/camera-const';
 import { BemClass, TabName } from '../../../const/const';
 import { useAppSelector } from '../../../hooks/hooks';
 import { getCurrentCamera } from '../../../store/slices/cameras/cameras-selectors';
+import { TabNameId } from '../../../types/types';
 import { ProductDescription } from '../product-description';
-import { TabsNamesValues } from './tabs-control';
 
 type TabsContentProps = {
-  isActive: TabsNamesValues;
+  isActive: TabNameId;
 };
 
 export function TabsContent({ isActive }: TabsContentProps) {
@@ -25,7 +25,8 @@ export function TabsContent({ isActive }: TabsContentProps) {
     { title: CameraParam.Type, value: type },
     { title: CameraParam.Level, value: level },
   ];
-  const isActiveDescription = isActive === TabName.Description;
+
+  const isActiveDescription = isActive === TabName.Description.id;
   return (
     <div className="tabs__content">
       <div className="tabs__element is-active">

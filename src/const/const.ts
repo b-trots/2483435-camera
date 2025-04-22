@@ -18,8 +18,12 @@ const DefaultParam = {
   PageNumberOne: 1,
   ZeroValue: 0,
   ZeroIndex: 0,
-  UrlId: 'page',
 };
+
+enum SearchParam {
+  Page = 'page',
+  Info = 'info'
+}
 
 enum APIRoute {
   Cameras = '/cameras',
@@ -88,8 +92,8 @@ enum ServerParam {
 }
 
 const TabName = {
-  Characteristics: 'Характеристики',
-  Description: 'Описание',
+  Characteristics: {id:'characteristics', value:'Характеристики'},
+  Description: {id:'description', value: 'Описание'},
 };
 
 enum ErrorInfoMessage {
@@ -340,4 +344,5 @@ export {
   Validation,
   InputType,
   KeyboardButtonName,
+  SearchParam
 };

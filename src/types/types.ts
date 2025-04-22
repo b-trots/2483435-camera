@@ -1,4 +1,4 @@
-import { Coupon } from '../const/const';
+import { Coupon, TabName } from '../const/const';
 
 type FocusableElements =
   | HTMLButtonElement
@@ -34,6 +34,9 @@ type PaginationData = {
   currentPage: number;
 };
 
+type TabNameKey = keyof typeof TabName;
+type TabNameId = (typeof TabName)[keyof typeof TabName]['id'];
+
 export type {
   FocusableElements,
   ReviewType,
@@ -41,4 +44,6 @@ export type {
   OrderType,
   PaginationData,
   ReviewsForState,
+  TabNameKey,
+  TabNameId,
 };

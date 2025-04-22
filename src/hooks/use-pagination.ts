@@ -1,6 +1,6 @@
 import { useSearchParams } from 'react-router-dom';
 import { countPages } from '../utils/utils';
-import { DefaultParam, ServiceParam } from '../const/const';
+import { DefaultParam, SearchParam, ServiceParam } from '../const/const';
 import { Cameras } from '../types/camera-type';
 import { createPaginationButtonsNames } from '../utils/create-pagination-buttons-names';
 import { PaginationButton } from '../const/const-button';
@@ -10,7 +10,7 @@ import { useEffect, useRef } from 'react';
 type QuantityType = typeof ServiceParam.CamerasPerPage;
 
 function usePagination(
-  urlId: string = DefaultParam.UrlId,
+  urlId: string = SearchParam.Page,
   cameras: Cameras = DefaultParam.EmptyArray,
   quantity: QuantityType = ServiceParam.CamerasPerPage
 ) {

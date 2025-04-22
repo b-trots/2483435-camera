@@ -1,22 +1,26 @@
 import { BemMode, TabName } from '../../../const/const';
-
-export type TabsNamesValues = (typeof TabName)[keyof typeof TabName];
+import { TabNameKey } from '../../../types/types';
 
 type TabsControlProps = {
-  item: TabsNamesValues;
-  isActive: TabsNamesValues;
+  tabNameKey: TabNameKey;
+  isActive: boolean;
   onClick: () => void;
 };
 
-export function TabsControl({ item, isActive, onClick }: TabsControlProps) {
-  const isActiveTab = isActive === item ? BemMode.IsActive : BemMode.Void;
+export function TabsControl({
+  tabNameKey,
+  isActive,
+  onClick,
+}: TabsControlProps) {
+  const tabName = TabName[tabNameKey].value;
+  const isActiveTab = isActive ? BemMode.IsActive : BemMode.Void;
   return (
     <button
       className={`tabs__control ${isActiveTab}`}
       type="button"
       onClick={onClick}
     >
-      {item}
+      {tabName}
     </button>
   );
 }
