@@ -63,17 +63,6 @@ describe('Cameras Selectors', () => {
     expect(result).toBe(isAllCamerasLoaded);
   });
 
-  // it('getCurrentCameras should return cameras for the current page', () => {
-  //   const currentPage = 2;
-  //   const result = getCurrentCamera(state, currentPage);
-  //   const expectedResult = selectCameras(
-  //     state[SliceName.Cameras].allCameras,
-  //     currentPage,
-  //     ServiceParam.CamerasPerPage
-  //   );
-  //   expect(result).toEqual(expectedResult);
-  // });
-
   it('getCurrentCameraId should return currentCameraId', () => {
     const { currentCameraId } = state[SliceName.Cameras];
     const result = getCurrentCameraId(state);
@@ -96,6 +85,18 @@ describe('Cameras Selectors', () => {
       },
     };
     const result = getCurrentCamera(newState);
+    expect(result).toBeNull();
+  });
+
+  it('should return null when currentCameraId is null', () => {
+    const testState = {
+      [SliceName.Cameras]: {
+        ...state[SliceName.Cameras],
+        currentCameraId: null,
+      },
+    };
+
+    const result = getCurrentCamera(testState);
     expect(result).toBeNull();
   });
 

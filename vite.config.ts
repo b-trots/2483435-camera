@@ -15,6 +15,7 @@ export default defineConfig({
     coverage: {
       provider: 'c8',
       reporter: ['text', 'json', 'html'],
+      reportsDirectory: 'coverage',
       all: true,
     },
   },

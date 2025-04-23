@@ -61,7 +61,7 @@ describe('fetchCamerasAction', () => {
     const fetchCamerasActionFulfilled = emittedActions[1] as ReturnType<
       typeof fetchCamerasAction.fulfilled
     >;
-    expect(fetchCamerasActionFulfilled.payload).toEqual(generateAllCameras(5));
+    expect(fetchCamerasActionFulfilled.payload).toEqual(mockCameras);
   });
 
   it('should dispatch "fetchCamerasAction.pending", "fetchCamerasAction.rejected" when server response 400', async () => {
@@ -114,6 +114,37 @@ describe('fetchOrSetCameraAction', () => {
       fetchOrSetCameraAction.fulfilled.type,
     ]);
   });
+
+  it('should dispatch "fetchOrSetCameraAction.pending", "fetchOrSetCameraAction.rejected" when server response 400', async () => {
+    const mockCameraId = 1;
+    mockAxiosAdapter.onGet(`${APIRoute.Cameras}/${mockCameraId}`).reply(400);
+
+    await store.dispatch(fetchOrSetCameraAction(mockCameraId));
+
+    const actions = store.getActions().map((action) => action.type);
+    expect(actions).toEqual([
+      fetchOrSetCameraAction.pending.type,
+      fetchOrSetCameraAction.rejected.type,
+    ]);
+  });
+
+  it('should only dispatch pending/fulfilled when currentId equals cameraId', async () => {
+    const mockCamera = generateCamera();
+    store = mockStoreCreator({
+      CAMERAS: {
+        allCameras: [mockCamera],
+        currentCameraId: mockCamera.id,
+      },
+    });
+
+    await store.dispatch(fetchOrSetCameraAction(mockCamera.id));
+
+    const actions = store.getActions().map((a) => a.type);
+    expect(actions).toEqual([
+      fetchOrSetCameraAction.pending.type,
+      fetchOrSetCameraAction.fulfilled.type,
+    ]);
+  });
 });
 
 describe('fetchPromoAction', () => {
@@ -149,9 +180,76 @@ describe('fetchPromoAction', () => {
       fetchPromoAction.rejected.type,
     ]);
   });
+
+  it('should return empty array when promo is undefined', async () => {
+    mockAxiosAdapter.onGet(APIRoute.Promo).reply(200, undefined);
+
+    const result = await store.dispatch(fetchPromoAction());
+
+    expect(result.payload).toEqual(DefaultParam.EmptyArray);
+  });
+
+  it('should return empty array when promo is null', async () => {
+    mockAxiosAdapter.onGet(APIRoute.Promo).reply(200, null);
+
+    const result = await store.dispatch(fetchPromoAction());
+
+    expect(result.payload).toEqual(DefaultParam.EmptyArray);
+  });
 });
 
 describe('fetchSimilarAction', () => {
+  it('should dispatch "fetchSimilarAction.pending", "fetchSimilarAction.fulfilled" when server response 200', async () => {
+    const mockCameraId = 1;
+    const mockSimilarCameras = generateAllCameras(3);
+    mockAxiosAdapter
+      .onGet(`${APIRoute.Cameras}/${mockCameraId}${APIRoute.Similar}`)
+      .reply(200, mockSimilarCameras);
+
+    await store.dispatch(fetchSimilarAction(mockCameraId));
+
+    const actions = store.getActions().map((action) => action.type);
+    expect(actions).toEqual([
+      fetchSimilarAction.pending.type,
+      ...mockSimilarCameras.map(() => addCameraToAllCameras.type),
+      fetchSimilarAction.fulfilled.type,
+    ]);
+
+    const fulfilledAction = store
+      .getActions()
+      .find(
+        (action) => action.type === fetchSimilarAction.fulfilled.type
+      ) as ReturnType<typeof fetchSimilarAction.fulfilled>;
+    expect(fulfilledAction.payload).toEqual(
+      mockSimilarCameras.map((camera) => camera.id)
+    );
+  });
+
+  it('should not dispatch addCameraToAllCameras if camera already exists in state', async () => {
+    const mockCameraId = 1;
+    const existingCamera = generateCamera();
+    const mockSimilarCameras = [existingCamera, ...generateAllCameras(2)];
+
+    store = mockStoreCreator({
+      CAMERAS: {
+        allCameras: [existingCamera],
+        currentCameraId: null,
+      },
+    });
+
+    mockAxiosAdapter
+      .onGet(`${APIRoute.Cameras}/${mockCameraId}${APIRoute.Similar}`)
+      .reply(200, mockSimilarCameras);
+
+    await store.dispatch(fetchSimilarAction(mockCameraId));
+
+    const addActions = store
+      .getActions()
+      .filter((action) => action.type === addCameraToAllCameras.type);
+
+    expect(addActions.length).toBe(2);
+  });
+
   it('should dispatch "fetchSimilarAction.pending", "fetchSimilarAction.rejected" when server response 400', async () => {
     const mockCameraId = 1;
     mockAxiosAdapter
@@ -166,5 +264,45 @@ describe('fetchSimilarAction', () => {
       fetchSimilarAction.pending.type,
       fetchSimilarAction.rejected.type,
     ]);
+  });
+
+  it('should handle empty similar cameras array', async () => {
+    const mockCameraId = 1;
+    mockAxiosAdapter
+      .onGet(`${APIRoute.Cameras}/${mockCameraId}${APIRoute.Similar}`)
+      .reply(200, []);
+
+    const result = await store.dispatch(fetchSimilarAction(mockCameraId));
+
+    expect(result.payload).toEqual([]);
+
+    const actions = store.getActions();
+    expect(actions.some((a) => a.type === addCameraToAllCameras.type)).toBe(
+      false
+    );
+
+    const fulfilledAction = actions.find(
+      (a): a is ReturnType<typeof fetchSimilarAction.fulfilled> =>
+        a.type === fetchSimilarAction.fulfilled.type
+    );
+
+    expect(fulfilledAction).toBeDefined();
+    expect(fulfilledAction?.payload).toEqual([]);
+  });
+
+  it('should handle undefined similar cameras response', async () => {
+    const mockCameraId = 1;
+    mockAxiosAdapter
+      .onGet(`${APIRoute.Cameras}/${mockCameraId}${APIRoute.Similar}`)
+      .reply(200, undefined);
+
+    const result = await store.dispatch(fetchSimilarAction(mockCameraId));
+
+    expect(result.payload).toEqual([]);
+
+    const actions = store.getActions();
+    expect(
+      actions.some((action) => action.type === addCameraToAllCameras.type)
+    ).toBe(false);
   });
 });

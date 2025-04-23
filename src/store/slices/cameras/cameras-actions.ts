@@ -38,7 +38,7 @@ const fetchOrSetCameraAction = appCreateAsyncThunk<void, number>(
     const currentId = state[SliceName.Cameras].currentCameraId;
 
     if (currentId !== cameraId) {
-      const activeCamera = allCameras[cameraId];
+      const activeCamera = allCameras.find((camera) => camera.id === cameraId);
 
       if (!activeCamera) {
         const { data: camera } = await api.get<FullCamera>(
@@ -69,21 +69,20 @@ const fetchPromoAction = appCreateAsyncThunk<PromoCamera[], undefined>(
 const fetchSimilarAction = appCreateAsyncThunk<number[], number | string>(
   ApiActionName.FetchSimilar,
   async (cameraId, { dispatch, getState, extra: api }) => {
-    const { data: similarCameras } = await api.get<Cameras>(
+    const { data: similarCameras = [] } = await api.get<Cameras>(
       `${APIRoute.Cameras}/${cameraId}${APIRoute.Similar}`,
-      {
-        suppressErrorNotify: true,
-      }
+      { suppressErrorNotify: true }
     );
+
     const state = getState();
     const allCameras = state[SliceName.Cameras].allCameras;
+    const existingIds = new Set(allCameras.map((c) => c.id));
 
     const similarIds: number[] = [];
 
-    similarCameras.forEach((camera) => {
+    (similarCameras || []).forEach((camera) => {
       similarIds.push(camera.id);
-
-      if (!allCameras[camera.id]) {
+      if (!existingIds.has(camera.id)) {
         dispatch(addCameraToAllCameras(camera));
       }
     });
@@ -91,6 +90,7 @@ const fetchSimilarAction = appCreateAsyncThunk<number[], number | string>(
     return similarIds;
   }
 );
+
 export {
   fetchCamerasAction,
   fetchOrSetCameraAction,
