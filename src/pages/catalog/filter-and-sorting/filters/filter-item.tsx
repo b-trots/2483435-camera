@@ -1,7 +1,7 @@
 import { CameraCategoryId, CameraParam } from '../../../../const/camera-const';
 import { DefaultParam, NameSpace, ServiceParam } from '../../../../const/const';
 import { FilterCameraType, FilterName } from '../../../../const/filter-const';
-import { useFilterAndSortContext } from '../../../../hooks/use-filters-and-sort/use-filter-and-sort-context';
+import { useFilterAndSortContext } from '../../../../hooks/use-filter-and-sort-context/use-filter-and-sort-context';
 import { usePriceFilter } from '../../../../hooks/use-price-filter';
 import {
   FilterItemType,

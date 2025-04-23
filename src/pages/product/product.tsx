@@ -37,7 +37,7 @@ export function Product() {
     loadData();
   }, [loadData]);
 
-  const isLoadData = productError || isProductLoading;
+  const isLoadData = productError || isProductLoading || !currentCamera;
 
   return (
     <div className="wrapper">

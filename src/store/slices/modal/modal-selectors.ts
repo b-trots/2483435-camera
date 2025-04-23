@@ -14,7 +14,9 @@ const getModalCameraId = (state: ModalState) =>
 const getModalCamera = createSelector(
   [getAllCameras, getModalCameraId],
   (allCameras, modalCameraId) =>
-    modalCameraId ? allCameras[modalCameraId] : null
+    modalCameraId
+      ? allCameras.find((camera) => camera.id === modalCameraId)
+      : null
 );
 
 export { getActiveModal, getModalStatus, getModalCameraId, getModalCamera };

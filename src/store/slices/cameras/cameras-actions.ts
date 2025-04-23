@@ -24,7 +24,6 @@ const fetchCamerasAction = appCreateAsyncThunk<void, undefined>(
   ApiActionName.FetchCameras,
   async (_arg, { dispatch, extra: api }) => {
     const { data: cameras } = await api.get<Cameras>(APIRoute.Cameras);
-
     if (cameras) {
       dispatch(setAllCameras(cameras));
     }

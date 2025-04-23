@@ -9,7 +9,7 @@ import {
 import { Filter, FilterCameraPrice } from '../../../../const/filter-const';
 import { FilterBlock } from './filter-block';
 import { handleFormKeyDown } from '../../../../utils/filter-and-sorting-utils/handle-form-key-down';
-import { useFilterAndSortContext } from '../../../../hooks/use-filters-and-sort/use-filter-and-sort-context';
+import { useFilterAndSortContext } from '../../../../hooks/use-filter-and-sort-context/use-filter-and-sort-context';
 
 export function FilterComponent() {
   const { updateFilters, resetFilters } = useFilterAndSortContext();

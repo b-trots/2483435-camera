@@ -69,6 +69,18 @@ const Filter = [
   },
 ] as const;
 
+const FilterAndSortParam = {
+  Price: 'price',
+  PriceUp: 'priceUp',
+  Category: 'category',
+  Type: 'type',
+  Level: 'level',
+  SortType: 'sortType',
+  SortOrder: 'sortOrder',
+} as const;
+
+const FILTER_AND_SORT_PARAM = Object.values(FilterAndSortParam);
+
 export {
   FilterCameraPrice,
   FilterCameraCategory,
@@ -76,4 +88,6 @@ export {
   FilterCameraLevel,
   FilterName,
   Filter,
+  FilterAndSortParam,
+  FILTER_AND_SORT_PARAM,
 };

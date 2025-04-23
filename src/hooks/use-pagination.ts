@@ -4,7 +4,7 @@ import { DefaultParam, SearchParam, ServiceParam } from '../const/const';
 import { Cameras } from '../types/camera-type';
 import { createPaginationButtonsNames } from '../utils/create-pagination-buttons-names';
 import { PaginationButton } from '../const/const-button';
-import { useFilterAndSortContext } from './use-filters-and-sort/use-filter-and-sort-context';
+import { useFilterAndSortContext } from './use-filter-and-sort-context/use-filter-and-sort-context';
 import { useEffect, useRef } from 'react';
 
 type QuantityType = typeof ServiceParam.CamerasPerPage;
@@ -19,6 +19,7 @@ function usePagination(
     searchParams.get(urlId) || String(DefaultParam.PageNumberOne);
   const pagesCount = countPages(cameras, quantity);
   const pagesNames = createPaginationButtonsNames(pagesCount, currentPage);
+
   const { filters } = useFilterAndSortContext();
   const prevFiltersRef = useRef(filters);
 
@@ -36,6 +37,7 @@ function usePagination(
 
   const goToPage = (pageName: string) => {
     const currentPageNum = Number(currentPage);
+    const newParams = new URLSearchParams(window.location.search);
 
     if (pageName === PaginationButton.Back) {
       const newPage = Math.max(
@@ -45,7 +47,7 @@ function usePagination(
             ServiceParam.PaginationButtonsPack
         ) * ServiceParam.LastNumberPageInPack
       );
-      setSearchParams({ [urlId]: String(newPage) });
+      newParams.set(urlId, String(newPage));
     } else if (pageName === PaginationButton.Next) {
       const newPage = Math.min(
         pagesCount,
@@ -53,10 +55,11 @@ function usePagination(
           ServiceParam.LastNumberPageInPack +
           ServiceParam.PaginationStep
       );
-      setSearchParams({ [urlId]: String(newPage) });
+      newParams.set(urlId, String(newPage));
     } else {
-      setSearchParams({ [urlId]: pageName });
+      newParams.set(urlId, pageName);
     }
+    setSearchParams(newParams, { replace: true });
   };
 
   return { currentPage, pagesCount, pagesNames, goToPage };

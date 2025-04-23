@@ -7,9 +7,8 @@ import {
 import { Cameras } from '../../../types/camera-type';
 import {
   FilterCameraCategoryType,
-  FilterCameraLevelType,
-  FilterCameraTypeType,
-  FiltersType,
+  FilterCameraLevelType, FilterCameraTypeType,
+  FiltersType
 } from '../../../types/filter-and-sort-types';
 import { capitalize } from '../../utils';
 import { updateFilterArray } from './filter-utils';
