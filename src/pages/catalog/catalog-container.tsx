@@ -11,7 +11,7 @@ import { Pagination } from './pagination/pagination';
 import { SortingComponent } from './filter-and-sorting/sorting/sorting-component';
 import { fetchCamerasAction } from '../../store/slices/cameras/cameras-actions';
 import { useLocation } from 'react-router-dom';
-import { useFilterAndSortingContext } from '../../hooks/use-filters-and-sort/use-filter-and-sort-context';
+import { useFilterAndSortContext } from '../../hooks/use-filters-and-sort/use-filter-and-sort-context';
 
 export function CatalogContainer() {
   const location = useLocation();
@@ -19,7 +19,7 @@ export function CatalogContainer() {
   const allCameras = useAppSelector(getAllCameras);
   const isCamerasLoaded = useAppSelector(getIsAllCamerasLoaded);
   const { filteredCameras, setCameras, resetFilters, resetSorting } =
-    useFilterAndSortingContext();
+  useFilterAndSortContext();
 
   const isSinglePage = filteredCameras.length <= ServiceParam.CamerasPerPage;
 

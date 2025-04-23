@@ -15,7 +15,7 @@ import {
 import { toFindPriceRange } from '../../utils/filter-and-sorting-utils/filter-utils/to-find-price-range';
 import { toUpdateFilters } from '../../utils/filter-and-sorting-utils/filter-utils/to-update-filters';
 
-type UseFilteredAndSortedCamerasParams = {
+type UseFiltersAndSortParams = {
   cameras: Cameras;
   initialFilters: FiltersType;
   initialSorting: SortingType;
@@ -33,9 +33,9 @@ const initialSorting: SortingType = {
   order: SortOrder.Up,
 };
 
-const useFilteredAndSortedCameras = ({
+const useFiltersAndSort = ({
   cameras,
-}: UseFilteredAndSortedCamerasParams) => {
+}: UseFiltersAndSortParams) => {
   const [filters, setFilters] = useState<FiltersType>(initialFilters);
   const [sorting, setSorting] = useState<SortingType>(initialSorting);
   const [validPriceRange, setValidPriceRange] = useState(() =>
@@ -120,4 +120,4 @@ const useFilteredAndSortedCameras = ({
   );
 };
 
-export { initialFilters, initialSorting, useFilteredAndSortedCameras };
+export { initialFilters, initialSorting, useFiltersAndSort };

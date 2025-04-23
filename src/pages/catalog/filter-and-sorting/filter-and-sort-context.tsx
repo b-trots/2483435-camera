@@ -9,12 +9,12 @@ import React from 'react';
 import {
   initialFilters,
   initialSorting,
-  useFilteredAndSortedCameras,
-} from '../../../hooks/use-filters-and-sort/use-filter-and-sort-cameras';
+  useFiltersAndSort,
+} from '../../../hooks/use-filters-and-sort/use-filters-and-sort';
 import { Cameras } from '../../../types/camera-type';
 import { DefaultParam } from '../../../const/const';
 
-type FilterAndSortingContextType = {
+type FilterAndSortContextType = {
   filters: FiltersType;
   sorting: SortingType;
   cameras: Cameras;
@@ -28,14 +28,14 @@ type FilterAndSortingContextType = {
   validPriceRange: FilterCameraPriceType;
 };
 
-type FilterAndSortingProviderProps = {
+type FilterAndSortProviderProps = {
   children: React.ReactNode;
 };
 
-const FilterAndSortingContext =
-  createContext<FilterAndSortingContextType | null>(null);
+const FilterAndSortContext =
+  createContext<FilterAndSortContextType | null>(null);
 
-const FilterAndSortingProvider: React.FC<FilterAndSortingProviderProps> = ({
+const FilterAndSortProvider: React.FC<FilterAndSortProviderProps> = ({
   children,
 }) => {
   const [cameras, setCameras] = useState<Cameras>(DefaultParam.EmptyArray);
@@ -49,14 +49,14 @@ const FilterAndSortingProvider: React.FC<FilterAndSortingProviderProps> = ({
     sortedCameras,
     filteredCameras,
     validPriceRange,
-  } = useFilteredAndSortedCameras({
+  } = useFiltersAndSort({
     cameras,
     initialFilters,
     initialSorting,
   });
 
   return (
-    <FilterAndSortingContext.Provider
+    <FilterAndSortContext.Provider
       value={{
         filters,
         sorting,
@@ -72,8 +72,8 @@ const FilterAndSortingProvider: React.FC<FilterAndSortingProviderProps> = ({
       }}
     >
       {children}
-    </FilterAndSortingContext.Provider>
+    </FilterAndSortContext.Provider>
   );
 };
 
-export { FilterAndSortingContext, FilterAndSortingProvider };
+export { FilterAndSortContext, FilterAndSortProvider };

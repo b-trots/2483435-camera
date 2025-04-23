@@ -1,12 +1,12 @@
 import { DefaultParam, NameSpace, ServiceParam } from '../../../const/const';
 import { useAppSelector } from '../../../hooks/hooks';
-import { useFilterAndSortingContext } from '../../../hooks/use-filters-and-sort/use-filter-and-sort-context';
+import { useFilterAndSortContext } from '../../../hooks/use-filters-and-sort/use-filter-and-sort-context';
 import { usePagination } from '../../../hooks/use-pagination';
 import { getIsAllCamerasLoaded } from '../../../store/slices/cameras/cameras-selectors';
 import { PaginationItem } from './pagination-item';
 
 export function Pagination() {
-  const { filteredCameras } = useFilterAndSortingContext();
+  const { filteredCameras } = useFilterAndSortContext();
   const isCamerasLoaded = useAppSelector(getIsAllCamerasLoaded);
   const { currentPage, pagesNames, goToPage } = usePagination(
     NameSpace.CatalogPageSearchId,

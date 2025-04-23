@@ -6,7 +6,7 @@ import { useScrollToTop } from '../../hooks/hooks';
 import { useChangeTitle } from '../../hooks/use-change-title';
 import { TitleName } from '../../const/const';
 import { CatalogContainer } from './catalog-container';
-import { FilterAndSortingProvider } from './filter-and-sorting/filter-and-sorting-context';
+import { FilterAndSortProvider } from './filter-and-sorting/filter-and-sort-context';
 export function Catalog() {
   useChangeTitle(TitleName.Catalog);
   useScrollToTop();
@@ -18,9 +18,9 @@ export function Catalog() {
         <Banner />
         <div className="page-content">
           <Breadcrumbs />
-          <FilterAndSortingProvider>
+          <FilterAndSortProvider>
             <CatalogContainer />
-          </FilterAndSortingProvider>
+          </FilterAndSortProvider>
         </div>
       </main>
       <Footer />

@@ -1,7 +1,7 @@
 import { CameraCategoryId, CameraParam } from '../../../../const/camera-const';
 import { DefaultParam, NameSpace, ServiceParam } from '../../../../const/const';
 import { FilterCameraType, FilterName } from '../../../../const/filter-const';
-import { useFilterAndSortingContext } from '../../../../hooks/use-filters-and-sort/use-filter-and-sort-context';
+import { useFilterAndSortContext } from '../../../../hooks/use-filters-and-sort/use-filter-and-sort-context';
 import { usePriceFilter } from '../../../../hooks/use-price-filter';
 import {
   FilterItemType,
@@ -16,7 +16,7 @@ type FilterItemProps = {
 
 export function FilterItem({ title, param }: FilterItemProps) {
   const [, value] = param;
-  const { filters } = useFilterAndSortingContext();
+  const { filters } = useFilterAndSortContext();
   const isPrice = title === CameraParam.Price;
   const isRadio = title === CameraParam.Category;
   const itemType = isRadio ? NameSpace.Radio : NameSpace.Checkbox;

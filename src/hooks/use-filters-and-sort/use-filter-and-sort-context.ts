@@ -1,12 +1,12 @@
 import { useContext } from 'react';
-import { FilterAndSortingContext } from '../../pages/catalog/filter-and-sorting/filter-and-sorting-context';
+import { FilterAndSortContext } from '../../pages/catalog/filter-and-sorting/filter-and-sort-context';
 import { ErrorInfoMessage } from '../../const/const';
 
-const useFilterAndSortingContext = () => {
-  const context = useContext(FilterAndSortingContext);
+const useFilterAndSortContext = () => {
+  const context = useContext(FilterAndSortContext);
   if (context === null) {
     throw new Error(ErrorInfoMessage.ErrorFilterAndSortingContext);
   }
   return context;
 };
-export { useFilterAndSortingContext };
+export { useFilterAndSortContext };

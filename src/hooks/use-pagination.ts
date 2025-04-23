@@ -4,7 +4,7 @@ import { DefaultParam, SearchParam, ServiceParam } from '../const/const';
 import { Cameras } from '../types/camera-type';
 import { createPaginationButtonsNames } from '../utils/create-pagination-buttons-names';
 import { PaginationButton } from '../const/const-button';
-import { useFilterAndSortingContext } from './use-filters-and-sort/use-filter-and-sort-context';
+import { useFilterAndSortContext } from './use-filters-and-sort/use-filter-and-sort-context';
 import { useEffect, useRef } from 'react';
 
 type QuantityType = typeof ServiceParam.CamerasPerPage;
@@ -19,7 +19,7 @@ function usePagination(
     searchParams.get(urlId) || String(DefaultParam.PageNumberOne);
   const pagesCount = countPages(cameras, quantity);
   const pagesNames = createPaginationButtonsNames(pagesCount, currentPage);
-  const { filters } = useFilterAndSortingContext();
+  const { filters } = useFilterAndSortContext();
   const prevFiltersRef = useRef(filters);
 
   useEffect(() => {

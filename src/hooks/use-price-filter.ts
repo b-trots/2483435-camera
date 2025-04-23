@@ -7,7 +7,7 @@ import {
 } from '../const/const';
 import { FilterCameraPrice } from '../const/filter-const';
 import { FilterItemType } from '../types/filter-and-sort-types';
-import { useFilterAndSortingContext } from './use-filters-and-sort/use-filter-and-sort-context';
+import { useFilterAndSortContext } from './use-filters-and-sort/use-filter-and-sort-context';
 
 type usePriceFilterProps = {
   param: FilterItemType['params'][number];
@@ -16,7 +16,7 @@ type usePriceFilterProps = {
 export function usePriceFilter({ param }: usePriceFilterProps) {
   const [, value] = param;
   const { validPriceRange, filters, updateFilters } =
-    useFilterAndSortingContext();
+  useFilterAndSortContext();
   const [tempValue, setTempValue] = useState<string>(DefaultParam.EmptyString);
 
   const isPriceMin = value.id === FilterCameraPrice.Price.id;

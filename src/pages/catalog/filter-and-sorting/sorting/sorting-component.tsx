@@ -4,11 +4,11 @@ import { Sorting } from '../../../../const/sorting-const';
 import { SortingValue } from '../../../../types/filter-and-sort-types';
 import { useRef } from 'react';
 import { handleFormKeyDown } from '../../../../utils/filter-and-sorting-utils/handle-form-key-down';
-import { useFilterAndSortingContext } from '../../../../hooks/use-filters-and-sort/use-filter-and-sort-context';
+import { useFilterAndSortContext } from '../../../../hooks/use-filters-and-sort/use-filter-and-sort-context';
 
 export function SortingComponent() {
   const { filteredCameras, sorting, updateSorting } =
-    useFilterAndSortingContext();
+  useFilterAndSortContext();
   const isMinCountCameras =
     filteredCameras.length < ServiceParam.MinimalCountCameras;
   const handleSortChange = (id: SortingValue) => {

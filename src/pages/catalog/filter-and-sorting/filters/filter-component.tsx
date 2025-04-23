@@ -9,10 +9,10 @@ import {
 import { Filter, FilterCameraPrice } from '../../../../const/filter-const';
 import { FilterBlock } from './filter-block';
 import { handleFormKeyDown } from '../../../../utils/filter-and-sorting-utils/handle-form-key-down';
-import { useFilterAndSortingContext } from '../../../../hooks/use-filters-and-sort/use-filter-and-sort-context';
+import { useFilterAndSortContext } from '../../../../hooks/use-filters-and-sort/use-filter-and-sort-context';
 
 export function FilterComponent() {
-  const { updateFilters, resetFilters } = useFilterAndSortingContext();
+  const { updateFilters, resetFilters } = useFilterAndSortContext();
   const formRef = useRef<HTMLFormElement | null>(null);
 
   const isPriceFilter = (name: string) =>

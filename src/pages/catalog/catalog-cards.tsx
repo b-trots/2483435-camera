@@ -13,11 +13,11 @@ import { ProductCard } from '../../components/main/product-card/product-card';
 import { LoadData } from '../../components/load-data/load-data';
 import { usePagination } from '../../hooks/use-pagination';
 import { selectCameras } from '../../utils/utils';
-import { useFilterAndSortingContext } from '../../hooks/use-filters-and-sort/use-filter-and-sort-context';
+import { useFilterAndSortContext } from '../../hooks/use-filters-and-sort/use-filter-and-sort-context';
 
 export function CatalogCards() {
   const { currentPage } = usePagination(NameSpace.CatalogPageSearchId);
-  const { cameras } = useFilterAndSortingContext();
+  const { cameras } = useFilterAndSortContext();
   const camerasLoadStatus = useAppSelector(getCamerasRequestStatus);
   const isCamerasLoading = camerasLoadStatus === RequestStatus.Loading;
   const productsError = useAppSelector(getCamerasError);
