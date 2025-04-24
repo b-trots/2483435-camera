@@ -1,4 +1,4 @@
-import { FilterName } from '../../../const/filter-const';
+import { FilterName } from '@/const/filter-const';
 import {
   FilterCameraLevelType,
   FilterCameraTypeType,

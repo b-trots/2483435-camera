@@ -1,4 +1,4 @@
-import { KeyboardButtonName } from '../../const/const';
+import { KeyboardButtonName } from '@/const/const';
 
 const toCloseModal = (
   containerRef: React.RefObject<HTMLDivElement>,

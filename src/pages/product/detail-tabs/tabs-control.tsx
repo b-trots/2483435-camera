@@ -1,5 +1,5 @@
-import { BemMode, TabName } from '../../../const/const';
-import { TabNameKey } from '../../../types/types';
+import { BemMode, TabName } from '@/const/const';
+import { TabNameKey } from '@/types/types';
 
 type TabsControlProps = {
   tabNameKey: TabNameKey;

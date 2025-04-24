@@ -1,12 +1,12 @@
 import dayjs from 'dayjs';
 import 'dayjs/locale/ru';
-import { Cameras } from '../types/camera-type';
+import { Cameras } from '@/types/camera-type';
 import {
   DefaultParam,
   NameSpace,
   ServiceParam,
   Validation,
-} from '../const/const';
+} from '@/const/const';
 
 const toStandardizePhone = (phone: string) =>
   phone.replace(/\D/g, '').replace(/^8/, '7').replace(/^7/, '+7');

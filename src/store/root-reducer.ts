@@ -1,5 +1,5 @@
 import { combineReducers } from '@reduxjs/toolkit';
-import { SliceName } from '../const/const';
+import { SliceName } from '@/const/const';
 import { reviewsSlice } from './slices/reviews/reviews-slice';
 import { modalSlice } from './slices/modal/modal-slice';
 import { orderSlice } from './slices/order/order-slice';

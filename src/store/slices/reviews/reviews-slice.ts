@@ -1,7 +1,7 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { RequestStatus, SliceName } from '../../../const/const';
-import { ReviewsSlice } from '../../../types/store-types/slices-types';
-import { ReviewsType } from '../../../types/types';
+import { RequestStatus, SliceName } from '@/const/const';
+import { ReviewsSlice } from '@/types/store-types/slices-types';
+import { ReviewsType } from '@/types/types';
 import { fetchOrSetReviewsAction } from './reviews-actions';
 
 const reviewsState: ReviewsSlice = {

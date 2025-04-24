@@ -1,9 +1,9 @@
-import { DefaultParam, NameSpace } from '../../../const/const';
+import { DefaultParam, NameSpace } from '@/const/const';
 import {
   ButtonBemClass,
   ButtonType,
   CloseButtonParam,
-} from '../../../const/const-button';
+} from '@/const/const-button';
 
 type CloseButtonProps = {
   bemClass: ButtonBemClass.Cross | ButtonBemClass.FormSearchReset;

@@ -7,18 +7,18 @@ import {
   DefaultParam,
   Validation,
   ErrorInfoMessage,
-} from '../../../const/const';
-import { ButtonBemClass, ActiveButtonName } from '../../../const/const-button';
-import { useAppDispatch, useAppSelector } from '../../../hooks/hooks';
-import { closeModal } from '../../../store/slices/modal/modal-slice';
-import { getCoupon } from '../../../store/slices/order/order-selectors';
-import { toStandardizePhone } from '../../../utils/utils';
+} from '@/const/const';
+import { ButtonBemClass, ActiveButtonName } from '@/const/const-button';
+import { useAppDispatch, useAppSelector } from '@/hooks/hooks';
+import { closeModal } from '@/store/slices/modal/modal-slice';
+import { getCoupon } from '@/store/slices/order/order-selectors';
+import { toStandardizePhone } from '@/utils/utils';
 import { ActiveButton } from '../../main/buttons/active-button';
 import { CallItemPhone } from './call-item-phone';
-import { fetchOrderAction } from '../../../store/slices/order/order-actions';
+import { fetchOrderAction } from '@/store/slices/order/order-actions';
 import { ProductDetails } from './product-detail';
-import { getModalCamera } from '../../../store/slices/modal/modal-selectors';
-import { phoneValidationError } from '../../../utils/error-utils';
+import { getModalCamera } from '@/store/slices/modal/modal-selectors';
+import { phoneValidationError } from '@/utils/error-utils';
 import { ToBlockActions } from '../../main/buttons/to-block-actions';
 
 function CallItemComponent(

@@ -1,4 +1,4 @@
-import { FOOTER_NAVIGATE } from '../../../const/const-navigate';
+import { FOOTER_NAVIGATE } from '@/const/const-navigate';
 import { FooterNavItem } from './footer-nav-item';
 
 export function FooterNav() {

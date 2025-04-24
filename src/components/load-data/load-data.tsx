@@ -1,4 +1,4 @@
-import { CSSClass, RequestCategory } from '../../const/const';
+import { CSSClass, RequestCategory } from '@/const/const';
 import css from './load-data.module.css';
 
 

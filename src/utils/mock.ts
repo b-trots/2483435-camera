@@ -1,11 +1,11 @@
 import { faker } from '@faker-js/faker';
-import { ReviewsType, ReviewType } from '../types/types';
+import { ReviewsType, ReviewType } from '@/types/types';
 import { Action } from 'redux';
 import { ThunkDispatch } from 'redux-thunk';
-import { createAPI } from '../services/api';
-import { State } from '../types/store-types/store-types';
-import { Cameras, FullCamera, PromoCamera } from '../types/camera-type';
-import { CameraCategory, CameraLevel, CameraType } from '../const/camera-const';
+import { createAPI } from '@/services/api';
+import { State } from '@/types/store-types/store-types';
+import { Cameras, FullCamera, PromoCamera } from '@/types/camera-type';
+import { CameraCategory, CameraLevel, CameraType } from '@/const/camera-const';
 
 const generateCamera = (): FullCamera => ({
   id: faker.number.int({ min: 1, max: 10 }),

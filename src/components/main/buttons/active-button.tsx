@@ -1,6 +1,6 @@
 import classNames from 'classnames';
-import { ServiceParam } from '../../../const/const';
-import { ButtonBemClass, ActiveButtonName, ButtonType } from '../../../const/const-button';
+import { ServiceParam } from '@/const/const';
+import { ButtonBemClass, ActiveButtonName, ButtonType } from '@/const/const-button';
 import { memo } from 'react';
 
 type ActiveButtonProps = {

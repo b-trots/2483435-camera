@@ -1,23 +1,23 @@
 import { useEffect, useRef, useState } from 'react';
-import { ActiveButton } from '../../../components/main/buttons/active-button';
+import { ActiveButton } from '@/components/main/buttons/active-button';
 import {
   DefaultParam,
   ExplanationWord,
   RequestCategory,
   RequestStatus,
   ServiceParam,
-} from '../../../const/const';
-import { ActiveButtonName } from '../../../const/const-button';
+} from '@/const/const';
+import { ActiveButtonName } from '@/const/const-button';
 import { Review } from './review';
-import { useAppDispatch, useAppSelector } from '../../../hooks/hooks';
+import { useAppDispatch, useAppSelector } from '@/hooks/hooks';
 import {
   getCurrentReviews,
   getReviewsError,
   getReviewsRequestStatus,
-} from '../../../store/slices/reviews/reviews-selectors';
+} from '@/store/slices/reviews/reviews-selectors';
 import { useParams } from 'react-router-dom';
-import { LoadData } from '../../../components/load-data/load-data';
-import { fetchOrSetReviewsAction } from '../../../store/slices/reviews/reviews-actions';
+import { LoadData } from '@/components/load-data/load-data';
+import { fetchOrSetReviewsAction } from '@/store/slices/reviews/reviews-actions';
 
 export function Reviews() {
   const dispatch = useAppDispatch();

@@ -1,19 +1,17 @@
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
 import 'swiper/css/pagination';
-
 import './banner.css';
-
 import { Autoplay, Pagination } from 'swiper/modules';
 import { BannerItem } from './banner-item';
-import { useAppDispatch, useAppSelector } from '../../../hooks/hooks';
-import { DefaultParam, ServiceParam } from '../../../const/const';
+import { useAppDispatch, useAppSelector } from '@/hooks/hooks';
+import { DefaultParam, ServiceParam } from '@/const/const';
 import { useEffect } from 'react';
 import {
   getIsPromoCamerasLoaded,
   getPromoCameras,
-} from '../../../store/slices/cameras/cameras-selectors';
-import { fetchPromoAction } from '../../../store/slices/cameras/cameras-actions';
+} from '@/store/slices/cameras/cameras-selectors';
+import { fetchPromoAction } from '@/store/slices/cameras/cameras-actions';
 
 export function Banner() {
   const dispatch = useAppDispatch();

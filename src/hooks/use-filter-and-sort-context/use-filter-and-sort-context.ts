@@ -1,5 +1,5 @@
 import { useContext } from 'react';
-import { ErrorInfoMessage } from '../../const/const';
+import { ErrorInfoMessage } from '@/const/const';
 import { FilterAndSortContext } from './filter-and-sort-context';
 
 const useFilterAndSortContext = () => {

@@ -1,5 +1,5 @@
-import { useAppSelector } from '../../hooks/hooks';
-import { getCurrentCamera } from '../../store/slices/cameras/cameras-selectors';
+import { useAppSelector } from '@/hooks/hooks';
+import { getCurrentCamera } from '@/store/slices/cameras/cameras-selectors';
 
 export function ProductDescription() {
   const camera = useAppSelector(getCurrentCamera);

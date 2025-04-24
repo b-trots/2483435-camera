@@ -1,9 +1,9 @@
-import { ServiceParam, SHOP_TITLE } from '../../const/const';
+import { ServiceParam, SHOP_TITLE } from '@/const/const';
 import { CatalogCards } from './catalog-cards';
 import { FilterComponent } from './filter-and-sorting/filters/filter-component';
 import { Pagination } from './pagination/pagination';
 import { SortingComponent } from './filter-and-sorting/sorting/sorting-component';
-import { useFilterAndSortContext } from '../../hooks/use-filter-and-sort-context/use-filter-and-sort-context';
+import { useFilterAndSortContext } from '@/hooks/use-filter-and-sort-context/use-filter-and-sort-context';
 import { useLocation } from 'react-router-dom';
 import { useEffect } from 'react';
 

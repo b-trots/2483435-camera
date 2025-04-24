@@ -1,5 +1,5 @@
-import { BemMode, ServiceParam } from '../../../../const/const';
-import { SliderButtonName } from '../../../../const/const-button';
+import { BemMode, ServiceParam } from '@/const/const';
+import { SliderButtonName } from '@/const/const-button';
 
 export type SliderButtonBem = BemMode.Prev | BemMode.Next;
 

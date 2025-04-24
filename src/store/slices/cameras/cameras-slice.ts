@@ -1,12 +1,12 @@
-import { DefaultParam, RequestStatus, SliceName } from '../../../const/const';
-import { CamerasSlice } from '../../../types/store-types/slices-types';
+import { DefaultParam, RequestStatus, SliceName } from '@/const/const';
+import { CamerasSlice } from '@/types/store-types/slices-types';
 import {
   fetchCamerasAction,
   fetchOrSetCameraAction,
   fetchPromoAction,
   fetchSimilarAction,
 } from './cameras-actions';
-import { Cameras, FullCamera } from '../../../types/camera-type';
+import { Cameras, FullCamera } from '@/types/camera-type';
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 export const camerasState: CamerasSlice = {

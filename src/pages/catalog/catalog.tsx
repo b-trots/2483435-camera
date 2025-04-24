@@ -1,22 +1,22 @@
-import { Footer } from '../../components/footer/footer';
-import { Header } from '../../components/header/header';
-import { Banner } from '../../components/main/banner/banner';
-import { Breadcrumbs } from '../../components/main/breadcrumbs/breadcrumbs';
+import { Footer } from '@/components/footer/footer';
+import { Header } from '@/components/header/header';
+import { Banner } from '@/components/main/banner/banner';
+import { Breadcrumbs } from '@/components/main/breadcrumbs/breadcrumbs';
 import {
   useAppDispatch,
   useAppSelector,
   useScrollToTop,
-} from '../../hooks/hooks';
-import { useChangeTitle } from '../../hooks/use-change-title';
-import { TitleName } from '../../const/const';
+} from '@/hooks/hooks';
+import { useChangeTitle } from '@/hooks/use-change-title';
+import { TitleName } from '@/const/const';
 import { CatalogContainer } from './catalog-container';
 import {
   getAllCameras,
   getIsAllCamerasLoaded,
-} from '../../store/slices/cameras/cameras-selectors';
+} from '@/store/slices/cameras/cameras-selectors';
 import { useEffect } from 'react';
-import { fetchCamerasAction } from '../../store/slices/cameras/cameras-actions';
-import { FilterAndSortProvider } from '../../hooks/use-filter-and-sort-context/filter-and-sort-context';
+import { fetchCamerasAction } from '@/store/slices/cameras/cameras-actions';
+import { FilterAndSortProvider } from '@/hooks/use-filter-and-sort-context/filter-and-sort-context';
 export function Catalog() {
   useChangeTitle(TitleName.Catalog);
   useScrollToTop();

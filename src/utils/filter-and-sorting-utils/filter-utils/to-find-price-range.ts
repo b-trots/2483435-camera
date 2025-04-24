@@ -1,6 +1,6 @@
-import { DefaultParam, ServiceParam } from '../../../const/const';
-import { Cameras } from '../../../types/camera-type';
-import { FilterCameraPriceType } from '../../../types/filter-and-sort-types';
+import { DefaultParam, ServiceParam } from '@/const/const';
+import { Cameras } from '@/types/camera-type';
+import { FilterCameraPriceType } from '@/types/filter-and-sort-types';
 
 const toFindPriceRange = (cameras: Cameras): FilterCameraPriceType => {
   if (!cameras.length) {

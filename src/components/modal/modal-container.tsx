@@ -1,11 +1,11 @@
 import { useRef, useEffect, cloneElement } from 'react';
 import { RemoveScroll } from 'react-remove-scroll';
-import { useAppDispatch } from '../../hooks/hooks';
-import { closeModal } from '../../store/slices/modal/modal-slice';
-import { toCloseModal } from '../../utils/modal-utils/to-close-modal';
+import { useAppDispatch } from '@/hooks/hooks';
+import { closeModal } from '@/store/slices/modal/modal-slice';
+import { toCloseModal } from '@/utils/modal-utils/to-close-modal';
 import { CloseButton } from '../main/buttons/close-button';
-import { toLoopFocus } from '../../utils/modal-utils/to-loop-focus';
-import { ButtonBemClass, ButtonType } from '../../const/const-button';
+import { toLoopFocus } from '@/utils/modal-utils/to-loop-focus';
+import { ButtonBemClass, ButtonType } from '@/const/const-button';
 
 type ModalProps = {
   children: React.ReactNode;

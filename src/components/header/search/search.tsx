@@ -3,8 +3,8 @@ import {
   ServiceParam,
   ExplanationWord,
   BemClass,
-} from '../../../const/const';
-import { ButtonBemClass, ButtonType } from '../../../const/const-button';
+} from '@/const/const';
+import { ButtonBemClass, ButtonType } from '@/const/const-button';
 import { CloseButton } from '../../main/buttons/close-button';
 import { SearchList } from './search-list';
 import { useSearch } from '../../../hooks/use-search/use-search';

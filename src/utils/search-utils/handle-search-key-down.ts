@@ -2,8 +2,8 @@ import {
   DefaultParam,
   KeyboardButtonName,
   ServiceParam,
-} from '../../const/const';
-import { FullCamera } from '../../types/camera-type';
+} from '@/const/const';
+import { FullCamera } from '@/types/camera-type';
 
 type HandleSearchKeyDownProps = {
   e: React.KeyboardEvent<HTMLInputElement>;

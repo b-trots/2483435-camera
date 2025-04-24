@@ -3,8 +3,8 @@ import {
   APIRoute,
   RequestStatus,
   ServiceParam,
-} from '../../../const/const';
-import { OrderType } from '../../../types/types';
+} from '@/const/const';
+import { OrderType } from '@/types/types';
 import { appCreateAsyncThunk } from '../cameras/cameras-actions';
 import { setRequestStatus } from './order-slice';
 

@@ -1,4 +1,4 @@
-import { BemClass } from '../../../const/const';
+import { BemClass } from '@/const/const';
 import { Logo } from '../../header/logo';
 import { FooterDescription } from './footer-description';
 import { Social } from './social';

@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
-import { PassiveButtonName } from '../../../const/const-button';
-import { AppRoute } from '../../../const/const-navigate';
+import { PassiveButtonName } from '@/const/const-button';
+import { AppRoute } from '@/const/const-navigate';
 import { memo } from 'react';
 
 type PassiveButtonProps = {

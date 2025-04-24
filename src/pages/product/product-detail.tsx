@@ -1,7 +1,7 @@
-import { ActiveButton } from '../../components/main/buttons/active-button';
-import { BemClass } from '../../const/const';
-import { ActiveButtonName } from '../../const/const-button';
-import { FullCamera } from '../../types/camera-type';
+import { ActiveButton } from '@/components/main/buttons/active-button';
+import { BemClass } from '@/const/const';
+import { ActiveButtonName } from '@/const/const-button';
+import { FullCamera } from '@/types/camera-type';
 import { DetailTabs } from './detail-tabs/detail-tabs';
 import { ProductImg } from './product-img';
 import { ProductPrice } from './product-price';

@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
-import { BemClass, BemMode, LogoParam } from '../../const/const';
-import { AppRoute } from '../../const/const-navigate';
+import { BemClass, BemMode, LogoParam } from '@/const/const';
+import { AppRoute } from '@/const/const-navigate';
 
 type LogoProps = {
   bemBlock: string;

@@ -1,4 +1,4 @@
-import { BemClass } from '../../const/const';
+import { BemClass } from '@/const/const';
 import { Logo } from './logo';
 import { HeaderNav } from './header-nav';
 import { memo } from 'react';

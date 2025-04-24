@@ -5,8 +5,8 @@ import {
   FilterCameraPrice,
   FilterCameraType,
   FilterName,
-} from '../const/filter-const';
-import { SortOrder, SortParam, SortType } from '../const/sorting-const';
+} from '@/const/filter-const';
+import { SortOrder, SortParam, SortType } from '@/const/sorting-const';
 
 type FilterPriceKeys =
   (typeof FilterCameraPrice)[keyof typeof FilterCameraPrice]['id'];

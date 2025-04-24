@@ -3,7 +3,7 @@ import {
   ModalStatus,
   ModalType,
   RequestStatus,
-} from '../../const/const';
+} from '@/const/const';
 import { Cameras, PromoCamera } from '../camera-type';
 import { ReviewsForState } from '../types';
 

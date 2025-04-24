@@ -1,5 +1,5 @@
-import { KeyboardButtonName } from '../../const/const';
-import { FocusableElements } from '../../types/types';
+import { KeyboardButtonName } from '@/const/const';
+import { FocusableElements } from '@/types/types';
 
 const toLoopFocus = (
   modalContainer: React.RefObject<HTMLDivElement>,

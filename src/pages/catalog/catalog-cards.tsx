@@ -3,17 +3,17 @@ import {
   RequestCategory,
   RequestStatus,
   ServiceParam,
-} from '../../const/const';
-import { useAppSelector } from '../../hooks/hooks';
+} from '@/const/const';
+import { useAppSelector } from '@/hooks/hooks';
 import {
   getCamerasError,
   getCamerasRequestStatus,
-} from '../../store/slices/cameras/cameras-selectors';
-import { ProductCard } from '../../components/main/product-card/product-card';
-import { LoadData } from '../../components/load-data/load-data';
-import { usePagination } from '../../hooks/use-pagination';
-import { selectCameras } from '../../utils/utils';
-import { useFilterAndSortContext } from '../../hooks/use-filter-and-sort-context/use-filter-and-sort-context';
+} from '@/store/slices/cameras/cameras-selectors';
+import { ProductCard } from '@/components/main/product-card/product-card';
+import { LoadData } from '@/components/load-data/load-data';
+import { usePagination } from '@/hooks/use-pagination';
+import { selectCameras } from '@/utils/utils';
+import { useFilterAndSortContext } from '@/hooks/use-filter-and-sort-context/use-filter-and-sort-context';
 
 export function CatalogCards() {
   const { currentPage } = usePagination(NameSpace.CatalogPageSearchId);

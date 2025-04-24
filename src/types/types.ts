@@ -1,4 +1,4 @@
-import { Coupon, TabName } from '../const/const';
+import { Coupon, TabName } from '@/const/const';
 
 type FocusableElements =
   | HTMLButtonElement

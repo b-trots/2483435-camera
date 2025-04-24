@@ -1,7 +1,7 @@
 import { memo } from 'react';
-import { formatPrice } from '../../utils/utils';
-import { CameraParam } from '../../const/camera-const';
-import { BemClass } from '../../const/const';
+import { formatPrice } from '@/utils/utils';
+import { CameraParam } from '@/const/camera-const';
+import { BemClass } from '@/const/const';
 
 type ProductPriceProps = {
   bemClass: BemClass;

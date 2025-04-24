@@ -1,8 +1,8 @@
-import { DefaultParam, NameSpace, ServiceParam } from '../../../const/const';
-import { useAppSelector } from '../../../hooks/hooks';
-import { useFilterAndSortContext } from '../../../hooks/use-filter-and-sort-context/use-filter-and-sort-context';
-import { usePagination } from '../../../hooks/use-pagination';
-import { getIsAllCamerasLoaded } from '../../../store/slices/cameras/cameras-selectors';
+import { DefaultParam, NameSpace, ServiceParam } from '@/const/const';
+import { useAppSelector } from '@/hooks/hooks';
+import { useFilterAndSortContext } from '@/hooks/use-filter-and-sort-context/use-filter-and-sort-context';
+import { usePagination } from '@/hooks/use-pagination';
+import { getIsAllCamerasLoaded } from '@/store/slices/cameras/cameras-selectors';
 import { PaginationItem } from './pagination-item';
 
 export function Pagination() {

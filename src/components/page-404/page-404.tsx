@@ -1,7 +1,7 @@
-import { Footer } from '../../components/footer/footer';
-import { Header } from '../../components/header/header';
-import { FLAPS_COUNT, SHUTTER_FLAPS, TitleName } from '../../const/const';
-import { useChangeTitle } from '../../hooks/use-change-title';
+import { Footer } from '@/components/footer/footer';
+import { Header } from '@/components/header/header';
+import { FLAPS_COUNT, SHUTTER_FLAPS, TitleName } from '@/const/const';
+import { useChangeTitle } from '@/hooks/use-change-title';
 import css from './page-404.module.css';
 
 interface ShutterStyle extends React.CSSProperties {

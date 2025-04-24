@@ -3,13 +3,13 @@ import {
   FilterCameraLevel,
   FilterCameraPrice,
   FilterCameraType,
-} from '../../../const/filter-const';
-import { Cameras } from '../../../types/camera-type';
+} from '@/const/filter-const';
+import { Cameras } from '@/types/camera-type';
 import {
   FilterCameraCategoryType,
   FilterCameraLevelType, FilterCameraTypeType,
   FiltersType
-} from '../../../types/filter-and-sort-types';
+} from '@/types/filter-and-sort-types';
 import { capitalize } from '../../utils';
 import { updateFilterArray } from './filter-utils';
 import { toUpdatePriceFilter } from './to-update-price-filter';

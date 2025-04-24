@@ -4,13 +4,13 @@ import {
   DefaultParam,
   NameSpace,
   ServiceParam,
-} from '../../../../const/const';
-import { ButtonBemClass } from '../../../../const/const-button';
-import { SortOrder, Sorting } from '../../../../const/sorting-const';
+} from '@/const/const';
+import { ButtonBemClass } from '@/const/const-button';
+import { SortOrder, Sorting } from '@/const/sorting-const';
 import {
   SortingType,
   SortingValue,
-} from '../../../../types/filter-and-sort-types';
+} from '@/types/filter-and-sort-types';
 
 type SortingItem = (typeof Sorting)[keyof typeof Sorting][number];
 

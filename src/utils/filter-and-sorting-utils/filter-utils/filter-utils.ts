@@ -1,7 +1,7 @@
-import { CameraCategory } from '../../../const/camera-const';
-import { DefaultParam } from '../../../const/const';
-import { FilterCameraCategory } from '../../../const/filter-const';
-import { FilterCameraCategoryType } from '../../../types/filter-and-sort-types';
+import { CameraCategory } from '@/const/camera-const';
+import { DefaultParam } from '@/const/const';
+import { FilterCameraCategory } from '@/const/filter-const';
+import { FilterCameraCategoryType } from '@/types/filter-and-sort-types';
 import { capitalize } from '../../utils';
 
 const isPriceInRange = (

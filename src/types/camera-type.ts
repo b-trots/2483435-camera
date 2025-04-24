@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import { CameraCategory, CameraLevel, CameraType } from '../const/camera-const';
+import { CameraCategory, CameraLevel, CameraType } from '@/const/camera-const';
 
 interface FullCamera {
   id: number;

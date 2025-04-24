@@ -1,15 +1,15 @@
 import { useRef } from 'react';
-import { Button } from '../../../../components/main/buttons/button';
-import { ExplanationWord } from '../../../../const/const';
+import { Button } from '@/components/main/buttons/button';
+import { ExplanationWord } from '@/const/const';
 import {
   ButtonBemClass,
   ButtonName,
   ButtonType,
-} from '../../../../const/const-button';
-import { Filter, FilterCameraPrice } from '../../../../const/filter-const';
+} from '@/const/const-button';
+import { Filter, FilterCameraPrice } from '@/const/filter-const';
 import { FilterBlock } from './filter-block';
-import { handleFormKeyDown } from '../../../../utils/filter-and-sorting-utils/handle-form-key-down';
-import { useFilterAndSortContext } from '../../../../hooks/use-filter-and-sort-context/use-filter-and-sort-context';
+import { handleFormKeyDown } from '@/utils/filter-and-sorting-utils/handle-form-key-down';
+import { useFilterAndSortContext } from '@/hooks/use-filter-and-sort-context/use-filter-and-sort-context';
 
 export function FilterComponent() {
   const { updateFilters, resetFilters } = useFilterAndSortContext();

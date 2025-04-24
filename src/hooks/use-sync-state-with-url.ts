@@ -1,11 +1,11 @@
 import { useSearchParams } from 'react-router-dom';
-import { FiltersType, SortingType } from '../types/filter-and-sort-types';
+import { FiltersType, SortingType } from '@/types/filter-and-sort-types';
 import { useEffect, useState } from 'react';
 import {
   FILTER_AND_SORT_PARAM,
   FilterAndSortParam
-} from '../const/filter-const';
-import { DefaultParam } from '../const/const';
+} from '@/const/filter-const';
+import { DefaultParam } from '@/const/const';
 
 const useSyncStateWithUrl = (
   initialFilters: FiltersType,

@@ -1,8 +1,8 @@
-import { Cameras } from '../../../types/camera-type';
+import { Cameras } from '@/types/camera-type';
 import {
   FilterCameraPriceType,
   FiltersType,
-} from '../../../types/filter-and-sort-types';
+} from '@/types/filter-and-sort-types';
 import { toFilterCameras } from './to-filter-cameras';
 import { toFindPriceRange } from './to-find-price-range';
 

@@ -3,20 +3,20 @@ import {
   DefaultParam,
   RequestCategory,
   RequestStatus,
-} from '../../const/const';
-import { useAppDispatch, useAppSelector } from '../../hooks/hooks';
+} from '@/const/const';
+import { useAppDispatch, useAppSelector } from '@/hooks/hooks';
 import {
   getCamerasError,
   getCamerasRequestStatus,
   getCurrentCamera,
-} from '../../store/slices/cameras/cameras-selectors';
-import { Header } from '../../components/header/header';
-import { LoadData } from '../../components/load-data/load-data';
+} from '@/store/slices/cameras/cameras-selectors';
+import { Header } from '@/components/header/header';
+import { LoadData } from '@/components/load-data/load-data';
 import { ProductContent } from './product-content';
-import { UpButton } from '../../components/main/buttons/up-button';
-import { Footer } from '../../components/footer/footer';
+import { UpButton } from '@/components/main/buttons/up-button';
+import { Footer } from '@/components/footer/footer';
 import { useCallback, useEffect } from 'react';
-import { setCurrentCameraId } from '../../store/slices/cameras/cameras-slice';
+import { setCurrentCameraId } from '@/store/slices/cameras/cameras-slice';
 
 export function Product() {
   const dispatch = useAppDispatch();

@@ -1,7 +1,7 @@
-import { FullCamera } from '../../../types/camera-type';
+import { FullCamera } from '@/types/camera-type';
 import { SearchListItem } from './search-list-item';
-import { DefaultParam, ServiceParam } from '../../../const/const';
-import { useScrollToActiveItem } from '../../../hooks/use-search/use-scroll-to-active-item';
+import { DefaultParam, ServiceParam } from '@/const/const';
+import { useScrollToActiveItem } from '@/hooks/use-search/use-scroll-to-active-item';
 
 type SearchListProps = {
   filteredCameras: FullCamera[];

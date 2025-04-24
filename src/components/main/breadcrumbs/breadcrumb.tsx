@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { ServiceParam } from '../../../const/const';
+import { ServiceParam } from '@/const/const';
 
 type BreadcrumbProps = {
   name: string;

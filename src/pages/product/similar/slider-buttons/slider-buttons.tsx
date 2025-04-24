@@ -1,5 +1,5 @@
-import { BemMode, NameSpace, ServiceParam } from '../../../../const/const';
-import { SliderButtonName } from '../../../../const/const-button';
+import { BemMode, NameSpace, ServiceParam } from '@/const/const';
+import { SliderButtonName } from '@/const/const-button';
 import { SliderButton, SliderButtonBem } from './slider-button';
 import { Swiper as SwiperCore } from 'swiper/types';
 import { useState } from 'react';

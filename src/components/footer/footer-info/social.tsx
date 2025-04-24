@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
-import { SOCIAL } from '../../../const/const-navigate';
-import { ServiceParam } from '../../../const/const';
+import { SOCIAL } from '@/const/const-navigate';
+import { ServiceParam } from '@/const/const';
 
 export function Social() {
   return (

@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { FOOTER_NAVIGATE } from '../../../const/const-navigate';
+import { FOOTER_NAVIGATE } from '@/const/const-navigate';
 
 type FooterNavItemProps = {
   title: string;

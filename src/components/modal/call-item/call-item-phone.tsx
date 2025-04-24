@@ -5,9 +5,9 @@ import {
   ServiceParam,
   ToastParam,
   Validation,
-} from '../../../const/const';
+} from '@/const/const';
 import { toast, ToastContainer } from 'react-toastify';
-import { phoneValidationError } from '../../../utils/error-utils';
+import { phoneValidationError } from '@/utils/error-utils';
 
 type CallItemPhoneProps = {
   onPhoneChange: (tel: string) => void;

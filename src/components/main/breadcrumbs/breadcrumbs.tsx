@@ -1,4 +1,4 @@
-import { BREADCRUMBS } from '../../../const/const-navigate';
+import { BREADCRUMBS } from '@/const/const-navigate';
 import { BreadcrumbActive } from './breadcrumb-active';
 import { Breadcrumb } from './breadcrumb';
 

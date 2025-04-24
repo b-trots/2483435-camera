@@ -1,10 +1,10 @@
-import { CameraParam } from '../../../../const/camera-const';
+import { CameraParam } from '@/const/camera-const';
 import {
   DefaultParam,
   ExplanationWord,
   ServiceParam,
-} from '../../../../const/const';
-import { FilterItemType } from '../../../../types/filter-and-sort-types';
+} from '@/const/const';
+import { FilterItemType } from '@/types/filter-and-sort-types';
 import { FilterItem } from './filter-item';
 
 type FilterBlockParam = {

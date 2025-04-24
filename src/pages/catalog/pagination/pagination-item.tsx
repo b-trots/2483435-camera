@@ -1,9 +1,9 @@
-import { ButtonBemClass, PaginationButton } from '../../../const/const-button';
+import { ButtonBemClass, PaginationButton } from '@/const/const-button';
 import {
   BemClass,
   BemMode,
   DefaultParam
-} from '../../../const/const';
+} from '@/const/const';
 import { Link } from 'react-router-dom';
 import classNames from 'classnames';
 

@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import { DefaultParam, SymbolParam, TitleName } from '../const/const';
+import { DefaultParam, SymbolParam, TitleName } from '@/const/const';
 function useChangeTitle(title: string) {
   useEffect(() => {
     const initialTitle = document.title;

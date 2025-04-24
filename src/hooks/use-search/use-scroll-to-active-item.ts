@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import { ServiceParam } from '../../const/const';
+import { ServiceParam } from '@/const/const';
 
 export function useScrollToActiveItem(activeIndex: number | null) {
   useEffect(() => {

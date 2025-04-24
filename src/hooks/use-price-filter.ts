@@ -4,9 +4,9 @@ import {
   Validation,
   ServiceParam,
   InputType,
-} from '../const/const';
-import { FilterCameraPrice } from '../const/filter-const';
-import { FilterItemType } from '../types/filter-and-sort-types';
+} from '@/const/const';
+import { FilterCameraPrice } from '@/const/filter-const';
+import { FilterItemType } from '@/types/filter-and-sort-types';
 import { useFilterAndSortContext } from './use-filter-and-sort-context/use-filter-and-sort-context';
 
 type usePriceFilterProps = {

@@ -3,7 +3,7 @@ import {
   ButtonBemClass,
   ButtonName,
   ButtonType,
-} from '../../../const/const-button';
+} from '@/const/const-button';
 
 type ButtonProps = {
   type: ButtonType;

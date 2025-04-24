@@ -1,11 +1,11 @@
 import { Swiper, SwiperSlide } from 'swiper/react';
-import { ProductCard } from '../../../components/main/product-card/product-card';
-import { useAppDispatch, useAppSelector } from '../../../hooks/hooks';
+import { ProductCard } from '@/components/main/product-card/product-card';
+import { useAppDispatch, useAppSelector } from '@/hooks/hooks';
 import {
   getCurrentCameraId,
   getIsSimilarCamerasLoaded,
   getSimilarCameras,
-} from '../../../store/slices/cameras/cameras-selectors';
+} from '@/store/slices/cameras/cameras-selectors';
 import { SliderButtons } from './slider-buttons/slider-buttons';
 import { Navigation } from 'swiper/modules';
 import css from './similar.module.css';
@@ -16,8 +16,8 @@ import {
   ExplanationWord,
   NameSpace,
   ServiceParam,
-} from '../../../const/const';
-import { fetchSimilarAction } from '../../../store/slices/cameras/cameras-actions';
+} from '@/const/const';
+import { fetchSimilarAction } from '@/store/slices/cameras/cameras-actions';
 
 export function Similar() {
   const dispatch = useAppDispatch();

@@ -1,12 +1,12 @@
 import { TypedUseSelectorHook, useDispatch, useSelector } from 'react-redux';
-import { AppDispatch, State } from '../types/store-types/store-types';
+import { AppDispatch, State } from '@/types/store-types/store-types';
 import { useEffect } from 'react';
-import { DefaultParam } from '../const/const';
+import { DefaultParam } from '@/const/const';
 import {
   fetchOrSetCameraAction,
   fetchSimilarAction,
-} from '../store/slices/cameras/cameras-actions';
-import { FullCamera } from '../types/camera-type';
+} from '@/store/slices/cameras/cameras-actions';
+import { FullCamera } from '@/types/camera-type';
 
 const useAppDispatch = () => useDispatch<AppDispatch>();
 const useAppSelector: TypedUseSelectorHook<State> = useSelector;

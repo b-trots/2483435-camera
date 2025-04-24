@@ -1,18 +1,17 @@
-import { CameraForCatalog } from '../../../types/camera-type';
-import { BemClass, BemMode, ModalType } from '../../../const/const';
-import { ProductImg } from '../../../pages/product/product-img';
-import { ProductPrice } from '../../../pages/product/product-price';
-import { ProductRate } from '../../../pages/product/product-rate';
+import { CameraForCatalog } from '@/types/camera-type';
+import { BemClass, BemMode, ModalType } from '@/const/const';
+import { ProductImg } from '@/pages/product/product-img';
+import { ProductPrice } from '@/pages/product/product-price';
+import { ProductRate } from '@/pages/product/product-rate';
 import { ActiveButton } from '../buttons/active-button';
 import { PassiveButton } from '../buttons/passive-button';
-import { ButtonBemClass, ActiveButtonName } from '../../../const/const-button';
+import { ButtonBemClass, ActiveButtonName } from '@/const/const-button';
 import { memo, useCallback } from 'react';
-import { useAppDispatch } from '../../../hooks/hooks';
-
-import { fetchOrSetReviewsAction } from '../../../store/slices/reviews/reviews-actions';
-import { fetchSimilarAction } from '../../../store/slices/cameras/cameras-actions';
-import { handleModalOpen } from '../../../store/slices/modal/modal-actions';
-import { ProductTitle } from '../../../pages/product/product-title';
+import { useAppDispatch } from '@/hooks/hooks';
+import { fetchOrSetReviewsAction } from '@/store/slices/reviews/reviews-actions';
+import { fetchSimilarAction } from '@/store/slices/cameras/cameras-actions';
+import { handleModalOpen } from '@/store/slices/modal/modal-actions';
+import { ProductTitle } from '@/pages/product/product-title';
 
 type CameraProps = {
   camera: CameraForCatalog;

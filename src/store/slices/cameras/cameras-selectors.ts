@@ -1,7 +1,7 @@
 import { createSelector } from '@reduxjs/toolkit';
-import { RequestStatus, SliceName } from '../../../const/const';
-import { State } from '../../../types/store-types/store-types';
-import { Cameras } from '../../../types/camera-type';
+import { RequestStatus, SliceName } from '@/const/const';
+import { State } from '@/types/store-types/store-types';
+import { Cameras } from '@/types/camera-type';
 
 export type CamerasState = Pick<State, SliceName.Cameras>;
 

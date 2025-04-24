@@ -3,7 +3,7 @@ import {
   DefaultParam,
   KeyboardButtonName,
   ServiceParam,
-} from '../../const/const';
+} from '@/const/const';
 
 export const handleFormKeyDown = (
   e: React.KeyboardEvent,

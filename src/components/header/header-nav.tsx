@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { NAVIGATE } from '../../const/const-navigate';
+import { NAVIGATE } from '@/const/const-navigate';
 
 export function HeaderNav() {
   return (

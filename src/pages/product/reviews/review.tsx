@@ -1,8 +1,8 @@
-import { BemClass, ExplanationWord } from '../../../const/const';
-import { ReviewType } from '../../../types/types';
+import { BemClass, ExplanationWord } from '@/const/const';
+import { ReviewType } from '@/types/types';
 import { ProductRate } from '../product-rate';
-import { List } from '../../../components/main/list';
-import { reviewDate } from '../../../utils/utils';
+import { List } from '@/components/main/list';
+import { reviewDate } from '@/utils/utils';
 
 type ReviewProps = {
   comment: ReviewType;

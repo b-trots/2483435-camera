@@ -1,10 +1,10 @@
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 
 
-import { Product } from '../../pages/product/product';
-import { AppRoute } from '../../const/const-navigate';
-import { Catalog } from '../../pages/catalog/catalog';
-import { Page404 } from '../../components/page-404/page-404.tsx';
+import { Product } from '@/pages/product/product';
+import { AppRoute } from '@/const/const-navigate';
+import { Catalog } from '@/pages/catalog/catalog';
+import { Page404 } from '@/components/page-404/page-404.tsx';
 
 function Router() {
   const router = createBrowserRouter([

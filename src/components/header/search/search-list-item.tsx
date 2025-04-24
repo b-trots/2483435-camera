@@ -1,6 +1,6 @@
 import classNames from 'classnames';
-import { FullCamera } from '../../../types/camera-type';
-import { BemClass, ServiceParam } from '../../../const/const';
+import { FullCamera } from '@/types/camera-type';
+import { BemClass, ServiceParam } from '@/const/const';
 
 type SearchListItemProps = {
   camera: FullCamera;

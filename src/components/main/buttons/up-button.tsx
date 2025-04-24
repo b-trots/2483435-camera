@@ -1,5 +1,5 @@
 import React from 'react';
-import { ServiceParam } from '../../../const/const';
+import { ServiceParam } from '@/const/const';
 import { Link } from 'react-router-dom';
 
 export function UpButton() {

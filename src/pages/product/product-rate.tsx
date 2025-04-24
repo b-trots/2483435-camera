@@ -5,8 +5,8 @@ import {
   ExplanationWord,
   RATING_STAR_COUNT,
   ServiceParam,
-} from '../../const/const';
-import { CameraParam } from '../../const/camera-const';
+} from '@/const/const';
+import { CameraParam } from '@/const/camera-const';
 
 type ProductRateProps = {
   bemClass: BemClass;

@@ -5,7 +5,7 @@ import {
   ErrorInfoMessage,
   StatusCodeMapping,
   ToastParam,
-} from '../const/const';
+} from '@/const/const';
 
 export type DetailMessageType = {
   type: string;

@@ -1,5 +1,5 @@
 import { memo } from 'react';
-import { BemClass, DefaultParam, PICTURE_PARAMS } from '../../const/const';
+import { BemClass, DefaultParam, PICTURE_PARAMS } from '@/const/const';
 
 type ProductImgProps = {
   bemClass: BemClass;

@@ -1,4 +1,4 @@
-import { BemClass, SymbolParam } from '../../const/const';
+import { BemClass, SymbolParam } from '@/const/const';
 import { ItemList } from './item-list';
 
 type ListProps = {

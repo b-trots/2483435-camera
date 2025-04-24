@@ -1,7 +1,7 @@
-import { ServiceParam } from '../../../const/const';
-import { FilterCameraPrice } from '../../../const/filter-const';
-import { Cameras } from '../../../types/camera-type';
-import { FiltersType } from '../../../types/filter-and-sort-types';
+import { ServiceParam } from '@/const/const';
+import { FilterCameraPrice } from '@/const/filter-const';
+import { Cameras } from '@/types/camera-type';
+import { FiltersType } from '@/types/filter-and-sort-types';
 import { toUpdateValidPriceRange } from './to-update-valid-price-range';
 
 type toUpdatePriceFilterProps = {

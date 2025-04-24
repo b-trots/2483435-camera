@@ -5,25 +5,25 @@ import {
   useMemo,
   useState,
 } from 'react';
-import { DefaultParam } from '../../const/const';
-import { SortOrder, SortType } from '../../const/sorting-const';
-import { Cameras, CamerasPropType } from '../../types/camera-type';
+import { DefaultParam } from '@/const/const';
+import { SortOrder, SortType } from '@/const/sorting-const';
+import { Cameras, CamerasPropType } from '@/types/camera-type';
 import {
   FilterCameraPriceType,
   FiltersType,
   SortingType,
   SortingValue,
-} from '../../types/filter-and-sort-types';
+} from '@/types/filter-and-sort-types';
 import { useSyncStateWithUrl } from '../use-sync-state-with-url';
-import { toFindPriceRange } from '../../utils/filter-and-sorting-utils/filter-utils/to-find-price-range';
-import { toUpdateFilters } from '../../utils/filter-and-sorting-utils/filter-utils/to-update-filters';
+import { toFindPriceRange } from '@/utils/filter-and-sorting-utils/filter-utils/to-find-price-range';
+import { toUpdateFilters } from '@/utils/filter-and-sorting-utils/filter-utils/to-update-filters';
 import {
   toSortCameras,
   toUpdateSorting,
-} from '../../utils/filter-and-sorting-utils/sorting-utils';
-import { toFilterCameras } from '../../utils/filter-and-sorting-utils/filter-utils/to-filter-cameras';
+} from '@/utils/filter-and-sorting-utils/sorting-utils';
+import { toFilterCameras } from '@/utils/filter-and-sorting-utils/filter-utils/to-filter-cameras';
 import PropTypes from 'prop-types';
-import { toUpdateValidPriceRange } from '../../utils/filter-and-sorting-utils/filter-utils/to-update-valid-price-range';
+import { toUpdateValidPriceRange } from '@/utils/filter-and-sorting-utils/filter-utils/to-update-valid-price-range';
 
 type FilterAndSortContextType = {
   filters: FiltersType;

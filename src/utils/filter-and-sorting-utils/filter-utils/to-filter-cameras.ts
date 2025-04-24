@@ -2,15 +2,15 @@ import {
   FilterCameraLevel,
   FilterCameraType,
   FilterName,
-} from '../../../const/filter-const';
-import { Cameras } from '../../../types/camera-type';
+} from '@/const/filter-const';
+import { Cameras } from '@/types/camera-type';
 import {
   FilterCameraCategoryType,
   FilterCameraLevelType,
   FilterCameraPriceType,
   FilterCameraTypeType,
   FiltersType,
-} from '../../../types/filter-and-sort-types';
+} from '@/types/filter-and-sort-types';
 import {
   isPriceInRange,
   matchesArrayFilter,

@@ -1,9 +1,9 @@
-import { SortOrder, SortType } from '../../const/sorting-const';
-import { Cameras, FullCamera } from '../../types/camera-type';
+import { SortOrder, SortType } from '@/const/sorting-const';
+import { Cameras, FullCamera } from '@/types/camera-type';
 import dayjs from 'dayjs';
-import { ReviewType } from '../../types/types';
-import { SortingType, SortingValue } from '../../types/filter-and-sort-types';
-import { DefaultParam } from '../../const/const';
+import { ReviewType } from '@/types/types';
+import { SortingType, SortingValue } from '@/types/filter-and-sort-types';
+import { DefaultParam } from '@/const/const';
 
 const daySort = (reviewA: ReviewType, reviewB: ReviewType) =>
   dayjs(reviewB.createAt).diff(dayjs(reviewA.createAt));

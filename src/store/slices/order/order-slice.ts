@@ -1,6 +1,6 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { RequestStatus, SliceName } from '../../../const/const';
-import { OrderSlice } from '../../../types/store-types/slices-types';
+import { RequestStatus, SliceName } from '@/const/const';
+import { OrderSlice } from '@/types/store-types/slices-types';
 import { fetchOrderAction } from './order-actions';
 
 const orderState: OrderSlice = {

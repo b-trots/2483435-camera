@@ -1,5 +1,5 @@
-import { DefaultParam, ServiceParam } from '../const/const';
-import { PaginationButton } from '../const/const-button';
+import { DefaultParam, ServiceParam } from '@/const/const';
+import { PaginationButton } from '@/const/const-button';
 
 const createPaginationButtonsNames = (
   pagesCount: number,

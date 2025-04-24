@@ -1,9 +1,9 @@
 import { useState } from 'react';
-import { SearchParam, TabName } from '../../../const/const';
+import { SearchParam, TabName } from '@/const/const';
 import { TabsControl } from './tabs-control';
 import { TabsContent } from './tabs-content';
 import { useSearchParams } from 'react-router-dom';
-import { TabNameId, TabNameKey } from '../../../types/types';
+import { TabNameId, TabNameKey } from '@/types/types';
 
 export function DetailTabs() {
   const [searchParams, setSearchParams] = useSearchParams();

@@ -1,5 +1,5 @@
-import { ApiActionName, APIRoute, DefaultParam, SliceName } from '../../../const/const';
-import { ReviewsType } from '../../../types/types';
+import { ApiActionName, APIRoute, DefaultParam, SliceName } from '@/const/const';
+import { ReviewsType } from '@/types/types';
 import { addReviewToAllCamerasReviews } from './reviews-slice';
 import { appCreateAsyncThunk } from '../cameras/cameras-actions';
 

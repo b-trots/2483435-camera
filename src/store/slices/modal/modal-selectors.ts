@@ -1,6 +1,6 @@
 import { createSelector } from '@reduxjs/toolkit';
-import { SliceName } from '../../../const/const';
-import { State } from '../../../types/store-types/store-types';
+import { SliceName } from '@/const/const';
+import { State } from '@/types/store-types/store-types';
 import { getAllCameras } from '../cameras/cameras-selectors';
 
 type ModalState = Pick<State, SliceName.Modal>;

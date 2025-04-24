@@ -1,13 +1,13 @@
 import { useState, useEffect, useRef } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
-import { AppRoute } from '../../const/const-navigate';
-import { getAllCameras } from '../../store/slices/cameras/cameras-selectors';
-import { setCurrentCameraId } from '../../store/slices/cameras/cameras-slice';
-import { FullCamera } from '../../types/camera-type';
-import { handleSearchKeyDown } from '../../utils/search-utils/handle-search-key-down';
+import { AppRoute } from '@/const/const-navigate';
+import { getAllCameras } from '@/store/slices/cameras/cameras-selectors';
+import { setCurrentCameraId } from '@/store/slices/cameras/cameras-slice';
+import { FullCamera } from '@/types/camera-type';
+import { handleSearchKeyDown } from '@/utils/search-utils/handle-search-key-down';
 import { useAppDispatch, useAppSelector } from '../hooks';
 import { useSearchCameras } from './use-search-cameras';
-import { DefaultParam, ServiceParam } from '../../const/const';
+import { DefaultParam, ServiceParam } from '@/const/const';
 
 export function useSearch() {
   const location = useLocation();

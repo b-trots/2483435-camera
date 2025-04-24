@@ -1,9 +1,9 @@
-import { ModalType, SliceName } from '../../../const/const';
+import { ModalType, SliceName } from '@/const/const';
 import {
   AppDispatch,
   GetState,
   State,
-} from '../../../types/store-types/store-types';
+} from '@/types/store-types/store-types';
 import { openModal, setModalCameraId } from './modal-slice';
 
 export const handleModalOpen =

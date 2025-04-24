@@ -1,7 +1,7 @@
 import { ModalContainer } from './modal-container';
 import { CallItem } from './call-item/call-item';
-import { ModalType } from '../../const/const';
-import { useAppSelector } from '../../hooks/hooks';
+import { ModalType } from '@/const/const';
+import { useAppSelector } from '@/hooks/hooks';
 import {
   getActiveModal,
   getModalCamera,

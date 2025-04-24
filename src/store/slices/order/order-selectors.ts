@@ -1,5 +1,5 @@
-import { RequestStatus, SliceName } from '../../../const/const';
-import { State } from '../../../types/store-types/store-types';
+import { RequestStatus, SliceName } from '@/const/const';
+import { State } from '@/types/store-types/store-types';
 
 type OrderState = Pick<State, SliceName.Order>;
 
