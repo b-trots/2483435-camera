@@ -1,4 +1,4 @@
-import { Coupon, TabName } from '@/const/const';
+import { TabName } from '@/const/const';
 
 type FocusableElements =
   | HTMLButtonElement
@@ -21,8 +21,8 @@ type ReviewType = {
 type ReviewsForState = Record<number, ReviewsType>;
 
 type OrderType = {
-  camerasIds: [number];
-  coupon: Coupon | null;
+  camerasIds: number[];
+  coupon: string | null;
   tel?: string;
 };
 

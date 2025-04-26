@@ -1,4 +1,4 @@
-import { DefaultParam, RequestStatus } from '../../../const/const';
+import { RequestStatus } from '../../../const/const';
 import {
   generateAllCameras,
   generateCamera,
@@ -20,12 +20,12 @@ import {
 
 describe('Cameras Slice', () => {
   const initialState = {
-    allCameras: DefaultParam.EmptyArray,
+    allCameras: [],
     isAllCamerasLoaded: false,
     currentCameraId: null,
-    promoCameras: DefaultParam.EmptyArray,
+    promoCameras: [],
     isPromoCamerasLoaded: false,
-    similarCamerasIds: DefaultParam.EmptyArray,
+    similarCamerasIds: [],
     isSimilarCamerasLoaded: false,
     requestStatus: RequestStatus.Idle,
     camerasError: false,
@@ -63,41 +63,16 @@ describe('Cameras Slice', () => {
   it('addCameraToAllCameras should add a camera to allCameras', () => {
     const stateWithCameras = {
       ...initialState,
-      allCameras: allCameras,
+      allCameras: [...allCameras],
     };
 
     const action = addCameraToAllCameras(camera);
     const result = camerasSlice.reducer(stateWithCameras, action);
 
-    const expectedState = {
-      ...stateWithCameras,
-      allCameras: [...allCameras, action],
-    };
-
-    expect(result).toEqual(expectedState);
+    expect(result.allCameras).toHaveLength(allCameras.length + 1);
+    expect(result.allCameras).toEqual([...allCameras, camera]);
+    expect(result.allCameras[result.allCameras.length - 1]).toEqual(camera);
   });
-
-  // it('addCameraToAllCameras should overwrite an existing camera if id matches', () => {
-  //   const existingCamera = { ...camera, id: 1 };
-  //   const updatedCamera = { ...camera, id: 1, name: 'Updated Camera' };
-
-  //   const stateWithExistingCamera = {
-  //     ...initialState,
-  //     allCameras: { [existingCamera.id]: existingCamera },
-  //   };
-
-  //   const action = addCameraToAllCameras(updatedCamera);
-  //   const result = camerasSlice.reducer(stateWithExistingCamera, action);
-
-  //   const expectedState = {
-  //     ...stateWithExistingCamera,
-  //     allCameras: {
-  //       [updatedCamera.id]: updatedCamera,
-  //     },
-  //   };
-
-  //   expect(result).toEqual(expectedState);
-  // });
 
   it('setCurrentCameraId should update currentCameraId', () => {
     const action = setCurrentCameraId(1);

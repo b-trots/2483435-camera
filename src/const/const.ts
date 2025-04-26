@@ -282,12 +282,6 @@ enum ApiActionName {
   UpdateAllSetCurrentId = 'UpdateAllCamerasAndSetCurrentCameraId',
 }
 
-enum Coupon {
-  Three = 'camera-333',
-  Four = 'camera-444',
-  Default = 'camera',
-}
-
 enum CSSClass {
   LoadMessage = 'loading-message',
   ErrorMessage = 'error-message',
@@ -315,7 +309,6 @@ export {
   BannerParam,
   BemClass,
   BemMode,
-  Coupon,
   CSSClass,
   DefaultParam,
   ErrorInfoMessage,

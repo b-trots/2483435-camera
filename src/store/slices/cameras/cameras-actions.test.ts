@@ -10,7 +10,7 @@ import {
   generateCamera,
   generatePromoCameras,
 } from '../../../utils/mock';
-import { APIRoute, DefaultParam } from '../../../const/const';
+import { APIRoute } from '../../../const/const';
 import {
   fetchCamerasAction,
   fetchOrSetCameraAction,
@@ -36,7 +36,7 @@ let store: ReturnType<typeof mockStoreCreator>;
 beforeEach(() => {
   store = mockStoreCreator({
     CAMERAS: {
-      allCameras: DefaultParam.EmptyArray,
+      allCameras: [],
       currentCameraId: null,
     },
   });
@@ -186,7 +186,7 @@ describe('fetchPromoAction', () => {
 
     const result = await store.dispatch(fetchPromoAction());
 
-    expect(result.payload).toEqual(DefaultParam.EmptyArray);
+    expect(result.payload).toEqual([]);
   });
 
   it('should return empty array when promo is null', async () => {
@@ -194,7 +194,7 @@ describe('fetchPromoAction', () => {
 
     const result = await store.dispatch(fetchPromoAction());
 
-    expect(result.payload).toEqual(DefaultParam.EmptyArray);
+    expect(result.payload).toEqual([]);
   });
 });
 

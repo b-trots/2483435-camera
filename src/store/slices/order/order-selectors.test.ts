@@ -14,8 +14,8 @@ describe('Order Selectors', () => {
     },
   };
 
-  it('getCoupon should return the current coupon', () => {
-    const result = getCoupon(state);
+  it('getCoupon should return null if no coupon is entered', () => {
+    const result: null = getCoupon(state) as null;
     expect(result).toBe(null);
   });
 

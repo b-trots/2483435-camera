@@ -74,8 +74,13 @@ describe('Modal Selectors', () => {
   });
 
   it('getModalCamera should return the camera associated with the current modal ID', () => {
+    const { allCameras } = state[SliceName.Cameras];
+    const { modalCameraId } = state[SliceName.Modal];
     const result = getModalCamera(state);
-    expect(result).toEqual(mockAllCameras[1]);
+    const expectedResult = allCameras.find(
+      (camera) => camera.id === modalCameraId
+    );
+    expect(result).toEqual(expectedResult);
   });
 
   it('getModalCamera should return null if no modal camera ID is set', () => {

@@ -1,4 +1,4 @@
-import { DefaultParam, RequestStatus, SliceName } from '../../../const/const';
+import { RequestStatus, SliceName } from '../../../const/const';
 import { Cameras } from '../../../types/camera-type';
 import {
   generateAllCameras,
@@ -45,16 +45,16 @@ describe('Cameras Selectors', () => {
     expect(result).toEqual(allCameras);
   });
 
-  it('getAllCameras should return an empty object if allCameras is empty', () => {
+  it('getAllCameras should return an empty array if allCameras is empty', () => {
     const newState = {
       ...state,
       [SliceName.Cameras]: {
         ...state[SliceName.Cameras],
-        allCameras: DefaultParam.EmptyArray,
+        allCameras: [],
       },
     };
     const result = getAllCameras(newState);
-    expect(result).toEqual({});
+    expect(result).toEqual([]);
   });
 
   it('getIsAllCamerasLoaded should return isAllCamerasLoaded', () => {
@@ -72,7 +72,9 @@ describe('Cameras Selectors', () => {
   it('getCurrentCamera should return current camera', () => {
     const { allCameras, currentCameraId } = state[SliceName.Cameras];
     const result = getCurrentCamera(state);
-    const expectedResult = allCameras[currentCameraId];
+    const expectedResult = allCameras.find(
+      (camera) => camera.id === currentCameraId
+    );
     expect(result).toEqual(expectedResult);
   });
 

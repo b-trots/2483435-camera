@@ -3,7 +3,7 @@ import { SliceName } from '@/const/const';
 import { State } from '@/types/store-types/store-types';
 import { getAllCameras } from '../cameras/cameras-selectors';
 
-type ModalState = Pick<State, SliceName.Modal>;
+export type ModalState = Pick<State, SliceName.Modal>;
 
 const getActiveModal = (state: ModalState) => state[SliceName.Modal].modalType;
 const getModalStatus = (state: ModalState) =>

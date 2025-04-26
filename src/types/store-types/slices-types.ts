@@ -1,5 +1,4 @@
 import {
-  Coupon,
   ModalStatus,
   ModalType,
   RequestStatus,
@@ -32,7 +31,7 @@ type ModalSlice = {
 };
 
 type OrderSlice = {
-  coupon: Coupon | null;
+  coupon: string | null;
   requestStatus: RequestStatus;
   orderError: boolean;
 };

@@ -18,10 +18,12 @@ const getCurrentCameraId = (state: CamerasState) =>
 
 const getCurrentCamera = createSelector(
   [getAllCameras, getCurrentCameraId],
-  (allCameras, currentCameraId) =>
-    currentCameraId
-      ? allCameras.find((camera) => camera.id === currentCameraId)
-      : null
+  (allCameras, currentCameraId) => {
+    if (!currentCameraId) {
+      return null;
+    }
+    return allCameras.find((camera) => camera.id === currentCameraId) ?? null;
+  }
 );
 
 const getPromoCameras = createSelector(
