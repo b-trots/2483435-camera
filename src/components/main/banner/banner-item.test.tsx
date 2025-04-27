@@ -1,5 +1,5 @@
 import { render, screen } from '@testing-library/react';
-import { MemoryRouter } from 'react-router-dom'; // Для работы с React Router
+import { MemoryRouter } from 'react-router-dom';
 import { AppRoute } from '@/const/const-navigate';
 import { BannerParam } from '@/const/const';
 import { generateCamera } from '@/utils/mock/mock';

@@ -1,10 +1,10 @@
-import { RequestStatus } from '../../../const/const';
+import { RequestStatus } from '@/const/const';
 import {
   generateAllCameras,
   generateCamera,
   generatePromoCameras,
   generateSimilarCamerasIds,
-} from '../../../utils/mock/mock';
+} from '@/utils/mock/mock';
 import {
   fetchCamerasAction,
   fetchPromoAction,

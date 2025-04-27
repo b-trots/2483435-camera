@@ -1,7 +1,7 @@
 import { render, screen } from '@testing-library/react';
 import { describe, it, expect } from 'vitest';
 
-import { RequestCategory } from '../../const/const';
+import { RequestCategory } from '@/const/const';
 import { LoadData, LoadDataParam } from './load-data';
 
 describe('LoadData Component', () => {

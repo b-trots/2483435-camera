@@ -3,12 +3,12 @@ import {
   ModalType,
   RequestStatus,
   SliceName,
-} from '../../../const/const';
-import { Cameras, PromoCamera } from '../../../types/camera-type';
+} from '@/const/const';
+import { Cameras, PromoCamera } from '@/types/camera-type';
 import {
   generateAllCameras,
   generateSimilarCamerasIds,
-} from '../../../utils/mock/mock';
+} from '@/utils/mock/mock';
 import {
   getActiveModal,
   getModalCamera,

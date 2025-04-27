@@ -1,4 +1,4 @@
-import { ModalStatus, ModalType } from '../../../const/const';
+import { ModalStatus, ModalType } from '@/const/const';
 import {
   closeModal,
   modalSlice,

@@ -1,4 +1,4 @@
-import { RequestStatus, SliceName } from '../../../const/const';
+import { RequestStatus, SliceName } from '@/const/const';
 import {
   getCoupon,
   getOrderError,

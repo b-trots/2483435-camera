@@ -1,5 +1,5 @@
-import { RequestStatus } from '../../../const/const';
-import { generateReviewsForCameras } from '../../../utils/mock/mock';
+import { RequestStatus } from '@/const/const';
+import { generateReviewsForCameras } from '@/utils/mock/mock';
 import { fetchOrSetReviewsAction } from './reviews-actions';
 import { addReviewToAllCamerasReviews, reviewsSlice } from './reviews-slice';
 

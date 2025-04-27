@@ -1,5 +1,5 @@
 import { orderSlice, setRequestStatus } from './order-slice';
-import { RequestStatus } from '../../../const/const';
+import { RequestStatus } from '@/const/const';
 import { fetchOrderAction } from './order-actions';
 
 describe('Order Slice', () => {

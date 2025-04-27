@@ -1,9 +1,9 @@
-import { RequestStatus, SliceName } from '../../../const/const';
+import { RequestStatus, SliceName } from '@/const/const';
 import {
   generateAllCameras,
   generatePromoCameras,
   generateSimilarCamerasIds,
-} from '../../../utils/mock/mock';
+} from '@/utils/mock/mock';
 import {
   getAllCameras,
   getCamerasError,

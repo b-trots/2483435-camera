@@ -1,16 +1,16 @@
 import { configureMockStore } from '@jedmao/redux-mock-store';
 import MockAdapter from 'axios-mock-adapter';
 import thunk from 'redux-thunk';
-import { createAPI } from '../../../services/api';
-import { State } from '../../../types/store-types/store-types';
+import { createAPI } from '@/services/api';
+import { State } from '@/types/store-types/store-types';
 import { Action } from 'redux';
 import {
   AppThunkDispatch,
   generateAllCameras,
   generateCamera,
   generatePromoCameras,
-} from '../../../utils/mock/mock';
-import { APIRoute } from '../../../const/const';
+} from '@/utils/mock/mock';
+import { APIRoute } from '@/const/const';
 import {
   fetchCamerasAction,
   fetchOrSetCameraAction,
