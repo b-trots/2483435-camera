@@ -1,6 +1,7 @@
 type BreadcrumbActiveProps = {
   name: string;
 };
+
 export function BreadcrumbActive({ name }: BreadcrumbActiveProps) {
   return (
     <li className="breadcrumbs__item" key={name}>

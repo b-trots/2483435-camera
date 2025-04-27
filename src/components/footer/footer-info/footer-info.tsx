@@ -5,10 +5,10 @@ import { Social } from './social';
 
 export function FooterInfo() {
   return (
-    <div className="footer__info">
-      <Logo bemBlock={BemClass.Footer} />
-      <FooterDescription />
-      <Social />
+    <div className="footer__info" data-testid="info-container">
+      <Logo bemBlock={BemClass.Footer} data-testid="logo" />
+      <FooterDescription data-testid="description" />
+      <Social data-testid="social" />
     </div>
   );
 }

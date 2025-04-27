@@ -3,8 +3,8 @@ import { FooterNav } from './footer-nav/footer-nav';
 
 export function Footer() {
   return (
-    <footer className="footer">
-      <div className="container">
+    <footer className="footer" data-testid="footer">
+      <div className="container" data-testid="container">
         <FooterInfo />
         <FooterNav />
       </div>
