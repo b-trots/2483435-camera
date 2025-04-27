@@ -41,4 +41,4 @@ const toSortCameras = (cameras: Cameras, sorting: SortingType) => {
   return isDescending ? sortedCameras.reverse() : sortedCameras;
 };
 
-export { daySort, toUpdateSorting, toSortCameras };
+export { daySort, toUpdateSorting, toSort, toSortCameras };

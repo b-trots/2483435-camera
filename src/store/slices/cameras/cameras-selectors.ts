@@ -44,8 +44,11 @@ const getSimilarCameras = createSelector(
       return [];
     }
     return similarCamerasIds.reduce<Cameras>((acc, id) => {
-      if (allCameras[id]) {
-        acc.push(allCameras[id]);
+      const camera = allCameras.find(
+        (currentCamera) => currentCamera.id === id
+      );
+      if (camera) {
+        acc.push(camera);
       }
       return acc;
     }, []);

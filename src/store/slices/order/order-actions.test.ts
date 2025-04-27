@@ -4,7 +4,7 @@ import thunk from 'redux-thunk';
 import { createAPI } from '@/services/api';
 import { State } from '@/types/store-types/store-types';
 import { Action } from 'redux';
-import { AppThunkDispatch } from '@/utils/mock';
+import { AppThunkDispatch } from '@/utils/mock/mock';
 import { APIRoute, RequestStatus } from '@/const/const';
 import { fetchOrderAction } from './order-actions';
 import { setRequestStatus } from './order-slice';
@@ -85,5 +85,4 @@ describe('fetchOrderAction', () => {
 
     expect(vi.getTimerCount()).toBe(0);
   });
-
 });

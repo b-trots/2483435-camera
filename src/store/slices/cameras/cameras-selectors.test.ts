@@ -1,10 +1,9 @@
 import { RequestStatus, SliceName } from '../../../const/const';
-import { Cameras } from '../../../types/camera-type';
 import {
   generateAllCameras,
   generatePromoCameras,
   generateSimilarCamerasIds,
-} from '../../../utils/mock';
+} from '../../../utils/mock/mock';
 import {
   getAllCameras,
   getCamerasError,
@@ -120,18 +119,6 @@ describe('Cameras Selectors', () => {
     expect(result).toEqual(similarCamerasIds);
   });
 
-  it('getSimilarCameras should return similar cameras', () => {
-    const { allCameras, similarCamerasIds } = state[SliceName.Cameras];
-    const result = getSimilarCameras(state);
-    const expectedResult = similarCamerasIds.reduce<Cameras>((acc, id) => {
-      if (allCameras[id]) {
-        acc.push(allCameras[id]);
-      }
-      return acc;
-    }, []);
-    expect(result).toEqual(expectedResult);
-  });
-
   it('getSimilarCameras should return an empty array if similarCamerasIds is empty', () => {
     const newState = {
       ...state,
@@ -160,5 +147,19 @@ describe('Cameras Selectors', () => {
     const { camerasError } = state[SliceName.Cameras];
     const result = getCamerasError(state);
     expect(result).toBe(camerasError);
+  });
+
+  it('getSimilarCameras should include only existing cameras from allCameras', () => {
+    const newState = {
+      ...state,
+      [SliceName.Cameras]: {
+        ...state[SliceName.Cameras],
+        allCameras: mockAllCameras,
+        similarCamerasIds: [mockAllCameras[0].id, mockAllCameras[1].id],
+      },
+    };
+
+    const result = getSimilarCameras(newState);
+    expect(result).toEqual([mockAllCameras[0], mockAllCameras[1]]);
   });
 });

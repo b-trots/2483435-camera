@@ -4,7 +4,7 @@ import {
   generateCamera,
   generatePromoCameras,
   generateSimilarCamerasIds,
-} from '../../../utils/mock';
+} from '../../../utils/mock/mock';
 import {
   fetchCamerasAction,
   fetchPromoAction,

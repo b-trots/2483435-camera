@@ -38,4 +38,5 @@ const createPaginationButtonsNames = (
 
   return buttons;
 };
+
 export { createPaginationButtonsNames };

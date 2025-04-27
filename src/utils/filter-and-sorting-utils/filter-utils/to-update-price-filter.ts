@@ -19,105 +19,72 @@ function toUpdatePriceFilter({
   cameras,
   updatedFilters,
 }: toUpdatePriceFilterProps) {
-  const typedName = name;
   const priceValue = value ? parseInt(value, ServiceParam.RadixTen) : null;
-
   const { newMinValidPrice, newMaxValidPrice } = toUpdateValidPriceRange(
     updatedFilters,
     cameras
   );
 
-  const filterMinPrice = updatedFilters.price.price;
-  const filterMaxPrice = updatedFilters.price.priceUp;
+  const { price: filterMinPrice, priceUp: filterMaxPrice } =
+    updatedFilters.price;
 
-  if (typedName === FilterCameraPrice.Price.id) {
+  const updatePrice = (price: number | null, priceUp: number | null) => ({
+    ...updatedFilters.price,
+    price,
+    priceUp,
+  });
+
+  if (name === FilterCameraPrice.Price.id) {
     if (priceValue === null) {
-      updatedFilters.price = {
-        ...updatedFilters.price,
-        price: null,
-      };
-    } else if (newMinValidPrice !== null && priceValue < newMinValidPrice) {
-      updatedFilters.price = {
-        ...updatedFilters.price,
-        price: newMinValidPrice,
-      };
-    } else if (
+      return updatePrice(null, filterMaxPrice);
+    }
+
+    if (newMinValidPrice !== null && priceValue < newMinValidPrice) {
+      return updatePrice(newMinValidPrice, filterMaxPrice);
+    }
+
+    if (
       newMaxValidPrice !== null &&
       filterMaxPrice === null &&
       priceValue > newMaxValidPrice
     ) {
-      updatedFilters.price = {
-        ...updatedFilters.price,
-        price: newMaxValidPrice,
-        priceUp: newMaxValidPrice,
-      };
-    } else if (filterMaxPrice !== null && priceValue > filterMaxPrice) {
-      if (newMaxValidPrice !== null && priceValue > newMaxValidPrice) {
-        updatedFilters.price = {
-          ...updatedFilters.price,
-          price: newMaxValidPrice,
-          priceUp: newMaxValidPrice,
-        };
-      } else if (priceValue > filterMaxPrice) {
-        updatedFilters.price = {
-          ...updatedFilters.price,
-          price: priceValue,
-          priceUp: priceValue,
-        };
-      }
-    } else {
-      updatedFilters.price = {
-        ...updatedFilters.price,
-        price: priceValue,
-      };
+      return updatePrice(newMaxValidPrice, newMaxValidPrice);
     }
+
+    if (filterMaxPrice !== null && priceValue > filterMaxPrice) {
+      const newPriceUp = Math.min(priceValue, newMaxValidPrice ?? priceValue);
+      return updatePrice(newPriceUp, newPriceUp);
+    }
+
+    return updatePrice(priceValue, filterMaxPrice);
   }
 
-  if (typedName === FilterCameraPrice.PriceUp.id) {
-    const priceUpValue = priceValue;
+  if (name === FilterCameraPrice.PriceUp.id) {
+    if (priceValue === null) {
+      return updatePrice(filterMinPrice, null);
+    }
 
-    if (priceUpValue === null) {
-      updatedFilters.price = {
-        ...updatedFilters.price,
-        priceUp: null,
-      };
-    } else if (newMaxValidPrice !== null && priceUpValue > newMaxValidPrice) {
-      updatedFilters.price = {
-        ...updatedFilters.price,
-        priceUp: newMaxValidPrice,
-      };
-    } else if (
+    if (newMaxValidPrice !== null && priceValue > newMaxValidPrice) {
+      return updatePrice(filterMinPrice, newMaxValidPrice);
+    }
+
+    if (
       newMinValidPrice !== null &&
       filterMinPrice === null &&
-      priceUpValue < newMinValidPrice
+      priceValue < newMinValidPrice
     ) {
-      updatedFilters.price = {
-        ...updatedFilters.price,
-        price: newMinValidPrice,
-        priceUp: newMinValidPrice,
-      };
-    } else if (filterMinPrice !== null && priceUpValue < filterMinPrice) {
-      if (newMinValidPrice !== null && priceUpValue < newMinValidPrice) {
-        updatedFilters.price = {
-          ...updatedFilters.price,
-          price: newMinValidPrice,
-          priceUp: newMinValidPrice,
-        };
-      } else if (priceUpValue < filterMinPrice) {
-        updatedFilters.price = {
-          ...updatedFilters.price,
-          price: priceValue,
-          priceUp: priceValue,
-        };
-      }
-    } else {
-      updatedFilters.price = {
-        ...updatedFilters.price,
-        priceUp: priceValue,
-      };
+      return updatePrice(newMinValidPrice, newMinValidPrice);
     }
+
+    if (filterMinPrice !== null && priceValue < filterMinPrice) {
+      const newPrice = Math.max(priceValue, newMinValidPrice ?? priceValue);
+      return updatePrice(newPrice, newPrice);
+    }
+
+    return updatePrice(filterMinPrice, priceValue);
   }
 
   return updatedFilters.price;
 }
+
 export { toUpdatePriceFilter };

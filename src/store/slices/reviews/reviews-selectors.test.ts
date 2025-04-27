@@ -1,10 +1,10 @@
-import {RequestStatus, SliceName } from '../../../const/const';
+import { RequestStatus, SliceName } from '../../../const/const';
 import { Cameras, PromoCamera } from '../../../types/camera-type';
 import { ReviewsForState } from '../../../types/types';
 import {
   generateReviewsForCameras,
   generateReviewsForState,
-} from '../../../utils/mock';
+} from '../../../utils/mock/mock';
 import { daySort } from '../../../utils/filter-and-sorting-utils/sorting-utils';
 import {
   getAllCamerasReviews,

@@ -54,4 +54,5 @@ const toFilterCameras = (filters: FiltersType, cameras: Cameras) =>
     }
     return true;
   });
+
 export { toFilterCameras };

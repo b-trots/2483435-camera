@@ -8,7 +8,7 @@ import { Cameras, PromoCamera } from '../../../types/camera-type';
 import {
   generateAllCameras,
   generateSimilarCamerasIds,
-} from '../../../utils/mock';
+} from '../../../utils/mock/mock';
 import {
   getActiveModal,
   getModalCamera,

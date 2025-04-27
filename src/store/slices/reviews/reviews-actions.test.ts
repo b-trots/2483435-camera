@@ -7,7 +7,7 @@ import { Action, AnyAction, DeepPartial } from 'redux';
 import {
   AppThunkDispatch,
   generateReviewsForCameras,
-} from '../../../utils/mock';
+} from '../../../utils/mock/mock';
 import { APIRoute } from '../../../const/const';
 import { fetchOrSetReviewsAction } from './reviews-actions';
 import { addReviewToAllCamerasReviews } from './reviews-slice';

@@ -9,7 +9,7 @@ import {
   generateAllCameras,
   generateCamera,
   generatePromoCameras,
-} from '../../../utils/mock';
+} from '../../../utils/mock/mock';
 import { APIRoute } from '../../../const/const';
 import {
   fetchCamerasAction,
@@ -226,7 +226,6 @@ describe('fetchSimilarAction', () => {
   });
 
   it('should not dispatch addCameraToAllCameras if camera already exists in state', async () => {
-    const mockCameraId = 1;
     const existingCamera = generateCamera();
     const mockSimilarCameras = [existingCamera, ...generateAllCameras(2)];
 
@@ -238,10 +237,10 @@ describe('fetchSimilarAction', () => {
     });
 
     mockAxiosAdapter
-      .onGet(`${APIRoute.Cameras}/${mockCameraId}${APIRoute.Similar}`)
+      .onGet(`${APIRoute.Cameras}/${existingCamera.id}${APIRoute.Similar}`)
       .reply(200, mockSimilarCameras);
 
-    await store.dispatch(fetchSimilarAction(mockCameraId));
+    await store.dispatch(fetchSimilarAction(existingCamera.id));
 
     const addActions = store
       .getActions()
