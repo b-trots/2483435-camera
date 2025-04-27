@@ -21,7 +21,6 @@ export function Search() {
     isInputFocused,
     handleSearchChange,
     handleInputFocus,
-    handleInputBlur,
     handleKeyDown,
     handleSelect,
     clearSearch,
@@ -52,7 +51,6 @@ export function Search() {
             value={search}
             onChange={(e) => handleSearchChange(e.target.value)}
             onFocus={handleInputFocus}
-            onBlur={handleInputBlur}
             onKeyDown={handleKeyDown}
           />
         </label>

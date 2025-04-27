@@ -49,7 +49,8 @@ export function useSearch() {
     }
   };
 
-  const handleInputBlur = () => {
+  const removeInputFocus = () => {
+    inputRef.current?.blur();
     setIsInputFocused(false);
     setActiveIndex(null);
   };
@@ -57,6 +58,7 @@ export function useSearch() {
   const handleSelect = (id: number) => {
     dispatch(setCurrentCameraId(id));
     navigate(AppRoute.Cameras.replace(':id', String(id)));
+    removeInputFocus();
   };
 
   const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
@@ -85,7 +87,6 @@ export function useSearch() {
     isInputFocused,
     handleSearchChange,
     handleInputFocus,
-    handleInputBlur,
     handleKeyDown,
     handleSelect,
     clearSearch,
