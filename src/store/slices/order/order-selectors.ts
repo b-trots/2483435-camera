@@ -5,9 +5,11 @@ type OrderState = Pick<State, SliceName.Order>;
 
 const getCoupon = (state: OrderState) => state[SliceName.Order].coupon;
 
+const getBasket = (state: OrderState) => state[SliceName.Order].basket;
+
 const getOrderRequestStatus = (state: OrderState): RequestStatus =>
   state[SliceName.Order].requestStatus;
 
 const getOrderError = (state: OrderState) => state[SliceName.Order].orderError;
 
-export { getCoupon, getOrderRequestStatus, getOrderError };
+export { getCoupon, getBasket, getOrderRequestStatus, getOrderError };

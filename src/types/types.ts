@@ -37,6 +37,11 @@ type PaginationData = {
 type TabNameKey = keyof typeof TabName;
 type TabNameId = (typeof TabName)[keyof typeof TabName]['id'];
 
+type BasketCamera = {
+  id: number;
+  quantity: number;
+};
+
 export type {
   FocusableElements,
   ReviewType,
@@ -46,4 +51,5 @@ export type {
   ReviewsForState,
   TabNameKey,
   TabNameId,
+  BasketCamera,
 };

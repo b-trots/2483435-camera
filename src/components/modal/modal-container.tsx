@@ -6,13 +6,22 @@ import { toCloseModal } from '@/utils/modal-utils/to-close-modal';
 import { CloseButton } from '../main/buttons/close-button';
 import { toLoopFocus } from '@/utils/modal-utils/to-loop-focus';
 import { ButtonBemClass, ButtonType } from '@/const/const-button';
+import classNames from 'classnames';
+import { ModalType } from '@/const/const';
 
 type ModalProps = {
+  modal: ModalType;
   children: React.ReactNode;
 };
 
-export function ModalContainer({ children }: ModalProps) {
+export function ModalContainer({ modal, children }: ModalProps) {
   const dispatch = useAppDispatch();
+  const isNarrow = modal.endsWith('Success');
+  const modalClassName = classNames(
+    'modal',
+    'is-active',
+    isNarrow && 'modal--narrow'
+  );
 
   const handleModalClose = () => {
     dispatch(closeModal());
@@ -20,7 +29,7 @@ export function ModalContainer({ children }: ModalProps) {
 
   const modalRef = useRef<HTMLDivElement | null>(null);
   const containerRef = useRef<HTMLDivElement | null>(null);
-  const firstTabRef = useRef<HTMLInputElement | null>(null);
+  const firstTabRef = useRef<HTMLInputElement | HTMLButtonElement | null>(null);
   const lastTabRef = useRef<HTMLButtonElement | null>(null);
 
   useEffect(() => {
@@ -32,14 +41,13 @@ export function ModalContainer({ children }: ModalProps) {
         handleModalClose
       );
       toLoopFocus(containerRef, firstTabRef, lastTabRef);
-
       return cleanup;
     }
   });
 
   return (
     <RemoveScroll removeScrollBar={false}>
-      <div className="modal is-active" ref={containerRef}>
+      <div className={modalClassName} ref={containerRef}>
         <div className="modal__wrapper">
           <div className="modal__overlay" onClick={handleModalClose} />
           <div className="modal__content" ref={modalRef}>

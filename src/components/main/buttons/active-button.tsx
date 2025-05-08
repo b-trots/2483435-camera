@@ -1,7 +1,11 @@
 import classNames from 'classnames';
 import { ServiceParam } from '@/const/const';
-import { ButtonBemClass, ActiveButtonName, ButtonType } from '@/const/const-button';
-import { memo } from 'react';
+import {
+  ButtonBemClass,
+  ActiveButtonName,
+  ButtonType,
+} from '@/const/const-button';
+import { forwardRef, memo } from 'react';
 
 type ActiveButtonProps = {
   onClick?: () => void;
@@ -14,16 +18,19 @@ type ActiveButtonProps = {
   disabled?: boolean;
 };
 
-function ActiveButtonComponent({
-  onClick,
-  className,
-  isFitWidth = false,
-  isHalfWidth = false,
-  type,
-  text,
-  basketIcon,
-  disabled,
-}: ActiveButtonProps) {
+function ActiveButtonComponent(
+  {
+    onClick,
+    className,
+    isFitWidth = false,
+    isHalfWidth = false,
+    type,
+    text,
+    basketIcon,
+    disabled,
+  }: ActiveButtonProps,
+  firstTabRef: React.Ref<HTMLButtonElement>
+) {
   const buttonClass = classNames(
     'btn',
     'btn--purple',
@@ -32,8 +39,10 @@ function ActiveButtonComponent({
     isHalfWidth && ButtonBemClass.HalfWidth
   );
 
+
   return (
     <button
+      ref={firstTabRef}
       className={buttonClass}
       type={type}
       onClick={onClick}
@@ -54,7 +63,7 @@ function ActiveButtonComponent({
 }
 
 export const ActiveButton = memo(
-  ActiveButtonComponent,
+  forwardRef(ActiveButtonComponent),
   (prevProps, nextProps) =>
     prevProps.onClick === nextProps.onClick &&
     prevProps.className === nextProps.className &&

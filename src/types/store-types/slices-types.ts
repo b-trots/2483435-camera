@@ -1,10 +1,6 @@
-import {
-  ModalStatus,
-  ModalType,
-  RequestStatus,
-} from '@/const/const';
+import { ModalStatus, ModalType, RequestStatus } from '@/const/const';
 import { Cameras, PromoCamera } from '../camera-type';
-import { ReviewsForState } from '../types';
+import { BasketCamera, ReviewsForState } from '../types';
 
 type CamerasSlice = {
   allCameras: Cameras;
@@ -31,6 +27,7 @@ type ModalSlice = {
 };
 
 type OrderSlice = {
+  basket: BasketCamera[];
   coupon: string | null;
   requestStatus: RequestStatus;
   orderError: boolean;

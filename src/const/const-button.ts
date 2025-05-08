@@ -29,6 +29,7 @@ enum ActiveButtonName {
 
 enum PassiveButtonName {
   Details = 'Подробнее',
+  Shopping = 'Продолжить покупки',
 }
 
 enum SliderButtonName {
@@ -45,7 +46,7 @@ enum CloseButtonParam {
 
 enum PaginationButton {
   Next = 'Далее',
-  Back = 'Назад'
+  Back = 'Назад',
 }
 
 enum ButtonType {

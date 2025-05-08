@@ -18,11 +18,12 @@ const DefaultParam = {
   PageNumberOne: 1,
   ZeroValue: 0,
   ZeroIndex: 0,
+  Unit: 1,
 };
 
 enum SearchParam {
   Page = 'page',
-  Info = 'info'
+  Info = 'info',
 }
 
 enum APIRoute {
@@ -34,9 +35,12 @@ enum APIRoute {
 }
 
 const ServiceParam = {
+  ModalIconWidth: 86,
+  ModalIconHeight: 80,
   BannerItems: 3,
   SearchIconSize: 16,
   BasketIconHeight: 16,
+  BasketIconSmallWidth: 16,
   BasketIconWidth: 24,
   ChangeSlideSpeed: 1000,
   CamerasPerPage: 9,
@@ -78,12 +82,12 @@ const ServiceParam = {
   DateFormat: 'DD MMMM',
   PageStep: 1,
   LocaleRuFull: 'ru-RU',
-  LocaleRuAbbreviated:'ru',
+  LocaleRuAbbreviated: 'ru',
   PaginationButtonsPack: 3,
   ZeroIndex: 0,
   LastNumberPageInPack: 3,
   DoublePaginationStep: 2,
-  MinimalPagesCount:1
+  MinimalPagesCount: 1,
 } as const;
 
 enum ServerParam {
@@ -92,8 +96,8 @@ enum ServerParam {
 }
 
 const TabName = {
-  Characteristics: {id:'characteristics', value:'Характеристики'},
-  Description: {id:'description', value: 'Описание'},
+  Characteristics: { id: 'characteristics', value: 'Характеристики' },
+  Description: { id: 'description', value: 'Описание' },
 };
 
 enum ErrorInfoMessage {
@@ -159,6 +163,7 @@ enum ExplanationWord {
   ToSort = 'Сортировать: ',
   Filter = 'Фильтр',
   Price = ', ₽',
+  InBasket = 'В корзине'
 }
 
 enum BemMode {
@@ -195,7 +200,7 @@ enum NameSpace {
   Checkbox = 'checkbox',
   Number = 'number',
   String = 'string',
-  RuRubleSymbol = '₽'
+  RuRubleSymbol = '₽',
 }
 
 const ToastParam = {
@@ -236,7 +241,6 @@ enum SliceName {
   Reviews = 'REVIEWS',
   Modal = 'MODAL',
   Order = 'ORDER',
-  Active = 'ACTIVE',
 }
 
 enum RequestStatus {
@@ -248,10 +252,14 @@ enum RequestStatus {
 
 enum ModalType {
   CallItem = 'callItem',
+  AddItem = 'addItem',
+  AddItemSuccess = 'addItemSuccess',
 }
 
 enum ModalTitle {
   CallItem = 'Свяжитесь со мной',
+  AddItem = 'Добавить товар в корзину',
+  AddItemSuccess = 'Товар успешно добавлен в корзину',
 }
 
 enum ModalStatus {
@@ -337,5 +345,5 @@ export {
   Validation,
   InputType,
   KeyboardButtonName,
-  SearchParam
+  SearchParam,
 };

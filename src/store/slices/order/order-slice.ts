@@ -1,9 +1,11 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { RequestStatus, SliceName } from '@/const/const';
+import { DefaultParam, RequestStatus, SliceName } from '@/const/const';
 import { OrderSlice } from '@/types/store-types/slices-types';
 import { fetchOrderAction } from './order-actions';
+import { BasketCamera } from '@/types/types';
 
 const orderState: OrderSlice = {
+  basket: DefaultParam.EmptyArray,
   coupon: null,
   requestStatus: RequestStatus.Idle,
   orderError: false,
@@ -13,6 +15,9 @@ const orderSlice = createSlice({
   name: SliceName.Order,
   initialState: orderState,
   reducers: {
+    addCameraToBasket: (state, action: PayloadAction<BasketCamera>) => {
+      state.basket.push(action.payload);
+    },
     setRequestStatus: (state, action: PayloadAction<RequestStatus>) => {
       state.requestStatus = action.payload;
     },
@@ -32,6 +37,6 @@ const orderSlice = createSlice({
       });
   },
 });
-const { setRequestStatus } = orderSlice.actions;
+const { setRequestStatus, addCameraToBasket } = orderSlice.actions;
 
-export { orderSlice, setRequestStatus };
+export { orderSlice, setRequestStatus, addCameraToBasket };
