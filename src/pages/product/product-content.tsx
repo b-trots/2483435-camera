@@ -4,18 +4,18 @@ import { ProductDetail } from './product-detail';
 import { AdditionalInfo } from './additional-info';
 
 type ProductContentProps = {
-  currentCamera: FullCamera | null;
+  camera: FullCamera | null;
 };
 
-export function ProductContent({ currentCamera }: ProductContentProps) {
-  if (!currentCamera) {
+export function ProductContent({ camera }: ProductContentProps) {
+  if (!camera) {
     return null;
   }
 
   return (
     <>
-      <Breadcrumbs productName={currentCamera.name} />
-      <ProductDetail currentCamera={currentCamera} />
+      <Breadcrumbs cameraName={camera.name} />
+      <ProductDetail camera={camera} />
       <AdditionalInfo />
     </>
   );

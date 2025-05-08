@@ -143,7 +143,7 @@ export function Basket() {
               <div className="quantity">
                 <button
                   className="btn-icon btn-icon--prev"
-                  disabled=""
+                  disabled
                   aria-label="уменьшить количество товара"
                 >
                   <svg width={7} height={12} aria-hidden="true">

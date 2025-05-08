@@ -5,7 +5,7 @@ import {
   ButtonBemClass,
   PassiveButtonName,
 } from '@/const/const-button';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { AppRoute } from '@/const/const-navigate';
 import { PassiveButton } from '../main/buttons/passive-button';
 import { useAppDispatch } from '@/hooks/hooks';
@@ -18,9 +18,13 @@ export function AddItemSuccessComponent(
 ) {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
+  const path = useLocation().pathname;
 
   const handleShoppingButtonClick = (e: React.MouseEvent) => {
-    e.preventDefault();
+    const isMain = path === AppRoute.Main;
+    if (isMain) {
+      e.preventDefault();
+    }
     dispatch(closeModal());
   };
 

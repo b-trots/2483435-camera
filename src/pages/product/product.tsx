@@ -20,7 +20,7 @@ import { setCurrentCameraId } from '@/store/slices/cameras/cameras-slice';
 
 export function Product() {
   const dispatch = useAppDispatch();
-  const currentCamera = useAppSelector(getCurrentCamera);
+  const camera = useAppSelector(getCurrentCamera);
   const productLoadStatus = useAppSelector(getCamerasRequestStatus);
   const isProductLoading = productLoadStatus === RequestStatus.Loading;
   const productError = useAppSelector(getCamerasError);
@@ -37,7 +37,7 @@ export function Product() {
     loadData();
   }, [loadData]);
 
-  const isLoadData = productError || isProductLoading || !currentCamera;
+  const isLoadData = productError || isProductLoading || !camera;
 
   return (
     <div className="wrapper">
@@ -51,7 +51,7 @@ export function Product() {
               error={productError}
             />
           ) : (
-            <ProductContent currentCamera={currentCamera} />
+            <ProductContent camera={camera} />
           )}
         </div>
       </main>

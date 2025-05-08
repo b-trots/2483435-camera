@@ -1,17 +1,22 @@
 import { ActiveButton } from '@/components/main/buttons/active-button';
-import { BemClass } from '@/const/const';
+import { BemClass, ModalType } from '@/const/const';
 import { ActiveButtonName } from '@/const/const-button';
 import { FullCamera } from '@/types/camera-type';
 import { DetailTabs } from './detail-tabs/detail-tabs';
 import { ProductImg } from './product-img';
 import { ProductPrice } from './product-price';
 import { ProductRate } from './product-rate';
+import { useAppDispatch } from '@/hooks/hooks';
+import { useCallback } from 'react';
+import { handleModalOpen } from '@/store/slices/modal/modal-actions';
 
 type ProductDetailProps = {
-  currentCamera: FullCamera;
+  camera: FullCamera;
 };
-export function ProductDetail({ currentCamera }: ProductDetailProps) {
+export function ProductDetail({ camera }: ProductDetailProps) {
+  const dispatch = useAppDispatch();
   const {
+    id,
     name,
     price,
     rating,
@@ -20,7 +25,11 @@ export function ProductDetail({ currentCamera }: ProductDetailProps) {
     previewImg2x,
     previewImgWebp,
     previewImgWebp2x,
-  } = currentCamera;
+  } = camera;
+
+  const handleBuyButtonClick = useCallback(() => {
+    dispatch(handleModalOpen(ModalType.AddItem, id));
+  }, [dispatch,id]);
 
   return (
     <div className="page-content__section">
@@ -42,7 +51,11 @@ export function ProductDetail({ currentCamera }: ProductDetailProps) {
               reviewCount={reviewCount}
             />
             <ProductPrice bemClass={BemClass.Product} price={price} />
-            <ActiveButton text={ActiveButtonName.AddToBasket} basketIcon />
+            <ActiveButton
+              text={ActiveButtonName.AddToBasket}
+              basketIcon
+              onClick={handleBuyButtonClick}
+            />
             <DetailTabs />
           </div>
         </div>

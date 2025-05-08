@@ -3,12 +3,12 @@ import { BreadcrumbActive } from './breadcrumb-active';
 import { Breadcrumb } from './breadcrumb';
 
 type BreadcrumbsProps = {
-  productName?: string;
+  cameraName?: string;
 };
 
-export function Breadcrumbs({ productName }: BreadcrumbsProps) {
-  const correctDirectory = productName
-    ? [...BREADCRUMBS, { name: productName }]
+export function Breadcrumbs({ cameraName }: BreadcrumbsProps) {
+  const correctDirectory = cameraName
+    ? [...BREADCRUMBS, { name: cameraName }]
     : BREADCRUMBS;
 
   return (
