@@ -1,22 +1,31 @@
-import { BREADCRUMBS } from '@/const/const-navigate';
+import { AppRoute, BREADCRUMBS } from '@/const/const-navigate';
 import { BreadcrumbActive } from './breadcrumb-active';
 import { Breadcrumb } from './breadcrumb';
+import { useLocation } from 'react-router-dom';
 
 type BreadcrumbsProps = {
   cameraName?: string;
 };
 
 export function Breadcrumbs({ cameraName }: BreadcrumbsProps) {
-  const correctDirectory = cameraName
-    ? [...BREADCRUMBS, { name: cameraName }]
-    : BREADCRUMBS;
+  const currentPath = useLocation().pathname;
+  const correctDirectory = () => {
+    let directory = cameraName
+      ? [...BREADCRUMBS, { name: cameraName }]
+      : BREADCRUMBS;
+    directory =
+      currentPath === AppRoute.Card
+        ? [...directory, { name: 'Корзина' }]
+        : directory;
+    return directory;
+  };
 
   return (
     <div className="breadcrumbs">
       <div className="container">
         <ul className="breadcrumbs__list">
-          {correctDirectory.map(({ name, path }, index) =>
-            index !== correctDirectory.length - 1 && path ? (
+          {correctDirectory().map(({ name, path }, index) =>
+            index !== correctDirectory().length - 1 && path ? (
               <Breadcrumb name={name} key={name} path={path} />
             ) : (
               <BreadcrumbActive name={name} key={name} />

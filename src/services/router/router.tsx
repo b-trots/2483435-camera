@@ -1,5 +1,4 @@
 import { createBrowserRouter, Outlet, RouterProvider } from 'react-router-dom';
-
 import { Product } from '@/pages/product/product';
 import { AppRoute } from '@/const/const-navigate';
 import { Catalog } from '@/pages/catalog/catalog';
@@ -10,8 +9,8 @@ import { Modal } from '@/components/modal/modal';
 function Layout() {
   return (
     <>
-      <Modal />
       <Outlet />
+      <Modal />
     </>
   );
 }
@@ -31,7 +30,7 @@ function Router() {
           element: <Product />,
         },
         {
-          path: AppRoute.Basket,
+          path: AppRoute.Card,
           element: <Basket />,
         },
       ],

@@ -77,7 +77,7 @@ function CameraCardComponent({ camera, isActive }: CameraProps) {
         {isInBasket ? (
           <Link
             className="btn btn--purple-border product-card__btn product-card__btn--in-cart"
-            to={AppRoute.Basket}
+            to={AppRoute.Card}
           >
             <BasketIcon />
             {ExplanationWord.InBasket}

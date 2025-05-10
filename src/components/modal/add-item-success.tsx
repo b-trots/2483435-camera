@@ -29,7 +29,7 @@ export function AddItemSuccessComponent(
   };
 
   const handleBasketButtonClick = () => {
-    navigate(AppRoute.Basket);
+    navigate(AppRoute.Card);
     dispatch(closeModal());
   };
 
