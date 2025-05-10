@@ -1,5 +1,4 @@
 import { ModalTitle, ModalType } from '@/const/const';
-import { ProductDetails } from '../call-item/product-detail';
 import { ActiveButtonName, ButtonBemClass } from '@/const/const-button';
 import { ActiveButton } from '@/components/main/buttons/active-button';
 import { useAppDispatch, useAppSelector } from '@/hooks/hooks';
@@ -7,6 +6,7 @@ import { getModalCamera } from '@/store/slices/modal/modal-selectors';
 import { addCamera } from '@/store/slices/order/order-actions';
 import { openModal } from '@/store/slices/modal/modal-slice';
 import { forwardRef } from 'react';
+import { AddCameraDetails } from '@/components/modal/add-item/add-camera-details';
 
 export function AddItemComponent(
   _: unknown,
@@ -28,7 +28,7 @@ export function AddItemComponent(
     <>
       <p className="title title--h4">{ModalTitle.AddItem}</p>
 
-      <ProductDetails modalCamera={modalCamera} />
+      <AddCameraDetails modalCamera={modalCamera} isModal isPrice/>
 
       <div className="modal__buttons">
         <ActiveButton

@@ -1,22 +1,26 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { DefaultParam, RequestStatus, SliceName } from '@/const/const';
 import { OrderSlice } from '@/types/store-types/slices-types';
-import { fetchOrderAction } from './order-actions';
+import { fetchOrderAction, loadOrderState, saveOrderState } from './order-actions';
 import { BasketCamera } from '@/types/types';
 
-const orderState: OrderSlice = {
+const orderStateDefault: OrderSlice = {
   basket: DefaultParam.EmptyArray,
   coupon: null,
   requestStatus: RequestStatus.Idle,
   orderError: false,
 };
 
+const safeState = loadOrderState();
+const orderState: OrderSlice = safeState ? safeState : orderStateDefault;
+
 const orderSlice = createSlice({
   name: SliceName.Order,
   initialState: orderState,
   reducers: {
-    addCameraToBasket: (state, action: PayloadAction<BasketCamera>) => {
-      state.basket.push(action.payload);
+    changeBasket: (state, action: PayloadAction<BasketCamera[]>) => {
+      state.basket = action.payload;
+      saveOrderState(state);
     },
     setRequestStatus: (state, action: PayloadAction<RequestStatus>) => {
       state.requestStatus = action.payload;
@@ -37,6 +41,6 @@ const orderSlice = createSlice({
       });
   },
 });
-const { setRequestStatus, addCameraToBasket } = orderSlice.actions;
+const { setRequestStatus, changeBasket } = orderSlice.actions;
 
-export { orderSlice, setRequestStatus, addCameraToBasket };
+export { orderSlice, setRequestStatus, changeBasket };

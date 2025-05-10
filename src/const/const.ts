@@ -88,6 +88,11 @@ const ServiceParam = {
   LastNumberPageInPack: 3,
   DoublePaginationStep: 2,
   MinimalPagesCount: 1,
+  QuantityButtonWidth:7,
+  QuantityButtonHeight:12,
+  MinQuantity: 1,
+  MaxQuantity:99,
+  QuantityStep:1
 } as const;
 
 enum ServerParam {
@@ -146,6 +151,7 @@ enum BemClass {
   SortIcon = 'sort-icon',
   SortType = 'catalog-sort__type',
   SortOrder = 'catalog-sort__order',
+  BasketItemShort = 'basket-item--short'
 }
 
 enum ExplanationWord {
@@ -163,7 +169,19 @@ enum ExplanationWord {
   ToSort = 'Сортировать: ',
   Filter = 'Фильтр',
   Price = ', ₽',
-  InBasket = 'В корзине'
+  InBasket = 'В корзине',
+  IncreaseQuantity = 'увеличить количество товара',
+  DecreaseQuantity = 'уменьшить количество товара',
+  Quantity = 'количество товара',
+  TotalPrice = 'Общая цена:',
+  IsTherePromoCode = 'Если у вас есть промокод на скидку, примените его в этом поле',
+  EnterPromoCode = 'Введите промокод',
+  InvalidPromoCode = 'Промокод неверный',
+  ValidPromoCode = 'Промокод принят!',
+  Total = 'Всего:',
+  Discount = 'Скидка:',
+  ForPayment = 'К оплате:',
+  PlaceAnOrder = 'Оформить заказ'
 }
 
 enum BemMode {
@@ -201,6 +219,10 @@ enum NameSpace {
   Number = 'number',
   String = 'string',
   RuRubleSymbol = '₽',
+  OrderState = 'orderState',
+  PromoCode = 'Промокод',
+  UseCode = 'Применить',
+
 }
 
 const ToastParam = {
@@ -254,12 +276,15 @@ enum ModalType {
   CallItem = 'callItem',
   AddItem = 'addItem',
   AddItemSuccess = 'addItemSuccess',
+  RemoveItem = 'removeItem',
+  RemoveItemSuccess = 'removeItemSuccess'
 }
 
 enum ModalTitle {
   CallItem = 'Свяжитесь со мной',
   AddItem = 'Добавить товар в корзину',
   AddItemSuccess = 'Товар успешно добавлен в корзину',
+  RemoveItem = 'Удалить этот товар?'
 }
 
 enum ModalStatus {

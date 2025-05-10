@@ -16,7 +16,7 @@ import { toStandardizePhone } from '@/utils/utils';
 import { ActiveButton } from '../../main/buttons/active-button';
 import { CallItemPhone } from './call-item-phone';
 import { fetchOrderAction } from '@/store/slices/order/order-actions';
-import { ProductDetails } from './product-detail';
+import { AddCameraDetails } from '../add-item/add-camera-details';
 import { getModalCamera } from '@/store/slices/modal/modal-selectors';
 import { phoneValidationError } from '@/utils/error-utils';
 import { ToBlockActions } from '../../main/buttons/to-block-actions';
@@ -69,9 +69,9 @@ function CallItemComponent(
 
   return (
     <>
-      {isSubmitting && <ToBlockActions/>}
+      {isSubmitting && <ToBlockActions />}
       <p className="title title--h4">{ModalTitle.CallItem}</p>
-      <ProductDetails modalCamera={modalCamera} />
+      <AddCameraDetails modalCamera={modalCamera} />
       <div className="custom-input form-review__item">
         <CallItemPhone onPhoneChange={handlePhoneChange} ref={firstTabRef} />
       </div>

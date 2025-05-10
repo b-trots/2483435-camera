@@ -26,6 +26,11 @@ const getCurrentCamera = createSelector(
   }
 );
 
+const getCameraById = (id: number) => (state: CamerasState) => {
+  const cameras = state[SliceName.Cameras].allCameras;
+  return cameras.find((camera) => camera.id === id) ?? null;
+};
+
 const getPromoCameras = createSelector(
   (state: CamerasState) => state[SliceName.Cameras].promoCameras,
   (promoCameras) => promoCameras
@@ -76,4 +81,5 @@ export {
   getIsSimilarCamerasLoaded,
   getCamerasRequestStatus,
   getCamerasError,
+  getCameraById,
 };

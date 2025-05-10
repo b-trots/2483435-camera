@@ -7,6 +7,7 @@ import {
 } from '../../store/slices/modal/modal-selectors';
 import { AddItem } from './add-item/add-item';
 import { AddItemSuccess } from './add-item-success';
+import { BasketRemoveItem } from './basket-remove-item';
 
 export function Modal() {
   const activeModal = useAppSelector(getActiveModal);
@@ -15,6 +16,7 @@ export function Modal() {
   const modals: Record<string, React.ReactNode> = {
     [ModalType.AddItem]: modalCamera ? <AddItem /> : null,
     [ModalType.AddItemSuccess]: <AddItemSuccess />,
+    [ModalType.RemoveItem]: modalCamera ? <BasketRemoveItem /> : null,
   };
 
   const modalContent = modals[activeModal as ModalType] || null;

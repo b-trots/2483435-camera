@@ -2,6 +2,7 @@ import { DefaultParam, NameSpace } from '@/const/const';
 import {
   ButtonBemClass,
   ButtonType,
+  CloseButtonInfo,
   CloseButtonParam,
 } from '@/const/const-button';
 
@@ -9,6 +10,7 @@ type CloseButtonProps = {
   bemClass: ButtonBemClass.Cross | ButtonBemClass.FormSearchReset;
   type: ButtonType.Button | ButtonType.Reset;
   lastTabRef?: React.MutableRefObject<HTMLButtonElement | null>;
+  info?: CloseButtonInfo;
   onClick?: () => void;
 };
 
@@ -16,11 +18,12 @@ export function CloseButton({
   bemClass,
   type,
   lastTabRef,
+  info,
   onClick,
 }: CloseButtonProps) {
   const isSearch = bemClass === ButtonBemClass.FormSearchReset;
   const isAriaLabel = !isSearch
-    ? { [NameSpace.AriaLabel]: CloseButtonParam.ClosePopap }
+    ? { [NameSpace.AriaLabel]: info }
     : DefaultParam.EmptyObject;
 
   return (
@@ -40,7 +43,7 @@ export function CloseButton({
       </svg>
 
       {isSearch && (
-        <span className="visually-hidden">{CloseButtonParam.ResetSearch}</span>
+        <span className="visually-hidden">{CloseButtonInfo.ResetSearch}</span>
       )}
     </button>
   );

@@ -13,6 +13,8 @@ enum ButtonBemClass {
   SortUp = 'catalog-sort__btn--up',
   SortDown = 'catalog-sort__btn--down',
   SortReset = 'catalog-filter__reset-btn',
+  BtnTransparent = 'btn--transparent',
+  BtnPurple = 'btn--purple'
 }
 
 enum ActiveButtonName {
@@ -39,6 +41,9 @@ enum SliderButtonName {
 
 enum CloseButtonParam {
   CloseButtonSize = 10,
+}
+
+enum CloseButtonInfo {
   ClosePopap = 'Закрыть попап',
   DeleteProduct = 'Удалить товар',
   ResetSearch = 'Сбросить поиск',
@@ -68,4 +73,5 @@ export {
   PaginationButton,
   ButtonType,
   ButtonName,
+  CloseButtonInfo
 };

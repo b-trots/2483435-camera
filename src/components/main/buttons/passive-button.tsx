@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { PassiveButtonName } from '@/const/const-button';
+import { ButtonBemClass, PassiveButtonName } from '@/const/const-button';
 import { AppRoute } from '@/const/const-navigate';
 import { forwardRef, memo } from 'react';
 import classNames from 'classnames';
@@ -8,17 +8,19 @@ type PassiveButtonProps = {
   name: PassiveButtonName;
   id?: number;
   isModal?: boolean;
+  isHalfWidth?: boolean;
   onClick?: (e: React.MouseEvent) => void;
 };
 
 function PassiveButtonComponent(
-  { name, id, isModal, onClick }: PassiveButtonProps,
+  { name, id, isModal,isHalfWidth, onClick }: PassiveButtonProps,
   firstTabRef: React.Ref<HTMLAnchorElement>
 ) {
   const className = classNames(
-    'btn',
-    'btn--transparent',
-    isModal && 'modal__btn'
+    ButtonBemClass.Btn,
+    ButtonBemClass.BtnTransparent,
+    isModal && ButtonBemClass.Modal,
+    isHalfWidth && ButtonBemClass.HalfWidth
   );
 
   const route = isModal

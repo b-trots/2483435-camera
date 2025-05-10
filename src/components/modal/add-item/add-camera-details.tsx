@@ -1,13 +1,25 @@
 import { BemClass } from '@/const/const';
 import { ProductImg } from '@/pages/product/product-img';
-import { CallItemDescription } from './call-item-description';
 import { FullCamera } from '@/types/camera-type';
+import { BasketItemDescription } from '../../../pages/basket/basket-item/basket-item-description';
+import classNames from 'classnames';
 
-type ProductDetailProps = {
+type AddCameraDetailsProps = {
   modalCamera: FullCamera;
+  isModal?: boolean;
+  isPrice?:boolean;
 };
 
-export function ProductDetails({ modalCamera }: ProductDetailProps) {
+export function AddCameraDetails({
+  modalCamera,
+  isModal,
+  isPrice
+}: AddCameraDetailsProps) {
+  const detailsClassName = classNames(
+    BemClass.BasketItem,
+    isModal && BemClass.BasketItemShort
+  );
+
   if (!modalCamera) {
     return null;
   }
@@ -17,6 +29,7 @@ export function ProductDetails({ modalCamera }: ProductDetailProps) {
     vendorCode,
     level,
     category,
+    type,
     price,
     previewImg,
     previewImg2x,
@@ -25,7 +38,7 @@ export function ProductDetails({ modalCamera }: ProductDetailProps) {
   } = modalCamera;
 
   return (
-    <div className="basket-item basket-item--short">
+    <div className={detailsClassName}>
       <ProductImg
         bemClass={BemClass.BasketItem}
         previewImgWebp={previewImgWebp}
@@ -34,12 +47,14 @@ export function ProductDetails({ modalCamera }: ProductDetailProps) {
         previewImg2x={previewImg2x}
         name={name}
       />
-      <CallItemDescription
+      <BasketItemDescription
         name={name}
         vendorCode={vendorCode}
         category={category}
+        type={type}
         level={level}
         price={price}
+        isPrice={isPrice}
       />
     </div>
   );

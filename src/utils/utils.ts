@@ -7,6 +7,7 @@ import {
   ServiceParam,
   Validation,
 } from '@/const/const';
+import { CameraCategory, CameraLevel, CameraParam, CameraType } from '@/const/camera-const';
 
 const toStandardizePhone = (phone: string) =>
   phone.replace(/\D/g, '').replace(/^8/, '7').replace(/^7/, '+7');
@@ -48,6 +49,18 @@ const capitalize = <T extends string>(letter: T): Capitalize<T> | string =>
         letter.slice(ServiceParam.SecondChar)) as Capitalize<T>)
     : letter;
 
+const lowerize = <T extends string>(letter: T): Capitalize<T> | string =>
+  letter
+    ? ((letter.charAt(ServiceParam.FirstChar).toLowerCase() +
+        letter.slice(ServiceParam.SecondChar)) as Capitalize<T>)
+    : letter;
+
+const correctCategory = (category: CameraCategory, type: CameraType) => `${type} ${lowerize(category)}`;
+
+const correctLevel = (level: CameraLevel) =>`${level} ${lowerize(CameraParam.Level)}`;
+
+const correctName = (category: CameraCategory, name: string) => `${category} «${name}»`;
+
 export {
   toStandardizePhone,
   reviewDate,
@@ -56,4 +69,8 @@ export {
   formatPrice,
   correctPrice,
   capitalize,
+  lowerize,
+  correctCategory,
+  correctLevel,
+  correctName
 };
