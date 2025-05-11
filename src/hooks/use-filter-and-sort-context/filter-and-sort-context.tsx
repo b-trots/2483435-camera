@@ -5,7 +5,6 @@ import {
   useMemo,
   useState,
 } from 'react';
-import { DefaultParam } from '@/const/const';
 import { SortOrder, SortType } from '@/const/sorting-const';
 import { Cameras, CamerasPropType } from '@/types/camera-type';
 import {
@@ -45,8 +44,8 @@ type FilterAndSortProviderProps = {
 const initialFilters: FiltersType = {
   price: { price: null, priceUp: null },
   category: null,
-  type: DefaultParam.EmptyArray,
-  level: DefaultParam.EmptyArray,
+  type: [],
+  level: [],
 };
 
 const initialSorting: SortingType = {

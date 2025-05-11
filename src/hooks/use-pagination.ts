@@ -11,7 +11,7 @@ type QuantityType = typeof ServiceParam.CamerasPerPage;
 
 function usePagination(
   urlId: string = SearchParam.Page,
-  cameras: Cameras = DefaultParam.EmptyArray,
+  cameras: Cameras = [],
   quantity: QuantityType = ServiceParam.CamerasPerPage
 ) {
   const [searchParams, setSearchParams] = useSearchParams();

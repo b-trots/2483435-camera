@@ -11,9 +11,7 @@ const DefaultParam = {
   ProductImgHeight: 240,
   Button: 'button',
   ScrollZero: 0,
-  EmptyArray: [],
   EmptyString: '',
-  EmptyObject: {},
   PageNumberZero: 0,
   PageNumberOne: 1,
   ZeroValue: 0,
@@ -88,11 +86,11 @@ const ServiceParam = {
   LastNumberPageInPack: 3,
   DoublePaginationStep: 2,
   MinimalPagesCount: 1,
-  QuantityButtonWidth:7,
-  QuantityButtonHeight:12,
+  QuantityButtonWidth: 7,
+  QuantityButtonHeight: 12,
   MinQuantity: 1,
-  MaxQuantity:99,
-  QuantityStep:1
+  MaxQuantity: 99,
+  QuantityStep: 1,
 } as const;
 
 enum ServerParam {
@@ -151,7 +149,9 @@ enum BemClass {
   SortIcon = 'sort-icon',
   SortType = 'catalog-sort__type',
   SortOrder = 'catalog-sort__order',
-  BasketItemShort = 'basket-item--short'
+  BasketItemShort = 'basket-item--short',
+  BasketSummary = 'basket__summary-value',
+  BasketSummaryBonus = 'basket__summary-value--bonus'
 }
 
 enum ExplanationWord {
@@ -181,7 +181,7 @@ enum ExplanationWord {
   Total = 'Всего:',
   Discount = 'Скидка:',
   ForPayment = 'К оплате:',
-  PlaceAnOrder = 'Оформить заказ'
+  PlaceAnOrder = 'Оформить заказ',
 }
 
 enum BemMode {
@@ -222,7 +222,6 @@ enum NameSpace {
   OrderState = 'orderState',
   PromoCode = 'Промокод',
   UseCode = 'Применить',
-
 }
 
 const ToastParam = {
@@ -277,14 +276,14 @@ enum ModalType {
   AddItem = 'addItem',
   AddItemSuccess = 'addItemSuccess',
   RemoveItem = 'removeItem',
-  RemoveItemSuccess = 'removeItemSuccess'
+  RemoveItemSuccess = 'removeItemSuccess',
 }
 
 enum ModalTitle {
   CallItem = 'Свяжитесь со мной',
   AddItem = 'Добавить товар в корзину',
   AddItemSuccess = 'Товар успешно добавлен в корзину',
-  RemoveItem = 'Удалить этот товар?'
+  RemoveItem = 'Удалить этот товар?',
 }
 
 enum ModalStatus {
@@ -336,6 +335,25 @@ enum KeyboardButtonName {
   Escape = 'Escape',
 }
 
+const DiscountParam = {
+  QuantityIsTwo: 2,
+  QuantityIsThree: 3,
+  QuantityIsFive: 5,
+  QuantityIsSix: 6,
+  QuantityIsTen: 10,
+  OnePercent: 1,
+  TwoPercent: 2,
+  ThreePercent: 3,
+  FivePercent: 5,
+  TenPercent: 10,
+  FifteenPercent: 15,
+  TenThousand: 10000,
+  TwentyThousand: 20000,
+  ThirtyThousand: 30000,
+  BaseMultiplier: 1,
+  PercentScale: 100,
+};
+
 export {
   ApiActionName,
   APIRoute,
@@ -371,4 +389,5 @@ export {
   InputType,
   KeyboardButtonName,
   SearchParam,
+  DiscountParam,
 };

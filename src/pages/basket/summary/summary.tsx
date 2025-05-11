@@ -1,11 +1,24 @@
-import { ExplanationWord } from '@/const/const';
+import { BemClass, DefaultParam, ExplanationWord } from '@/const/const';
 import { Promo } from './promo';
 import { useAppSelector } from '@/hooks/hooks';
-import { getTotalPrice } from '@/store/slices/order/order-selectors';
+import {
+  getTotalPrice,
+  getTotalPriceWithDiscount,
+} from '@/store/slices/order/order-selectors';
 import { correctPrice } from '@/utils/utils';
+import classNames from 'classnames';
 
 export function Summary() {
   const totalPrice = useAppSelector(getTotalPrice);
+  const { totalPriceWithDiscount, discount } = useAppSelector(
+    getTotalPriceWithDiscount
+  );
+
+  const isDiscount = discount !== DefaultParam.ZeroValue;
+  const discountClassName = classNames(
+    BemClass.BasketSummary,
+    isDiscount && BemClass.BasketSummaryBonus
+  );
 
   return (
     <div className="basket__summary">
@@ -21,16 +34,14 @@ export function Summary() {
           <span className="basket__summary-text">
             {ExplanationWord.Discount}
           </span>
-          <span className="basket__summary-value basket__summary-value--bonus">
-            0 ₽
-          </span>
+          <span className={discountClassName}>{correctPrice(discount)}</span>
         </p>
         <p className="basket__summary-item">
           <span className="basket__summary-text basket__summary-text--total">
             {ExplanationWord.ForPayment}
           </span>
           <span className="basket__summary-value basket__summary-value--total">
-            111 390 ₽
+            {correctPrice(totalPriceWithDiscount)}
           </span>
         </p>
         <button className="btn btn--purple" type="submit">

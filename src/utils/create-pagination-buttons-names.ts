@@ -6,7 +6,7 @@ const createPaginationButtonsNames = (
   currentPage: string
 ): string[] => {
   if (pagesCount <= ServiceParam.MinimalPagesCount) {
-    return DefaultParam.EmptyArray;
+    return [];
   }
 
   const currentPageNum = Number(currentPage);

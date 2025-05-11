@@ -18,7 +18,7 @@ export function useSearch() {
   const allCameras = useAppSelector(getAllCameras);
   const [search, setSearch] = useState(DefaultParam.EmptyString);
   const [filteredCameras, setFilteredCameras] = useState<FullCamera[]>(
-    DefaultParam.EmptyArray
+    []
   );
   const [activeIndex, setActiveIndex] = useState<number | null>(null);
   const [isInputFocused, setIsInputFocused] = useState(false);
@@ -35,7 +35,7 @@ export function useSearch() {
 
   useEffect(() => {
     setSearch(DefaultParam.EmptyString);
-    setFilteredCameras(DefaultParam.EmptyArray);
+    setFilteredCameras([]);
     setActiveIndex(null);
     setIsInputFocused(false);
   }, [location.pathname]);
@@ -73,7 +73,7 @@ export function useSearch() {
 
   const clearSearch = () => {
     setSearch(DefaultParam.EmptyString);
-    setFilteredCameras(DefaultParam.EmptyArray);
+    setFilteredCameras([]);
     setActiveIndex(null);
   };
 

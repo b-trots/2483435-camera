@@ -1,7 +1,6 @@
 import classNames from 'classnames';
 import {
   BemClass,
-  DefaultParam,
   NameSpace,
   ServiceParam,
 } from '@/const/const';
@@ -38,7 +37,7 @@ export function SortingItem({
   );
   const isAriaLabel = !isType
     ? { [NameSpace.AriaLabel]: text }
-    : DefaultParam.EmptyObject;
+    : {};
 
   return (
     <div className={itemClassName}>

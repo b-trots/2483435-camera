@@ -5,7 +5,6 @@ import { Cameras, FullCamera, PromoCamera } from '@/types/camera-type';
 import {
   ApiActionName,
   APIRoute,
-  DefaultParam,
   SliceName,
 } from '@/const/const';
 import {
@@ -62,7 +61,7 @@ const fetchPromoAction = appCreateAsyncThunk<PromoCamera[], undefined>(
     const { data: promo } = await api.get<PromoCamera[]>(APIRoute.Promo, {
       suppressErrorNotify: true,
     });
-    return promo ?? DefaultParam.EmptyArray;
+    return promo ?? [];
   }
 );
 

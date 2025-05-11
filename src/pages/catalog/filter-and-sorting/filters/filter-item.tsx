@@ -1,5 +1,5 @@
 import { CameraCategoryId, CameraParam } from '@/const/camera-const';
-import { DefaultParam, NameSpace, ServiceParam } from '@/const/const';
+import { NameSpace, ServiceParam } from '@/const/const';
 import { FilterCameraType, FilterName } from '@/const/filter-const';
 import { useFilterAndSortContext } from '@/hooks/use-filter-and-sort-context/use-filter-and-sort-context';
 import { usePriceFilter } from '@/hooks/use-price-filter';
@@ -26,7 +26,7 @@ export function FilterItem({ title, param }: FilterItemProps) {
 
   const defaultValue = isRadio
     ? { [NameSpace.AriaLabel]: value.id }
-    : DefaultParam.EmptyObject;
+    : {};
 
   const isDisabled =
     (value.id === FilterCameraType.Film.id ||

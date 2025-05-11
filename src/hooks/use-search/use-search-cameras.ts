@@ -13,7 +13,7 @@ export function useSearchCameras(
   useEffect(() => {
     if (query.length < ServiceParam.MinimalSearchCharacters) {
       if (filteredCameras.length > DefaultParam.ZeroValue) {
-        setFilteredCameras(DefaultParam.EmptyArray);
+        setFilteredCameras([]);
       }
       return;
     }

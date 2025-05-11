@@ -1,4 +1,4 @@
-import { ApiActionName, APIRoute, DefaultParam, SliceName } from '@/const/const';
+import { ApiActionName, APIRoute, SliceName } from '@/const/const';
 import { ReviewsType } from '@/types/types';
 import { addReviewToAllCamerasReviews } from './reviews-slice';
 import { appCreateAsyncThunk } from '../cameras/cameras-actions';
@@ -17,7 +17,7 @@ const fetchOrSetReviewsAction = appCreateAsyncThunk<void | null, number>(
       dispatch(
         addReviewToAllCamerasReviews({
           cameraId,
-          reviews: reviews || DefaultParam.EmptyArray,
+          reviews: reviews || [],
         })
       );
     }

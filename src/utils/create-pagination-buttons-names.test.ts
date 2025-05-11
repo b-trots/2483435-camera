@@ -1,4 +1,4 @@
-import { DefaultParam, ServiceParam } from '@/const/const';
+import { ServiceParam } from '@/const/const';
 import { createPaginationButtonsNames } from './create-pagination-buttons-names';
 import { PaginationButton } from '@/const/const-button';
 
@@ -9,7 +9,7 @@ describe('createPaginationButtonsNames', () => {
 
     const result = createPaginationButtonsNames(pagesCount, currentPage);
 
-    expect(result).toEqual(DefaultParam.EmptyArray);
+    expect(result).toEqual([]);
   });
 
   it('should return only current page button if there is only one page', () => {

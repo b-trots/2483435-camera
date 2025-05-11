@@ -1,5 +1,5 @@
 import { createSelector } from '@reduxjs/toolkit';
-import { DefaultParam, RequestStatus, SliceName } from '@/const/const';
+import { RequestStatus, SliceName } from '@/const/const';
 import { State } from '@/types/store-types/store-types';
 import { getCurrentCameraId } from '../cameras/cameras-selectors';
 import { daySort } from '@/utils/filter-and-sorting-utils/sorting-utils';
@@ -13,7 +13,7 @@ const getCurrentReviews = createSelector(
   [getAllCamerasReviews, getCurrentCameraId],
   (allCamerasReviews, currentCameraId) => {
     if (!currentCameraId || !allCamerasReviews[currentCameraId]) {
-      return DefaultParam.EmptyArray;
+      return [];
     }
     const reviews = allCamerasReviews[currentCameraId];
 
@@ -21,7 +21,7 @@ const getCurrentReviews = createSelector(
       return [...reviews].sort(daySort);
     }
 
-    return DefaultParam.EmptyArray;
+    return [];
   }
 );
 

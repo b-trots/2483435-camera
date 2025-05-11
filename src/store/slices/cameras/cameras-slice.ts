@@ -1,4 +1,4 @@
-import { DefaultParam, RequestStatus, SliceName } from '@/const/const';
+import { RequestStatus, SliceName } from '@/const/const';
 import { CamerasSlice } from '@/types/store-types/slices-types';
 import {
   fetchCamerasAction,
@@ -10,12 +10,12 @@ import { Cameras, FullCamera } from '@/types/camera-type';
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 export const camerasState: CamerasSlice = {
-  allCameras: DefaultParam.EmptyArray,
+  allCameras: [],
   isAllCamerasLoaded: false,
   currentCameraId: null,
-  promoCameras: DefaultParam.EmptyArray,
+  promoCameras: [],
   isPromoCamerasLoaded: false,
-  similarCamerasIds: DefaultParam.EmptyArray,
+  similarCamerasIds: [],
   isSimilarCamerasLoaded: false,
   requestStatus: RequestStatus.Idle,
   camerasError: false,

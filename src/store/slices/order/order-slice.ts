@@ -1,11 +1,11 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { DefaultParam, RequestStatus, SliceName } from '@/const/const';
+import { RequestStatus, SliceName } from '@/const/const';
 import { OrderSlice } from '@/types/store-types/slices-types';
 import { fetchOrderAction, loadOrderState, saveOrderState } from './order-actions';
 import { BasketCamera } from '@/types/types';
 
 const orderStateDefault: OrderSlice = {
-  basket: DefaultParam.EmptyArray,
+  basket: [],
   coupon: null,
   requestStatus: RequestStatus.Idle,
   orderError: false,
