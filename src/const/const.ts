@@ -91,6 +91,8 @@ const ServiceParam = {
   MinQuantity: 1,
   MaxQuantity: 99,
   QuantityStep: 1,
+  ReviewModalIconWidth: 80,
+  ReviewModalIconHeight: 78,
 } as const;
 
 enum ServerParam {
@@ -151,7 +153,10 @@ enum BemClass {
   SortOrder = 'catalog-sort__order',
   BasketItemShort = 'basket-item--short',
   BasketSummary = 'basket__summary-value',
-  BasketSummaryBonus = 'basket__summary-value--bonus'
+  BasketSummaryBonus = 'basket__summary-value--bonus',
+  Success = 'Success',
+  Modal = 'modal',
+  ModalNarrow = 'modal--narrow'
 }
 
 enum ExplanationWord {
@@ -182,6 +187,10 @@ enum ExplanationWord {
   Discount = 'Скидка:',
   ForPayment = 'К оплате:',
   PlaceAnOrder = 'Оформить заказ',
+  FoundError = '404 ERROR',
+  PageNotFound = 'PAGE NOT FOUND',
+  CreatingOrder = 'CREATING ORDER',
+  Wait = 'Wait...'
 }
 
 enum BemMode {
@@ -277,6 +286,8 @@ enum ModalType {
   AddItemSuccess = 'addItemSuccess',
   RemoveItem = 'removeItem',
   RemoveItemSuccess = 'removeItemSuccess',
+  BasketSuccess = 'basketSuccess',
+  Loading = 'loading',
 }
 
 enum ModalTitle {
@@ -284,6 +295,8 @@ enum ModalTitle {
   AddItem = 'Добавить товар в корзину',
   AddItemSuccess = 'Товар успешно добавлен в корзину',
   RemoveItem = 'Удалить этот товар?',
+  BasketSuccess = 'Спасибо за покупку',
+  Error = 'Произошла ошибка'
 }
 
 enum ModalStatus {

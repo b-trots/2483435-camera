@@ -1,10 +1,10 @@
 import { Footer } from '@/components/footer/footer';
 import { Header } from '@/components/header/header';
-import { FLAPS_COUNT, SHUTTER_FLAPS, TitleName } from '@/const/const';
+import { ExplanationWord, FLAPS_COUNT, SHUTTER_FLAPS, TitleName } from '@/const/const';
 import { useChangeTitle } from '@/hooks/use-change-title';
 import css from './page-404.module.css';
 
-interface ShutterStyle extends React.CSSProperties {
+export interface ShutterStyle extends React.CSSProperties {
   '--i': number;
   '--flaps': number;
 }
@@ -25,8 +25,8 @@ export function Page404() {
                     <div className={css['hoop-frame']}></div>
                     <div className={css['message-container']}>
                       <div className={css.message}>
-                        <span className={css.errorCode}>404 ERROR</span>
-                        <p className={css.errorMessage}>PAGE NOT FOUND</p>
+                        <span className={css.errorCode}>{ExplanationWord.FoundError}</span>
+                        <p className={css.errorMessage}>{ExplanationWord.PageNotFound}</p>
                       </div>
                     </div>
                     <div className={css.shutter}>

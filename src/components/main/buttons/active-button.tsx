@@ -32,8 +32,8 @@ function ActiveButtonComponent(
   firstTabRef: React.Ref<HTMLButtonElement>
 ) {
   const buttonClass = classNames(
-    'btn',
-    'btn--purple',
+    ButtonBemClass.Btn,
+    ButtonBemClass.BtnPurple,
     className,
     isFitWidth && ButtonBemClass.FitWidth,
     isHalfWidth && ButtonBemClass.HalfWidth

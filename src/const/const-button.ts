@@ -24,7 +24,7 @@ enum ActiveButtonName {
   PlaceAnOrder = 'Оформить заказ',
   Buy = 'Купить',
   Basket = 'Перейти в корзину',
-  Return = 'Вернуться к покупкам',
+  BackShopping = 'Вернуться к покупкам',
   Review = 'Отправить отзыв',
   MoreReviews = 'Показать больше отзывов',
 }

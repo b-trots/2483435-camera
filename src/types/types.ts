@@ -23,7 +23,6 @@ type ReviewsForState = Record<number, ReviewsType>;
 type OrderType = {
   camerasIds: number[];
   coupon: string | null;
-  tel?: string;
 };
 
 type ReviewsType = ReviewType[];

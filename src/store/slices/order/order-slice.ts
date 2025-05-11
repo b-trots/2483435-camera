@@ -1,14 +1,19 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { RequestStatus, SliceName } from '@/const/const';
+import { DefaultParam, RequestStatus, SliceName } from '@/const/const';
 import { OrderSlice } from '@/types/store-types/slices-types';
-import { fetchOrderAction, loadOrderState, saveOrderState } from './order-actions';
+import {
+  fetchOrderAction,
+  loadOrderState,
+  saveOrderState,
+} from './order-actions';
 import { BasketCamera } from '@/types/types';
+type ErrorType = string;
 
 const orderStateDefault: OrderSlice = {
   basket: [],
   coupon: null,
   requestStatus: RequestStatus.Idle,
-  orderError: false,
+  orderError: DefaultParam.EmptyString,
 };
 
 const safeState = loadOrderState();
@@ -25,22 +30,24 @@ const orderSlice = createSlice({
     setRequestStatus: (state, action: PayloadAction<RequestStatus>) => {
       state.requestStatus = action.payload;
     },
+    setOrderError: (state, action: PayloadAction<ErrorType>) => {
+      state.orderError = action.payload;
+    },
   },
   extraReducers: (builder) => {
     builder
       .addCase(fetchOrderAction.pending, (state) => {
         state.requestStatus = RequestStatus.Loading;
-        state.orderError = false;
+        state.orderError = DefaultParam.EmptyString;
       })
       .addCase(fetchOrderAction.fulfilled, (state) => {
         state.requestStatus = RequestStatus.Success;
       })
       .addCase(fetchOrderAction.rejected, (state) => {
         state.requestStatus = RequestStatus.Failed;
-        state.orderError = true;
       });
   },
 });
-const { setRequestStatus, changeBasket } = orderSlice.actions;
+const { setRequestStatus, changeBasket, setOrderError } = orderSlice.actions;
 
-export { orderSlice, setRequestStatus, changeBasket };
+export { orderSlice, setRequestStatus, changeBasket, setOrderError };

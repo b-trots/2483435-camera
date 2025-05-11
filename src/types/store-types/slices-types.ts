@@ -30,7 +30,7 @@ type OrderSlice = {
   basket: BasketCamera[];
   coupon: string | null;
   requestStatus: RequestStatus;
-  orderError: boolean;
+  orderError: string;
 };
 
 export type { CamerasSlice, ModalSlice, OrderSlice, ReviewsSlice };

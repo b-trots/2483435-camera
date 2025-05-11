@@ -7,7 +7,7 @@ import { CloseButton } from '../main/buttons/close-button';
 import { toLoopFocus } from '@/utils/modal-utils/to-loop-focus';
 import { ButtonBemClass, ButtonType } from '@/const/const-button';
 import classNames from 'classnames';
-import { ModalType } from '@/const/const';
+import { BemClass, BemMode, ModalType } from '@/const/const';
 
 type ModalProps = {
   modal: ModalType;
@@ -16,12 +16,13 @@ type ModalProps = {
 
 export function ModalContainer({ modal, children }: ModalProps) {
   const dispatch = useAppDispatch();
-  const isNarrow = modal.endsWith('Success');
+  const isNarrow = modal.endsWith(BemClass.Success);
   const modalClassName = classNames(
-    'modal',
-    'is-active',
-    isNarrow && 'modal--narrow'
+    BemClass.Modal,
+    BemMode.IsActive,
+    isNarrow && BemClass.ModalNarrow
   );
+  const isLoading = modal === ModalType.Loading;
 
   const handleModalClose = () => {
     dispatch(closeModal());
@@ -49,17 +50,23 @@ export function ModalContainer({ modal, children }: ModalProps) {
     <RemoveScroll removeScrollBar={false}>
       <div className={modalClassName} ref={containerRef}>
         <div className="modal__wrapper">
-          <div className="modal__overlay" onClick={handleModalClose} />
-          <div className="modal__content" ref={modalRef}>
-            {cloneElement(children as React.ReactElement, {
-              ref: firstTabRef,
-            })}
-            <CloseButton
-              bemClass={ButtonBemClass.Cross}
-              type={ButtonType.Button}
-              lastTabRef={lastTabRef}
-            />
-          </div>
+          {isLoading ? (
+            children
+          ) : (
+            <>
+              <div className="modal__overlay" onClick={handleModalClose} />
+              <div className="modal__content" ref={modalRef}>
+                {cloneElement(children as React.ReactElement, {
+                  ref: firstTabRef,
+                })}
+                <CloseButton
+                  bemClass={ButtonBemClass.Cross}
+                  type={ButtonType.Button}
+                  lastTabRef={lastTabRef}
+                />
+              </div>
+            </>
+          )}
         </div>
       </div>
     </RemoveScroll>

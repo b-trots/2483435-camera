@@ -8,6 +8,8 @@ import {
 import { AddItem } from './add-item/add-item';
 import { AddItemSuccess } from './add-item-success';
 import { BasketRemoveItem } from './basket-remove-item';
+import { BasketSuccess } from './basket-success';
+import { Loading } from './loader/loader';
 
 export function Modal() {
   const activeModal = useAppSelector(getActiveModal);
@@ -17,6 +19,8 @@ export function Modal() {
     [ModalType.AddItem]: modalCamera ? <AddItem /> : null,
     [ModalType.AddItemSuccess]: <AddItemSuccess />,
     [ModalType.RemoveItem]: modalCamera ? <BasketRemoveItem /> : null,
+    [ModalType.BasketSuccess]: <BasketSuccess />,
+    [ModalType.Loading]: <Loading />,
   };
 
   const modalContent = modals[activeModal as ModalType] || null;
