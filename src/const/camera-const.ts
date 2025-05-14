@@ -24,6 +24,8 @@ enum CameraParam {
   Rating = 'Рейтинг',
   ReviewCount = 'Всего оценок',
   Type = 'Тип камеры',
+  Photo = 'Фотокамера',
+  Retro = 'Ретрокамера'
 }
 
 enum CameraCategoryId {

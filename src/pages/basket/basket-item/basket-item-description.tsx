@@ -6,7 +6,7 @@ import {
 } from '@/const/camera-const';
 import { BemClass } from '@/const/const';
 import { ProductPrice } from '@/pages/product/product-price';
-import { correctCategory, correctLevel, correctName } from '@/utils/utils';
+import { categoryNameAdapter, correctCategory, correctLevel, correctName } from '@/utils/utils';
 
 type BasketItemDescriptionProps = {
   name: string;
@@ -36,7 +36,7 @@ export function BasketItemDescription({
           <span className="basket-item__number">{vendorCode}</span>
         </li>
         <li className="basket-item__list-item">
-          {correctCategory(category, type)}
+          {correctCategory(categoryNameAdapter(category), type)}
         </li>
         <li className="basket-item__list-item">{correctLevel(level)}</li>
       </ul>

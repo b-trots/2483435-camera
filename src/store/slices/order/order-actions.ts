@@ -25,14 +25,25 @@ const addCamera =
   (id: number) => (dispatch: AppDispatch, getState: GetState) => {
     const state: State = getState();
     const basket = state[SliceName.Order].basket;
-    const isAlreadyAdded = basket.find((camera) => camera.id === id);
-    if (isAlreadyAdded) {
-      return;
+    let isAlreadyAdded = false;
+    let newBasket = basket.map((camera) => {
+      if (camera.id === id) {
+        const currentQuantity = camera.quantity;
+        const newQuantity =
+          currentQuantity < ServiceParam.MaxQuantity
+            ? currentQuantity + ServiceParam.QuantityStep
+            : currentQuantity;
+        camera = { ...camera, quantity: newQuantity };
+        isAlreadyAdded = true;
+      }
+      return camera;
+    });
+
+    if (!isAlreadyAdded) {
+      newBasket = [...basket, { id, quantity: DefaultParam.Unit }];
     }
-    const newBasket = [...basket, { id, quantity: DefaultParam.Unit }];
     dispatch(changeBasket(newBasket));
   };
-
 
 const changeCameraQuantity =
   (id: number, action: QuantityButtonType | number) =>

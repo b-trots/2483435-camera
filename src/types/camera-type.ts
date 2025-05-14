@@ -1,5 +1,12 @@
 import PropTypes from 'prop-types';
-import { CameraCategory, CameraLevel, CameraType } from '@/const/camera-const';
+import {
+  CameraCategory,
+  CameraLevel,
+  CameraParam,
+  CameraType,
+} from '@/const/camera-const';
+
+type AdaptedCameraCategory = CameraCategory | CameraParam.Photo;
 
 interface FullCamera {
   id: number;
@@ -53,6 +60,12 @@ const CamerasPropType = PropTypes.arrayOf(
   FullCameraPropType.isRequired
 ).isRequired;
 
-export type { FullCamera, CameraForCatalog, Cameras, PromoCamera };
+export type {
+  FullCamera,
+  CameraForCatalog,
+  Cameras,
+  PromoCamera,
+  AdaptedCameraCategory,
+};
 
 export { CamerasPropType };

@@ -9,6 +9,7 @@ import { ProductRate } from './product-rate';
 import { useAppDispatch } from '@/hooks/hooks';
 import { useCallback } from 'react';
 import { handleModalOpen } from '@/store/slices/modal/modal-actions';
+import { correctName } from '@/utils/utils';
 
 type ProductDetailProps = {
   camera: FullCamera;
@@ -29,7 +30,7 @@ export function ProductDetail({ camera }: ProductDetailProps) {
 
   const handleBuyButtonClick = useCallback(() => {
     dispatch(handleModalOpen(ModalType.AddItem, id));
-  }, [dispatch,id]);
+  }, [dispatch, id]);
 
   return (
     <div className="page-content__section">
@@ -44,7 +45,9 @@ export function ProductDetail({ camera }: ProductDetailProps) {
             name={name}
           />
           <div className="product__content">
-            <h1 className="title title--h3">{name}</h1>
+            <h1 className="title title--h3">
+              {correctName(camera.category, camera.name)}
+            </h1>
             <ProductRate
               bemClass={BemClass.Product}
               rating={rating}

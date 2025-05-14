@@ -1,13 +1,18 @@
 import dayjs from 'dayjs';
 import 'dayjs/locale/ru';
-import { Cameras } from '@/types/camera-type';
+import { AdaptedCameraCategory, Cameras } from '@/types/camera-type';
 import {
   DefaultParam,
   NameSpace,
   ServiceParam,
   Validation,
 } from '@/const/const';
-import { CameraCategory, CameraLevel, CameraParam, CameraType } from '@/const/camera-const';
+import {
+  CameraCategory,
+  CameraLevel,
+  CameraParam,
+  CameraType,
+} from '@/const/camera-const';
 
 const toStandardizePhone = (phone: string) =>
   phone.replace(/\D/g, '').replace(/^8/, '7').replace(/^7/, '+7');
@@ -55,11 +60,23 @@ const lowerize = <T extends string>(letter: T): Capitalize<T> | string =>
         letter.slice(ServiceParam.SecondChar)) as Capitalize<T>)
     : letter;
 
-const correctCategory = (category: CameraCategory, type: CameraType) => `${type} ${lowerize(category)}`;
+const categoryNameAdapter = (category: CameraCategory) =>
+  category === CameraCategory.PhotoCamera ? CameraParam.Photo : category;
 
-const correctLevel = (level: CameraLevel) =>`${level} ${lowerize(CameraParam.Level)}`;
+const correctCategory = (category: AdaptedCameraCategory, type: CameraType) =>
+  `${type} ${lowerize(category)}`;
 
-const correctName = (category: CameraCategory, name: string) => `${category} «${name}»`;
+const correctLevel = (level: CameraLevel) =>
+  `${level} ${lowerize(CameraParam.Level)}`;
+
+const correctName = (category: AdaptedCameraCategory, cameraName: string) => {
+  if (cameraName.includes(CameraParam.Retro)) {
+    const correctedName = cameraName.replace(CameraParam.Retro,DefaultParam.EmptyString).trim();
+    return `${CameraParam.Retro} «${correctedName}»`;
+  } else {
+    return `${category} «${cameraName}»`;
+  }
+};
 
 export {
   toStandardizePhone,
@@ -72,5 +89,6 @@ export {
   lowerize,
   correctCategory,
   correctLevel,
-  correctName
+  correctName,
+  categoryNameAdapter,
 };
