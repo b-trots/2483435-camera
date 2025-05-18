@@ -15,7 +15,7 @@ export function FilterBlock({ filter }: FilterBlockParam) {
   const { title, params } = filter;
   const isPrice = title === CameraParam.Price;
   const isPriceSymbol = isPrice
-    ? ExplanationWord.Price
+    ? ExplanationWord.PriceSymbol
     : DefaultParam.EmptyString;
 
   return (

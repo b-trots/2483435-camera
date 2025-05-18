@@ -1,15 +1,33 @@
 import { ShutterStyle } from '@/components/page-404/page-404';
-import { SHUTTER_FLAPS, FLAPS_COUNT, ExplanationWord } from '@/const/const';
+import {
+  SHUTTER_FLAPS,
+  FLAPS_COUNT,
+  ExplanationWord,
+  LoaderStatus
+} from '@/const/const';
 import css from './loader.module.css';
 
-export function Loading() {
+type LoaderProps = {
+  status?: LoaderStatus;
+};
+
+export function Loader({ status }: LoaderProps) {
+  const isError = status === LoaderStatus.Error;
+  const infoMessage = isError
+    ? ExplanationWord.Error
+    : ExplanationWord.CreatingOrder;
+  const actionMessage = isError
+    ? ExplanationWord.ReloadPage
+    : ExplanationWord.Wait;
   return (
     <div className={css.lens}>
       <div className={css['hoop-frame']}></div>
       <div className={css['message-container']}>
         <div className={css.message}>
-          <span className={css.actionName}>{ExplanationWord.CreatingOrder}</span>
-          <p className={css.actionMessage}>{ExplanationWord.Wait}</p>
+          <span className={css.actionName}>
+            {infoMessage}
+          </span>
+          <p className={css.actionMessage}>{actionMessage}</p>
         </div>
       </div>
       <div className={css.shutter}>

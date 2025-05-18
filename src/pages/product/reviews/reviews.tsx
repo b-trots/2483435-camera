@@ -3,6 +3,7 @@ import { ActiveButton } from '@/components/main/buttons/active-button';
 import {
   DefaultParam,
   ExplanationWord,
+  ModalType,
   RequestCategory,
   RequestStatus,
   ServiceParam,
@@ -18,6 +19,7 @@ import {
 import { useParams } from 'react-router-dom';
 import { LoadData } from '@/components/load-data/load-data';
 import { fetchOrSetReviewsAction } from '@/store/slices/reviews/reviews-actions';
+import { openModal } from '@/store/slices/modal/modal-slice';
 
 export function Reviews() {
   const dispatch = useAppDispatch();
@@ -38,7 +40,7 @@ export function Reviews() {
 
   useEffect(() => {
     if (id) {
-      dispatch(fetchOrSetReviewsAction(Number(id)));
+      dispatch(fetchOrSetReviewsAction({cameraId:Number(id)}));
     }
   }, [id, dispatch]);
 
@@ -58,12 +60,23 @@ export function Reviews() {
     return () => observer.disconnect();
   }, [isMoreComments]);
 
+  const handleNewReviewButtonClick = () => {
+    dispatch(openModal(ModalType.NewReview));
+  };
+
   return (
     <div className="page-content__section">
       <section className="review-block">
         <div className="container">
           <div className="page-content__headed">
             <h2 className="title title--h3">{ExplanationWord.Reviews}</h2>
+            <button
+              className="btn"
+              type="button"
+              onClick={handleNewReviewButtonClick}
+            >
+              {ExplanationWord.NewReview}
+            </button>
           </div>
           <ul className="review-block__list">
             {reviewsError || isReviewsLoading ? (

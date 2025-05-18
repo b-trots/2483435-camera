@@ -47,7 +47,7 @@ function CameraCardComponent({ camera, isActive }: CameraProps) {
   }, [dispatch, camera.id]);
 
   const handleDetailButtonClick = useCallback(() => {
-    dispatch(fetchOrSetReviewsAction(camera.id));
+    dispatch(fetchOrSetReviewsAction({cameraId:camera.id}));
     dispatch(fetchSimilarAction(camera.id));
   }, [dispatch, camera.id]);
 

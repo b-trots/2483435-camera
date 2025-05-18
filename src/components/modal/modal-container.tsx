@@ -22,7 +22,7 @@ export function ModalContainer({ modal, children }: ModalProps) {
     BemMode.IsActive,
     isNarrow && BemClass.ModalNarrow
   );
-  const isLoading = modal === ModalType.Loading;
+  const isLoading = (modal === ModalType.Loading) || (modal === ModalType.Error);
 
   const handleModalClose = () => {
     dispatch(closeModal());

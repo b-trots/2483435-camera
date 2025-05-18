@@ -107,7 +107,7 @@
   opacity: 1;
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2), inset 0 0 10px rgba(255, 255, 255, 0.3);
   border: 3px solid rgba(255, 255, 255, 0.5);
-  animation: glow 3s infinite alternate; /* Оставили только анимацию свечения */
+  animation: glow 3s infinite alternate;
 }
 
 .message {
@@ -124,7 +124,7 @@
 .actionName {
   position: relative;
   top: 34px;
-  color: rgb(54, 199, 10);
+  color: rgb(9, 12, 8);
   font-size: 48px;
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3), -2px -2px 4px rgba(255, 255, 255, 0.4);
 }

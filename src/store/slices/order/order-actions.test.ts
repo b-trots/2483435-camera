@@ -44,7 +44,7 @@ describe('fetchOrderAction', () => {
 
     mockAxiosAdapter.onPost(APIRoute.Orders).reply(200);
 
-    const promise = store.dispatch(fetchOrderAction(orderData));
+    const promise = store.dispatch(fetchOrderAction());
 
     const pendingActions = store.getActions();
     expect(pendingActions[0].type).toBe(fetchOrderAction.pending.type);
@@ -67,15 +67,10 @@ describe('fetchOrderAction', () => {
   });
 
   it('should dispatch rejected action when API call fails', async () => {
-    const orderData = {
-      camerasIds: [1, 2, 3],
-      coupon: 'SALE10',
-      tel: '+79991234567',
-    };
 
     mockAxiosAdapter.onPost(APIRoute.Orders).reply(400);
 
-    await store.dispatch(fetchOrderAction(orderData));
+    await store.dispatch(fetchOrderAction());
 
     const actions = store.getActions().map((action) => action.type);
     expect(actions).toEqual([

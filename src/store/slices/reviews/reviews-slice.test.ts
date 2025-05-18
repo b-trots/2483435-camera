@@ -8,6 +8,7 @@ describe('Reviews Slice', () => {
     allCamerasReviews: {},
     requestStatus: RequestStatus.Idle,
     reviewsError: false,
+    needUpdate:true
   };
 
   const reviews = generateReviewsForCameras(1, 3)[0];

@@ -8,7 +8,7 @@ import {
 import { forwardRef, memo } from 'react';
 
 type ActiveButtonProps = {
-  onClick?: () => void;
+  onClick?: (e:React.MouseEvent) => void;
   className?: ButtonBemClass;
   isFitWidth?: boolean;
   isHalfWidth?: boolean;

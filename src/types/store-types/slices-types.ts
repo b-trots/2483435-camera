@@ -33,4 +33,15 @@ type OrderSlice = {
   orderError: string;
 };
 
-export type { CamerasSlice, ModalSlice, OrderSlice, ReviewsSlice };
+type FetchReviewsParam = {
+  cameraId: number;
+  needUpdate?: boolean;
+};
+
+export type {
+  CamerasSlice,
+  ModalSlice,
+  OrderSlice,
+  ReviewsSlice,
+  FetchReviewsParam,
+};

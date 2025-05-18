@@ -5,6 +5,7 @@ import { fetchOrderAction } from './order-actions';
 describe('Order Slice', () => {
   const initialState = {
     coupon: null,
+    basket:[],
     requestStatus: RequestStatus.Idle,
     orderError: false,
   };

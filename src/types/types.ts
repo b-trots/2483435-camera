@@ -18,6 +18,30 @@ type ReviewType = {
   rating: number;
 };
 
+type NewReviewType = {
+  rate: number;
+  name: string;
+  plus: string;
+  minus: string;
+  comment: string;
+};
+
+type NewComment = {
+  cameraId: number;
+  userName: string;
+  advantage: string;
+  disadvantage: string;
+  review: string;
+  rating: number;
+};
+
+type NewReviewErrorType = {
+  [K in keyof NewReviewType]: boolean;
+};
+
+type NewReviewKeys = keyof NewReviewType;
+type NewReviewStringFieldsKeys = Exclude<NewReviewKeys, 'rate'>;
+
 type ReviewsForState = Record<number, ReviewsType>;
 
 type OrderType = {
@@ -51,4 +75,9 @@ export type {
   TabNameKey,
   TabNameId,
   BasketCamera,
+  NewReviewType,
+  NewReviewErrorType,
+  NewReviewKeys,
+  NewReviewStringFieldsKeys,
+  NewComment,
 };

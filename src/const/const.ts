@@ -93,6 +93,11 @@ const ServiceParam = {
   QuantityStep: 1,
   ReviewModalIconWidth: 80,
   ReviewModalIconHeight: 78,
+  CommentMinLength: 5,
+  ReviewNameMinSymbols: 2,
+  ReviewNameMaxSymbols: 15,
+  ReviewFieldMinSymbols: 10,
+  ReviewFieldMaxSymbols: 160,
 } as const;
 
 enum ServerParam {
@@ -106,17 +111,20 @@ const TabName = {
 };
 
 enum ErrorInfoMessage {
-  PhoneInput = 'Допустимы только цифры, пробелы, скобки, тире и "+"',
-  PhoneSubmit = 'Введите корректный номер телефона в формате +7(9XX)XXX-XX-XX',
   Error = 'Произошла ошибка:',
   TryLater = 'Попробуйте позже.',
   CheckInternet = 'Не удалось подключиться к серверу. Проверьте интернет-соединение.',
   ErrorFilterAndSortingContext = 'useFilterAndSortingContext must be used within a FilterAndSortingProvider',
 }
 
+const ReviewValidInfoMessage = {
+  name: 'от 2 до 15 символов',
+  plus: 'от 10 до 160 символов',
+  minus: 'от 10 до 160 символов',
+  comment: 'от 10 до 160 символов'
+};
+
 const Validation = {
-  PhoneInput: /^[\d\s()+-]*$/,
-  PhoneSubmit: /^(?:\+7|8)\s*\(?\d{3}\)?[\s-]?\d{3}[\s-]?\d{2}[\s-]?\d{2}$/,
   CameraPrice: /[^0-9]/g,
 } as const;
 
@@ -156,7 +164,14 @@ enum BemClass {
   BasketSummaryBonus = 'basket__summary-value--bonus',
   Success = 'Success',
   Modal = 'modal',
-  ModalNarrow = 'modal--narrow'
+  ModalNarrow = 'modal--narrow',
+  Rate = 'rate',
+  User = 'user-',
+  FormReviewItem = 'form-review__item',
+  CustomTextArea = 'custom-textarea',
+  CustomInput = 'custom-input',
+  TextArea = 'textarea',
+  Input = 'input',
 }
 
 enum ExplanationWord {
@@ -173,7 +188,7 @@ enum ExplanationWord {
   SearchTheSite = 'Поиск по сайту',
   ToSort = 'Сортировать: ',
   Filter = 'Фильтр',
-  Price = ', ₽',
+  PriceSymbol = ', ₽',
   InBasket = 'В корзине',
   IncreaseQuantity = 'увеличить количество товара',
   DecreaseQuantity = 'уменьшить количество товара',
@@ -190,8 +205,42 @@ enum ExplanationWord {
   FoundError = '404 ERROR',
   PageNotFound = 'PAGE NOT FOUND',
   CreatingOrder = 'CREATING ORDER',
-  Wait = 'Wait...'
+  Wait = 'Wait...',
+  NewReview = 'Оставить свой отзыв',
+  Rating = 'Рейтинг',
+  NeedToEvaluate = 'Нужно оценить товар',
+  SlashSymbol = '/',
+  Error = 'Ошибка',
+  ReloadPage = 'Перезагрузите страницу'
+
 }
+
+const REVIEW_PARAM = [
+  {
+    title: 'Ваше имя',
+    id: 'name',
+    info: 'Введите ваше имя',
+    error: 'Нужно указать имя',
+  },
+  {
+    title: 'Достоинства',
+    id: 'plus',
+    info: 'Основные преимущества товара',
+    error: 'Нужно указать достоинства',
+  },
+  {
+    title: 'Недостатки',
+    id: 'minus',
+    info: 'Главные недостатки товара',
+    error: 'Нужно указать недостатки',
+  },
+  {
+    title: 'Комментарий',
+    id: 'comment',
+    info: 'Поделитесь своим опытом покупки',
+    error: 'Нужно добавить комментарий',
+  },
+];
 
 enum BemMode {
   Void = '',
@@ -202,6 +251,7 @@ enum BemMode {
   Prev = '--prev',
   Next = '--next',
   Disabled = 'disabled',
+  IsInvalid = 'is-invalid'
 }
 
 enum BannerParam {
@@ -231,6 +281,9 @@ enum NameSpace {
   OrderState = 'orderState',
   PromoCode = 'Промокод',
   UseCode = 'Применить',
+  CommentId = 'comment',
+  RateField = 'rate',
+  UserNameField = 'name'
 }
 
 const ToastParam = {
@@ -247,6 +300,13 @@ const ToastParam = {
 } as const;
 
 const RATING_STAR_COUNT = 5;
+const Rating = {
+  ['Отлично']: 5,
+  ['Хорошо']: 4,
+  ['Нормально']: 3,
+  ['Плохо']: 2,
+  ['Ужасно']: 1,
+} as const;
 
 const PICTURE_PARAMS = [
   {
@@ -288,6 +348,9 @@ enum ModalType {
   RemoveItemSuccess = 'removeItemSuccess',
   BasketSuccess = 'basketSuccess',
   Loading = 'loading',
+  NewReview = 'createReview',
+  ReviewSuccess = 'reviewSuccess',
+  Error = 'error'
 }
 
 enum ModalTitle {
@@ -296,7 +359,9 @@ enum ModalTitle {
   AddItemSuccess = 'Товар успешно добавлен в корзину',
   RemoveItem = 'Удалить этот товар?',
   BasketSuccess = 'Спасибо за покупку',
-  Error = 'Произошла ошибка'
+  Error = 'Произошла ошибка',
+  NewReview = 'Оставить отзыв',
+  ReviewSuccess = 'Спасибо за отзыв'
 }
 
 enum ModalStatus {
@@ -323,6 +388,7 @@ enum ApiActionName {
   FetchPromo = 'CAMERAS/fetchPromo',
   FetchSimilar = 'CAMERAS/fetchSimilar',
   FetchReviews = 'REVIEWS/fetchOrSetReviews',
+  FetchNewReview = 'REVIEWS/fetchNewReview',
   FetchOrder = 'ORDER/fetchOrder',
   UpdateAllSetCurrentId = 'UpdateAllCamerasAndSetCurrentCameraId',
 }
@@ -367,6 +433,11 @@ const DiscountParam = {
   PercentScale: 100,
 };
 
+enum LoaderStatus {
+  Pending = 'pending',
+  Error = 'error'
+}
+
 export {
   ApiActionName,
   APIRoute,
@@ -403,4 +474,8 @@ export {
   KeyboardButtonName,
   SearchParam,
   DiscountParam,
+  Rating,
+  REVIEW_PARAM,
+  ReviewValidInfoMessage,
+  LoaderStatus
 };
