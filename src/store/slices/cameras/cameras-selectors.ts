@@ -36,6 +36,11 @@ const getPromoCameras = createSelector(
   (promoCameras) => promoCameras
 );
 
+const getPromoCamerasIds = createSelector(
+  (state: CamerasState) => state[SliceName.Cameras].promoCameras,
+  (promoCameras) => promoCameras.map((camera)=>camera.id)
+);
+
 const getIsPromoCamerasLoaded = (state: CamerasState): boolean =>
   state[SliceName.Cameras].isPromoCamerasLoaded;
 
@@ -82,4 +87,5 @@ export {
   getCamerasRequestStatus,
   getCamerasError,
   getCameraById,
+  getPromoCamerasIds
 };

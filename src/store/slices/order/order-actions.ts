@@ -9,13 +9,18 @@ import {
   ServiceParam,
   SliceName,
 } from '@/const/const';
-import { OrderType } from '@/types/types';
+import { CouponName, OrderType } from '@/types/types';
 import { appCreateAsyncThunk } from '../cameras/cameras-actions';
-import { changeBasket, setOrderError, setRequestStatus } from './order-slice';
+import {
+  changeBasket,
+  setCoupon,
+  setOrderError,
+  setRequestStatus,
+} from './order-slice';
 import { AppDispatch, GetState, State } from '@/types/store-types/store-types';
 import { QuantityButtonType } from '@/pages/basket/basket-item/quantity/quantity-button';
 import { OrderSlice } from '@/types/store-types/slices-types';
-import { openModal } from '../modal/modal-slice';
+import { closeModal, openModal } from '../modal/modal-slice';
 import { AxiosError } from 'axios';
 
 const isManualInput = (action: QuantityButtonType | number): action is number =>
@@ -98,9 +103,9 @@ const fetchOrderAction = appCreateAsyncThunk<void, undefined>(
     const state: State = getState();
     const basket = state[SliceName.Order].basket;
     const camerasIds = basket.map((camera) => camera.id);
-    const coupon = state[SliceName.Order].coupon;
+    const coupon = state[SliceName.Order].coupon?.name;
     try {
-      dispatch(openModal(ModalType.Loading));
+      dispatch(openModal(ModalType.CreateOrder));
       await api.post<OrderType>(APIRoute.Orders, { camerasIds, coupon });
       dispatch(changeBasket([]));
     } catch (error) {
@@ -131,6 +136,32 @@ const saveOrderState = (orderState: OrderSlice) => {
   localStorage.setItem(NameSpace.OrderState, serializedState);
 };
 
+const fetchCouponAction = appCreateAsyncThunk<void, CouponName>(
+  ApiActionName.FetchCoupon,
+  async (couponName, { dispatch, extra: api }) => {
+    try {
+      dispatch(openModal(ModalType.CheckCoupon));
+      const { data: couponValue } = await api.post<CouponName>(
+        APIRoute.Coupons,
+        {
+          coupon: couponName,
+        },
+        {
+          suppressErrorNotify: true,
+        }
+      );
+      dispatch(setCoupon({ name: couponName, value: Number(couponValue) }));
+    } catch (error) {
+      if ((error as AxiosError).code === NameSpace.ErrorNetwork){
+        dispatch(openModal(ModalType.Error));
+      }
+      dispatch(setCoupon(null));
+    } finally {
+      setTimeout(()=>dispatch(closeModal()), ServiceParam.CheckCouponTimeout);
+    }
+  }
+);
+
 export {
   fetchOrderAction,
   addCamera,
@@ -138,4 +169,5 @@ export {
   deleteCamera,
   loadOrderState,
   saveOrderState,
+  fetchCouponAction,
 };

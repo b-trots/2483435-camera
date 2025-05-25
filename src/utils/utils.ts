@@ -39,10 +39,20 @@ const countPages = (cameras: unknown[], quantity: number) =>
   Math.ceil(cameras.length / quantity);
 
 function formatPrice(price: number): string {
-  const correctPrice = new Intl.NumberFormat(ServiceParam.LocaleRuFull).format(
-    price
-  );
-  return `${correctPrice} ${NameSpace.RuRubleSymbol}`;
+  const correctPrice = new Intl.NumberFormat(ServiceParam.LocaleRuFull, {
+    minimumFractionDigits: ServiceParam.minimumFractionDigits,
+    maximumFractionDigits: ServiceParam.maximumFractionDigits,
+  }).format(price);
+
+  const correctedPrice = () => {
+    const [integerPart, decimalPart] = correctPrice.split(',');
+    if (Validation.DecimalPartIsZero.test(decimalPart)) {
+      return integerPart;
+    } else {
+      return correctPrice;
+    }
+  };
+  return `${correctedPrice()} ${NameSpace.RuRubleSymbol}`;
 }
 
 const correctPrice = (value: string | number) =>
@@ -71,7 +81,9 @@ const correctLevel = (level: CameraLevel) =>
 
 const correctName = (category: AdaptedCameraCategory, cameraName: string) => {
   if (cameraName.includes(CameraParam.Retro)) {
-    const correctedName = cameraName.replace(CameraParam.Retro,DefaultParam.EmptyString).trim();
+    const correctedName = cameraName
+      .replace(CameraParam.Retro, DefaultParam.EmptyString)
+      .trim();
     return `${CameraParam.Retro} «${correctedName}»`;
   } else {
     return `${category} «${cameraName}»`;

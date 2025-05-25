@@ -1,8 +1,13 @@
 import {
   getAllCameras,
-  getPromoCameras,
+  getPromoCamerasIds,
 } from '@/store/slices/cameras/cameras-selectors';
-import { DefaultParam, RequestStatus, SliceName } from '@/const/const';
+import {
+  DefaultParam,
+  DiscountParam,
+  RequestStatus,
+  SliceName,
+} from '@/const/const';
 import { State } from '@/types/store-types/store-types';
 import { createSelector } from '@reduxjs/toolkit';
 import { BasketCamera } from '@/types/types';
@@ -13,6 +18,8 @@ export type BasketItem = BasketCamera & { price: number };
 
 const getCoupon = (state: OrderState) => state[SliceName.Order].coupon;
 const getBasket = (state: OrderState) => state[SliceName.Order].basket;
+const getCouponIsChecked = (state: OrderState) =>
+  state[SliceName.Order].couponIsChecked;
 
 const getOrderRequestStatus = (state: OrderState): RequestStatus =>
   state[SliceName.Order].requestStatus;
@@ -50,29 +57,61 @@ const getTotalPrice = createSelector(
     )
 );
 
-const getTotalPriceWithDiscount = createSelector(
-  [getTotalPrice, getBasketItemsWithPrice, getPromoCameras],
-  (totalPrice, basket, promoCameras) => {
-    const promoCamerasIds = promoCameras.map((camera) => camera.id);
-    const promo: BasketItem[] = [];
-    const withoutPromo = basket.filter((camera) => {
+const getCouponDiscount = createSelector(
+  [getBasketItemsWithPrice, getCoupon],
+  (basketWithPrice, coupon) => {
+    const totalPrice = basketWithPrice.reduce(
+      (acc, item) => acc + item.price * item.quantity,
+      DefaultParam.ZeroValue
+    );
+
+    if (!coupon) {
+      return DefaultParam.ZeroValue;
+    }
+
+    const couponDiscount =
+      totalPrice * (coupon.value / DiscountParam.PercentScale);
+    return couponDiscount;
+  }
+);
+
+const getTotalPriceWithDiscountAndCoupon = createSelector(
+  [
+    getBasketItemsWithPrice,
+    getPromoCamerasIds,
+    getCouponDiscount,
+    getTotalPrice,
+  ],
+  (basket, promoCamerasIds, couponDiscount, totalPrice) => {
+    const promoCameras: BasketItem[] = [];
+    const regularCameras = basket.filter((camera) => {
       if (promoCamerasIds.includes(camera.id)) {
-        promo.push(camera);
+        promoCameras.push(camera);
         return false;
       }
       return true;
     });
 
-    const withoutPromoPrice = applyDiscount(withoutPromo);
-    const promoPrice = promo.reduce(
-      (acc, item) => acc + item.price * item.quantity,
+    const regularCamerasWithDiscountTotalPrice = applyDiscount(regularCameras);
+
+    const promoCamerasPrice = promoCameras.reduce(
+      (acc, camera) => acc + camera.price * camera.quantity,
       DefaultParam.ZeroValue
     );
 
-    const totalPriceWithDiscount = withoutPromoPrice + promoPrice;
-    const discount = totalPrice - totalPriceWithDiscount;
+    const totalPriceWithDiscount =
+      regularCamerasWithDiscountTotalPrice + promoCamerasPrice;
 
-    return { totalPriceWithDiscount, discount };
+    let totalPriceWithDiscountAndCoupon: number | string =
+      totalPriceWithDiscount;
+
+    if (couponDiscount) {
+      totalPriceWithDiscountAndCoupon = totalPriceWithDiscount - couponDiscount;
+    }
+
+    const discount = totalPrice - totalPriceWithDiscountAndCoupon;
+
+    return { totalPriceWithDiscountAndCoupon, discount };
   }
 );
 
@@ -83,5 +122,6 @@ export {
   getOrderError,
   getTotalQuantity,
   getTotalPrice,
-  getTotalPriceWithDiscount,
+  getTotalPriceWithDiscountAndCoupon,
+  getCouponIsChecked,
 };

@@ -22,10 +22,11 @@ export function Modal() {
     [ModalType.AddItemSuccess]: <AddItemSuccess />,
     [ModalType.RemoveItem]: modalCamera ? <BasketRemoveItem /> : null,
     [ModalType.BasketSuccess]: <BasketSuccess />,
-    [ModalType.Loading]: <Loader />,
+    [ModalType.CreateOrder]: <Loader status={LoaderStatus.Pending} />,
     [ModalType.Error]: <Loader status={LoaderStatus.Error} />,
     [ModalType.NewReview]: <NewReview />,
     [ModalType.ReviewSuccess]: <ReviewSuccess />,
+    [ModalType.CheckCoupon]: <Loader status={LoaderStatus.Coupon} />,
   };
 
   const modalContent = modals[activeModal as ModalType] || null;

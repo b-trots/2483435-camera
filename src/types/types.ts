@@ -65,6 +65,14 @@ type BasketCamera = {
   quantity: number;
 };
 
+type Coupon = {
+  name: string;
+  value: number;
+};
+
+type CouponName = string;
+type CouponValue = number;
+
 export type {
   FocusableElements,
   ReviewType,
@@ -80,4 +88,7 @@ export type {
   NewReviewKeys,
   NewReviewStringFieldsKeys,
   NewComment,
+  Coupon,
+  CouponName,
+  CouponValue,
 };

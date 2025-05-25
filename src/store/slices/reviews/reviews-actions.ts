@@ -41,7 +41,7 @@ const fetchNewReviewAction = appCreateAsyncThunk<void, NewComment>(
   ApiActionName.FetchNewReview,
   async (newComment, { dispatch, extra: api }) => {
     try {
-      dispatch(openModal(ModalType.Loading));
+      dispatch(openModal(ModalType.NewReview));
       await api.post<NewComment>(`${APIRoute.Reviews}`, newComment).then(() => {
         dispatch(openModal(ModalType.ReviewSuccess));
         dispatch(

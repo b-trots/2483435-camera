@@ -2,22 +2,24 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { DefaultParam, RequestStatus, SliceName } from '@/const/const';
 import { OrderSlice } from '@/types/store-types/slices-types';
 import {
+  fetchCouponAction,
   fetchOrderAction,
   loadOrderState,
   saveOrderState,
 } from './order-actions';
-import { BasketCamera } from '@/types/types';
+import { BasketCamera, Coupon } from '@/types/types';
 type ErrorType = string;
 
 const orderStateDefault: OrderSlice = {
   basket: [],
   coupon: null,
+  couponIsChecked: false,
   requestStatus: RequestStatus.Idle,
   orderError: DefaultParam.EmptyString,
 };
 
-const safeState = loadOrderState();
-const orderState: OrderSlice = safeState ? safeState : orderStateDefault;
+const savedState = loadOrderState();
+const orderState: OrderSlice = savedState ? savedState : orderStateDefault;
 
 const orderSlice = createSlice({
   name: SliceName.Order,
@@ -33,6 +35,10 @@ const orderSlice = createSlice({
     setOrderError: (state, action: PayloadAction<ErrorType>) => {
       state.orderError = action.payload;
     },
+    setCoupon: (state, action: PayloadAction<Coupon | null>) => {
+      state.coupon = action.payload;
+      saveOrderState(state);
+    },
   },
   extraReducers: (builder) => {
     builder
@@ -45,9 +51,19 @@ const orderSlice = createSlice({
       })
       .addCase(fetchOrderAction.rejected, (state) => {
         state.requestStatus = RequestStatus.Failed;
+      })
+      .addCase(fetchCouponAction.pending, (state) => {
+        state.couponIsChecked = false;
+      })
+      .addCase(fetchCouponAction.fulfilled, (state) => {
+        state.couponIsChecked = true;
+      })
+      .addCase(fetchCouponAction.rejected, (state) => {
+        state.couponIsChecked = true;
       });
   },
 });
-const { setRequestStatus, changeBasket, setOrderError } = orderSlice.actions;
+const { setRequestStatus, changeBasket, setOrderError, setCoupon } =
+  orderSlice.actions;
 
-export { orderSlice, setRequestStatus, changeBasket, setOrderError };
+export { orderSlice, setRequestStatus, changeBasket, setOrderError, setCoupon };

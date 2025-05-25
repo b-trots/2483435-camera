@@ -1,4 +1,4 @@
-import { DefaultParam, DiscountParam } from '@/const/const';
+import { DefaultParam, DiscountParam, ServiceParam } from '@/const/const';
 import { BasketItem } from '@/store/slices/order/order-selectors';
 
 const applyDiscount = (cameras: BasketItem[]) => {
@@ -45,11 +45,14 @@ const applyDiscount = (cameras: BasketItem[]) => {
       discount -= DiscountParam.ThreePercent;
     }
   }
-
-  return Math.round(
-    (DiscountParam.BaseMultiplier - discount / DiscountParam.PercentScale) *
+  const priceWithDiscount = Number(
+    (
+      (DiscountParam.BaseMultiplier - discount / DiscountParam.PercentScale) *
       totalPrice
+    ).toFixed(ServiceParam.RoundingValueOfNumber)
   );
+
+  return priceWithDiscount;
 };
 
 export { applyDiscount };

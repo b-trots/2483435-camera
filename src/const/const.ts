@@ -30,6 +30,7 @@ enum APIRoute {
   Orders = '/orders',
   Promo = '/promo',
   Similar = '/similar',
+  Coupons = '/coupons',
 }
 
 const ServiceParam = {
@@ -98,6 +99,10 @@ const ServiceParam = {
   ReviewNameMaxSymbols: 15,
   ReviewFieldMinSymbols: 10,
   ReviewFieldMaxSymbols: 160,
+  minimumFractionDigits:2,
+  maximumFractionDigits:2,
+  CheckCouponTimeout: 1500,
+  RoundingValueOfNumber: 2
 } as const;
 
 enum ServerParam {
@@ -121,11 +126,13 @@ const ReviewValidInfoMessage = {
   name: 'от 2 до 15 символов',
   plus: 'от 10 до 160 символов',
   minus: 'от 10 до 160 символов',
-  comment: 'от 10 до 160 символов'
+  comment: 'от 10 до 160 символов',
 };
 
 const Validation = {
   CameraPrice: /[^0-9]/g,
+  DecimalPartIsZero: /^0+$/,
+  CouponInput: /\s/g,
 } as const;
 
 enum TitleName {
@@ -211,8 +218,8 @@ enum ExplanationWord {
   NeedToEvaluate = 'Нужно оценить товар',
   SlashSymbol = '/',
   Error = 'Ошибка',
-  ReloadPage = 'Перезагрузите страницу'
-
+  CheckCoupon = 'Check coupon',
+  TryAgain = 'Попробуйте ещё раз'
 }
 
 const REVIEW_PARAM = [
@@ -251,7 +258,8 @@ enum BemMode {
   Prev = '--prev',
   Next = '--next',
   Disabled = 'disabled',
-  IsInvalid = 'is-invalid'
+  IsInvalid = 'is-invalid',
+  IsValid = 'is-valid',
 }
 
 enum BannerParam {
@@ -283,7 +291,8 @@ enum NameSpace {
   UseCode = 'Применить',
   CommentId = 'comment',
   RateField = 'rate',
-  UserNameField = 'name'
+  UserNameField = 'name',
+  ErrorNetwork = 'ERR_NETWORK'
 }
 
 const ToastParam = {
@@ -347,10 +356,11 @@ enum ModalType {
   RemoveItem = 'removeItem',
   RemoveItemSuccess = 'removeItemSuccess',
   BasketSuccess = 'basketSuccess',
-  Loading = 'loading',
+  CreateOrder = 'createOrder',
   NewReview = 'createReview',
   ReviewSuccess = 'reviewSuccess',
-  Error = 'error'
+  Error = 'error',
+  CheckCoupon = 'checkCoupon',
 }
 
 enum ModalTitle {
@@ -361,7 +371,7 @@ enum ModalTitle {
   BasketSuccess = 'Спасибо за покупку',
   Error = 'Произошла ошибка',
   NewReview = 'Оставить отзыв',
-  ReviewSuccess = 'Спасибо за отзыв'
+  ReviewSuccess = 'Спасибо за отзыв',
 }
 
 enum ModalStatus {
@@ -390,6 +400,7 @@ enum ApiActionName {
   FetchReviews = 'REVIEWS/fetchOrSetReviews',
   FetchNewReview = 'REVIEWS/fetchNewReview',
   FetchOrder = 'ORDER/fetchOrder',
+  FetchCoupon = 'ORDER/fetchCoupon',
   UpdateAllSetCurrentId = 'UpdateAllCamerasAndSetCurrentCameraId',
 }
 
@@ -435,8 +446,24 @@ const DiscountParam = {
 
 enum LoaderStatus {
   Pending = 'pending',
-  Error = 'error'
+  Error = 'error',
+  Coupon = 'coupon',
 }
+
+const LoaderParam = {
+  [LoaderStatus.Pending]: {
+    info: ExplanationWord.CreatingOrder,
+    action: ExplanationWord.Wait,
+  },
+  [LoaderStatus.Error]: {
+    info: ExplanationWord.Error,
+    action: ExplanationWord.TryAgain,
+  },
+  [LoaderStatus.Coupon]: {
+    info: ExplanationWord.CheckCoupon,
+    action: ExplanationWord.Wait,
+  },
+};
 
 export {
   ApiActionName,
@@ -477,5 +504,6 @@ export {
   Rating,
   REVIEW_PARAM,
   ReviewValidInfoMessage,
-  LoaderStatus
+  LoaderStatus,
+  LoaderParam,
 };
