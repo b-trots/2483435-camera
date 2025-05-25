@@ -2,6 +2,7 @@ import { AppRoute, BREADCRUMBS } from '@/const/const-navigate';
 import { BreadcrumbActive } from './breadcrumb-active';
 import { Breadcrumb } from './breadcrumb';
 import { useLocation } from 'react-router-dom';
+import { TitleName } from '@/const/const';
 
 type BreadcrumbsProps = {
   cameraName?: string;
@@ -15,7 +16,7 @@ export function Breadcrumbs({ cameraName }: BreadcrumbsProps) {
       : BREADCRUMBS;
     directory =
       currentPath === AppRoute.Card
-        ? [...directory, { name: 'Корзина' }]
+        ? [...directory, { name: TitleName.Basket }]
         : directory;
     return directory;
   };

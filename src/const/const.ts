@@ -57,7 +57,7 @@ const ServiceParam = {
   SwiperSlideTime: 3000,
   UpButtonHeight: 18,
   UpButtonWidth: 12,
-  RequestReturnTimer: 5000,
+  RequestTimeout: 1500,
   CardsPerSlide: 3,
   ArrowIconHeight: 8,
   ArrowIconWidth: 5,
@@ -101,8 +101,8 @@ const ServiceParam = {
   ReviewFieldMaxSymbols: 160,
   minimumFractionDigits:2,
   maximumFractionDigits:2,
-  CheckCouponTimeout: 1500,
-  RoundingValueOfNumber: 2
+  RoundingValueOfNumber: 2,
+  ReviewCountStep:1,
 } as const;
 
 enum ServerParam {

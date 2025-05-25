@@ -13,6 +13,7 @@ import { CouponName, OrderType } from '@/types/types';
 import { appCreateAsyncThunk } from '../cameras/cameras-actions';
 import {
   changeBasket,
+  resetOrderState,
   setCoupon,
   setOrderError,
   setRequestStatus,
@@ -52,42 +53,42 @@ const addCamera =
 
 const changeCameraQuantity =
   (id: number, action: QuantityButtonType | number) =>
-    (dispatch: AppDispatch, getState: GetState) => {
-      const state: State = getState();
-      const basket = state[SliceName.Order].basket;
-      const newBasket = [...basket];
-      for (let i = 0; i < newBasket.length; i++) {
-        if (newBasket[i].id === id) {
-          const currentCamera = newBasket[i];
+  (dispatch: AppDispatch, getState: GetState) => {
+    const state: State = getState();
+    const basket = state[SliceName.Order].basket;
+    const newBasket = [...basket];
+    for (let i = 0; i < newBasket.length; i++) {
+      if (newBasket[i].id === id) {
+        const currentCamera = newBasket[i];
 
-          const quantity = currentCamera.quantity;
-          let newQuantity = quantity;
+        const quantity = currentCamera.quantity;
+        let newQuantity = quantity;
 
-          if (isManualInput(action)) {
-            if (action < ServiceParam.MinQuantity) {
-              newQuantity = ServiceParam.MinQuantity;
-            } else if (action > ServiceParam.MaxQuantity) {
-              newQuantity = ServiceParam.MaxQuantity;
-            } else {
-              newQuantity = action;
-            }
+        if (isManualInput(action)) {
+          if (action < ServiceParam.MinQuantity) {
+            newQuantity = ServiceParam.MinQuantity;
+          } else if (action > ServiceParam.MaxQuantity) {
+            newQuantity = ServiceParam.MaxQuantity;
           } else {
-            if (action === BemMode.Prev && quantity > ServiceParam.MinQuantity) {
-              newQuantity = quantity - ServiceParam.QuantityStep;
-            } else if (
-              action === BemMode.Next &&
-              quantity < ServiceParam.MaxQuantity
-            ) {
-              newQuantity = quantity + ServiceParam.QuantityStep;
-            } else {
-              return;
-            }
+            newQuantity = action;
           }
-          newBasket[i] = { ...currentCamera, quantity: newQuantity };
-          dispatch(changeBasket(newBasket));
+        } else {
+          if (action === BemMode.Prev && quantity > ServiceParam.MinQuantity) {
+            newQuantity = quantity - ServiceParam.QuantityStep;
+          } else if (
+            action === BemMode.Next &&
+            quantity < ServiceParam.MaxQuantity
+          ) {
+            newQuantity = quantity + ServiceParam.QuantityStep;
+          } else {
+            return;
+          }
         }
+        newBasket[i] = { ...currentCamera, quantity: newQuantity };
+        dispatch(changeBasket(newBasket));
       }
-    };
+    }
+  };
 
 const deleteCamera =
   (id: number) => (dispatch: AppDispatch, getState: GetState) => {
@@ -102,22 +103,30 @@ const fetchOrderAction = appCreateAsyncThunk<void, undefined>(
   async (_arg, { dispatch, getState, extra: api }) => {
     const state: State = getState();
     const basket = state[SliceName.Order].basket;
-    const camerasIds = basket.map((camera) => camera.id);
-    const coupon = state[SliceName.Order].coupon?.name;
+    const camerasIds = basket.reduce<number[]>(
+      (acc, camera) =>
+        acc.concat([
+          ...Array.from({ length: camera.quantity }, () => camera.id),
+        ]),
+      []
+    );
+    const coupon = state[SliceName.Order].coupon?.name || null;
     try {
       dispatch(openModal(ModalType.CreateOrder));
       await api.post<OrderType>(APIRoute.Orders, { camerasIds, coupon });
-      dispatch(changeBasket([]));
+      dispatch(resetOrderState());
     } catch (error) {
       const errorMessage = (error as AxiosError).message;
-      dispatch(setOrderError(errorMessage));
+      setTimeout(
+        () => dispatch(setOrderError(errorMessage)),
+        ServiceParam.RequestTimeout
+      );
       throw error;
     } finally {
-      dispatch(openModal(ModalType.BasketSuccess));
-      setTimeout(
-        () => dispatch(setRequestStatus(RequestStatus.Idle)),
-        ServiceParam.RequestReturnTimer
-      );
+      setTimeout(() => {
+        dispatch(openModal(ModalType.BasketSuccess));
+        dispatch(setRequestStatus(RequestStatus.Idle));
+      }, ServiceParam.RequestTimeout);
     }
   }
 );
@@ -136,6 +145,10 @@ const saveOrderState = (orderState: OrderSlice) => {
   localStorage.setItem(NameSpace.OrderState, serializedState);
 };
 
+const deleteOrderState = () => {
+  localStorage.removeItem(NameSpace.OrderState);
+};
+
 const fetchCouponAction = appCreateAsyncThunk<void, CouponName>(
   ApiActionName.FetchCoupon,
   async (couponName, { dispatch, extra: api }) => {
@@ -152,12 +165,12 @@ const fetchCouponAction = appCreateAsyncThunk<void, CouponName>(
       );
       dispatch(setCoupon({ name: couponName, value: Number(couponValue) }));
     } catch (error) {
-      if ((error as AxiosError).code === NameSpace.ErrorNetwork){
-        dispatch(openModal(ModalType.Error));
+      if ((error as AxiosError).code === NameSpace.ErrorNetwork) {
+        setTimeout(() =>dispatch(openModal(ModalType.Error)), ServiceParam.RequestTimeout);
       }
       dispatch(setCoupon(null));
     } finally {
-      setTimeout(()=>dispatch(closeModal()), ServiceParam.CheckCouponTimeout);
+      setTimeout(() => dispatch(closeModal()), 3000);
     }
   }
 );
@@ -169,5 +182,6 @@ export {
   deleteCamera,
   loadOrderState,
   saveOrderState,
+  deleteOrderState,
   fetchCouponAction,
 };

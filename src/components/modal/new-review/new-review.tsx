@@ -50,6 +50,7 @@ export function NewReviewComponent(
   const [review, setReview] = useState<NewReviewType>(initialReview);
   const [reviewErrors, setReviewErrors] =
     useState<NewReviewErrorType>(initialReviewError);
+
   const handleFormInputsChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => {
@@ -60,11 +61,14 @@ export function NewReviewComponent(
         ? target.name
         : target.name.replace(BemClass.User, BemMode.Void).trim()
     ) as NewReviewKeys;
-    setReview({
+
+    const updateReview = {
       ...review,
-      [paramName]:
-      paramName === BemClass.Rate ? Number(newValue) : newValue,
-    });
+      [paramName]: paramName === BemClass.Rate ? Number(newValue) : newValue,
+    };
+
+    setReview(updateReview);
+    reviewValidation(updateReview, reviewErrors, setReviewErrors);
   };
 
   const handleSubmit = (e: React.MouseEvent) => {

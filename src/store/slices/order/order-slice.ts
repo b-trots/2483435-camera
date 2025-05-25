@@ -2,6 +2,7 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { DefaultParam, RequestStatus, SliceName } from '@/const/const';
 import { OrderSlice } from '@/types/store-types/slices-types';
 import {
+  deleteOrderState,
   fetchCouponAction,
   fetchOrderAction,
   loadOrderState,
@@ -39,6 +40,10 @@ const orderSlice = createSlice({
       state.coupon = action.payload;
       saveOrderState(state);
     },
+    resetOrderState: () => {
+      deleteOrderState();
+      return orderStateDefault;
+    },
   },
   extraReducers: (builder) => {
     builder
@@ -63,7 +68,19 @@ const orderSlice = createSlice({
       });
   },
 });
-const { setRequestStatus, changeBasket, setOrderError, setCoupon } =
-  orderSlice.actions;
+const {
+  setRequestStatus,
+  changeBasket,
+  setOrderError,
+  setCoupon,
+  resetOrderState,
+} = orderSlice.actions;
 
-export { orderSlice, setRequestStatus, changeBasket, setOrderError, setCoupon };
+export {
+  orderSlice,
+  setRequestStatus,
+  changeBasket,
+  setOrderError,
+  setCoupon,
+  resetOrderState,
+};

@@ -9,7 +9,6 @@ import { ProductRate } from './product-rate';
 import { useAppDispatch } from '@/hooks/hooks';
 import { useCallback } from 'react';
 import { handleModalOpen } from '@/store/slices/modal/modal-actions';
-import { correctName } from '@/utils/utils';
 
 type ProductDetailProps = {
   camera: FullCamera;
@@ -46,7 +45,7 @@ export function ProductDetail({ camera }: ProductDetailProps) {
           />
           <div className="product__content">
             <h1 className="title title--h3">
-              {correctName(camera.category, camera.name)}
+              {camera.name}
             </h1>
             <ProductRate
               bemClass={BemClass.Product}

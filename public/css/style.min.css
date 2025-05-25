@@ -2176,6 +2176,7 @@ button {
 .basket__summary-item:last-of-type {
   margin-bottom: 0;
 }
+.basket__summary-value--total,
 .basket__summary-text--total {
   font-weight: 700;
 }

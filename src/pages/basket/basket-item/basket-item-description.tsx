@@ -6,7 +6,7 @@ import {
 } from '@/const/camera-const';
 import { BemClass } from '@/const/const';
 import { ProductPrice } from '@/pages/product/product-price';
-import { categoryNameAdapter, correctCategory, correctLevel, correctName } from '@/utils/utils';
+import { categoryNameAdapter, correctCategory, correctLevel } from '@/utils/utils';
 
 type BasketItemDescriptionProps = {
   name: string;
@@ -29,7 +29,7 @@ export function BasketItemDescription({
 }: BasketItemDescriptionProps) {
   return (
     <div className="basket-item__description">
-      <p className="basket-item__title">{correctName(category, name)}</p>
+      <p className="basket-item__title">{name}</p>
       <ul className="basket-item__list">
         <li className="basket-item__list-item">
           <span className="basket-item__article">{CameraParam.Article}: </span>

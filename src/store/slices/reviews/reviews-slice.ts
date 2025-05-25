@@ -38,6 +38,7 @@ const reviewsSlice = createSlice({
   },
 });
 
-const { addReviewToAllCamerasReviews } = reviewsSlice.actions;
+const { addReviewToAllCamerasReviews } =
+  reviewsSlice.actions;
 
 export { reviewsSlice, addReviewToAllCamerasReviews };

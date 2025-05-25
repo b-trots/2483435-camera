@@ -1,4 +1,4 @@
-import { RequestStatus, SliceName } from '@/const/const';
+import { RequestStatus, ServiceParam, SliceName } from '@/const/const';
 import { CamerasSlice } from '@/types/store-types/slices-types';
 import {
   fetchCamerasAction,
@@ -8,6 +8,8 @@ import {
 } from './cameras-actions';
 import { Cameras, FullCamera } from '@/types/camera-type';
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+
+type CameraId = number;
 
 export const camerasState: CamerasSlice = {
   allCameras: [],
@@ -34,6 +36,15 @@ const camerasSlice = createSlice({
     },
     setCurrentCameraId: (state, action: PayloadAction<number>) => {
       state.currentCameraId = action.payload;
+    },
+    changeCameraReviewCount: (state, action: PayloadAction<CameraId>) => {
+      const cameraId = action.payload;
+      const cameraIndex = state.allCameras.findIndex(
+        (camera) => camera.id === cameraId
+      );
+      if (cameraIndex) {
+        state.allCameras[cameraIndex].reviewCount += ServiceParam.ReviewCountStep;
+      }
     },
   },
   extraReducers: (builder) => {
@@ -75,12 +86,17 @@ const camerasSlice = createSlice({
   },
 });
 
-const { setAllCameras, addCameraToAllCameras, setCurrentCameraId } =
-  camerasSlice.actions;
+const {
+  setAllCameras,
+  addCameraToAllCameras,
+  setCurrentCameraId,
+  changeCameraReviewCount,
+} = camerasSlice.actions;
 
 export {
   camerasSlice,
   setAllCameras,
   addCameraToAllCameras,
   setCurrentCameraId,
+  changeCameraReviewCount,
 };

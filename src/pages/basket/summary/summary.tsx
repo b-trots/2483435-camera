@@ -9,12 +9,9 @@ import {
 import { formatPrice } from '@/utils/utils';
 import classNames from 'classnames';
 import { fetchOrderAction } from '@/store/slices/order/order-actions';
-import { useNavigate } from 'react-router-dom';
-import { AppRoute } from '@/const/const-navigate';
 
 export function Summary() {
   const dispatch = useAppDispatch();
-  const navigate = useNavigate();
   const basket = useAppSelector(getBasket);
   const totalPrice = useAppSelector(getTotalPrice);
   const { totalPriceWithDiscountAndCoupon, discount } = useAppSelector(
@@ -27,11 +24,7 @@ export function Summary() {
   );
 
   const handleOrderButtonClick = () => {
-    dispatch(fetchOrderAction())
-      .unwrap()
-      .then(() => {
-        navigate(AppRoute.Main);
-      });
+    dispatch(fetchOrderAction());
   };
 
   return (

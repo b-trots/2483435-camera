@@ -13,7 +13,7 @@ import {
   getCouponIsChecked,
 } from '@/store/slices/order/order-selectors';
 import classNames from 'classnames';
-import { useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
 export function PromoCode() {
   const dispatch = useAppDispatch();
@@ -30,7 +30,12 @@ export function PromoCode() {
   const couponValue = currentCoupon
     ? currentCoupon.name
     : DefaultParam.EmptyString;
+
   const [coupon, setCoupon] = useState(couponValue);
+
+  useEffect(() => {
+    setCoupon(currentCoupon ? currentCoupon.name : DefaultParam.EmptyString);
+  }, [currentCoupon]);
 
   const handleUsePromoCodeButtonClick = (e: React.MouseEvent) => {
     e.preventDefault();

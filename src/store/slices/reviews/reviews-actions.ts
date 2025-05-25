@@ -1,14 +1,12 @@
-import {
-  ApiActionName,
-  APIRoute,
-  ModalType,
-  SliceName
-} from '@/const/const';
+import { ApiActionName, APIRoute, ModalType, SliceName } from '@/const/const';
 import { NewComment, ReviewsType } from '@/types/types';
-import { addReviewToAllCamerasReviews } from './reviews-slice';
+import {
+  addReviewToAllCamerasReviews,
+} from './reviews-slice';
 import { appCreateAsyncThunk } from '../cameras/cameras-actions';
 import { FetchReviewsParam } from '@/types/store-types/slices-types';
 import { openModal } from '../modal/modal-slice';
+import { changeCameraReviewCount } from '../cameras/cameras-slice';
 
 const fetchOrSetReviewsAction = appCreateAsyncThunk<
   void | null,
@@ -50,6 +48,7 @@ const fetchNewReviewAction = appCreateAsyncThunk<void, NewComment>(
             needUpdate: true,
           })
         );
+        dispatch(changeCameraReviewCount(newComment.cameraId));
       });
     } catch (error) {
       dispatch(openModal(ModalType.Error));

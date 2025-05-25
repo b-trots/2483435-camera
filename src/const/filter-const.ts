@@ -25,10 +25,10 @@ const FilterCameraCategory = {
 } as const;
 
 const FilterCameraType = {
-  Collection: { id: CameraTypeId.Collection, name: CameraType.Collection },
-  Snapshot: { id: CameraTypeId.Snapshot, name: CameraType.Snapshot },
   Digital: { id: CameraTypeId.Digital, name: CameraType.Digital },
   Film: { id: CameraTypeId.Film, name: CameraType.Film },
+  Snapshot: { id: CameraTypeId.Snapshot, name: CameraType.Snapshot },
+  Collection: { id: CameraTypeId.Collection, name: CameraType.Collection },
 } as const;
 
 const FilterCameraLevel = {
