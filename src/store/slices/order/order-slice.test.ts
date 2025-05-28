@@ -4,10 +4,11 @@ import { fetchOrderAction } from './order-actions';
 
 describe('Order Slice', () => {
   const initialState = {
+    basket: [],
     coupon: null,
-    basket:[],
+    couponIsChecked: false,
     requestStatus: RequestStatus.Idle,
-    orderError: false,
+    orderError: '',
   };
 
   it('should return the initial state with an empty action', () => {
@@ -34,7 +35,6 @@ describe('Order Slice', () => {
     expect(result).toEqual(expectedState);
   });
 
-
   it('should handle pending state for fetchOrderAction', () => {
     const action = { type: fetchOrderAction.pending.type };
     const result = orderSlice.reducer(initialState, action);
@@ -42,12 +42,11 @@ describe('Order Slice', () => {
     const expectedState = {
       ...initialState,
       requestStatus: RequestStatus.Loading,
-      orderError: false,
+      orderError: '',
     };
 
     expect(result).toEqual(expectedState);
   });
-
 
   it('should handle fulfilled state for fetchOrderAction', () => {
     const action = { type: fetchOrderAction.fulfilled.type };
@@ -56,21 +55,23 @@ describe('Order Slice', () => {
     const expectedState = {
       ...initialState,
       requestStatus: RequestStatus.Success,
-      orderError: false,
+      orderError: '',
     };
 
     expect(result).toEqual(expectedState);
   });
 
-
   it('should handle rejected state for fetchOrderAction', () => {
     const action = { type: fetchOrderAction.rejected.type };
-    const result = orderSlice.reducer(initialState, action);
+    const result = orderSlice.reducer(
+      { ...initialState, orderError: 'BAD_REQUEST' },
+      action
+    );
 
     const expectedState = {
       ...initialState,
       requestStatus: RequestStatus.Failed,
-      orderError: true,
+      orderError: 'BAD_REQUEST',
     };
 
     expect(result).toEqual(expectedState);

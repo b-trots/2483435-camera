@@ -8,9 +8,11 @@ import {
 describe('Order Selectors', () => {
   const state = {
     [SliceName.Order]: {
+      basket: [],
+      couponIsChecked:true,
       coupon: null,
       requestStatus: RequestStatus.Success,
-      orderError: false,
+      orderError: '',
     },
   };
 
@@ -26,6 +28,6 @@ describe('Order Selectors', () => {
 
   it('getOrderError should return the current order error state', () => {
     const result = getOrderError(state);
-    expect(result).toBe(false);
+    expect(result).toBe('');
   });
 });

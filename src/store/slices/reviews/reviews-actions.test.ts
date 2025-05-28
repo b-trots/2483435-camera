@@ -63,7 +63,7 @@ describe('fetchOrSetReviewsAction', () => {
       },
     });
 
-    await store.dispatch(fetchOrSetReviewsAction(mockCameraId));
+    await store.dispatch(fetchOrSetReviewsAction({cameraId:mockCameraId}));
 
     const emittedActions = store.getActions() as AnyAction[];
 
@@ -85,7 +85,7 @@ describe('fetchOrSetReviewsAction', () => {
       .onGet(`${APIRoute.Cameras}/${mockCameraId}${APIRoute.Reviews}`)
       .reply(200, []);
 
-    await store.dispatch(fetchOrSetReviewsAction(mockCameraId));
+    await store.dispatch(fetchOrSetReviewsAction({cameraId:mockCameraId}));
 
     const emittedActions = store.getActions().map((action) => action.type);
     expect(emittedActions).toEqual([
@@ -114,7 +114,7 @@ describe('fetchOrSetReviewsAction', () => {
       .onGet(`${APIRoute.Cameras}/${mockCameraId}${APIRoute.Reviews}`)
       .reply(400);
 
-    await store.dispatch(fetchOrSetReviewsAction(mockCameraId));
+    await store.dispatch(fetchOrSetReviewsAction({cameraId:mockCameraId}));
 
     const emittedActions = store.getActions().map((action) => action.type);
     expect(emittedActions).toEqual([
