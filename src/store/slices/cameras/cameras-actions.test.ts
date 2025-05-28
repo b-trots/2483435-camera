@@ -139,7 +139,7 @@ describe('fetchOrSetCameraAction', () => {
 
     await store.dispatch(fetchOrSetCameraAction(mockCamera.id));
 
-    const actions = store.getActions().map((a) => a.type);
+    const actions = store.getActions().map((action) => action.type);
     expect(actions).toEqual([
       fetchOrSetCameraAction.pending.type,
       fetchOrSetCameraAction.fulfilled.type,
@@ -276,7 +276,7 @@ describe('fetchSimilarAction', () => {
     expect(result.payload).toEqual([]);
 
     const actions = store.getActions();
-    expect(actions.some((a) => a.type === addCameraToAllCameras.type)).toBe(
+    expect(actions.some((action) => action.type === addCameraToAllCameras.type)).toBe(
       false
     );
 

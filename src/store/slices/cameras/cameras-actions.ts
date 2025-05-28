@@ -75,7 +75,7 @@ const fetchSimilarAction = appCreateAsyncThunk<number[], number | string>(
 
     const state = getState();
     const allCameras = state[SliceName.Cameras].allCameras;
-    const existingIds = new Set(allCameras.map((c) => c.id));
+    const existingIds = new Set(allCameras.map((camera) => camera.id));
 
     const similarIds: number[] = [];
 

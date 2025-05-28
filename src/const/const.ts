@@ -90,7 +90,7 @@ const ServiceParam = {
   QuantityButtonWidth: 7,
   QuantityButtonHeight: 12,
   MinQuantity: 1,
-  MaxQuantity: 99,
+  MaxQuantity: 9,
   QuantityStep: 1,
   ReviewModalIconWidth: 80,
   ReviewModalIconHeight: 78,

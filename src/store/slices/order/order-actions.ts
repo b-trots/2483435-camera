@@ -53,42 +53,42 @@ const addCamera =
 
 const changeCameraQuantity =
   (id: number, action: QuantityButtonType | number) =>
-  (dispatch: AppDispatch, getState: GetState) => {
-    const state: State = getState();
-    const basket = state[SliceName.Order].basket;
-    const newBasket = [...basket];
-    for (let i = 0; i < newBasket.length; i++) {
-      if (newBasket[i].id === id) {
-        const currentCamera = newBasket[i];
+    (dispatch: AppDispatch, getState: GetState) => {
+      const state: State = getState();
+      const basket = state[SliceName.Order].basket;
+      const newBasket = [...basket];
+      for (let i = 0; i < newBasket.length; i++) {
+        if (newBasket[i].id === id) {
+          const currentCamera = newBasket[i];
 
-        const quantity = currentCamera.quantity;
-        let newQuantity = quantity;
+          const quantity = currentCamera.quantity;
+          let newQuantity = quantity;
 
-        if (isManualInput(action)) {
-          if (action < ServiceParam.MinQuantity) {
-            newQuantity = ServiceParam.MinQuantity;
-          } else if (action > ServiceParam.MaxQuantity) {
-            newQuantity = ServiceParam.MaxQuantity;
+          if (isManualInput(action)) {
+            if (action < ServiceParam.MinQuantity) {
+              newQuantity = ServiceParam.MinQuantity;
+            } else if (action > ServiceParam.MaxQuantity) {
+              newQuantity = ServiceParam.MaxQuantity;
+            } else {
+              newQuantity = action;
+            }
           } else {
-            newQuantity = action;
+            if (action === BemMode.Prev && quantity > ServiceParam.MinQuantity) {
+              newQuantity = quantity - ServiceParam.QuantityStep;
+            } else if (
+              action === BemMode.Next &&
+              quantity < ServiceParam.MaxQuantity
+            ) {
+              newQuantity = quantity + ServiceParam.QuantityStep;
+            } else {
+              return;
+            }
           }
-        } else {
-          if (action === BemMode.Prev && quantity > ServiceParam.MinQuantity) {
-            newQuantity = quantity - ServiceParam.QuantityStep;
-          } else if (
-            action === BemMode.Next &&
-            quantity < ServiceParam.MaxQuantity
-          ) {
-            newQuantity = quantity + ServiceParam.QuantityStep;
-          } else {
-            return;
-          }
+          newBasket[i] = { ...currentCamera, quantity: newQuantity };
+          dispatch(changeBasket(newBasket));
         }
-        newBasket[i] = { ...currentCamera, quantity: newQuantity };
-        dispatch(changeBasket(newBasket));
       }
-    }
-  };
+    };
 
 const deleteCamera =
   (id: number) => (dispatch: AppDispatch, getState: GetState) => {
