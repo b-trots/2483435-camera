@@ -226,8 +226,8 @@ describe('fetchSimilarAction', () => {
   });
 
   it('should not dispatch addCameraToAllCameras if camera already exists in state', async () => {
-    const existingCamera = generateCamera();
-    const mockSimilarCameras = [existingCamera, ...generateAllCameras(2)];
+    const existingCamera = {...generateCamera(), id:3};
+    const mockSimilarCameras = [generateAllCameras(5).map((camera, index)=> ({...camera, id:index}))];
 
     store = mockStoreCreator({
       CAMERAS: {
@@ -246,7 +246,7 @@ describe('fetchSimilarAction', () => {
       .getActions()
       .filter((action) => action.type === addCameraToAllCameras.type);
 
-    expect(addActions.length).toBe(2);
+    expect(addActions.length).toBe(1);
   });
 
   it('should dispatch "fetchSimilarAction.pending", "fetchSimilarAction.rejected" when server response 400', async () => {

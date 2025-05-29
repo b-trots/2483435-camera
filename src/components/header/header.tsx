@@ -18,10 +18,16 @@ function HeaderComponent() {
         <Logo bemBlock={BemClass.Header} />
         <HeaderNav />
         <Search />
-        <Link className="header__basket-link" to={AppRoute.Card}>
+        <Link
+          className="header__basket-link"
+          data-testid="basket-link"
+          to={AppRoute.Card}
+        >
           <BasketIcon />
           {totalQuantity !== DefaultParam.ZeroValue && (
-            <span className="header__basket-count">{totalQuantity}</span>
+            <span className="header__basket-count" data-testid="basket-count">
+              {totalQuantity}
+            </span>
           )}
         </Link>
       </div>

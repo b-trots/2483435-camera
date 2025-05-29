@@ -7,6 +7,15 @@ import { State } from '@/types/store-types/store-types';
 import { Cameras, FullCamera, PromoCamera } from '@/types/camera-type';
 import { CameraCategory, CameraLevel, CameraType } from '@/const/camera-const';
 
+export type AppThunkDispatch = ThunkDispatch<
+  State,
+  ReturnType<typeof createAPI>,
+  Action
+>;
+
+const extractActionsTypes = (actions: Action<string>[]) =>
+  actions.map(({ type }) => type);
+
 const generateCamera = (): FullCamera => ({
   id: faker.number.int({ min: 1, max: 10 }),
   name: faker.commerce.productName(),
@@ -88,15 +97,6 @@ const generateReviewsForState = (
 
   return storeReviews;
 };
-
-export type AppThunkDispatch = ThunkDispatch<
-  State,
-  ReturnType<typeof createAPI>,
-  Action
->;
-
-const extractActionsTypes = (actions: Action<string>[]) =>
-  actions.map(({ type }) => type);
 
 export {
   generateCamera,
