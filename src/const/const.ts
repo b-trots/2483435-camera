@@ -210,15 +210,15 @@ enum ExplanationWord {
   ForPayment = 'К оплате:',
   PlaceAnOrder = 'Оформить заказ',
   FoundError = '404 ERROR',
-  PageNotFound = 'PAGE NOT FOUND',
-  CreatingOrder = 'CREATING ORDER',
-  Wait = 'Wait...',
+  PageNotFound = 'Страница не найдена',
+  CreatingOrder = 'Создание заказа',
+  Wait = 'Подождите...',
   NewReview = 'Оставить свой отзыв',
   Rating = 'Рейтинг',
   NeedToEvaluate = 'Нужно оценить товар',
   SlashSymbol = '/',
   Error = 'Ошибка',
-  CheckCoupon = 'Check coupon',
+  CheckCoupon = 'Проверка промокода',
   TryAgain = 'Попробуйте ещё раз'
 }
 
