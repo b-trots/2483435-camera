@@ -12,6 +12,7 @@ import {
   getCoupon,
   getCouponIsChecked,
 } from '@/store/slices/order/order-selectors';
+import { AxiosError } from 'axios';
 import classNames from 'classnames';
 import { useEffect, useRef, useState } from 'react';
 
@@ -42,7 +43,17 @@ export function PromoCode() {
     const enteredCoupon = inputRef.current;
     if (enteredCoupon) {
       const adaptCouponValue = String(enteredCoupon.value).trim();
-      dispatch(fetchCouponAction(adaptCouponValue));
+      dispatch(fetchCouponAction(adaptCouponValue))
+        .unwrap()
+        .catch((error) => {
+          if ((error as AxiosError).message === NameSpace.ErrorNetwork) {
+            setCoupon(
+              currentCoupon !== null ? currentCoupon.name : enteredCoupon.value
+            );
+          } else {
+            setCoupon(enteredCoupon.value);
+          }
+        });
     }
   };
 

@@ -13,6 +13,7 @@ import {
   CameraParam,
   CameraType,
 } from '@/const/camera-const';
+import { OrderSlice } from '@/types/store-types/slices-types';
 
 const toStandardizePhone = (phone: string) =>
   phone.replace(/\D/g, '').replace(/^8/, '7').replace(/^7/, '+7');
@@ -90,6 +91,36 @@ const correctName = (category: AdaptedCameraCategory, cameraName: string) => {
   }
 };
 
+function isOrderData(data: unknown): data is OrderSlice {
+  if (!(typeof data === 'string')) {
+    return false;
+  }
+
+  const correctData = JSON.parse(data) as string;
+
+  if (typeof correctData !== 'object' || correctData === null) {
+    return false;
+  }
+
+  const obj = correctData as Record<string, unknown>;
+
+  return (
+    Array.isArray(obj.basket) &&
+    obj.basket.every(
+      (item: unknown) =>
+        typeof item === 'object' &&
+        item !== null &&
+        'id' in item &&
+        'quantity' in item
+    ) &&
+    (obj.coupon === null ||
+      (typeof obj.coupon === 'object' && obj.coupon !== null)) &&
+    typeof obj.couponIsChecked === 'boolean' &&
+    typeof obj.requestStatus === 'string' &&
+    typeof obj.orderError === 'string'
+  );
+}
+
 export {
   toStandardizePhone,
   reviewDate,
@@ -103,4 +134,5 @@ export {
   correctLevel,
   correctName,
   categoryNameAdapter,
+  isOrderData,
 };

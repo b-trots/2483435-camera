@@ -217,7 +217,7 @@ enum ExplanationWord {
   Rating = 'Рейтинг',
   NeedToEvaluate = 'Нужно оценить товар',
   SlashSymbol = '/',
-  Error = 'Ошибка',
+  Error = 'Ошибка сети',
   CheckCoupon = 'Проверка промокода',
   TryAgain = 'Попробуйте ещё раз'
 }
@@ -292,7 +292,7 @@ enum NameSpace {
   CommentId = 'comment',
   RateField = 'rate',
   UserNameField = 'name',
-  ErrorNetwork = 'ERR_NETWORK'
+  ErrorNetwork = 'Network Error'
 }
 
 const ToastParam = {

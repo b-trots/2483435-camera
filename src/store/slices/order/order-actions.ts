@@ -23,6 +23,7 @@ import { QuantityButtonType } from '@/pages/basket/basket-item/quantity/quantity
 import { OrderSlice } from '@/types/store-types/slices-types';
 import { closeModal, openModal } from '../modal/modal-slice';
 import { AxiosError } from 'axios';
+import { isOrderData } from '@/utils/utils';
 
 const isManualInput = (action: QuantityButtonType | number): action is number =>
   action !== BemMode.Prev && action !== BemMode.Next;
@@ -103,6 +104,9 @@ const fetchOrderAction = appCreateAsyncThunk<void, undefined>(
   async (_arg, { dispatch, getState, extra: api }) => {
     const state: State = getState();
     const basket = state[SliceName.Order].basket;
+    if (basket.length === DefaultParam.ZeroValue) {
+      return;
+    }
     const camerasIds = basket.reduce<number[]>(
       (acc, camera) =>
         acc.concat([
@@ -131,11 +135,14 @@ const fetchOrderAction = appCreateAsyncThunk<void, undefined>(
   }
 );
 
-const loadOrderState = () => {
-  const orderState = localStorage.getItem(NameSpace.OrderState);
-  if (orderState) {
-    return JSON.parse(orderState) as OrderSlice;
-  } else {
+const loadOrderState = (): OrderSlice | null => {
+  try {
+    const orderState = localStorage.getItem(NameSpace.OrderState);
+    if (orderState && isOrderData(orderState)) {
+      return JSON.parse(orderState) as OrderSlice;
+    }
+    return null;
+  } catch {
     return null;
   }
 };
@@ -165,10 +172,16 @@ const fetchCouponAction = appCreateAsyncThunk<void, CouponName>(
       );
       dispatch(setCoupon({ name: couponName, value: Number(couponValue) }));
     } catch (error) {
-      if ((error as AxiosError).code === NameSpace.ErrorNetwork) {
-        setTimeout(() =>dispatch(openModal(ModalType.Error)), ServiceParam.RequestTimeout);
+      if ((error as AxiosError).message === NameSpace.ErrorNetwork) {
+        setTimeout(
+          () => dispatch(openModal(ModalType.Error)),
+          ServiceParam.RequestTimeout
+        );
+        throw error;
+        return;
       }
       dispatch(setCoupon(null));
+      throw error;
     } finally {
       setTimeout(() => dispatch(closeModal()), 3000);
     }
@@ -184,4 +197,5 @@ export {
   saveOrderState,
   deleteOrderState,
   fetchCouponAction,
+  isManualInput,
 };

@@ -29,7 +29,7 @@ type ModalSlice = {
 type OrderSlice = {
   basket: BasketCamera[];
   coupon: Coupon | null;
-  couponIsChecked:boolean;
+  couponIsChecked: boolean;
   requestStatus: RequestStatus;
   orderError: string;
 };
