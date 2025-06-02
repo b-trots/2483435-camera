@@ -2,7 +2,7 @@ enum AppRoute {
   Plug = '',
   Main = '/',
   Cameras = '/cameras/:id',
-  Card = '/card'
+  Card = '/card',
 }
 
 const BREADCRUMBS: { name: string; path?: string }[] = [

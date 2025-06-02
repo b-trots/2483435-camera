@@ -14,6 +14,7 @@ export function UpButton() {
   return (
     <Link className="up-btn" to="#header" onClick={handleUpButtonClick}>
       <svg
+        data-testid="up-button-svg"
         width={ServiceParam.UpButtonWidth}
         height={ServiceParam.UpButtonHeight}
         aria-hidden="true"

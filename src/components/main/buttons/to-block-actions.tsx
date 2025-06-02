@@ -1,7 +1,7 @@
-
 export function ToBlockActions() {
   return (
     <div
+      data-testid="block-actions"
       style={{
         position: 'absolute',
         top: 0,

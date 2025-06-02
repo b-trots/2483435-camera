@@ -7,7 +7,7 @@ type BreadcrumbProps = {
 };
 export function Breadcrumb({ name, path }: BreadcrumbProps) {
   return (
-    <li className="breadcrumbs__item" key={name}>
+    <li className="breadcrumbs__item" key={name} data-testId='bread'>
       <Link className="breadcrumbs__link" to={path}>
         {name}
         <svg

@@ -11,13 +11,16 @@ type BreadcrumbsProps = {
 export function Breadcrumbs({ cameraName }: BreadcrumbsProps) {
   const currentPath = useLocation().pathname;
   const correctDirectory = () => {
-    let directory = cameraName
-      ? [...BREADCRUMBS, { name: cameraName }]
-      : BREADCRUMBS;
-    directory =
-      currentPath === AppRoute.Card
-        ? [...directory, { name: TitleName.Basket }]
-        : directory;
+    let directory = [...BREADCRUMBS];
+
+    if (cameraName && currentPath !== AppRoute.Card) {
+      directory = [...directory, { name: cameraName }];
+    }
+
+    if (currentPath === AppRoute.Card) {
+      directory = [...directory, { name: TitleName.Basket }];
+    }
+
     return directory;
   };
 
