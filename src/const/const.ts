@@ -182,8 +182,6 @@ enum BemClass {
 }
 
 enum ExplanationWord {
-  Phone = 'Телефон',
-  EnterPhone = 'Введите ваш номер',
   HomePage = 'Home Page',
   Reviews = 'Отзывы',
   Grade = 'Оценка',
@@ -350,7 +348,6 @@ enum RequestStatus {
 }
 
 enum ModalType {
-  CallItem = 'callItem',
   AddItem = 'addItem',
   AddItemSuccess = 'addItemSuccess',
   RemoveItem = 'removeItem',
@@ -364,7 +361,6 @@ enum ModalType {
 }
 
 enum ModalTitle {
-  CallItem = 'Свяжитесь со мной',
   AddItem = 'Добавить товар в корзину',
   AddItemSuccess = 'Товар успешно добавлен в корзину',
   RemoveItem = 'Удалить этот товар?',

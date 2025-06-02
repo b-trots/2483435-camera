@@ -8,25 +8,11 @@ import {
   formatPrice,
   reviewDate,
   selectCameras,
-  toStandardizePhone,
 } from './utils';
 import { generateAllCameras } from './mock/mock';
 import { ServiceParam } from '@/const/const';
 
 describe('Utility Functions', () => {
-  describe('toStandardizePhone', () => {
-    it('should convert 8 to +7 and remove non-digits', () => {
-      expect(toStandardizePhone('8 (900) 123-45-67')).toBe('+79001234567');
-    });
-
-    it('should convert 7 to +7 and remove non-digits', () => {
-      expect(toStandardizePhone('7 (900) 123-45-67')).toBe('+79001234567');
-    });
-
-    it('should keep +7 intact and remove non-digits', () => {
-      expect(toStandardizePhone('+7 (900) 123-45-67')).toBe('+79001234567');
-    });
-  });
 
   describe('reviewDate', () => {
     it('should format a date to the correct format', () => {

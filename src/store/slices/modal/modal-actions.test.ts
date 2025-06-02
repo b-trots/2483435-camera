@@ -17,7 +17,7 @@ describe('handleModalOpen', () => {
       },
     });
 
-    const modalName = ModalType.CallItem;
+    const modalName = ModalType.AddItem;
     const cameraId = 1;
 
     store.dispatch(handleModalOpen(modalName, cameraId) as unknown as Action);
@@ -37,7 +37,7 @@ describe('handleModalOpen', () => {
       },
     });
 
-    const modalName = ModalType.CallItem;
+    const modalName = ModalType.AddItem;
 
     store.dispatch(handleModalOpen(modalName, cameraId) as unknown as Action);
 

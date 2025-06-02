@@ -22,18 +22,6 @@ const errorNotify = (message: string) =>
     pauseOnHover: false,
   });
 
-const phoneValidationError = (message: string) =>
-  toast.error(message, {
-    containerId: ToastParam.Modal,
-    autoClose: ToastParam.CloseTime,
-    hideProgressBar: true,
-    pauseOnFocusLoss: false,
-    draggable: true,
-    pauseOnHover: false,
-    theme: ToastParam.Theme,
-    transition: ToastParam.Transition,
-  });
-
 const handleError = (error: AxiosError<DetailMessageType>) => {
   const { response, message, config } = error;
 
@@ -58,4 +46,4 @@ const handleError = (error: AxiosError<DetailMessageType>) => {
   }
 };
 
-export { errorNotify, phoneValidationError, handleError };
+export { errorNotify, handleError };

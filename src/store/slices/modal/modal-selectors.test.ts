@@ -52,7 +52,7 @@ describe('Modal Selectors', () => {
       camerasError: false,
     },
     [SliceName.Modal]: {
-      modalType: ModalType.CallItem,
+      modalType: ModalType.AddItem,
       modalStatus: ModalStatus.Open,
       modalCameraId: 1,
     },
@@ -60,7 +60,7 @@ describe('Modal Selectors', () => {
 
   it('getActiveModal should return the current modal type', () => {
     const result = getActiveModal(state);
-    expect(result).toBe(ModalType.CallItem);
+    expect(result).toBe(ModalType.AddItem);
   });
 
   it('getModalStatus should return the current modal status', () => {

@@ -26,7 +26,7 @@ describe('Modal Slice', () => {
   });
 
   it('openModal should set modalType and change modalStatus to Open', () => {
-    const modalType = ModalType.CallItem;
+    const modalType = ModalType.AddItem;
     const action = openModal(modalType);
     const result = modalSlice.reducer(initialState, action);
 
@@ -41,7 +41,7 @@ describe('Modal Slice', () => {
 
   it('closeModal should reset modalType, modalStatus, and modalCameraId', () => {
     const currentState = {
-      modalType: ModalType.CallItem,
+      modalType: ModalType.AddItem,
       modalStatus: ModalStatus.Open,
       modalCameraId: 5,
     };

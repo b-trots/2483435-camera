@@ -15,9 +15,6 @@ import {
 } from '@/const/camera-const';
 import { OrderSlice } from '@/types/store-types/slices-types';
 
-const toStandardizePhone = (phone: string) =>
-  phone.replace(/\D/g, '').replace(/^8/, '7').replace(/^7/, '+7');
-
 const reviewDate = (date: string) => {
   dayjs.locale(ServiceParam.LocaleRuAbbreviated);
   return dayjs(date).format(ServiceParam.DateFormat);
@@ -122,7 +119,6 @@ function isOrderData(data: unknown): data is OrderSlice {
 }
 
 export {
-  toStandardizePhone,
   reviewDate,
   selectCameras,
   countPages,
