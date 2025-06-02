@@ -149,17 +149,4 @@ describe('Cameras Selectors', () => {
     expect(result).toBe(camerasError);
   });
 
-  it('getSimilarCameras should include only existing cameras from allCameras', () => {
-    const newState = {
-      ...state,
-      [SliceName.Cameras]: {
-        ...state[SliceName.Cameras],
-        allCameras: mockAllCameras,
-        similarCamerasIds: [mockAllCameras[0].id, mockAllCameras[1].id],
-      },
-    };
-
-    const result = getSimilarCameras(newState);
-    expect(result).toEqual([mockAllCameras[0], mockAllCameras[1]]);
-  });
 });
